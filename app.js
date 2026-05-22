@@ -8,6 +8,11 @@ const goals = (items)=>`<div class="card goals"><h3><span class="dot"></span>Læ
 const formulas = (rows)=>`<div class="formula-box">${rows.map(r=>`<div class="formula-row"><span class="fx">${r[0]}</span><span class="desc">${r[1]}</span></div>`).join('')}</div>`;
 const exam = (tags, body)=>`<div class="card exam"><h3><span class="dot"></span>Slik testes dette på eksamen</h3><div class="tagrow">${tags.map(t=>`<span class="tag">${t}</span>`).join('')}</div>${body}</div>`;
 const reveal = (label, html)=>`<details class="reveal"><summary>${label||'Vis løsning'}</summary>${html}</details>`;
+const concept = (title, html)=>`<div class="card concept"><h3><span class="dot"></span>${title}</h3>${html}</div>`;
+const workedExample = (title, problem, solution, answer)=>`<div class="card worked"><h3><span class="dot"></span>${title}</h3><div class="prob">${problem}</div>${reveal('Vis løsning', `${solution}<span class="answer">${answer}</span>`)}</div>`;
+const practiceBlock = (cfg)=>concept(cfg.explainTitle, cfg.explain)
+  + workedExample(cfg.workedTitle, cfg.problem, cfg.solution, cfg.answer)
+  + quizCard('Flere kontrollspørsmål', cfg.questions);
 
 /* quiz-bygger: spørsmål med alternativer (riktig markert), forklaring */
 let QID=0;
@@ -605,6 +610,230 @@ M.push({
     ])
 });
 
+const EXTRAS = {
+  foton: {
+    explainTitle:'Mer forklaring — energi, effekt og fotonfluks',
+    explain:`<p>Eksamen blander ofte størrelser som ser like ut, men som har ulik fysisk betydning. <strong>Energi per foton</strong> er bestemt av bølgelengden alene, mens <strong>effekt</strong> forteller hvor mange fotoner som kommer per sekund.</p>
+      <p>En god arbeidsregel er: finn først $E_\\text{foton}=hc/\\lambda$. Deretter kan du koble til makroskopiske størrelser med $P=N E_\\text{foton}/t$. Hvis oppgaven gir areal, går du videre til irradians $E_e=P/A$.</p>`,
+    workedTitle:'Regneeksempel — fotonfluks fra laser',
+    problem:'En grønn laser har effekt $P=2{,}0\\text{ mW}$ og bølgelengde $\\lambda=532\\text{ nm}$. Hvor mange fotoner sendes ut per sekund?',
+    solution:`<div class="step"><span class="lbl">Fotonenergi</span><p>$E=hc/\\lambda=(6{,}63\\times10^{-34})(3{,}00\\times10^8)/(532\\times10^{-9})=3{,}74\\times10^{-19}\\text{ J}$.</p></div>
+      <div class="step"><span class="lbl">Antall per sekund</span><p>Effekt er energi per tid: $N/t=P/E=(2{,}0\\times10^{-3})/(3{,}74\\times10^{-19})=5{,}35\\times10^{15}\\text{ s}^{-1}$.</p></div>`,
+    answer:'≈ 5,3×10¹⁵ fotoner/s',
+    questions:[
+      {n:'3', q:'En lyskilde har samme effekt ved 400 nm og 800 nm. Hvilken stråle har flest fotoner per sekund?',
+       opts:['400 nm','800 nm','like mange','det avhenger bare av arealet'],
+       answer:1, ex:'Ved lengre bølgelengde er hvert foton mindre energirikt. Samme effekt betyr derfor flere fotoner per sekund ved 800 nm.'},
+      {n:'4', q:'Irradians måles i:',
+       opts:['J','W','W/m²','sr'],
+       answer:2, ex:'Irradians er effekt per areal på en flate, altså watt per kvadratmeter.'}
+    ]
+  },
+  geo1: {
+    explainTitle:'Mer forklaring — fortegn før tall',
+    explain:`<p>I linseoppgaver er feil fortegn vanligere enn feil algebra. Start derfor med en skisse: hvor er objektet, hvor forventer du bildet, og er linsen samlende eller spredende?</p>
+      <p>For en positiv linse med objekt utenfor brennvidden forventer du et reelt bilde på motsatt side: $s_i>0$ og $m<0$. Hvis regningen gir noe annet, bør du kontrollere fortegnene før du går videre.</p>`,
+    workedTitle:'Regneeksempel — bildeplassering og forstørrelse',
+    problem:'Et objekt står $30\\text{ cm}$ foran en positiv linse med $f=10\\text{ cm}$. Finn bildeavstand, forstørrelse og bildetype.',
+    solution:`<div class="step"><span class="lbl">Linseformel</span><p>$1/s_i=1/f-1/s_o=1/10-1/30=2/30=1/15$.</p></div>
+      <div class="step"><span class="lbl">Tolkning</span><p>$s_i=15\\text{ cm}>0$, så bildet er reelt og ligger på andre siden av linsen. $m=-s_i/s_o=-15/30=-0{,}50$, altså invertert og halv størrelse.</p></div>`,
+    answer:'sᵢ = 15 cm, m = −0,50, reelt og invertert',
+    questions:[
+      {n:'3', q:'Et positivt $s_i$ i tynnlinseformelen betyr vanligvis:',
+       opts:['virtuelt bilde på objektsiden','reelt bilde på bildesiden','ingen avbildning','negativ forstørrelse automatisk større enn 1'],
+       answer:1, ex:'Med standard fortegn ligger et positivt bildepunkt på utgangssiden av linsen og er reelt.'},
+      {n:'4', q:'Hvis $s_o=f$ for en positiv linse, blir bildet:',
+       opts:['ved $f$ på bildesiden','ved $2f$','i uendelig','virtuelt og opprett ved $f/2$'],
+       answer:2, ex:'Da blir $1/s_i=1/f-1/f=0$, altså $s_i\\to\\infty$.'}
+    ]
+  },
+  geo2: {
+    explainTitle:'Mer forklaring — hva matrisen egentlig gjør',
+    explain:`<p>Ray-transfer-metoden er mest nyttig når du bruker matriseelementene som diagnostikk. $B=0$ betyr at utgangshøyden ikke avhenger av inngangsvinkelen; alle stråler fra samme objektpunkt møtes i bildeplanet.</p>
+      <p>For et system i samme medium bør determinanten være 1. Det er en enkel kvalitetskontroll etter matrisemultiplikasjon.</p>`,
+    workedTitle:'Regneeksempel — finn bildeplanet med $B=0$',
+    problem:'Et objekt står $s_o=30\\text{ cm}$ foran en tynn linse med $f=10\\text{ cm}$. Bruk matriseideen til å finne avstanden $d$ fra linsen til bildeplanet.',
+    solution:`<div class="step"><span class="lbl">System</span><p>Fra objektplan til bildeplan: $M=T(d)L(f)T(s_o)$. Bildeplan krever $B=0$.</p></div>
+      <div class="step"><span class="lbl">Resultat</span><p>Multiplikasjon gir $B=s_o+d-ds_o/f$. Sett $B=0$: $30+d-3d=0\\Rightarrow d=15\\text{ cm}$.</p></div>`,
+    answer:'d = 15 cm',
+    questions:[
+      {n:'3', q:'Hva er en rask kontroll for et system som starter og slutter i samme medium?',
+       opts:['$A=0$','$B=1$','$\\det M=1$','$C=D$'],
+       answer:2, ex:'For tapsfri paraxial stråleoptikk i samme medium er determinanten 1.'},
+      {n:'4', q:'Et afokalt system kjennetegnes ved:',
+       opts:['$B=0$','$C=0$','$A=0$','$D=0$'],
+       answer:1, ex:'$C=0$ gjør at parallelle inngående stråler fortsatt er parallelle ut.'}
+    ]
+  },
+  geo3: {
+    explainTitle:'Mer forklaring — vinkelforstørrelse er ikke bildestørrelse',
+    explain:`<p>Instrumentoppgaver handler ofte om vinkler, ikke bare centimeter på et mellomliggende bilde. En lupe eller et teleskop hjelper fordi objektet dekker større vinkel på øyet.</p>
+      <p>For teleskop er fortegnet i $MP=-f_o/f_e$ en orienteringsmarkør: negativt betyr invertert bilde. Størrelsen $|MP|$ er vanligvis det oppgaven mener når den spør om «forstørrelse».</p>`,
+    workedTitle:'Regneeksempel — teleskoplengde og forstørrelse',
+    problem:'Et Kepler-teleskop har objektiv $f_o=80\\text{ cm}$ og okular $f_e=4\\text{ cm}$. Finn rørlengden i afokal oppstilling og vinkelforstørrelsen.',
+    solution:`<div class="step"><span class="lbl">Afokal avstand</span><p>For to positive linser er avstanden $d=f_o+f_e=84\\text{ cm}$.</p></div>
+      <div class="step"><span class="lbl">Forstørrelse</span><p>$MP=-f_o/f_e=-80/4=-20$. Bildet er invertert, og vinkelstørrelsen er 20 ganger større.</p></div>`,
+    answer:'d = 84 cm, MP = −20',
+    questions:[
+      {n:'3', q:'Hvorfor er et Kepler-teleskop afokalt når linseavstanden er $f_o+f_e$?',
+       opts:['fordi bildet ligger på objektivet','fordi felles brennplan deles','fordi okularet blir negativt','fordi $B=0$ alltid'],
+       answer:1, ex:'Objektivets bildeplan faller sammen med okularets fremre brennplan, så parallelt lys kommer parallelt ut.'},
+      {n:'4', q:'Et større f-tall i kamera betyr vanligvis:',
+       opts:['større apertur','mindre apertur','kortere brennvidde uansett','ingen endring i lysmengde'],
+       answer:1, ex:'$f\\#=f/D$. For gitt brennvidde gir større f-tall mindre aperturdiameter.'}
+    ]
+  },
+  wave1: {
+    explainTitle:'Mer forklaring — les bølgeuttrykket systematisk',
+    explain:`<p>Et uttrykk som $E_0\\cos(kz-\\omega t)$ gir tre ting samtidig: amplituden $E_0$, utbredelsesretningen fra fortegnet foran $\\omega t$, og bølgelengden fra $k$.</p>
+      <p>Husk også at intensitet går som amplitude i andre potens. Dobler du $E_0$, firedobles intensiteten.</p>`,
+    workedTitle:'Regneeksempel — intensitet fra feltamplitude',
+    problem:'En plan bølge i luft har elektrisk feltamplitude $E_0=100\\text{ V/m}$. Estimer tidsmidlet intensitet.',
+    solution:`<div class="step"><span class="lbl">Formel</span><p>Bruk $I=\\tfrac12 c\\varepsilon_0E_0^2$ for luft/vakuum.</p></div>
+      <div class="step"><span class="lbl">Innsetting</span><p>$I=0{,}5(3{,}00\\times10^8)(8{,}85\\times10^{-12})(100)^2=13{,}3\\text{ W/m}^2$.</p></div>`,
+    answer:'I ≈ 13 W/m²',
+    questions:[
+      {n:'3', q:'Hvis $E_0$ dobles, endres intensiteten med faktor:',
+       opts:['2','4','1/2','8'],
+       answer:1, ex:'Intensitet er proporsjonal med $E_0^2$.'},
+      {n:'4', q:'I $\\cos(kz-\\omega t)$ beveger bølgen seg:',
+       opts:['langs +z','langs −z','langs +x','står stille'],
+       answer:0, ex:'Konstant fase krever $kz-\\omega t=\\text{konstant}$, altså øker z når t øker.'}
+    ]
+  },
+  wave2: {
+    explainTitle:'Mer forklaring — TE/TM uten pugging',
+    explain:`<p>TE og TM er definert relativt til innfallsplanet, ikke relativt til bordet eller skjermen. Tegn innfallsplanet først: det spennes ut av innkommende stråle og normalen.</p>
+      <p>TE betyr at E-feltet står vinkelrett på dette planet. TM betyr at E-feltet ligger i planet. Ved Brewster forsvinner TM-refleksjonen, derfor blir reflektert lys rent TE.</p>`,
+    workedTitle:'Regneeksempel — normalrefleksjon ved glass',
+    problem:'Lys går normalt fra luft til glass med $n=1{,}50$. Finn reflektansen ved flaten.',
+    solution:`<div class="step"><span class="lbl">Normal innfall</span><p>$R=\\left((n_1-n_2)/(n_1+n_2)\\right)^2$.</p></div>
+      <div class="step"><span class="lbl">Innsetting</span><p>$R=((1{,}00-1{,}50)/(1{,}00+1{,}50))^2=(-0{,}20)^2=0{,}040$.</p></div>`,
+    answer:'R = 4,0 %',
+    questions:[
+      {n:'3', q:'Ved Brewster-vinkelen for luft→glass er hvilken komponent null i refleksjon?',
+       opts:['TE','TM','begge','ingen'],
+       answer:1, ex:'Brewster-betingelsen er $r_{TM}=0$.'},
+      {n:'4', q:'Innfallsplanet bestemmes av:',
+       opts:['E-feltet alene','B-feltet alene','innkommende stråle og normalen','overflaten alene'],
+       answer:2, ex:'Innfallsplanet er planet som inneholder stråleretningen og normalen til flaten.'}
+    ]
+  },
+  wave3: {
+    explainTitle:'Mer forklaring — TIR betyr ikke null felt utenfor',
+    explain:`<p>Total intern refleksjon betyr at netto energitransport inn i medium 2 forsvinner, ikke at feltet er null der. Det evanescente feltet finnes nær grenseflaten og avtar raskt.</p>
+      <p>Dette skiller TIR fra en perfekt metallrefleksjon: ved TIR er faseforskyvningen polarisasjonsavhengig, og den kan endre elliptisiteten til polarisert lys.</p>`,
+    workedTitle:'Regneeksempel — vann til luft',
+    problem:'Lys går fra vann ($n=1{,}33$) til luft. Finn kritisk vinkel og avgjør om $50^\\circ$ gir TIR.',
+    solution:`<div class="step"><span class="lbl">Kritisk vinkel</span><p>$\\sin\\theta_c=n_2/n_1=1{,}00/1{,}33=0{,}752$.</p></div>
+      <div class="step"><span class="lbl">Sammenligning</span><p>$\\theta_c=48{,}8^\\circ$. Siden $50^\\circ>48{,}8^\\circ$, får vi total intern refleksjon.</p></div>`,
+    answer:'θ_c ≈ 48,8°, så 50° gir TIR',
+    questions:[
+      {n:'3', q:'Hva skjer med reflektansen over kritisk vinkel?',
+       opts:['den blir 0','den blir 1','den blir 4 %','den er lik Brewster-vinkelen'],
+       answer:1, ex:'Ved TIR er $|r|=1$, så all effekt reflekteres.'},
+      {n:'4', q:'Det evanescente feltet:',
+       opts:['øker lineært inn i medium 2','avtar eksponentielt','er alltid null','finnes bare i vakuum'],
+       answer:1, ex:'Feltamplituden avtar omtrent som $e^{-z/d}$ bort fra grenseflaten.'}
+    ]
+  },
+  wave4: {
+    explainTitle:'Mer forklaring — fase er optisk veilengde i forkledning',
+    explain:`<p>Interferensoppgaver blir ofte en oversettelse mellom veiforskjell, faseforskjell og intensitet. Bruk $\\Delta\\phi=2\\pi\\Delta/\\lambda$.</p>
+      <p>Maksimum krever heltalls bølgelengder i veiforskjell. Minimum krever halv-heltalls bølgelengder. Halv intensitet i et tostråleoppsett ligger midt i fase mellom maksimum og minimum.</p>`,
+    workedTitle:'Regneeksempel — fase og intensitet',
+    problem:'To like sterke koherente stråler har veiforskjell $\\Delta=\\lambda/3$. Hva blir intensiteten relativt til maksimum?',
+    solution:`<div class="step"><span class="lbl">Fase</span><p>$\\Delta\\phi=2\\pi(\\Delta/\\lambda)=2\\pi/3$.</p></div>
+      <div class="step"><span class="lbl">Relativ intensitet</span><p>For like amplituder er $I/I_\\text{max}=\\cos^2(\\Delta\\phi/2)=\\cos^2(\\pi/3)=1/4$.</p></div>`,
+    answer:'I = 0,25 I_max',
+    questions:[
+      {n:'3', q:'Veiforskjellen $\\lambda/2$ gir for to like sterke stråler:',
+       opts:['maksimum','minimum','halv maksimum','ingen faseforskjell'],
+       answer:1, ex:'$\\lambda/2$ tilsvarer faseforskjell $\\pi$, altså destruktiv interferens.'},
+      {n:'4', q:'En glassplate foran én spalt øker optisk veilengde med:',
+       opts:['$t$','$(n-1)t$','$nt/2$','$\\lambda/t$'],
+       answer:1, ex:'Luftveien $t$ erstattes av glassveien $nt$, så økningen er $(n-1)t$.'}
+    ]
+  },
+  wave5: {
+    explainTitle:'Mer forklaring — koherens setter kontrasten',
+    explain:`<p>Interferensmønsterets synlighet faller når veiforskjellen blir større enn koherenslengden. Derfor kan en Michelson brukes til å måle spektralbredde: du flytter speilet til stripene vaskes ut.</p>
+      <p>I Michelson dobles speilforskyvningen som optisk veiforskjell, fordi lyset går fram og tilbake i armen.</p>`,
+    workedTitle:'Regneeksempel — telle striper i Michelson',
+    problem:'I et Michelson-interferometer brukes $\\lambda=633\\text{ nm}$. Ett speil flyttes $0{,}50\\text{ mm}$. Hvor mange lyse striper passerer?',
+    solution:`<div class="step"><span class="lbl">Dobbel vei</span><p>Veiforskjellen endres med $2\\Delta d=1{,}00\\text{ mm}$.</p></div>
+      <div class="step"><span class="lbl">Antall striper</span><p>$\\Delta m=2\\Delta d/\\lambda=(1{,}00\\times10^{-3})/(633\\times10^{-9})=1{,}58\\times10^3$.</p></div>`,
+    answer:'≈ 1,6×10³ striper',
+    questions:[
+      {n:'3', q:'Hvorfor brukes faktoren 2 i Michelson når ett speil flyttes?',
+       opts:['to polarisasjoner','fram- og tilbakevei','to speil alltid flyttes','fordi intensiteten dobles'],
+       answer:1, ex:'Lyset går til speilet og tilbake, så armens optiske vei endres med dobbelt speilforskyvningen.'},
+      {n:'4', q:'Lav synlighet $V$ betyr:',
+       opts:['stor kontrast','liten forskjell mellom maks og min','ingen bølgelengde','bare TE-polarisering'],
+       answer:1, ex:'$V=(I_\\text{max}-I_\\text{min})/(I_\\text{max}+I_\\text{min})$ måler kontrast.'}
+    ]
+  },
+  wave6: {
+    explainTitle:'Mer forklaring — NA er koblingen mellom utsiden og TIR inni fiberen',
+    explain:`<p>Numerisk apertur forteller hvor stor innkoblingskjegle fiberen godtar. Den er avledet fra kravet om total intern refleksjon ved kjerne-kappe-grensen.</p>
+      <p>Høy NA gjør innkobling enklere, men tillater flere strålevinkler og ofte flere moder. Det kan gi mer modal dispersjon.</p>`,
+    workedTitle:'Regneeksempel — kritisk vinkel i fiber',
+    problem:'En fiber har $n_1=1{,}48$ og $n_2=1{,}46$. Finn kritisk vinkel inne i kjernen ved kjerne-kappe-grensen.',
+    solution:`<div class="step"><span class="lbl">Kjerne til kappe</span><p>$\\sin\\theta_c=n_2/n_1=1{,}46/1{,}48=0{,}9865$.</p></div>
+      <div class="step"><span class="lbl">Vinkel</span><p>$\\theta_c=\\arcsin(0{,}9865)=80{,}6^\\circ$. Stråler må treffe grensen mer glansende enn dette for TIR.</p></div>`,
+    answer:'θ_c ≈ 80,6°',
+    questions:[
+      {n:'3', q:'Hvis forskjellen $n_1-n_2$ øker, vil NA typisk:',
+       opts:['øke','minke','bli null','bli udefinert'],
+       answer:0, ex:'$NA=\\sqrt{n_1^2-n_2^2}$ øker når indekskontrasten øker.'},
+      {n:'4', q:'Modal dispersjon skyldes primært:',
+       opts:['ulik energi per foton','ulike stråleveier/moder','Brewster-refleksjon','absorpsjon i luft'],
+       answer:1, ex:'Forskjellige moder har ulike gangtider gjennom fiberen.'}
+    ]
+  },
+  diff1: {
+    explainTitle:'Mer forklaring — minima er ofte enklere enn maksima',
+    explain:`<p>I enkeltspaltoppgaver er mørke striper enklest å bruke fordi de har nøyaktige betingelser: $b\\sin\\theta=m\\lambda$. Maksima utenom sentraltoppen ligger ikke nøyaktig midt mellom minima.</p>
+      <p>For sirkulære åpninger er Rayleigh-kriteriet den viktigste huskeregelen: mindre åpning eller større bølgelengde gir større Airy-skive og dårligere oppløsning.</p>`,
+    workedTitle:'Regneeksempel — apertur fra Airy-spot',
+    problem:'En laser med $\\lambda=633\\text{ nm}$ sendes gjennom en sirkulær apertur og lager første mørke ring med radius $1{,}5\\text{ mm}$ på en vegg $5{,}0\\text{ m}$ unna. Finn aperturdiameteren.',
+    solution:`<div class="step"><span class="lbl">Rayleigh</span><p>$\\theta\\approx x/L=1{,}5\\times10^{-3}/5{,}0=3{,}0\\times10^{-4}$ rad.</p></div>
+      <div class="step"><span class="lbl">Diameter</span><p>$D=1{,}22\\lambda/\\theta=1{,}22(633\\times10^{-9})/(3{,}0\\times10^{-4})=2{,}57\\times10^{-3}\\text{ m}$.</p></div>`,
+    answer:'D ≈ 2,6 mm',
+    questions:[
+      {n:'3', q:'Første minimum for enkeltspalt kommer når:',
+       opts:['$b\\sin\\theta=\\lambda$','$b\\sin\\theta=\\lambda/2$','$D=1{,}22\\lambda$','$L=b^2\\lambda$'],
+       answer:0, ex:'Minima for enkeltspalt er $b\\sin\\theta=m\\lambda$, første for $m=1$.'},
+      {n:'4', q:'Hvis aperturdiameteren dobles, blir Airy-vinkelen:',
+       opts:['doblet','halvert','uendret','fire ganger større'],
+       answer:1, ex:'$\\Delta\\theta=1{,}22\\lambda/D$, altså omvendt proporsjonal med D.'}
+    ]
+  },
+  diff2: {
+    explainTitle:'Mer forklaring — gitteret skiller bølgelengder med orden og antall spalter',
+    explain:`<p>Et gitter gir smale topper fordi mange spalter må være i fase samtidig. Flere belyste spalter gir smalere topper og bedre evne til å skille nære bølgelengder.</p>
+      <p>Høyere orden gir også bedre oppløsning, men ordenene kan overlappe. Derfor må du alltid sjekke hvilke bølgelengder som kan eksistere i samme vinkelområde.</p>`,
+    workedTitle:'Regneeksempel — gittervinkel og oppløsning',
+    problem:'Et gitter har 600 linjer/mm og belyses normalt med $\\lambda=500\\text{ nm}$. Finn vinkelen for 1. orden og oppløsningen hvis 3000 spalter er belyst.',
+    solution:`<div class="step"><span class="lbl">Gitteravstand</span><p>$a=1/(600\\times10^3)=1{,}67\\times10^{-6}\\text{ m}$.</p></div>
+      <div class="step"><span class="lbl">Vinkel</span><p>Normal innfall: $m\\lambda=a\\sin\\theta$. For $m=1$: $\\sin\\theta=500\\times10^{-9}/1{,}67\\times10^{-6}=0{,}300$, så $\\theta=17{,}5^\\circ$.</p></div>
+      <div class="step"><span class="lbl">Oppløsning</span><p>$\\mathcal R=mN=1\\cdot3000=3000$.</p></div>`,
+    answer:'θ₁ ≈ 17,5°, R = 3000',
+    questions:[
+      {n:'3', q:'Hva øker gitterets spektrale oppløsning?',
+       opts:['lavere orden og færre spalter','høyere orden eller flere belyste spalter','kortere skjermavstand alene','mindre intensitet alene'],
+       answer:1, ex:'$\\mathcal R=mN$, så både orden m og antall belyste spalter N øker oppløsningen.'},
+      {n:'4', q:'Gitterordener kan overlappe fordi:',
+       opts:['samme vinkel kan tilfredsstille likningen for ulike $m$ og $\\lambda$','alle bølgelengder har samme energi','spaltene er for brede','Fourier-transformen mangler fase'],
+       answer:0, ex:'Gitterlikningen inneholder produktet $m\\lambda$, så ulike kombinasjoner kan gi samme vinkel.'}
+    ]
+  }
+};
+
+M.forEach(m=>{
+  if(EXTRAS[m.id]) m.html += practiceBlock(EXTRAS[m.id]);
+});
+
 
 /* ============================ STUDIEPLAN ============================ */
 const PLAN = [
@@ -624,19 +853,79 @@ const PLAN = [
 
 /* ============================ RENDER ============================ */
 const PROG_KEY='tfy4195_progress_v1';
+const THEME_KEY='tfy4195_theme_v1';
+let currentPage='top';
+let canvasResizeHandlers=[];
+
 function loadProg(){ try{ return JSON.parse(localStorage.getItem(PROG_KEY))||{}; }catch(e){ return window.__prog||{}; } }
 function saveProg(p){ window.__prog=p; try{ localStorage.setItem(PROG_KEY,JSON.stringify(p)); }catch(e){} }
+function loadTheme(){ try{ return localStorage.getItem(THEME_KEY)||'light'; }catch(e){ return 'light'; } }
+function saveTheme(theme){ try{ localStorage.setItem(THEME_KEY,theme); }catch(e){} }
+
+function applyTheme(theme){
+  const mode = theme === 'dark' ? 'dark' : 'light';
+  document.documentElement.dataset.theme = mode;
+  const btn=document.getElementById('themeToggle');
+  if(btn){
+    btn.textContent = mode === 'dark' ? 'Mørk' : 'Lys';
+    btn.title = mode === 'dark' ? 'Mørkt tema' : 'Lyst tema';
+    btn.setAttribute('aria-label', mode === 'dark' ? 'Bytt til lyst tema' : 'Bytt til mørkt tema');
+  }
+  document.querySelectorAll('canvas').forEach(c=>{ if(c.__draw) c.__draw(); });
+}
+
+function toggleTheme(){
+  const next = (document.documentElement.dataset.theme || 'light') === 'dark' ? 'light' : 'dark';
+  saveTheme(next);
+  applyTheme(next);
+}
+
+function pageFromHash(){
+  const raw=decodeURIComponent((location.hash||'#top').replace(/^#\/?/,'')).trim();
+  return raw || 'top';
+}
+
+function validPage(page){
+  return page === 'top' || page === 'plan' || M.some(m=>m.id===page);
+}
+
+function navigate(page){
+  const target=validPage(page) ? page : 'top';
+  if(pageFromHash() === target) renderRoute();
+  else location.hash=target;
+}
 
 function renderHero(){
   return `<section class="hero" id="top">
     <div class="hero-tag">NTNU · Institutt for fysikk · V2026</div>
-    <h1>En komplett, interaktiv vei gjennom <span class="grad">optikkens pensum</span></h1>
-    <p>Denne guiden dekker hele TFY4195 — fra foton og geometrisk optikk til interferens, koherens og diffraksjon — strukturert rundt det som faktisk testes på eksamen. Hver modul har læringsmål, kjerneteori, formlene fra eksamens-formelarket, eksamenstyper, regneeksempler og selvtester. Fire interaktive simuleringer lar deg leke med fysikken.</p>
+    <h1>TFY4195 Optikk: pensum, eksamen og <span class="accent-text">regnetrening</span></h1>
+    <p>Guiden samler pensumet i én arbeidsflate: først begrepene du må kunne forklare, deretter formlene du må kunne bruke, og til slutt typiske eksamensgrep. Hver modul følger samme rytme med læringsmål, kjerneteori, formelbruk, eksamensfokus, regneeksempel og selvtest.</p>
     <div class="hero-stats">
       <div class="stat"><b>12</b><span>moduler</span></div>
-      <div class="stat"><b>4</b><span>simuleringer</span></div>
-      <div class="stat"><b>24</b><span>quiz-spørsmål</span></div>
-      <div class="stat"><b>7</b><span>eksamenssett analysert</span></div>
+      <div class="stat"><b>24</b><span>regneeksempler</span></div>
+      <div class="stat"><b>4</b><span>interaktive modeller</span></div>
+      <div class="stat"><b>48</b><span>selvtestspørsmål</span></div>
+      <div class="stat"><b>7</b><span>eksamenssett brukt</span></div>
+    </div>
+  </section>`;
+}
+
+function moduleShortTitle(m){
+  return m.title.split('—')[0].split(',')[0].split('&')[0].trim();
+}
+
+function renderOverview(){
+  return renderHero() + `<section class="module">
+    <div class="card"><h3><span class="dot"></span>Velg side i menyen</h3>
+      <p class="lede">Modulene er nå separate sider. Bruk menyen til venstre for å hoppe mellom temaene uten å bla gjennom hele pensumet.</p>
+      <p>Hver modul har fått mer forklaring, ett ekstra regneeksempel og to ekstra kontrollspørsmål. Fremgangen lagres fortsatt lokalt i nettleseren.</p>
+    </div>
+    <div class="overview-grid">
+      ${M.map(m=>`<a class="module-tile" href="#${m.id}" data-page="${m.id}">
+        <div class="tile-num">${m.num}</div>
+        <div class="tile-title">${m.title}</div>
+        <div class="tile-week">${m.week}</div>
+      </a>`).join('')}
     </div>
   </section>`;
 }
@@ -649,6 +938,7 @@ function renderPlan(){
     </div></div>
     <div class="card"><h3><span class="dot"></span>Slik bruker du guiden mot eksamen</h3>
       <p class="lede">Eksamen er en blanding av flervalg/paringsoppgaver (3–6 p hver) og regneoppgaver, normalisert til 100 %. To oppgaver besvares for hånd (typisk strålegang og en utledning).</p>
+      <p>Ikke les alle avsnitt med samme tempo. Bruk kjerneteorien til å forstå hva størrelsene betyr, bruk formelboksen til å trene på valg av riktig likning, og bruk eksamensfeltet til å se hvilke fallgruver som faktisk går igjen.</p>
       <ol>
         <li><strong>Les modulen</strong> — start med læringsmålene, så kjerneteorien.</li>
         <li><strong>Lær formlene</strong> — alle står på det utdelte formelarket, men du må vite <em>når</em> og <em>hvordan</em> de brukes.</li>
@@ -658,6 +948,12 @@ function renderPlan(){
         <li><strong>Kryss av modulen</strong> når du føler deg trygg — følg fremgangslinjen øverst.</li>
       </ol>
       <p><strong>Hjelpemidler på eksamen:</strong> enkel kalkulator, Rottmann-tabell, linjal/vinkelhake (for strålegang), og det provisoriske formelarket. Tren derfor på å bruke nettopp disse formlene.</p>
+      <div class="method-grid">
+        <div><h4>Læringsmål</h4><p>Les dem som en sjekkliste: hvis du kan forklare hvert punkt uten notater og regne én enkel variant, er modulen under kontroll.</p></div>
+        <div><h4>Formelbokser</h4><p>De er ikke ment som puggeliste alene. Merk særlig fortegn, gyldighetsbetingelser og hvilken fysisk størrelse likningen faktisk gir.</p></div>
+        <div><h4>Eksamensfokus</h4><p>Dette peker ut typiske spørsmålsformer, ikke fasit på en bestemt oppgave. Bruk det til å velge gamle oppgaver strategisk.</p></div>
+        <div><h4>Selvtester</h4><p>Svar før du åpner forklaringen. Hvis et alternativ frister, men er feil, skriv ned hvorfor det var plausibelt.</p></div>
+      </div>
     </div>
     <div class="plan-grid">
       ${PLAN.map(p=>`<div class="week-card"><div class="wk">${p[0]}</div><div class="wt">${p[1]}</div><div class="wd">${p[2]}</div></div>`).join('')}
@@ -667,6 +963,7 @@ function renderPlan(){
 
 function renderModule(m, idx, prog){
   const done = prog[m.id] ? 'done':'';
+  const prev=M[idx-1], next=M[idx+1];
   return `<section class="module" id="${m.id}">
     <div class="mod-head">
       <div class="mod-index">${m.num}</div>
@@ -678,17 +975,21 @@ function renderModule(m, idx, prog){
       <button class="done-btn ${done}" data-done="${m.id}">${prog[m.id]?'✓ Fullført':'Marker fullført'}</button>
     </div>
     ${m.html}
+    <div class="page-actions">
+      ${prev?`<a class="page-link" href="#${prev.id}" data-page="${prev.id}">Forrige: ${prev.num}</a>`:`<span class="page-link disabled"></span>`}
+      ${next?`<a class="page-link" href="#${next.id}" data-page="${next.id}">Neste: ${next.num}</a>`:`<a class="page-link" href="#plan" data-page="plan">Til studieplan</a>`}
+    </div>
   </section>`;
 }
 
-function renderSidebar(prog){
+function renderSidebar(prog, activePage){
   let h = `<div class="nav-section">Kom i gang</div>
-    <a class="nav-link" data-target="top"><span class="nav-num">↑</span>Oversikt</a>
-    <a class="nav-link" data-target="plan"><span class="nav-num">★</span>Studieplan</a>
+    <a class="nav-link ${activePage==='top'?'active':''}" href="#top" data-page="top"><span class="nav-num">↑</span>Oversikt</a>
+    <a class="nav-link ${activePage==='plan'?'active':''}" href="#plan" data-page="plan"><span class="nav-num">★</span>Studieplan</a>
     <div class="nav-section">Moduler</div>`;
   M.forEach(m=>{
-    h += `<a class="nav-link ${prog[m.id]?'done':''}" data-target="${m.id}">
-      <span class="nav-num">${m.num}</span>${m.title.split('—')[0].split(',')[0].split('&')[0].trim()}
+    h += `<a class="nav-link ${prog[m.id]?'done':''} ${activePage===m.id?'active':''}" href="#${m.id}" data-page="${m.id}">
+      <span class="nav-num">${m.num}</span>${moduleShortTitle(m)}
       <span class="nav-check">✓</span></a>`;
   });
   return h;
@@ -701,27 +1002,30 @@ function updateProgress(prog){
 }
 
 function boot(){
+  applyTheme(loadTheme());
+  const themeBtn=document.getElementById('themeToggle');
+  if(themeBtn) themeBtn.addEventListener('click',toggleTheme);
+  window.addEventListener('hashchange', renderRoute);
+  renderRoute();
+}
+
+function renderRoute(){
+  const page=validPage(pageFromHash()) ? pageFromHash() : 'top';
+  currentPage=page;
   const prog=loadProg();
-  document.getElementById('content').innerHTML =
-    renderHero() + renderPlan() + M.map((m,i)=>renderModule(m,i,prog)).join('');
-  document.getElementById('sidebar').innerHTML = renderSidebar(prog);
+  clearCanvasResizeHandlers();
+  document.getElementById('sidebar').innerHTML = renderSidebar(prog,page);
+  document.getElementById('content').innerHTML = renderPage(page, prog) + renderFooter();
+  bindPageLinks();
   updateProgress(prog);
 
   // KaTeX
   if(window.renderMathInElement){
-    renderMathInElement(document.body,{
+    renderMathInElement(document.getElementById('content'),{
       delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}],
       throwOnError:false
     });
   }
-
-  // nav scroll + active state
-  const links=[...document.querySelectorAll('.nav-link')];
-  links.forEach(a=>a.addEventListener('click',()=>{
-    const t=document.getElementById(a.dataset.target);
-    if(t){ t.scrollIntoView({behavior:'smooth',block:'start'}); }
-    if(window.innerWidth<=980) toggleMenu();
-  }));
 
   // quiz logic
   document.querySelectorAll('.opt').forEach(btn=>{
@@ -744,35 +1048,53 @@ function boot(){
       p[id]=!p[id]; saveProg(p);
       btn.classList.toggle('done',p[id]);
       btn.textContent=p[id]?'✓ Fullført':'Marker fullført';
-      const nav=document.querySelector(`.nav-link[data-target="${id}"]`);
+      const nav=document.querySelector(`.nav-link[data-page="${id}"]`);
       if(nav) nav.classList.toggle('done',p[id]);
       updateProgress(p);
     });
   });
 
-  // scroll spy
-  const sections=M.map(m=>document.getElementById(m.id)).filter(Boolean);
-  const obs=new IntersectionObserver(entries=>{
-    entries.forEach(e=>{ if(e.isIntersecting){
-      links.forEach(l=>l.classList.toggle('active', l.dataset.target===e.target.id));
-    }});
-  },{rootMargin:'-20% 0px -70% 0px'});
-  sections.forEach(s=>obs.observe(s));
-
   // init visualizations
   initLens(); initFresnel(); initYoung(); initDiff();
+  window.scrollTo(0,0);
 }
 
-function resetProgress(){ saveProg({}); document.querySelectorAll('.done-btn').forEach(b=>{b.classList.remove('done');b.textContent='Marker fullført';}); document.querySelectorAll('.nav-link').forEach(l=>l.classList.remove('done')); updateProgress({}); }
+function renderPage(page, prog){
+  if(page === 'top') return renderOverview();
+  if(page === 'plan') return renderPlan();
+  const idx=M.findIndex(m=>m.id===page);
+  return idx >= 0 ? renderModule(M[idx], idx, prog) : renderOverview();
+}
+
+function renderFooter(){
+  return `<div class="footer"><span class="accent-text">TFY4195 Optikk</span> · Interaktiv pensumguide · bygget fra pensumliste, formelark og eksamenssett 2018–2025<br>Praktisk på eksamen: ha linjal og vinkelhake klar til strålegang-oppgavene.</div>`;
+}
+
+function bindPageLinks(){
+  document.querySelectorAll('[data-page]').forEach(a=>a.addEventListener('click',e=>{
+    e.preventDefault();
+    navigate(a.dataset.page);
+    closeMenu();
+  }));
+}
+
+function resetProgress(){ saveProg({}); renderRoute(); }
+function closeMenu(){ document.getElementById('sidebar').classList.remove('open'); document.getElementById('scrim').classList.remove('show'); }
 function toggleMenu(){ document.getElementById('sidebar').classList.toggle('open'); document.getElementById('scrim').classList.toggle('show'); }
 
 /* ============================ VISUALISERINGER ============================ */
 function fitCanvas(c){ const r=c.getBoundingClientRect(); const dpr=window.devicePixelRatio||1; c.width=r.width*dpr; c.height=c.height*dpr/(c.__h?c.__h:1); }
+function cssVar(name){ return getComputedStyle(document.documentElement).getPropertyValue(name).trim(); }
+function clearCanvasResizeHandlers(){
+  canvasResizeHandlers.forEach(h=>window.removeEventListener('resize',h));
+  canvasResizeHandlers=[];
+}
 function setupCanvas(id,cssH){
   const c=document.getElementById(id); if(!c) return null;
   const dpr=window.devicePixelRatio||1;
   function size(){ const w=c.clientWidth; c.width=w*dpr; c.height=cssH*dpr; const ctx=c.getContext('2d'); ctx.setTransform(dpr,0,0,dpr,0,0); c.__w=w; c.__h=cssH; }
-  c.style.height=cssH+'px'; size(); window.addEventListener('resize',()=>{ size(); if(c.__draw)c.__draw(); });
+  const onResize=()=>{ size(); if(c.__draw)c.__draw(); };
+  c.style.height=cssH+'px'; size(); window.addEventListener('resize',onResize); canvasResizeHandlers.push(onResize);
   return c;
 }
 
@@ -784,19 +1106,20 @@ function initLens(){
     const W=c.__w,H=c.__h, cx=W*0.5, cy=H*0.5;
     ctx.clearRect(0,0,W,H);
     // axis
-    ctx.strokeStyle='#33404f'; ctx.lineWidth=1; ctx.beginPath(); ctx.moveTo(0,cy); ctx.lineTo(W,cy); ctx.stroke();
+    ctx.strokeStyle=cssVar('--line2'); ctx.lineWidth=1; ctx.beginPath(); ctx.moveTo(0,cy); ctx.lineTo(W,cy); ctx.stroke();
     const SO=+so.value, F=+f.value;
     // lens at cx
-    ctx.strokeStyle='#5b7cf0'; ctx.lineWidth=2.5; ctx.beginPath(); ctx.moveTo(cx,cy-95); ctx.lineTo(cx,cy+95); ctx.stroke();
+    ctx.strokeStyle=cssVar('--accent'); ctx.lineWidth=2.5; ctx.beginPath(); ctx.moveTo(cx,cy-95); ctx.lineTo(cx,cy+95); ctx.stroke();
     // lens shape hints
-    ctx.fillStyle='rgba(91,124,240,.12)';
+    ctx.fillStyle=cssVar('--accent'); ctx.globalAlpha=.10;
     ctx.beginPath(); ctx.ellipse(cx,cy,9,95,0,0,Math.PI*2); ctx.fill();
+    ctx.globalAlpha=1;
     // focal points
-    ctx.fillStyle='#3fd4d0';
+    ctx.fillStyle=cssVar('--cyan');
     [[-F,'F'],[F,"F'"]].forEach(p=>{ ctx.beginPath(); ctx.arc(cx+p[0],cy,3,0,7); ctx.fill(); ctx.font='11px IBM Plex Mono'; ctx.fillText(p[1],cx+p[0]-4,cy+18); });
     // object (upright arrow at -SO)
     const ho=55, ox=cx-SO;
-    ctx.strokeStyle='#5fd08a'; ctx.lineWidth=2.5; arrow(ctx,ox,cy,ox,cy-ho);
+    ctx.strokeStyle=cssVar('--green'); ctx.lineWidth=2.5; arrow(ctx,ox,cy,ox,cy-ho);
     // image via lens eq: 1/si = 1/f - 1/so
     const si = 1/(1/F - 1/SO);
     const m = -si/SO;
@@ -807,20 +1130,20 @@ function initLens(){
     const tipX=ox, tipY=cy-ho;
     ctx.lineWidth=1.4;
     // ray 1: parallel then through F'
-    ctx.strokeStyle='rgba(240,208,80,.85)'; ctx.beginPath(); ctx.moveTo(tipX,tipY); ctx.lineTo(cx,tipY);
+    ctx.strokeStyle=cssVar('--yellow'); ctx.globalAlpha=.85; ctx.beginPath(); ctx.moveTo(tipX,tipY); ctx.lineTo(cx,tipY);
     let ix2=cx+si, iy2=cy-hi; let slope=(iy2-tipY)/(ix2-cx);
     ctx.lineTo(cx + (real? si : Math.min(W-cx, 400)), tipY + slope*((real?si:Math.min(W-cx,400))));
-    ctx.stroke();
+    ctx.stroke(); ctx.globalAlpha=1;
     // ray 2: through center, straight
-    ctx.strokeStyle='rgba(63,212,208,.85)'; ctx.beginPath(); ctx.moveTo(tipX,tipY);
-    const s2=(cy-tipY)/(cx-tipX); ctx.lineTo(W, tipY+s2*(W-tipX)); ctx.stroke();
+    ctx.strokeStyle=cssVar('--cyan'); ctx.globalAlpha=.85; ctx.beginPath(); ctx.moveTo(tipX,tipY);
+    const s2=(cy-tipY)/(cx-tipX); ctx.lineTo(W, tipY+s2*(W-tipX)); ctx.stroke(); ctx.globalAlpha=1;
     // image arrow
     if(isFinite(ix)&&Math.abs(ix-cx)<W){
-      ctx.strokeStyle = real? '#ef6a6a':'#f0964e'; ctx.setLineDash(real?[]:[5,4]); ctx.lineWidth=2.5;
+      ctx.strokeStyle = real? cssVar('--red'):cssVar('--orange'); ctx.setLineDash(real?[]:[5,4]); ctx.lineWidth=2.5;
       arrow(ctx,ix,cy,ix,cy-hi); ctx.setLineDash([]);
     }
     // labels
-    ctx.fillStyle='#a7adb8'; ctx.font='12px IBM Plex Mono';
+    ctx.fillStyle=cssVar('--ink-dim'); ctx.font='12px IBM Plex Mono';
     ctx.fillText('objekt',ox-18,cy+34);
     document.getElementById('soVal').textContent=(SO/30).toFixed(1)+'·f-enheter';
     document.getElementById('fVal').textContent=(F/30).toFixed(1)+' enh';
@@ -844,18 +1167,18 @@ function initFresnel(){
     const n1=(+n1s.value)/100, n2=(+n2s.value)/100, n=n2/n1;
     const x0=padL,y0=H-padB,pw=W-padL-padR,ph=H-padB-padT;
     // grid
-    ctx.strokeStyle='#26303d'; ctx.fillStyle='#6b7480'; ctx.font='10px IBM Plex Mono'; ctx.lineWidth=1;
+    ctx.strokeStyle=cssVar('--line'); ctx.fillStyle=cssVar('--ink-faint'); ctx.font='10px IBM Plex Mono'; ctx.lineWidth=1;
     for(let R=0;R<=1;R+=0.25){ const y=y0-R*ph; ctx.beginPath(); ctx.moveTo(x0,y); ctx.lineTo(x0+pw,y); ctx.stroke(); ctx.fillText(R.toFixed(2),6,y+3); }
     for(let d=0;d<=90;d+=15){ const x=x0+d/90*pw; ctx.fillText(d+'°',x-8,H-12); }
     ctx.fillText('R',x0-6,padT+4);
     // curves (R = r^2)
     function plot(fn,color,dash){ ctx.strokeStyle=color; ctx.lineWidth=2; ctx.setLineDash(dash||[]); ctx.beginPath();
       for(let i=0;i<=180;i++){ const th=i/180*(Math.PI/2); const Rr=fn(th,n)**2; const x=x0+(i/180)*pw; const y=y0-Math.min(1,Rr)*ph; i?ctx.lineTo(x,y):ctx.moveTo(x,y);} ctx.stroke(); ctx.setLineDash([]); }
-    plot(rTE,'#5b7cf0'); plot(rTM,'#f0964e');
+    plot(rTE,cssVar('--accent')); plot(rTM,cssVar('--orange'));
     // legend
     ctx.font='12px IBM Plex Mono';
-    ctx.fillStyle='#5b7cf0'; ctx.fillText('— R (TE)',x0+pw-92,padT+12);
-    ctx.fillStyle='#f0964e'; ctx.fillText('— R (TM)',x0+pw-92,padT+28);
+    ctx.fillStyle=cssVar('--accent'); ctx.fillText('— R (TE)',x0+pw-92,padT+12);
+    ctx.fillStyle=cssVar('--orange'); ctx.fillText('— R (TM)',x0+pw-92,padT+28);
     document.getElementById('n1Val').textContent=n1.toFixed(2);
     document.getElementById('n2Val').textContent=n2.toFixed(2);
     let msg;
@@ -887,7 +1210,7 @@ function initYoung(){
     ctx.strokeStyle=col; ctx.lineWidth=2; ctx.beginPath();
     const gy=H-22, gh=70;
     for(let x=0;x<W;x++){ const theta=(x-W/2)/W*0.5; const I=Math.cos(Math.PI*A*theta/(L/550))**2; const y=gy-I*gh; x?ctx.lineTo(x,y):ctx.moveTo(x,y);} ctx.stroke();
-    ctx.fillStyle='#6b7480'; ctx.font='11px IBM Plex Mono'; ctx.fillText('intensitet I = 4I₀cos²(πa·sinθ/λ)',10,gy-gh-6);
+    ctx.fillStyle=cssVar('--ink-dim'); ctx.font='11px IBM Plex Mono'; ctx.fillText('intensitet I = 4I₀cos²(πa·sinθ/λ)',10,gy-gh-6);
     document.getElementById('aVal').textContent=(A/40).toFixed(1)+'×';
     document.getElementById('lamVal').textContent=L+' nm';
     document.getElementById('youngReadout').innerHTML=`Stripeavstand Δy = λL/a. Større spaltavstand <b>a</b> ⇒ tettere striper; lengre bølgelengde <b>λ</b> ⇒ bredere striper. (${L} nm ≈ ${L<490?'blått':L<560?'grønt':L<590?'gult':'rødt'} lys.)`;
@@ -904,15 +1227,15 @@ function initDiff(){
     const NN=+N.value, B=(+b.value)/1000, A=(+a.value)/1000;
     const gy=H-26, gh=H-60;
     // envelope
-    ctx.strokeStyle='rgba(240,150,78,.5)'; ctx.lineWidth=1.5; ctx.setLineDash([5,4]); ctx.beginPath();
-    for(let x=0;x<W;x++){ const u=(x-W/2)/W*Math.PI*8; const beta=B*u*60; const env=beta===0?1:(Math.sin(beta)/beta)**2; const y=gy-env*gh; x?ctx.lineTo(x,y):ctx.moveTo(x,y);} ctx.stroke(); ctx.setLineDash([]);
+    ctx.strokeStyle=cssVar('--orange'); ctx.globalAlpha=.55; ctx.lineWidth=1.5; ctx.setLineDash([5,4]); ctx.beginPath();
+    for(let x=0;x<W;x++){ const u=(x-W/2)/W*Math.PI*8; const beta=B*u*60; const env=beta===0?1:(Math.sin(beta)/beta)**2; const y=gy-env*gh; x?ctx.lineTo(x,y):ctx.moveTo(x,y);} ctx.stroke(); ctx.setLineDash([]); ctx.globalAlpha=1;
     // full pattern
-    ctx.strokeStyle='#5b7cf0'; ctx.lineWidth=2; ctx.beginPath();
+    ctx.strokeStyle=cssVar('--accent'); ctx.lineWidth=2; ctx.beginPath();
     for(let x=0;x<W;x++){ const u=(x-W/2)/W*Math.PI*8; const beta=B*u*60; const alpha=A*u*60;
       const env=beta===0?1:(Math.sin(beta)/beta)**2;
       const gr= Math.abs(Math.sin(alpha))<1e-6 ? NN*NN : (Math.sin(NN*alpha)/Math.sin(alpha))**2;
       const I=env*gr/(NN*NN); const y=gy-Math.min(1,I)*gh; x?ctx.lineTo(x,y):ctx.moveTo(x,y);} ctx.stroke();
-    ctx.fillStyle='#6b7480'; ctx.font='11px IBM Plex Mono'; ctx.fillText('I = I₀(sinβ/β)²·(sinNα/sinα)²   — stiplet: enkeltspalt-konvolutt',10,18);
+    ctx.fillStyle=cssVar('--ink-dim'); ctx.font='11px IBM Plex Mono'; ctx.fillText('I = I₀(sinβ/β)²·(sinNα/sinα)²   — stiplet: enkeltspalt-konvolutt',10,18);
     document.getElementById('NVal').textContent=NN;
     document.getElementById('bVal').textContent=(+b.value);
     document.getElementById('aDVal').textContent=(+a.value);
@@ -921,10 +1244,5 @@ function initDiff(){
   c.__draw=draw; [N,b,a].forEach(s=>s.addEventListener('input',draw)); draw();
 }
 
-/* ============================ FOOTER + BOOT ============================ */
-document.addEventListener('DOMContentLoaded',()=>{
-  boot();
-  const f=document.createElement('div'); f.className='footer';
-  f.innerHTML=`<span class="grad">TFY4195 Optikk</span> · Interaktiv pensumguide · bygget fra pensumliste, formelark og eksamenssett 2018–2025<br>Lykke til på eksamen! Husk linjal og vinkelhake til strålegang-oppgavene.`;
-  document.querySelector('.content').appendChild(f);
-});
+/* ============================ BOOT ============================ */
+document.addEventListener('DOMContentLoaded',boot);
