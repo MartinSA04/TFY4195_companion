@@ -5,7 +5,7 @@
 
 /* ---------- små byggesteiner for HTML ---------- */
 const goals = (items)=>`<div class="card goals"><h3><span class="dot"></span>Læringsmål</h3><ul>${items.map(i=>`<li>${i}</li>`).join('')}</ul></div>`;
-const formulas = (rows)=>`<div class="formula-box">${rows.map(r=>`<div class="formula-row"><span class="fx">${r[0]}</span><span class="desc">${r[1]}</span></div>`).join('')}</div>`;
+const formulas = (rows)=>`<div class="formula-box">${rows.map(r=>`<div class="formula-row${r[2]?' offsheet':''}"><span class="fx">${r[0]}</span><span class="desc">${r[1]}${r[2]?' <span class="pugg" title="Står ikke på formelarket – må pugges">★ ikke på formelarket</span>':''}</span></div>`).join('')}</div>`;
 const exam = (tags, body)=>`<div class="card exam"><h3><span class="dot"></span>Slik testes dette på eksamen</h3><div class="tagrow">${tags.map(t=>`<span class="tag">${t}</span>`).join('')}</div>${body}</div>`;
 const reveal = (label, html)=>`<details class="reveal"><summary>${label||'Vis løsning'}</summary>${html}</details>`;
 const concept = (title, html)=>`<div class="card concept"><h3><span class="dot"></span>${title}</h3>${html}</div>`;
@@ -53,7 +53,7 @@ M.push({
       ['$E=hf=\\dfrac{hc}{\\lambda}$','Foton-energi fra frekvens / bølgelengde. <b>h</b> = Plancks konstant.'],
       ['$p=\\dfrac{E}{c}=\\dfrac{h}{\\lambda}$','Foton-impuls.'],
       ['$\\lambda f = c,\\quad v=\\dfrac{pc^2}{E}=c$','Fart i vakuum.'],
-      ['$\\Omega = \\dfrac{A}{r^2}$','Romvinkel i steradianer.']
+      ['$\\Omega = \\dfrac{A}{r^2}$','Romvinkel i steradianer.', true]
     ])
   + exam(['Foton-energi fra spektrum','Egenskaper (MC)','Enhetsregning'],
       `<p>Et veldig vanlig oppgave-par: du får et spektrum (f.eks. en blå LED fra ThorLabs) og skal finne <strong>foton-energien</strong> ved toppbølgelengden, ofte som forberedelse til et koherens-spørsmål. MC-spørsmål spør hvilken egenskap som <em>ikke</em> hører til fotonet (fellen er Fermi–Dirac).</p>`)
@@ -205,10 +205,10 @@ M.push({
      </ul>
      </div>`
   + formulas([
-      ['$MP_\\text{lupe}=\\dfrac{25\\text{ cm}}{f}$','Enkel lupe (bilde i uendelig).'],
-      ['$M_\\text{mik}=-\\dfrac{L}{f_o}\\cdot\\dfrac{25}{f_e}$','Sammensatt mikroskop, tubuslengde $L$.'],
-      ['$MP_\\text{tel}=-\\dfrac{f_o}{f_e}$','Teleskop (refraktor).'],
-      ['$f\\#=\\dfrac{f}{D}$','f-tall: brennvidde / aperturdiameter.']
+      ['$MP_\\text{lupe}=\\dfrac{25\\text{ cm}}{f}$','Enkel lupe (bilde i uendelig).', true],
+      ['$M_\\text{mik}=-\\dfrac{L}{f_o}\\cdot\\dfrac{25}{f_e}$','Sammensatt mikroskop, tubuslengde $L$.', true],
+      ['$MP_\\text{tel}=-\\dfrac{f_o}{f_e}$','Teleskop (refraktor).', true],
+      ['$f\\#=\\dfrac{f}{D}$','f-tall: brennvidde / aperturdiameter.', true]
     ])
   + exam(['Mikroskop: reelt/invertert + m','Teleskop-MP','Øyets optikk'],
       `<p>En gjenganger: «to positive linser i avstand $f_1+f_2$ – er bildet reelt eller virtuelt, opprett eller invertert, hva er forstørrelsen, og endrer avstanden noe?» Riktig svar er typisk <em>reelt, invertert, $h_i/h_o=f_2/f_1$</em>. Tegneoppgaver (på papir) ber om full strålegang gjennom mikroskop/teleskop.</p>`)
@@ -251,8 +251,8 @@ M.push({
      </div>`
   + formulas([
       ['$\\nabla^2\\vec E=\\dfrac{n^2}{c^2}\\dfrac{\\partial^2\\vec E}{\\partial t^2}$','Bølgelikningen for EM-felt.'],
-      ['$\\vec E=\\vec E_0\\cos(\\vec k\\cdot\\vec r-\\omega t)$','Plan-bølge, med $\\omega=kv,\\ k=2\\pi/\\lambda$.'],
-      ['$B_0=E_0/v$','Forhold mellom amplitudene.'],
+      ['$\\vec E=\\vec E_0\\cos(\\vec k\\cdot\\vec r-\\omega t)$','Plan-bølge, med $\\omega=kv,\\ k=2\\pi/\\lambda$.', true],
+      ['$B_0=E_0/v$','Forhold mellom amplitudene.', true],
       ['$\\vec S=c^2\\varepsilon_0(\\vec E\\times\\vec B)$','Poynting-vektor (energifluks).'],
       ['$I=\\langle S\\rangle=\\tfrac12 c\\,n\\,\\varepsilon_0 E_0^2$','Intensitet (tidsmidlet).']
     ])
@@ -348,10 +348,10 @@ M.push({
      <p>Primærbuen: én indre refleksjon i vanndråpen, minimum avbøyning ≈ <strong>42°</strong> (rødt ytterst). Sekundærbuen: to refleksjoner, ≈ <strong>51°</strong>, fargene snudd, og mørkt bånd (Alexanders) imellom. Dispersjonen i $n(\\lambda)$ skiller fargene.</p>
      </div>`
   + formulas([
-      ['$\\sin\\theta_c=\\dfrac{n_2}{n_1}$','Kritisk vinkel (tett→tynt, $n_1>n_2$).'],
-      ['$|r|=1$ for $\\theta>\\theta_c$','Total intern refleksjon, kompleks $r$ (faseforskyvning).'],
-      ['$E(z)\\propto e^{-z/d}$','Evanescent bølge, eksponentielt avtagende.'],
-      ['$\\theta_\\text{regn}\\approx 42^\\circ\\,(1°),\\,51^\\circ\\,(2°)$','Primær- og sekundærbue.']
+      ['$\\sin\\theta_c=\\dfrac{n_2}{n_1}$','Kritisk vinkel (tett→tynt, $n_1>n_2$).', true],
+      ['$|r|=1$ for $\\theta>\\theta_c$','Total intern refleksjon, kompleks $r$ (faseforskyvning).', true],
+      ['$E(z)\\propto e^{-z/d}$','Evanescent bølge, eksponentielt avtagende.', true],
+      ['$\\theta_\\text{regn}\\approx 42^\\circ\\,(1°),\\,51^\\circ\\,(2°)$','Primær- og sekundærbue.', true]
     ])
   + exam(['Strålegang i prisme','TIR-betingelse','Sirkulær polarisering etter TIR'],
       `<p>Prisme-oppgaver («$n\\approx1{,}5$ i luft — hvilken strålegang er mulig?») tester om TIR inntreffer på innsiden. Polariseringsoppgaver: venstre-sirkulært lys som treffer en indre flate over kritisk vinkel får en relativ faseforskyvning mellom TE og TM ⇒ blir generelt elliptisk/endret håndethet — i motsetning til ved en vanlig refleksjon under Brewster der det blir lineært.</p>`)
@@ -393,7 +393,7 @@ M.push({
       ['$E_0^2=E_{01}^2+E_{02}^2+2E_{01}E_{02}\\cos(\\alpha_2-\\alpha_1)$','Resulterende amplitude (fasoraddisjon).'],
       ['$I_\\text{tot}=4I_0\\cos^2\\!\\big(\\tfrac{\\pi a\\sin\\theta}{\\lambda}\\big)$','Youngs intensitetsmønster.'],
       ['$\\Delta y=\\dfrac{\\lambda L}{a}$','Stripeavstand på skjermen.'],
-      ['$N=\\dfrac{(n-1)t}{\\lambda}$','Stripeforskyvning fra glassplate over én spalt.']
+      ['$N=\\dfrac{(n-1)t}{\\lambda}$','Stripeforskyvning fra glassplate over én spalt.', true]
     ])
   + exam(['Fasoraddisjon (regn)','Stripeavstand','Glassplate-forskyvning','Veiforskjell ↔ halv-maks'],
       `<p>Tre-i-ett-oppgave: (i) finn skjermavstanden $L$ for ønsket $\\Delta y$ (bruk $\\Delta y=\\lambda L/a$); (ii) hvor mange striper forskyves mønsteret av en glassplate; (iii) hvilken veiforskjell tilsvarer skiftet fra topp-maks til halv-maks (svar: $\\lambda/4$ i veiforskjell, dvs. $\\Delta=\\lambda/4$ … kontroller fra $\\cos^2$).</p>`)
@@ -490,9 +490,9 @@ M.push({
      </ul>
      </div>`
   + formulas([
-      ['$NA=\\sqrt{n_1^2-n_2^2}$','Numerisk apertur.'],
-      ['$\\theta_\\text{max}=\\arcsin(NA/n_0)$','Akseptansevinkel (fra medium $n_0$, ofte luft).'],
-      ['$\\sin\\theta_c=n_2/n_1$','Kritisk vinkel ved kjerne–kappe.']
+      ['$NA=\\sqrt{n_1^2-n_2^2}$','Numerisk apertur.', true],
+      ['$\\theta_\\text{max}=\\arcsin(NA/n_0)$','Akseptansevinkel (fra medium $n_0$, ofte luft).', true],
+      ['$\\sin\\theta_c=n_2/n_1$','Kritisk vinkel ved kjerne–kappe.', true]
     ])
   + exam(['Numerisk apertur','Akseptansevinkel','Modetall / dispersjon'],
       `<p>Selvstudium-modul, men dukker opp som regneoppgaver: gitt $n_1,n_2$, finn $NA$ og akseptansevinkelen; eller drøft hvorfor singel-modus-fiber gir høyere båndbredde (mindre modal dispersjon).</p>`)
@@ -533,7 +533,7 @@ M.push({
      </div>`
   + formulas([
       ['$I=I_0\\left(\\dfrac{\\sin\\beta}{\\beta}\\right)^2,\\ \\beta=\\dfrac{\\pi b\\sin\\theta}{\\lambda}$','Enkeltspalt-intensitet.'],
-      ['$b\\sin\\theta_m=m\\lambda$','Minima for enkeltspalt.'],
+      ['$b\\sin\\theta_m=m\\lambda$','Minima for enkeltspalt (utledbar fra $\\sin\\beta=0$).', true],
       ['$\\Delta\\theta_{1/2}=\\dfrac{1{,}22\\lambda}{D}\\approx\\dfrac{\\Delta x}{L}$','Airy-skive / Rayleigh.'],
       ['$L\\gg\\dfrac{b^2}{\\lambda}$','Fraunhofer (fjernfelt) gyldig.']
     ])
