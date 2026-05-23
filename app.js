@@ -59,9 +59,9 @@ M.push({
       `<p>Et veldig vanlig oppgave-par: du får et spektrum (f.eks. en blå LED fra ThorLabs) og skal finne <strong>foton-energien</strong> ved toppbølgelengden, ofte som forberedelse til et koherens-spørsmål. MC-spørsmål spør hvilken egenskap som <em>ikke</em> hører til fotonet (fellen er Fermi–Dirac).</p>`)
   + `<div class="card worked"><h3><span class="dot"></span>Regneeksempel</h3>
      <div class="prob">En LED har toppbølgelengde $\\lambda \\approx 465\\text{ nm}$. Hva er foton-energien (i eV)?</div>
-     <div class="step"><span class="lbl">Formel</span><p>$E=\\dfrac{hc}{\\lambda}$. Praktisk: $hc = 1240\\text{ eV·nm}$.</p></div>
+     <div class="step"><span class="lbl">Formel</span><p>$E=\\dfrac{hc}{\\lambda}$. Praktisk: $hc = 1240\\text{ eV}\\cdot\\text{nm}$.</p></div>
      ${reveal('Vis løsning',
-       `<div class="step"><span class="lbl">Innsetting</span><p>$E=\\dfrac{1240\\text{ eV·nm}}{465\\text{ nm}} \\approx 2{,}67\\text{ eV}$.</p></div>
+       `<div class="step"><span class="lbl">Innsetting</span><p>$E=\\dfrac{1240\\text{ eV}\\cdot\\text{nm}}{465\\text{ nm}} \\approx 2{,}67\\text{ eV}$.</p></div>
         <div class="step"><p>Sjekk i joule: $E=\\dfrac{(6{,}63\\times10^{-34})(3{,}0\\times10^{8})}{465\\times10^{-9}}\\approx 4{,}3\\times10^{-19}\\text{ J}$, og $4{,}3\\times10^{-19}/1{,}6\\times10^{-19}\\approx 2{,}7\\text{ eV}$. ✓</p></div>
         <span class="answer">E ≈ 2,67 eV</span>`)}
      </div>`
