@@ -186,6 +186,12 @@ code,.mono,.num{font-family:'IBM Plex Mono',monospace}
 /* formel som IKKE er på formelarket – må pugges */
 .formula-row.offsheet{border-left:3px solid var(--orange);padding-left:11px;border-radius:0 6px 6px 0}
 .pugg{display:inline-block;margin-left:8px;font-family:'IBM Plex Mono';font-size:10px;font-weight:600;letter-spacing:.02em;color:var(--orange);border:1px solid var(--orange);border-radius:5px;padding:1px 6px;white-space:nowrap;vertical-align:middle}
+/* kompakt tabell (fortegn / matrisetolkning) */
+.ftable{width:100%;border-collapse:collapse;margin:14px 0;font-size:14px}
+.ftable th,.ftable td{border:1px solid var(--line);padding:7px 11px;text-align:left;vertical-align:top}
+.ftable th{background:var(--panel2);color:var(--ink);font-weight:600;font-size:12.5px}
+.ftable td{color:var(--ink-dim)}
+.ftable td:first-child{color:var(--ink);white-space:nowrap}
 
 /* exam focus */
 .exam{background:var(--exam-bg);border:1px solid var(--exam-line)}

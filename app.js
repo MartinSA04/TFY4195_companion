@@ -183,6 +183,162 @@ M.push({
     ])
 });
 
+/* ---- Ray tracing — komplett matriseguide (eksamensfokus) ---- */
+M.push({
+  id:'raytracing', num:'RT', kicker:'Eksamensfokus · Geometrisk optikk', title:'Ray tracing — komplett matriseguide', week:'Eksamensguide · PP Kap. 18 / 2.8',
+  html:
+  goals([
+    'Representere en paraksial stråle som en vektor $(y,\\alpha)$ og vite hva hvert tall betyr.',
+    'Skrive ned <strong>alle byggematrisene</strong> (translasjon, plan/sfærisk brytning, tynn linse, speil) fra hukommelsen.',
+    'Sette sammen <strong>systemmatrisen</strong> i riktig rekkefølge og kontrollere med determinanten.',
+    'Lese ut <strong>bildeplan ($B=0$), forstørrelse ($A=m$), afokalitet ($C=0$) og effektiv brennvidde ($f=-1/C$)</strong>.',
+    'Koble matriseelementene til <strong>kardinalpunkt-formlene</strong> på formelarket.'
+  ])
+  + concept('Kjernen i temaet', `
+     <p class="lede">Ray tracing med matriser er den mest eksamensnære delen av geometrisk optikk: nesten hvert eksamenssett har en «match system ↔ matrise»-oppgave eller ber deg regne deg gjennom et linsesystem. Hele trikset er at paraksial optikk er <em>lineær</em>.</p>
+     <p>En stråle beskrives ved <strong>høyden $y$</strong> over den optiske aksen og <strong>vinkelen $\\alpha$</strong> den danner med aksen. Hvert optisk element transformerer $(y,\\alpha)$ lineært, så det kan skrives som en $2\\times2$-matrise:</p>
+     <p>$\\begin{pmatrix} y_2 \\\\ \\alpha_2 \\end{pmatrix} = \\begin{pmatrix} A & B \\\\ C & D \\end{pmatrix}\\begin{pmatrix} y_1 \\\\ \\alpha_1 \\end{pmatrix}$</p>
+     <p>Et helt system er <strong>produktet</strong> av elementmatrisene. Da kan du behandle et komplisert instrument som én enkelt matrise og lese av alt du trenger fra de fire tallene $A,B,C,D$.</p>`)
+  + `<div class="card"><h3><span class="dot"></span>Fortegnskonvensjon — fest dette først</h3>
+     <p>Feil fortegn er vanligere enn feil algebra. Pedrotti-konvensjonen (lys går venstre → høyre):</p>
+     <table class="ftable">
+       <tr><th>Størrelse</th><th>Positiv når …</th><th>Tolkning</th></tr>
+       <tr><td>$y$</td><td>over aksen</td><td>strålehøyde</td></tr>
+       <tr><td>$\\alpha$</td><td>strålen heller oppover (mot klokken)</td><td>liten vinkel, $\\tan\\alpha\\approx\\alpha$</td></tr>
+       <tr><td>$R$</td><td>krumningssenter til <em>høyre</em> for flaten</td><td>konveks mot innkommende lys ⇒ $R>0$</td></tr>
+       <tr><td>$s_o$</td><td>objekt til venstre for flaten</td><td>reelt objekt</td></tr>
+       <tr><td>$s_i$</td><td>bilde til høyre for flaten</td><td>reelt bilde</td></tr>
+       <tr><td>$f$</td><td>samlende element</td><td>positiv linse / konkavt speil</td></tr>
+     </table>
+     <p>Vinkelen holdes liten (paraksial: $\\sin\\alpha\\approx\\tan\\alpha\\approx\\alpha$ i radianer).</p>
+     </div>`
+  + `<div class="card"><h3><span class="dot"></span>De fem byggematrisene</h3>
+     <h4>1 · Translasjon (fri propagasjon avstand $d$)</h4>
+     <p>Vinkelen er uendret, høyden vokser: $y_2=y_1+d\\,\\alpha_1,\\ \\alpha_2=\\alpha_1$.</p>
+     <p>$T(d)=\\begin{pmatrix}1 & d \\\\ 0 & 1\\end{pmatrix}$ &nbsp;($d$ er en geometrisk avstand — samme uansett medium).</p>
+     <h4>2 · Brytning i plan flate ($n_1\\to n_2$)</h4>
+     <p>Høyden er uendret; Snell i paraksial form $n_1\\alpha_1=n_2\\alpha_2$ gir $\\alpha_2=(n_1/n_2)\\alpha_1$.</p>
+     <p>$R_P=\\begin{pmatrix}1 & 0 \\\\ 0 & n_1/n_2\\end{pmatrix}$</p>
+     <h4>3 · Brytning i sfærisk flate (radius $R$)</h4>
+     <p>Grunnsteinen — tynn og tykk linse bygges av to slike.</p>
+     <p>$R_S=\\begin{pmatrix}1 & 0 \\\\ \\dfrac{n_1-n_2}{n_2 R} & n_1/n_2\\end{pmatrix}$</p>
+     <h4>4 · Tynn linse (brennvidde $f$)</h4>
+     <p>To sfæriske flater med neglisjerbar tykkelse kollapser til ett «kick» i vinkelen: $\\alpha_2=\\alpha_1-y/f$.</p>
+     <p>$L(f)=\\begin{pmatrix}1 & 0 \\\\ -1/f & 1\\end{pmatrix},\\qquad \\dfrac1f=\\dfrac{n_2-n_1}{n_1}\\!\\left(\\dfrac1{R_1}-\\dfrac1{R_2}\\right)$</p>
+     <h4>5 · Sfærisk speil (radius $R$)</h4>
+     <p>Virker som en linse med $f=R/2$, men folder strålegangen. Utbrettet matrise:</p>
+     <p>$M_\\text{speil}=\\begin{pmatrix}1 & 0 \\\\ -2/R & 1\\end{pmatrix}=\\begin{pmatrix}1 & 0 \\\\ -1/f & 1\\end{pmatrix}$</p>
+     <p><strong>Tykk linse:</strong> $M=R_S^{(2)}\\,T(t)\\,R_S^{(1)}$ — to flater med glasstykkelse $t$ imellom.</p>
+     </div>`
+  + formulas([
+      ['$T(d)=\\begin{pmatrix}1 & d \\\\ 0 & 1\\end{pmatrix}$','Translasjon (fri propagasjon).'],
+      ['$R_P=\\begin{pmatrix}1 & 0 \\\\ 0 & n_1/n_2\\end{pmatrix}$','Brytning, plan flate.'],
+      ['$R_S=\\begin{pmatrix}1 & 0 \\\\ \\frac{n_1-n_2}{n_2 R} & n_1/n_2\\end{pmatrix}$','Brytning, sfærisk flate.'],
+      ['$L(f)=\\begin{pmatrix}1 & 0 \\\\ -1/f & 1\\end{pmatrix}$','Tynn linse.'],
+      ['$M_\\text{speil}=\\begin{pmatrix}1 & 0 \\\\ -2/R & 1\\end{pmatrix}$','Sfærisk speil ($f=R/2$).', true]
+    ])
+  + `<div class="card"><h3><span class="dot"></span>Bygg systemmatrisen — rekkefølgen er alt</h3>
+     <p>Lyset møter elementene i rekkefølge 1, 2, 3 …, men matrisene skrives i <strong>motsatt</strong> rekkefølge fordi de virker fra høyre på strålevektoren:</p>
+     <p>$M_\\text{sys}=M_n\\cdots M_2\\,M_1$ &nbsp;— det siste elementet lyset møter står lengst til venstre.</p>
+     <ul>
+       <li><strong>Determinant-sjekk:</strong> $\\det M_\\text{sys}=n_\\text{start}/n_\\text{slutt}$. Starter og slutter du i samme medium (f.eks. luft) skal $\\det M=1$. Dette fanger regnefeil umiddelbart.</li>
+       <li>Tegn systemet i fysisk rekkefølge på papir først, og «les baklengs» når du setter opp produktet.</li>
+     </ul>
+     </div>`
+  + `<div class="card"><h3><span class="dot"></span>Les av de fire tallene</h3>
+     <table class="ftable">
+       <tr><th>Betingelse</th><th>Betyr</th><th>Bruk</th></tr>
+       <tr><td>$B=0$</td><td>inn- og utplan er konjugerte (objekt↔bilde)</td><td>finn bildeplanet</td></tr>
+       <tr><td>$A$ ved $B=0$</td><td>lateral forstørrelse $m$</td><td>$m=A$; fortegn ⇒ reelt/virtuelt</td></tr>
+       <tr><td>$C=0$</td><td>afokalt / teleskopisk system</td><td>parallelt inn ⇒ parallelt ut</td></tr>
+       <tr><td>$D$ ved $C=0$</td><td>vinkelforstørrelse</td><td>$\\alpha_2=D\\,\\alpha_1$</td></tr>
+       <tr><td>$-1/C$</td><td>effektiv brennvidde $f$</td><td>systemets brennvidde</td></tr>
+       <tr><td>$-A/C$</td><td>bakre brennavstand (BFD)</td><td>hvor fjernt lys fokuserer bak utplanet</td></tr>
+     </table>
+     <p><strong>Kobling til formelarket:</strong> kardinalpunkt-formlene ($p=D/C,\\ q=-A/C,\\ f_s=-1/C$ osv.) er nettopp disse matriseelementene. Kjenner du $A,B,C,D$, plugger du rett inn.</p>
+     </div>`
+  + exam(['Match system ↔ matrise','Forstørrelse fra A','Afokalt (C=0)','Effektiv f fra C','Kardinalpunkter'],
+      `<p>Den klassiske «match the optical system with the ray-transfer matrix» tester strukturgjenkjenning: et nullelement nederst til venstre ($C=0$) = afokalt; et rent $B$-tall = en translasjon; $A=1, D=1$ med $C\\neq0$ = én tynn linse. Andre oppgaver gir en systemmatrise og ber om forstørrelsen ($m=A$ når $B=0$), effektiv brennvidde ($-1/C$), eller hvor et fjernt objekt fokuserer ($-A/C$). Regneoppgaver ber deg multiplisere 2–4 matriser — pass på rekkefølgen og bruk $\\det M$ som sjekk.</p>`)
+  + `<div class="card viz"><h3><span class="dot"></span>Interaktivt: to-linse ray tracer</h3>
+     <p>En punktkilde sender en stråleknippe gjennom to tynne linser. Dra brennviddene og avstanden og se strålene bøye i hvert linseplan og hvor det endelige bildet (oransje) dannes. Systemmatrisen $M=L_2\\,T(D)\\,L_1$ regnes ut live under figuren.</p>
+     <canvas id="rayCanvas" height="320"></canvas>
+     <div class="controls">
+       <div class="ctrl"><label>Brennvidde linse 1 $f_1$ <span class="v" id="f1Val"></span></label><input type="range" id="f1Slider" min="40" max="220" value="90"></div>
+       <div class="ctrl"><label>Brennvidde linse 2 $f_2$ <span class="v" id="f2Val"></span></label><input type="range" id="f2Slider" min="40" max="220" value="70"></div>
+       <div class="ctrl"><label>Linseavstand $D$ <span class="v" id="dVal"></span></label><input type="range" id="dSlider" min="20" max="320" value="150"></div>
+     </div>
+     <div class="readout" id="rayReadout"></div>
+     </div>`
+  + `<div class="card worked"><h3><span class="dot"></span>Regneeksempel 1 — tynn linse via matrise</h3>
+     <div class="prob">Et objekt står $s_o=30\\text{ cm}$ foran en tynn linse med $f=20\\text{ cm}$. Sett opp systemmatrisen fra objekt- til bildeplan, og finn bildeavstand og forstørrelse.</div>
+     ${reveal('Vis løsning',
+       `<div class="step"><span class="lbl">Oppsett</span><p>Fra objekt til bilde: $M=T(s_i)\\,L(f)\\,T(s_o)$. Utmultiplisert:</p><p>$M=\\begin{pmatrix}1-\\frac{s_i}{f} & s_o+s_i-\\frac{s_i s_o}{f}\\\\ -\\frac1f & 1-\\frac{s_o}{f}\\end{pmatrix}$.</p></div>
+        <div class="step"><span class="lbl">Bildeplan: $B=0$</span><p>$s_o+s_i-\\frac{s_i s_o}{f}=0$. Med $s_o=30,\\ f=20$: $30+s_i-1{,}5\\,s_i=0\\Rightarrow 30-0{,}5\\,s_i=0\\Rightarrow s_i=60\\text{ cm}$.</p></div>
+        <div class="step"><span class="lbl">Forstørrelse</span><p>$m=A=1-\\frac{s_i}{f}=1-\\frac{60}{20}=-2$. Kontroll: $\\det M=1$ ✓.</p></div>
+        <span class="answer">sᵢ = 60 cm, m = −2 (reelt, invertert, 2× forstørret)</span>`)}
+     </div>`
+  + `<div class="card worked"><h3><span class="dot"></span>Regneeksempel 2 — enkelt sfærisk flate</h3>
+     <div class="prob">En lang glasstav ($n=1{,}50$) har en konveks endeflate med $R=+20\\text{ mm}$. Et objekt står $80\\text{ mm}$ ute i lufta foran flaten. Hvor dannes bildet, og hva er forstørrelsen?</div>
+     ${reveal('Vis løsning',
+       `<div class="step"><span class="lbl">Avbildningslikning</span><p>$B=0$ for $T(s_i)\\,R_S\\,T(s_o)$ gir enkeltflate-likningen $\\dfrac{n_1}{s_o}+\\dfrac{n_2}{s_i}=\\dfrac{n_2-n_1}{R}$.</p></div>
+        <div class="step"><span class="lbl">Innsetting</span><p>$\\dfrac{1}{80}+\\dfrac{1{,}5}{s_i}=\\dfrac{0{,}5}{20}=0{,}025\\Rightarrow \\dfrac{1{,}5}{s_i}=0{,}0125\\Rightarrow s_i=120\\text{ mm}$ (inne i glasset, reelt).</p></div>
+        <div class="step"><span class="lbl">Forstørrelse</span><p>$m=-\\dfrac{n_1 s_i}{n_2 s_o}=-\\dfrac{1\\cdot120}{1{,}5\\cdot80}=-1$ (invertert, like stort).</p></div>
+        <span class="answer">sᵢ = 120 mm inne i glasset, m = −1</span>`)}
+     </div>`
+  + `<div class="card worked"><h3><span class="dot"></span>Regneeksempel 3 — afokalt teleskop</h3>
+     <div class="prob">Et Kepler-teleskop har objektiv $f_1=100\\text{ cm}$ og okular $f_2=4\\text{ cm}$, satt i avstand $D=f_1+f_2=104\\text{ cm}$. Vis at systemet er afokalt og finn vinkelforstørrelsen.</div>
+     ${reveal('Vis løsning',
+       `<div class="step"><span class="lbl">Systemmatrise</span><p>$M=L(f_2)\\,T(D)\\,L(f_1)$ gir $C=-\\dfrac1{f_1}-\\dfrac1{f_2}+\\dfrac{D}{f_1 f_2}$.</p></div>
+        <div class="step"><span class="lbl">Afokal-sjekk</span><p>$C=-0{,}01-0{,}25+\\dfrac{104}{400}=-0{,}26+0{,}26=0$ ⇒ afokalt ✓.</p></div>
+        <div class="step"><span class="lbl">Vinkelforstørrelse</span><p>$D_\\text{el}=1-\\dfrac{D}{f_2}=1-26=-25$. Parallelt inn ⇒ $\\alpha_2=D_\\text{el}\\,\\alpha_1$, så $MP=-25\\ (=-f_1/f_2)$.</p></div>
+        <span class="answer">C = 0 (afokalt), MP = −25</span>`)}
+     </div>`
+  + `<div class="card concept"><h3><span class="dot"></span>Flere regneoppgaver</h3>
+     <p>Prøv selv før du åpner løsningen. Tegn systemet og bruk $\\det M=1$ som sjekk.</p>
+     <div class="prob">a) To tynne linser, $f_1=+15\\text{ cm}$ og $f_2=-15\\text{ cm}$, står i avstand $D=10\\text{ cm}$ (luft). Finn systemmatrisen og effektiv brennvidde.</div>
+     ${reveal('Vis løsning a)',
+       `<p>$A=1-D/f_1=1-\\tfrac{10}{15}=\\tfrac13$, &nbsp; $B=D=10$, &nbsp; $D_\\text{el}=1-D/f_2=1+\\tfrac{10}{15}=\\tfrac53$.</p>
+        <p>$C=-\\dfrac1{15}-\\dfrac1{-15}+\\dfrac{10}{15\\cdot(-15)}=-\\dfrac{10}{225}=-0{,}0444\\text{ cm}^{-1}$.</p>
+        <p>$\\det M=\\tfrac13\\cdot\\tfrac53-10\\cdot(-0{,}0444)=0{,}556+0{,}444=1$ ✓. &nbsp; $f=-1/C=+22{,}5\\text{ cm}$.</p>
+        <span class="answer">f_eff = 22,5 cm (telefoto: lengre f enn begge linsene hver for seg)</span>`)}
+     <div class="prob">b) Et konkavt speil har $R=40\\text{ cm}$. Et objekt står $60\\text{ cm}$ foran. Hvor dannes bildet?</div>
+     ${reveal('Vis løsning b)',
+       `<p>Speil: $f=R/2=20\\text{ cm}$. $\\dfrac1{s_i}=\\dfrac1f-\\dfrac1{s_o}=\\dfrac1{20}-\\dfrac1{60}=\\dfrac1{30}$.</p>
+        <p>$s_i=30\\text{ cm}$, &nbsp; $m=-s_i/s_o=-0{,}5$.</p>
+        <span class="answer">sᵢ = 30 cm foran speilet, reelt og invertert, m = −0,5</span>`)}
+     <div class="prob">c) En fisk svømmer $12\\text{ cm}$ under vannflaten ($n=1{,}33$). På hvilken dybde ser du fisken rett ovenfra?</div>
+     ${reveal('Vis løsning c)',
+       `<p>Plan flate, $R=\\infty$ ⇒ $\\dfrac{n_1}{s_o}+\\dfrac{n_2}{s_i}=0$. Lys vann→luft: $n_1=1{,}33,\\ n_2=1{,}0$.</p>
+        <p>$s_i=-\\dfrac{n_2}{n_1}s_o=-\\dfrac{1}{1{,}33}\\cdot12=-9{,}0\\text{ cm}$ (virtuelt, grunnere).</p>
+        <span class="answer">Tilsynelatende dybde ≈ 9,0 cm</span>`)}
+     <div class="prob">d) En beam expander bruker $f_1=20\\text{ mm}$ og $f_2=100\\text{ mm}$ i afokal oppstilling. Hvor mye utvides en kollimert stråle?</div>
+     ${reveal('Vis løsning d)',
+       `<p>Afokal: $D=f_1+f_2=120\\text{ mm}$ ⇒ $C=0$. &nbsp; $A=1-D/f_1=1-6=-5$.</p>
+        <p>Kollimert inn ($\\alpha_1=0$): $y_2=A\\,y_1$, så stråle­diameteren skaleres med $|A|=5$.</p>
+        <span class="answer">5× utvidelse (= f₂/f₁)</span>`)}
+     </div>`
+  + quizCard('Sjekk deg selv', [
+      {n:'1', q:'Lyset møter element 1, så 2, så 3. Systemmatrisen er …',
+       opts:['$M_1M_2M_3$','$M_3M_2M_1$','$M_2M_3M_1$','rekkefølgen er likegyldig'],
+       answer:1, ex:'Matrisene virker fra høyre på $(y,\\alpha)$, så det siste elementet lyset møter står lengst til venstre: $M_3M_2M_1$.'},
+      {n:'2', q:'For et system som starter og slutter i luft skal determinanten være …',
+       opts:['$0$','$1$','$n_1/n_2$','$-1$'],
+       answer:1, ex:'$\\det M=n_\\text{start}/n_\\text{slutt}=1$ i samme medium — en rask regnefeil-sjekk.'},
+      {n:'3', q:'$B=0$ i systemmatrisen betyr at …',
+       opts:['systemet er afokalt','inn- og utplan er objekt/bilde-konjugerte','forstørrelsen er 1','strålen er parallell med aksen'],
+       answer:1, ex:'$B=0$ ⇒ utgangshøyden er uavhengig av inngangsvinkelen ⇒ alle stråler fra ett objektpunkt samles ⇒ bilde. Da er $A=m$.'},
+      {n:'4', q:'Et afokalt (teleskopisk) system kjennetegnes ved …',
+       opts:['$A=0$','$B=0$','$C=0$','$D=0$'],
+       answer:2, ex:'$C=0$ gjør at parallelle stråler inn forblir parallelle ut.'},
+      {n:'5', q:'Den effektive brennvidden til et system leses av som …',
+       opts:['$f=B$','$f=-1/C$','$f=A/D$','$f=\\det M$'],
+       answer:1, ex:'$f=-1/C$. Kardinalpunkt-formlene på formelarket bygger på nettopp dette.'},
+      {n:'6', q:'Hvilken byggematrise står IKKE på formelarket?',
+       opts:['translasjon','tynn linse','sfærisk speil','plan brytning'],
+       answer:2, ex:'Speilmatrisen $\\begin{pmatrix}1&0\\\\-2/R&1\\end{pmatrix}$ må du huske selv; arket gir bare $f=\\mp R/2$.'}
+    ])
+});
+
 /* === fortsettelse: moduler 3+ === */
 
 /* ---- 3. Geometrisk optikk III — instrumenter ---- */
@@ -665,6 +821,25 @@ const EXTRAS = {
        answer:1, ex:'$C=0$ gjør at parallelle inngående stråler fortsatt er parallelle ut.'}
     ]
   },
+  raytracing: {
+    explainTitle:'Mer forklaring — effektiv f vs. bakre brennavstand',
+    explain:`<p>Effektiv brennvidde $f=-1/C$ måles fra <em>hovedplanet</em>, ikke fra glasset. Bakre brennavstand (BFD) $=-A/C$ måles fra <em>utgangsplanet</em> (siste flate). For en tykk linse eller et sammensatt system faller disse ikke sammen — derfor finnes hovedplan og kardinalpunkter.</p>
+      <p>Når en oppgave spør «hvor må skjermen stå for et fjernt objekt», spør den om BFD ($-A/C$), ikke om $f$.</p>`,
+    workedTitle:'Regneeksempel — tolk en gitt systemmatrise',
+    problem:'Et system i luft har $M=\\begin{pmatrix}0{,}5 & -3\\text{ cm}\\\\ -0{,}1\\text{ cm}^{-1} & 2{,}6\\end{pmatrix}$. (a) Er den gyldig? (b) Effektiv brennvidde? (c) Hvor fokuserer et fjernt objekt bak utgangsplanet?',
+    solution:`<div class="step"><span class="lbl">Determinant</span><p>$\\det M=0{,}5\\cdot2{,}6-(-3)(-0{,}1)=1{,}3-0{,}3=1$ ✓ — gyldig (luft→luft).</p></div>
+      <div class="step"><span class="lbl">Effektiv f</span><p>$f=-1/C=-1/(-0{,}1)=10\\text{ cm}$.</p></div>
+      <div class="step"><span class="lbl">Fjernt objekt</span><p>Parallelt inn ($\\alpha_1=0$): $y_2=Ay_1,\\ \\alpha_2=Cy_1$. Fokus der høyden blir null: $x=-A/C=-0{,}5/(-0{,}1)=5\\text{ cm}$ bak utgangsplanet (BFD).</p></div>`,
+    answer:'det = 1 ✓, f = 10 cm, skjerm 5 cm bak utgangsplanet',
+    questions:[
+      {n:'7', q:'Hvorfor er bakre brennavstand mindre enn effektiv brennvidde her?',
+       opts:['fordi $A<1$ flytter hovedplanet bak utgangsplanet','fordi lyset taper energi','fordi $\\det M\\neq1$','rent tilfeldig'],
+       answer:0, ex:'Hovedplanet ligger foran utgangsplanet, så avstanden fra glasset (BFD) blir kortere enn $f$ målt fra hovedplanet.'},
+      {n:'8', q:'Et fjernt objekt avbildes alltid i …',
+       opts:['hovedplanet','brennplanet','utgangsplanet','uendelig'],
+       answer:1, ex:'Parallelle stråler fra uendelig samles i det bakre brennplanet.'}
+    ]
+  },
   geo3: {
     explainTitle:'Mer forklaring — vinkelforstørrelse er ikke bildestørrelse',
     explain:`<p>Instrumentoppgaver handler ofte om vinkler, ikke bare centimeter på et mellomliggende bilde. En lupe eller et teleskop hjelper fordi objektet dekker større vinkel på øyet.</p>
@@ -901,10 +1076,10 @@ function renderHero(){
     <h1>TFY4195 Optikk: pensum, eksamen og <span class="accent-text">regnetrening</span></h1>
     <p>Guiden samler pensumet i én arbeidsflate: først begrepene du må kunne forklare, deretter formlene du må kunne bruke, og til slutt typiske eksamensgrep. Hver modul følger samme rytme med læringsmål, kjerneteori, formelbruk, eksamensfokus, regneeksempel og selvtest.</p>
     <div class="hero-stats">
-      <div class="stat"><b>12</b><span>moduler</span></div>
-      <div class="stat"><b>24</b><span>regneeksempler</span></div>
-      <div class="stat"><b>4</b><span>interaktive modeller</span></div>
-      <div class="stat"><b>48</b><span>selvtestspørsmål</span></div>
+      <div class="stat"><b>13</b><span>moduler</span></div>
+      <div class="stat"><b>32</b><span>regneeksempler</span></div>
+      <div class="stat"><b>5</b><span>interaktive modeller</span></div>
+      <div class="stat"><b>56</b><span>selvtestspørsmål</span></div>
       <div class="stat"><b>7</b><span>eksamenssett brukt</span></div>
     </div>
   </section>`;
@@ -941,7 +1116,7 @@ function renderPlan(){
       <p>Ikke les alle avsnitt med samme tempo. Bruk kjerneteorien til å forstå hva størrelsene betyr, bruk formelboksen til å trene på valg av riktig likning, og bruk eksamensfeltet til å se hvilke fallgruver som faktisk går igjen.</p>
       <ol>
         <li><strong>Les modulen</strong> — start med læringsmålene, så kjerneteorien.</li>
-        <li><strong>Lær formlene</strong> — alle står på det utdelte formelarket, men du må vite <em>når</em> og <em>hvordan</em> de brukes.</li>
+        <li><strong>Lær formlene</strong> — de fleste står på det utdelte formelarket, men du må vite <em>når</em> og <em>hvordan</em> de brukes.</li>
         <li><strong>Gjør regneeksempelet</strong> uten å se på løsningen først.</li>
         <li><strong>Ta selvtesten</strong> — disse er bygget på faktiske eksamensspørsmål.</li>
         <li><strong>Lek med simuleringene</strong> for intuisjon på linser, Fresnel, Young og diffraksjon.</li>
@@ -1055,7 +1230,7 @@ function renderRoute(){
   });
 
   // init visualizations
-  initLens(); initFresnel(); initYoung(); initDiff();
+  initLens(); initFresnel(); initYoung(); initDiff(); initRayTrace();
   window.scrollTo(0,0);
 }
 
@@ -1242,6 +1417,77 @@ function initDiff(){
     document.getElementById('diffReadout').innerHTML=`N = <b>${NN}</b> spalt${NN>1?'er':''}. ${NN===1?'Ren enkeltspalt: bred sentraltopp, minima ved b·sinθ=mλ.':`${NN-1} minima og ${NN-2<0?0:NN-2} sekundærmaksima mellom hovedmaksima. Smalere spalt b ⇒ bredere konvolutt; større a ⇒ tettere hovedtopper.`}`;
   }
   c.__draw=draw; [N,b,a].forEach(s=>s.addEventListener('input',draw)); draw();
+}
+
+/* ----- 5. Ray tracing (to linser) ----- */
+function initRayTrace(){
+  const c=setupCanvas('rayCanvas',320); if(!c) return; const ctx=c.getContext('2d');
+  const f1s=document.getElementById('f1Slider'), f2s=document.getElementById('f2Slider'), ds=document.getElementById('dSlider');
+  const So=130, Tail=150, apt=34, y0=24;            // scene-enheter
+  function draw(){
+    const W=c.__w, H=c.__h, cy=H*0.5;
+    ctx.clearRect(0,0,W,H);
+    const F1=+f1s.value, F2=+f2s.value, D=+ds.value;
+    const Lscene=So+D+Tail, mx=22, sc=(W-2*mx)/Lscene;
+    const X=x=>mx+x*sc, Y=y=>cy-y*sc;
+    const x1=So, x2=So+D, xEnd=Lscene;
+    function vArrow(px,yBase,yTip,col){ ctx.strokeStyle=col; ctx.fillStyle=col; ctx.lineWidth=2; ctx.beginPath(); ctx.moveTo(px,yBase); ctx.lineTo(px,yTip); ctx.stroke(); const dir=yTip<yBase?-1:1; ctx.beginPath(); ctx.moveTo(px,yTip); ctx.lineTo(px-4,yTip-dir*7); ctx.lineTo(px+4,yTip-dir*7); ctx.closePath(); ctx.fill(); }
+    // akse
+    ctx.strokeStyle=cssVar('--line2'); ctx.lineWidth=1; ctx.beginPath(); ctx.moveTo(0,cy); ctx.lineTo(W,cy); ctx.stroke();
+    // linser
+    function drawLens(xs,label){
+      ctx.strokeStyle=cssVar('--accent'); ctx.lineWidth=2.5; ctx.beginPath(); ctx.moveTo(X(xs),Y(apt)); ctx.lineTo(X(xs),Y(-apt)); ctx.stroke();
+      ctx.fillStyle=cssVar('--accent'); ctx.globalAlpha=.10; ctx.beginPath(); ctx.ellipse(X(xs),cy,7,apt*sc,0,0,7); ctx.fill(); ctx.globalAlpha=1;
+      ctx.fillStyle=cssVar('--ink-dim'); ctx.font='11px IBM Plex Mono'; ctx.fillText(label,X(xs)-7,Y(apt)-6);
+    }
+    drawLens(x1,'L₁'); drawLens(x2,'L₂');
+    // brennpunkt
+    ctx.fillStyle=cssVar('--cyan');
+    [x1-F1,x1+F1,x2-F2,x2+F2].forEach(p=>{ const px=X(p); if(px>0&&px<W){ ctx.beginPath(); ctx.arc(px,cy,2.5,0,7); ctx.fill(); }});
+    // objekt-pil
+    vArrow(X(0),cy,Y(y0),cssVar('--green'));
+    // stråler fra objektets topp
+    const tip=y0, inv=v=>Math.abs(v)<1e-9?1e9:1/v, outB=[];
+    [-apt*0.8,-apt*0.4,0,apt*0.4,apt*0.8].forEach(yt=>{
+      const a0=(yt-tip)/So;
+      const yA=tip+a0*So, a1=a0-yA/F1, yB=yA+a1*D, a2=a1-yB/F2, yC=yB+a2*Tail;
+      ctx.strokeStyle=cssVar('--accent'); ctx.globalAlpha=.8; ctx.lineWidth=1.4;
+      ctx.beginPath(); ctx.moveTo(X(0),Y(tip)); ctx.lineTo(X(x1),Y(yA)); ctx.lineTo(X(x2),Y(yB)); ctx.lineTo(X(xEnd),Y(yC)); ctx.stroke();
+      outB.push(yB);
+    });
+    ctx.globalAlpha=1;
+    // bilde
+    const si1=inv(1/F1-1/So), m1=-si1/So, yi1=m1*tip;
+    const so2=D-si1, si2=inv(1/F2-1/so2), m2=-si2/so2, mtot=m1*m2, yi2=mtot*tip;
+    const ximg=x2+si2;                              // si2<0 ⇒ til venstre for L₂ ⇒ virtuelt
+    const virtual=si2<0;
+    const col=cssVar('--orange');
+    const imgVisible=isFinite(ximg)&&Math.abs(si2)<1e7&&ximg>0&&ximg<xEnd;
+    if(imgVisible){
+      if(virtual){
+        // stiplede bakover-forlengelser av utgangsstrålene — de ser ut til å komme fra bildet
+        ctx.save(); ctx.setLineDash([4,4]); ctx.strokeStyle=col; ctx.globalAlpha=.45; ctx.lineWidth=1;
+        outB.forEach(yB=>{ ctx.beginPath(); ctx.moveTo(X(x2),Y(yB)); ctx.lineTo(X(ximg),Y(yi2)); ctx.stroke(); });
+        ctx.globalAlpha=1; vArrow(X(ximg),cy,Y(yi2),col); ctx.restore();
+        ctx.fillStyle=cssVar('--ink-dim'); ctx.font='10px IBM Plex Mono'; ctx.fillText('virtuelt bilde',X(ximg)-30,cy+(yi2>0?14:-7));
+      } else {
+        vArrow(X(ximg),cy,Y(yi2),col);
+        ctx.fillStyle=cssVar('--ink-dim'); ctx.font='10px IBM Plex Mono'; ctx.fillText('bilde',X(ximg)-12,cy+(yi2>0?14:-7));
+      }
+    }
+    // systemmatrise + avlesning
+    const A=1-D/F1, B=D, Cc=-1/F1-1/F2+D/(F1*F2), Del=1-D/F2, det=A*Del-B*Cc;
+    const afoc=Math.abs(Cc)<1.2e-4, feff=afoc?Infinity:-1/Cc;
+    f1s&&(document.getElementById('f1Val').textContent=F1+' enh');
+    document.getElementById('f2Val').textContent=F2+' enh';
+    document.getElementById('dVal').textContent=D+' enh';
+    let msg=`M = L₂·T(D)·L₁ = [ [${A.toFixed(2)}, ${B.toFixed(0)}], [${Cc.toFixed(4)}, ${Del.toFixed(2)}] ] · &nbsp;det = <b>${det.toFixed(2)}</b>. `;
+    msg += afoc
+      ? `<b>C ≈ 0 ⇒ afokalt</b> system — vinkelforstørrelse D = <b>${Del.toFixed(2)}</b>.`
+      : `effektiv f = −1/C = <b>${feff.toFixed(0)} enh</b>. Endebilde: <b>${virtual?'virtuelt':'reelt'}</b>, m = <b>${mtot.toFixed(2)}</b> ${imgVisible?(virtual?'(stiplet pil)':'(oransje pil)'):'(utenfor figuren)'}.`;
+    document.getElementById('rayReadout').innerHTML=msg;
+  }
+  c.__draw=draw; [f1s,f2s,ds].forEach(s=>s.addEventListener('input',draw)); draw();
 }
 
 /* ============================ BOOT ============================ */
