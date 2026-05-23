@@ -269,6 +269,15 @@ M.push({
      </table>
      <p><strong>Kobling til formelarket:</strong> kardinalpunkt-formlene ($p=D/C,\\ q=-A/C,\\ f_s=-1/C$ osv.) er nettopp disse matriseelementene. Kjenner du $A,B,C,D$, plugger du rett inn.</p>
      </div>`
+  + `<div class="card"><h3><span class="dot"></span>Ekvivalens av optiske veier</h3>
+     <p>Den <strong>optiske veilengden</strong> (OPL) er $\\text{OPL}=\\sum_j n_j d_j$ — geometrisk lengde vektet med brytningsindeks. Lyset «føler» optisk vei, ikke geometrisk avstand: hver meter teller mer i et tregt medium (høy $n$).</p>
+     <p><strong>Fermats prinsipp:</strong> en stråle følger den veien som gir <em>stasjonær</em> (oftest minste) optiske veilengde.</p>
+     <h4>Avbildningsteoremet</h4>
+     <p>Mellom et objektpunkt og dets bildepunkt har <strong>alle stråler samme optiske veilengde</strong> — de er likeverdige. Derfor ankommer de i fase og danner et skarpt, reelt bilde. En samlende linse fungerer nettopp fordi den <em>utligner</em> veiene: en randstråle går lengre i luft, men gjennom mindre glass; en aksenær stråle går kortere i luft, men gjennom mer (tregt) glass — netto OPL blir lik.</p>
+     <p>Formelarket skriver betingelsen for en brytende flate som $n_o d_o + n_i d_i = n_o s_o + n_i s_i$: to ulike veier mellom konjugerte punkter har lik optisk lengde.</p>
+     <h4>Kobling til matrisemetoden</h4>
+     <p>Betingelsen $B=0$ er stråleoptikkens versjon av akkurat dette: utgangshøyden er uavhengig av inngangsvinkelen ⇔ alle stråler fra ett objektpunkt møtes igjen i ett bildepunkt ⇔ hver stråle har lik optisk vei dit. Bølge- og strålebildet sier altså det samme.</p>
+     </div>`
   + exam(['Match system ↔ matrise','Forstørrelse fra A','Afokalt (C=0)','Effektiv f fra C','Kardinalpunkter'],
       `<p>Den klassiske «match the optical system with the ray-transfer matrix» tester strukturgjenkjenning: et nullelement nederst til venstre ($C=0$) = afokalt; et rent $B$-tall = en translasjon; $A=1, D=1$ med $C\\neq0$ = én tynn linse. Andre oppgaver gir en systemmatrise og ber om forstørrelsen ($m=A$ når $B=0$), effektiv brennvidde ($-1/C$), eller hvor et fjernt objekt fokuserer ($-A/C$). Regneoppgaver ber deg multiplisere 2–4 matriser — pass på rekkefølgen og bruk $\\det M$ som sjekk.</p>`)
   + `<div class="card viz"><h3><span class="dot"></span>Interaktivt: to-linse ray tracer</h3>
