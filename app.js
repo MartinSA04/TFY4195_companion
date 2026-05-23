@@ -100,10 +100,10 @@ M.push({
      <p>Forteller hvilken brennvidde en linseform gir. En <strong>positiv</strong> (samlende) linse i luft er tykkere på midten; én konveks side mot objektet gir $R_1>0,\\ R_2<0$.</p>
      </div>`
   + formulas([
-      ['$n_i\\sin\\theta_i=n_t\\sin\\theta_t$','Snells lov.'],
-      ['$\\dfrac{1}{s_o}+\\dfrac{1}{s_i}=\\dfrac{1}{f}$','Tynnlinse-/avbildningslikningen.'],
+      ['$n_i\\sin\\theta_i=n_t\\sin\\theta_t$','Snells lov. Vinkler måles fra <strong>normalen</strong>; indeks <em>i</em> = innfallsmedium, <em>t</em> = transmittert medium.'],
+      ['$\\dfrac{1}{s_o}+\\dfrac{1}{s_i}=\\dfrac{1}{f}$','Tynnlinse-/avbildningslikningen. $s_o$ = objektavstand, $s_i$ = bildeavstand, $f$ = brennvidde.'],
       ['$m=-\\dfrac{s_i}{s_o}$','Lateral forstørrelse. <b>m<0</b> = invertert.'],
-      ['$\\dfrac{1}{f}=\\dfrac{n_2-n_1}{n_1}\\!\\left(\\dfrac{1}{R_1}-\\dfrac{1}{R_2}\\right)$','Linsemakerformelen (linse $n_2$ i medium $n_1$).'],
+      ['$\\dfrac{1}{f}=\\dfrac{n_2-n_1}{n_1}\\!\\left(\\dfrac{1}{R_1}-\\dfrac{1}{R_2}\\right)$','Linsemakerformelen (linse $n_2$ i medium $n_1$). $R_1,R_2$ = krumningsradier for fram- og bakflate (med fortegn).'],
       ['$f=\\mp\\dfrac{R}{2}$','Sfærisk speil (konkavt $f>0$).']
     ])
   + exam(['Linsemaker-design (MC)','Bildeplassering','Reelt/virtuelt + m','Speil'],
@@ -382,9 +382,9 @@ M.push({
      </ul>
      </div>`
   + formulas([
-      ['$MP_\\text{lupe}=\\dfrac{25\\text{ cm}}{f}$','Enkel lupe (bilde i uendelig).', true],
-      ['$M_\\text{mik}=-\\dfrac{L}{f_o}\\cdot\\dfrac{25}{f_e}$','Sammensatt mikroskop, tubuslengde $L$.', true],
-      ['$MP_\\text{tel}=-\\dfrac{f_o}{f_e}$','Teleskop (refraktor).', true],
+      ['$MP_\\text{lupe}=\\dfrac{25\\text{ cm}}{f}$','Enkel lupe (bilde i uendelig). $MP$ = vinkelforstørrelse (ikke lateral $m$); 25 cm = øyets nærpunkt.', true],
+      ['$M_\\text{mik}=-\\dfrac{L}{f_o}\\cdot\\dfrac{25}{f_e}$','Sammensatt mikroskop, tubuslengde $L$. $f_o$ = objektiv-, $f_e$ = okularbrennvidde.', true],
+      ['$MP_\\text{tel}=-\\dfrac{f_o}{f_e}$','Teleskop (refraktor): vinkelforstørrelse = objektiv- delt på okularbrennvidde.', true],
       ['$f\\#=\\dfrac{f}{D}$','f-tall: brennvidde / aperturdiameter.', true]
     ])
   + exam(['Mikroskop: reelt/invertert + m','Teleskop-MP','Øyets optikk'],
@@ -473,8 +473,8 @@ M.push({
      </ul>
      </div>`
   + formulas([
-      ['$r_{TE}=\\dfrac{\\cos\\theta-\\sqrt{n^2-\\sin^2\\theta}}{\\cos\\theta+\\sqrt{n^2-\\sin^2\\theta}}$','TE-refleksjonskoeff., $n=n_2/n_1$.'],
-      ['$r_{TM}=\\dfrac{-n^2\\cos\\theta+\\sqrt{n^2-\\sin^2\\theta}}{n^2\\cos\\theta+\\sqrt{n^2-\\sin^2\\theta}}$','TM-refleksjonskoeff.'],
+      ['$r_{TE}=\\dfrac{\\cos\\theta-\\sqrt{n^2-\\sin^2\\theta}}{\\cos\\theta+\\sqrt{n^2-\\sin^2\\theta}}$','TE-refleksjonskoeff. (s-pol: $\\vec E$ vinkelrett på innfallsplanet). $n=n_2/n_1$.'],
+      ['$r_{TM}=\\dfrac{-n^2\\cos\\theta+\\sqrt{n^2-\\sin^2\\theta}}{n^2\\cos\\theta+\\sqrt{n^2-\\sin^2\\theta}}$','TM-refleksjonskoeff. (p-pol: $\\vec E$ i innfallsplanet).'],
       ['$R=r^2,\\quad T=n\\dfrac{\\cos\\theta_t}{\\cos\\theta}\\,t^2$','Energi-reflektans og -transmittans, $R+T=1$.'],
       ['$\\theta_p=\\arctan\\!\\dfrac{n_2}{n_1}$','Brewster-vinkel (reflektert lys lineært polarisert).']
     ])
@@ -527,7 +527,7 @@ M.push({
   + formulas([
       ['$\\sin\\theta_c=\\dfrac{n_2}{n_1}$','Kritisk vinkel (tett→tynt, $n_1>n_2$).', true],
       ['$|r|=1$ for $\\theta>\\theta_c$','Total intern refleksjon, kompleks $r$ (faseforskyvning).', true],
-      ['$E(z)\\propto e^{-z/d}$','Evanescent bølge, eksponentielt avtagende.', true],
+      ['$E(z)\\propto e^{-z/d}$','Evanescent bølge, eksponentielt avtagende. $z$ = dybde inn i det tynne mediet, $d$ = inntrengningsdybde.', true],
       ['$\\theta_\\text{regn}\\approx 42^\\circ\\,(1°),\\,51^\\circ\\,(2°)$','Primær- og sekundærbue.', true]
     ])
   + exam(['Strålegang i prisme','TIR-betingelse','Sirkulær polarisering etter TIR'],
@@ -568,9 +568,9 @@ M.push({
      </div>`
   + formulas([
       ['$E_0^2=E_{01}^2+E_{02}^2+2E_{01}E_{02}\\cos(\\alpha_2-\\alpha_1)$','Resulterende amplitude (fasoraddisjon).'],
-      ['$I_\\text{tot}=4I_0\\cos^2\\!\\big(\\tfrac{\\pi a\\sin\\theta}{\\lambda}\\big)$','Youngs intensitetsmønster.'],
-      ['$\\Delta y=\\dfrac{\\lambda L}{a}$','Stripeavstand på skjermen.'],
-      ['$N=\\dfrac{(n-1)t}{\\lambda}$','Stripeforskyvning fra glassplate over én spalt.', true]
+      ['$I_\\text{tot}=4I_0\\cos^2\\!\\big(\\tfrac{\\pi a\\sin\\theta}{\\lambda}\\big)$','Youngs intensitetsmønster. $a$ = spalteavstand (senter til senter).'],
+      ['$\\Delta y=\\dfrac{\\lambda L}{a}$','Stripeavstand på skjermen. $L$ = skjermavstand, $a$ = spalteavstand.'],
+      ['$N=\\dfrac{(n-1)t}{\\lambda}$','Stripeforskyvning fra glassplate over én spalt. $t$ = platetykkelse, $N$ = antall striper mønsteret forskyves.', true]
     ])
   + exam(['Fasoraddisjon (regn)','Stripeavstand','Glassplate-forskyvning','Veiforskjell ↔ halv-maks'],
       `<p>Tre-i-ett-oppgave: (i) finn skjermavstanden $L$ for ønsket $\\Delta y$ (bruk $\\Delta y=\\lambda L/a$); (ii) hvor mange striper forskyves mønsteret av en glassplate; (iii) hvilken veiforskjell tilsvarer skiftet fra topp-maks til halv-maks (svar: $\\lambda/4$ i veiforskjell, dvs. $\\Delta=\\lambda/4$ … kontroller fra $\\cos^2$).</p>`)
@@ -620,11 +620,11 @@ M.push({
      <p>Optisk veiforskjell $\\Delta=2n_f t\\cos\\theta_t$. Husk evt. ekstra $\\lambda/2$ ($\\Delta_r$) fra refleksjon ved hardere medium. <strong>Antirefleks</strong>: destruktiv refleksjon ⇒ $2n_f t=\\lambda/2$ (kvartbølgelag) ved normal innfall.</p>
      </div>`
   + formulas([
-      ['$l_c=\\dfrac{\\lambda_0^2}{\\Delta\\lambda}=\\dfrac{c}{\\Delta f}$','Temporal koherenslengde.'],
-      ['$l_s<\\dfrac{1{,}22\\lambda}{\\theta}$','Spatial koherenslengde (sirkulær apertur).'],
-      ['$I=4I_0\\cos^2(\\delta/2),\\ \\Delta p=2d\\cos\\theta$','Michelson-interferometer.'],
+      ['$l_c=\\dfrac{\\lambda_0^2}{\\Delta\\lambda}=\\dfrac{c}{\\Delta f}$','Temporal koherenslengde. $\\Delta\\lambda$ = kildens spektralbredde.'],
+      ['$l_s<\\dfrac{1{,}22\\lambda}{\\theta}$','Spatial koherenslengde (sirkulær apertur). $\\theta$ = kildens vinkelutstrekning.'],
+      ['$I=4I_0\\cos^2(\\delta/2),\\ \\Delta p=2d\\cos\\theta$','Michelson-interferometer. $\\delta$ = faseforskjell mellom armene, $\\Delta p$ = veiforskjell, $d$ = speilforskyvning.'],
       ['$V=\\dfrac{I_\\text{max}-I_\\text{min}}{I_\\text{max}+I_\\text{min}}$','Synlighet (visibility).'],
-      ['$\\Delta=2n_f t\\cos\\theta_t$','Tynnfilm: optisk veiforskjell.']
+      ['$\\Delta=2n_f t\\cos\\theta_t$','Tynnfilm: optisk veiforskjell. $n_f$ = filmens brytningsindeks, $t$ = filmtykkelse, $\\theta_t$ = brytningsvinkel i filmen.']
     ])
   + exam(['Koherenslengde fra spektrum','AR-belegg ved vinkel','Michelson-skift','Fabry–Perot vs Michelson'],
       `<p>«coherencelengthA/B»: finn først foton-energi, deretter koherenslengde fra spektralbredden via $l_c=c/\\Delta f$. Tynnfilm-klassiker: et MgF₂-lag ($n=1{,}38$) er antirefleks ved 580 nm normalt innfall — hvilken bølgelengde slukkes minimalt ved 45°? (Bruk $\\cos\\theta_t$ via Snell.) Fabry–Perot: høy $r$ ⇒ skarpe striper ⇒ høyere oppløsning.</p>`)
@@ -672,7 +672,7 @@ M.push({
      <p>Stor $NA$ ⇒ lett innkobling, men flere moder. En glass/luft-fiber kan ikke ha $NA>1$. <strong>Skip-avstanden</strong> $L_s$ er avstanden mellom to refleksjoner; en typisk fiber har tusenvis av refleksjoner per meter, så hver flate må være nesten tapsfri.</p>
      </div>`
   + formulas([
-      ['$\\sin\\phi_c=\\dfrac{n_2}{n_1}$','Kritisk vinkel ved kjerne–kappe.', true],
+      ['$\\sin\\phi_c=\\dfrac{n_2}{n_1}$','Kritisk vinkel ved kjerne–kappe. $\\phi_c$ måles fra <strong>grenseflaten</strong> (ikke normalen).', true],
       ['$NA=n_0\\sin\\theta_\\text{max}=\\sqrt{n_1^2-n_2^2}$','Numerisk apertur / akseptansevinkel.', true],
       ['$L_s=\\dfrac{d}{\\tan\\theta\'}=d\\sqrt{\\left(\\dfrac{n_1}{n_0\\sin\\theta}\\right)^2-1}$','Skip-avstand mellom refleksjoner ($d$ = kjernediameter).', true]
     ])
@@ -705,7 +705,7 @@ M.push({
      <p>Pulsutsmøringen per lengde gir <strong>båndbredde–avstand-produktet</strong> $\\nu_\\text{max}L$ — fiberens nøkkeltall (kobber: bare ~10–25 MHz·km).</p>
      </div>`
   + formulas([
-      ['$\\left(\\dfrac{\\delta\\tau}{L}\\right)_\\text{step}=\\dfrac{n_1}{c}\\dfrac{n_1-n_2}{n_2}$','Modal dispersjon, step-index.', true],
+      ['$\\left(\\dfrac{\\delta\\tau}{L}\\right)_\\text{step}=\\dfrac{n_1}{c}\\dfrac{n_1-n_2}{n_2}$','Modal dispersjon, step-index. $\\delta\\tau/L$ = pulsutsmøring per lengde.', true],
       ['$\\left(\\dfrac{\\delta\\tau}{L}\\right)_\\text{GRIN}\\approx\\dfrac{n_1}{2c}\\Delta_n^{2}$','Modal dispersjon, parabolisk GRIN ($\\Delta_n\\approx\\tfrac{n_1-n_2}{n_1}$).', true],
       ['$\\dfrac{\\delta\\tau}{L}=-M\\,\\Delta\\lambda$','Materialdispersjon ($M$ i ps/(nm·km)).', true],
       ['$\\nu_\\text{max}L=\\dfrac{0{,}5}{(\\delta\\tau/L)}$','Båndbredde–avstand-produkt.', true]
@@ -721,7 +721,7 @@ M.push({
      </ul>
      </div>`
   + formulas([
-      ['$\\lambda_B=2n_1\\Lambda$','Fiber-Bragg-gitter: reflektert bølgelengde.', true],
+      ['$\\lambda_B=2n_1\\Lambda$','Fiber-Bragg-gitter: reflektert bølgelengde. $\\Lambda$ = gitterets periode.', true],
       ['$\\Delta L=\\dfrac{m\\lambda_1}{n}=\\dfrac{(m+\\tfrac12)\\lambda_2}{n}$','Mach–Zehnder to-kanals demux (begge må gjelde).', true],
       ['$\\mathcal R\\approx\\dfrac{500}{d\\,[\\mu\\text{m}]}$','Spatial oppløsning til fiberbunt (lin/mm).', true]
     ])
@@ -808,9 +808,9 @@ M.push({
      <p>Vinkelradius til første mørke ring: $\\Delta\\theta_{1/2}=\\dfrac{1{,}22\\lambda}{D}$. Dette gir <strong>Rayleigh-kriteriet</strong> for oppløsning og bestemmer en stråles diffraksjonsspredning.</p>
      </div>`
   + formulas([
-      ['$I=I_0\\left(\\dfrac{\\sin\\beta}{\\beta}\\right)^2,\\ \\beta=\\dfrac{\\pi b\\sin\\theta}{\\lambda}$','Enkeltspalt-intensitet.'],
+      ['$I=I_0\\left(\\dfrac{\\sin\\beta}{\\beta}\\right)^2,\\ \\beta=\\dfrac{\\pi b\\sin\\theta}{\\lambda}$','Enkeltspalt-intensitet. $b$ = spaltbredde (ikke spalteavstand $a$).'],
       ['$b\\sin\\theta_m=m\\lambda$','Minima for enkeltspalt (utledbar fra $\\sin\\beta=0$).', true],
-      ['$\\Delta\\theta_{1/2}=\\dfrac{1{,}22\\lambda}{D}\\approx\\dfrac{\\Delta x}{L}$','Airy-skive / Rayleigh.'],
+      ['$\\Delta\\theta_{1/2}=\\dfrac{1{,}22\\lambda}{D}\\approx\\dfrac{\\Delta x}{L}$','Airy-skive / Rayleigh-kriteriet. $D$ = aperturdiameter, $\\Delta x$ = spotradius, $L$ = avstand.'],
       ['$L\\gg\\dfrac{b^2}{\\lambda}$','Fraunhofer (fjernfelt) gyldig.']
     ])
   + exam(['Spaltbredde fra mønster','Fjernfelt-sjekk L/Lₘᵢₙ','Stråledivergens','Aperturdiameter (Airy)'],
@@ -861,10 +861,10 @@ M.push({
      </div>`
   + formulas([
       ['$I=I_0\\big(\\tfrac{\\sin\\beta}{\\beta}\\big)^2\\big(\\tfrac{\\sin N\\alpha}{\\sin\\alpha}\\big)^2$','$N$ spalter, bredde $b$, avstand $a$.'],
-      ['$m\\lambda=a(\\sin\\theta_i+\\sin\\theta_m)$','Gitterlikningen.'],
-      ['$\\mathcal R=\\dfrac{\\lambda}{\\Delta\\lambda}=mN$','Spektral oppløsning.'],
-      ['$\\mathcal D=\\dfrac{d\\theta_m}{d\\lambda}=\\dfrac{m}{a\\cos\\theta_m}$','Vinkeldispersjon.'],
-      ['$\\lambda_\\text{fsr}=\\dfrac{\\lambda_1}{m}$','Fritt spektralområde.']
+      ['$m\\lambda=a(\\sin\\theta_i+\\sin\\theta_m)$','Gitterlikningen. $a$ = spalteavstand (gitterkonstant), $\\theta_i$ = innfalls-, $\\theta_m$ = utfallsvinkel for orden $m$.'],
+      ['$\\mathcal R=\\dfrac{\\lambda}{\\Delta\\lambda}=mN$','Spektral oppløsning $\\mathcal R$ = evnen til å skille to nære bølgelengder; $N$ = antall belyste spalter.'],
+      ['$\\mathcal D=\\dfrac{d\\theta_m}{d\\lambda}=\\dfrac{m}{a\\cos\\theta_m}$','Vinkeldispersjon $\\mathcal D$ = hvor mye utfallsvinkelen endrer seg per bølgelengde.'],
+      ['$\\lambda_\\text{fsr}=\\dfrac{\\lambda_1}{m}$','Fritt spektralområde: bølgelengdeintervallet før naboordener (orden $m$) overlapper.']
     ])
   + exam(['Flerspalt → λ og a','Gitter-oppløsning','Antall hovedmaksima','Dispersjon'],
       `<p>«Multislit»: gitt mønstre for én spalt og for $N=4$ spalter, les av (1) bølgelengden (fra enkeltspalt-konvoluttens minima) og (2) spaltavstanden $a$ (fra de tette hovedmaksima). Gitteroppgaver: hvilken oppløsning kreves for å skille to nære linjer ⇒ bruk $\\mathcal R=mN$.</p>`)
