@@ -199,6 +199,10 @@ M.push({
      <p>En stråle beskrives ved <strong>høyden $y$</strong> over den optiske aksen og <strong>vinkelen $\\alpha$</strong> den danner med aksen. Hvert optisk element transformerer $(y,\\alpha)$ lineært, så det kan skrives som en $2\\times2$-matrise:</p>
      <p>$\\begin{pmatrix} y_2 \\\\ \\alpha_2 \\end{pmatrix} = \\begin{pmatrix} A & B \\\\ C & D \\end{pmatrix}\\begin{pmatrix} y_1 \\\\ \\alpha_1 \\end{pmatrix}$</p>
      <p>Et helt system er <strong>produktet</strong> av elementmatrisene. Da kan du behandle et komplisert instrument som én enkelt matrise og lese av alt du trenger fra de fire tallene $A,B,C,D$.</p>`)
+  + `<div class="card viz"><h3><span class="dot"></span>Visuelt: strålevektoren $(y,\\alpha)$</h3>
+     <p>Hver stråle er ett punkt beskrevet av to tall: høyden $y$ over aksen og helningen $\\alpha$. Det er disse to tallene matrisene virker på.</p>
+     <canvas id="rayVecCanvas"></canvas>
+     </div>`
   + `<div class="card"><h3><span class="dot"></span>Fortegnskonvensjon — fest dette først</h3>
      <p>Feil fortegn er vanligere enn feil algebra. Pedrotti-konvensjonen (lys går venstre → høyre):</p>
      <table class="ftable">
@@ -211,6 +215,10 @@ M.push({
        <tr><td>$f$</td><td>samlende element</td><td>positiv linse / konkavt speil</td></tr>
      </table>
      <p>Vinkelen holdes liten (paraksial: $\\sin\\alpha\\approx\\tan\\alpha\\approx\\alpha$ i radianer).</p>
+     </div>`
+  + `<div class="card viz"><h3><span class="dot"></span>Visuelt: fortegn & avbildning</h3>
+     <p>Objektavstand $s_o$ (venstre) og bildeavstand $s_i$ (høyre) måles fra linsen, brennvidden $f$ til brennpunktene $F,F'$. To hjelpestråler — parallell$\\to$gjennom $F'$, og rett gjennom sentrum — konstruerer bildet. Objektet står utenfor $2f$, så bildet blir reelt, invertert og forminsket.</p>
+     <canvas id="signConvCanvas"></canvas>
      </div>`
   + `<div class="card"><h3><span class="dot"></span>De fem byggematrisene</h3>
      <h4>1 · Translasjon (fri propagasjon avstand $d$)</h4>
@@ -229,6 +237,10 @@ M.push({
      <p>Virker som en linse med $f=R/2$, men folder strålegangen. Utbrettet matrise:</p>
      <p>$M_\\text{speil}=\\begin{pmatrix}1 & 0 \\\\ -2/R & 1\\end{pmatrix}=\\begin{pmatrix}1 & 0 \\\\ -1/f & 1\\end{pmatrix}$</p>
      <p><strong>Tykk linse:</strong> $M=R_S^{(2)}\\,T(t)\\,R_S^{(1)}$ — to flater med glasstykkelse $t$ imellom.</p>
+     </div>`
+  + `<div class="card viz"><h3><span class="dot"></span>Visuelt: hva hvert element gjør med en stråle</h3>
+     <p>Translasjon flytter strålen uten å endre vinkelen; en tynn linse knekker vinkelen mot brennpunktet; en brytende flate endrer vinkelen etter Snell (høyden $y$ er kontinuerlig). Det er nettopp disse virkningene matrisene koder.</p>
+     <canvas id="elemActCanvas"></canvas>
      </div>`
   + formulas([
       ['$T(d)=\\begin{pmatrix}1 & d \\\\ 0 & 1\\end{pmatrix}$','Translasjon (fri propagasjon).'],
@@ -1330,7 +1342,7 @@ function renderRoute(){
   });
 
   // init visualizations
-  initLens(); initFresnel(); initYoung(); initDiff(); initRayTrace();
+  initLens(); initFresnel(); initYoung(); initDiff(); initRayTrace(); initRayVec(); initSignConv(); initElemAct();
   window.scrollTo(0,0);
 }
 
@@ -1588,6 +1600,105 @@ function initRayTrace(){
     document.getElementById('rayReadout').innerHTML=msg;
   }
   c.__draw=draw; [f1s,f2s,ds].forEach(s=>s.addEventListener('input',draw)); draw();
+}
+
+/* ----- 6. Diagram: strålevektor (y, α) ----- */
+function initRayVec(){
+  const c=setupCanvas('rayVecCanvas',190); if(!c) return; const ctx=c.getContext('2d');
+  function draw(){
+    const W=c.__w,H=c.__h, cy=H*0.66, mx=18;
+    ctx.clearRect(0,0,W,H);
+    ctx.strokeStyle=cssVar('--line2'); ctx.lineWidth=1; ctx.beginPath(); ctx.moveTo(0,cy); ctx.lineTo(W,cy); ctx.stroke();
+    ctx.fillStyle=cssVar('--ink-faint'); ctx.font='11px IBM Plex Mono'; ctx.fillText('optisk akse',W-92,cy+15);
+    const x0=mx+10, y0=cy+34, x1=W-mx-12, y1=cy-78, m=(y1-y0)/(x1-x0);
+    const xC=x0+(cy-y0)/m, xRef=Math.round(W*0.62), yRef=y0+m*(xRef-x0);
+    // referanseplan
+    ctx.strokeStyle=cssVar('--ink-faint'); ctx.setLineDash([4,4]); ctx.beginPath(); ctx.moveTo(xRef,cy-94); ctx.lineTo(xRef,cy+22); ctx.stroke(); ctx.setLineDash([]);
+    // stråle
+    ctx.strokeStyle=cssVar('--accent'); ctx.lineWidth=2; arrow(ctx,x0,y0,x1,y1);
+    // høyde y
+    ctx.strokeStyle=cssVar('--green'); ctx.fillStyle=cssVar('--green'); ctx.lineWidth=2; ctx.beginPath(); ctx.moveTo(xRef,cy); ctx.lineTo(xRef,yRef); ctx.stroke();
+    ctx.font='14px IBM Plex Mono'; ctx.fillText('y',xRef+7,(cy+yRef)/2+5);
+    // vinkel α
+    ctx.strokeStyle=cssVar('--orange'); ctx.fillStyle=cssVar('--orange'); ctx.lineWidth=1.6;
+    ctx.beginPath(); ctx.arc(xC,cy,30,0,Math.atan2(m,1),true); ctx.stroke();
+    ctx.fillText('α',xC+36,cy-8);
+    // punkt + merke
+    ctx.fillStyle=cssVar('--accent'); ctx.beginPath(); ctx.arc(xRef,yRef,3.5,0,7); ctx.fill();
+    ctx.fillStyle=cssVar('--ink-dim'); ctx.font='12px IBM Plex Mono'; ctx.fillText('stråle = (y, α)',xRef+11,yRef-5);
+  }
+  c.__draw=draw; draw();
+}
+
+/* ----- 7. Diagram: fortegn & avbildning ----- */
+function initSignConv(){
+  const c=setupCanvas('signConvCanvas',280); if(!c) return; const ctx=c.getContext('2d');
+  function vArr(px,yB,yT,col){ ctx.strokeStyle=col; ctx.fillStyle=col; ctx.lineWidth=2; ctx.beginPath(); ctx.moveTo(px,yB); ctx.lineTo(px,yT); ctx.stroke(); const d=yT<yB?-1:1; ctx.beginPath(); ctx.moveTo(px,yT); ctx.lineTo(px-4,yT-d*7); ctx.lineTo(px+4,yT-d*7); ctx.closePath(); ctx.fill(); }
+  function dim(xA,xB,yy,label){ ctx.strokeStyle=cssVar('--ink-faint'); ctx.fillStyle=cssVar('--ink-faint'); ctx.lineWidth=1; ctx.beginPath(); ctx.moveTo(xA,yy); ctx.lineTo(xB,yy); ctx.moveTo(xA,yy-4); ctx.lineTo(xA,yy+4); ctx.moveTo(xB,yy-4); ctx.lineTo(xB,yy+4); ctx.stroke(); ctx.font='13px IBM Plex Mono'; ctx.fillText(label,(xA+xB)/2-4,yy-5); }
+  function draw(){
+    const W=c.__w,H=c.__h, cy=H*0.42;
+    ctx.clearRect(0,0,W,H);
+    const So=210, f=70, Si=105, ho=30, sceneR=So+Si+18, pad=36, sc=(W-2*pad)/sceneR;
+    const X=x=>pad+x*sc, hoP=ho*sc, hiP=0.5*ho*sc;
+    const xObj=X(0), xLens=X(So), xImg=X(So+Si), xF=X(So-f), xFp=X(So+f);
+    // akse + linse
+    ctx.strokeStyle=cssVar('--line2'); ctx.lineWidth=1; ctx.beginPath(); ctx.moveTo(0,cy); ctx.lineTo(W,cy); ctx.stroke();
+    ctx.strokeStyle=cssVar('--accent'); ctx.lineWidth=2.5; ctx.beginPath(); ctx.moveTo(xLens,cy-hoP-22); ctx.lineTo(xLens,cy+hoP+22); ctx.stroke();
+    ctx.fillStyle=cssVar('--accent'); ctx.globalAlpha=.10; ctx.beginPath(); ctx.ellipse(xLens,cy,7,hoP+22,0,0,7); ctx.fill(); ctx.globalAlpha=1;
+    // brennpunkt
+    ctx.fillStyle=cssVar('--cyan'); ctx.font='12px IBM Plex Mono';
+    [[xF,'F'],[xFp,"F'"]].forEach(p=>{ ctx.beginPath(); ctx.arc(p[0],cy,3,0,7); ctx.fill(); ctx.fillText(p[1],p[0]-4,cy-8); });
+    // prinsipalstråler
+    ctx.strokeStyle=cssVar('--accent'); ctx.globalAlpha=.8; ctx.lineWidth=1.3;
+    ctx.beginPath(); ctx.moveTo(xObj,cy-hoP); ctx.lineTo(xLens,cy-hoP); ctx.lineTo(xImg,cy+hiP); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(xObj,cy-hoP); ctx.lineTo(xImg,cy+hiP); ctx.stroke();
+    ctx.globalAlpha=1;
+    // objekt + bilde
+    vArr(xObj,cy,cy-hoP,cssVar('--green')); ctx.fillStyle=cssVar('--green'); ctx.font='13px IBM Plex Mono'; ctx.fillText('hₒ',xObj-22,cy-hoP/2); ctx.font='11px IBM Plex Mono'; ctx.fillText('objekt',xObj-16,cy+16);
+    vArr(xImg,cy,cy+hiP,cssVar('--orange')); ctx.fillStyle=cssVar('--orange'); ctx.font='13px IBM Plex Mono'; ctx.fillText('hᵢ',xImg+6,cy+hiP/2); ctx.font='11px IBM Plex Mono'; ctx.fillText('bilde',xImg-8,cy+hiP+16);
+    // dimensjonslinjer
+    const yd=cy+hoP+24;
+    dim(xObj,xLens,yd,'sₒ'); dim(xLens,xImg,yd,'sᵢ'); dim(xLens,xFp,cy-hoP-30,'f');
+    ctx.fillStyle=cssVar('--ink-faint'); ctx.font='11px IBM Plex Mono'; ctx.fillText('R > 0: krumningssenter til høyre',pad,H-8);
+  }
+  c.__draw=draw; draw();
+}
+
+/* ----- 8. Diagram: elementenes virkning ----- */
+function initElemAct(){
+  const c=setupCanvas('elemActCanvas',200); if(!c) return; const ctx=c.getContext('2d');
+  function draw(){
+    const W=c.__w,H=c.__h, pw=W/3, cy=H*0.52;
+    ctx.clearRect(0,0,W,H);
+    function panel(i,title,sub,fn){
+      const x0=i*pw, cx=x0+pw/2;
+      if(i>0){ ctx.strokeStyle=cssVar('--line'); ctx.lineWidth=1; ctx.beginPath(); ctx.moveTo(x0,18); ctx.lineTo(x0,H-22); ctx.stroke(); }
+      ctx.fillStyle=cssVar('--ink'); ctx.font='12px IBM Plex Mono'; ctx.textAlign='center'; ctx.fillText(title,cx,22);
+      ctx.strokeStyle=cssVar('--line2'); ctx.lineWidth=1; ctx.beginPath(); ctx.moveTo(x0+14,cy); ctx.lineTo(x0+pw-14,cy); ctx.stroke();
+      ctx.textAlign='left'; fn(x0,cx);
+      ctx.fillStyle=cssVar('--ink-faint'); ctx.font='10px IBM Plex Mono'; ctx.textAlign='center'; ctx.fillText(sub,cx,H-9); ctx.textAlign='left';
+    }
+    panel(0,'Translasjon T(d)','vinkel uendret, y øker',(x0)=>{
+      ctx.strokeStyle=cssVar('--accent'); ctx.lineWidth=2; arrow(ctx,x0+16,cy+26,x0+pw-16,cy-30);
+    });
+    panel(1,'Tynn linse L(f)',"knekker vinkelen mot F'",(x0,cx)=>{
+      const lx=cx, fpx=x0+pw-22;
+      ctx.strokeStyle=cssVar('--accent'); ctx.lineWidth=2.5; ctx.beginPath(); ctx.moveTo(lx,cy-34); ctx.lineTo(lx,cy+34); ctx.stroke();
+      ctx.lineWidth=1.7; ctx.beginPath(); ctx.moveTo(x0+14,cy-20); ctx.lineTo(lx,cy-20); ctx.stroke();
+      arrow(ctx,lx,cy-20,fpx,cy);
+      ctx.fillStyle=cssVar('--cyan'); ctx.beginPath(); ctx.arc(fpx,cy,3,0,7); ctx.fill();
+      ctx.fillStyle=cssVar('--ink-faint'); ctx.font='11px IBM Plex Mono'; ctx.fillText("F'",fpx-2,cy-8);
+    });
+    panel(2,'Plan brytning R_P','y kontinuerlig, vinkel endres',(x0)=>{
+      const ix=x0+pw*0.52;
+      ctx.fillStyle=cssVar('--accent'); ctx.globalAlpha=.06; ctx.fillRect(ix,18,(x0+pw-14)-ix,H-40); ctx.globalAlpha=1;
+      ctx.strokeStyle=cssVar('--line2'); ctx.setLineDash([3,3]); ctx.beginPath(); ctx.moveTo(ix,18); ctx.lineTo(ix,H-22); ctx.stroke(); ctx.setLineDash([]);
+      ctx.fillStyle=cssVar('--ink-faint'); ctx.font='10px IBM Plex Mono'; ctx.fillText('n₁',ix-15,30); ctx.fillText('n₂',ix+5,30);
+      ctx.strokeStyle=cssVar('--accent'); ctx.lineWidth=1.8; ctx.beginPath(); ctx.moveTo(x0+14,cy+24); ctx.lineTo(ix,cy-6); ctx.stroke();
+      arrow(ctx,ix,cy-6,x0+pw-14,cy-28);
+    });
+  }
+  c.__draw=draw; draw();
 }
 
 /* ============================ BOOT ============================ */
