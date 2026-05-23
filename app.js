@@ -20,7 +20,7 @@ function quizCard(title, questions){
   const qs = questions.map(q=>{
     const qid='q'+(QID++);
     const opts = q.opts.map((o,i)=>`<button class="opt" data-qid="${qid}" data-correct="${i===q.answer}">${o}<span class="mark"></span></button>`).join('');
-    return `<div class="q"><div class="qtext"><span class="qn">${q.n||''}</span>${q.q}</div>${opts}<div class="explain" id="${qid}-ex">${q.ex||''}</div></div>`;
+    return `<div class="q"><div class="qtext"><span class="qn">${q.n||''}</span>${q.q}</div>${opts}<div class="explain" id="${qid}-ex" role="status" aria-live="polite">${q.ex||''}</div></div>`;
   }).join('');
   return `<div class="card quiz"><h3><span class="dot"></span>${title||'Sjekk deg selv'}</h3>${qs}</div>`;
 }
@@ -118,7 +118,7 @@ M.push({
      </div>`
   + `<div class="card viz"><h3><span class="dot"></span>Interaktivt: tynnlinse-avbildning</h3>
      <p>Dra objektavstanden og brennvidden. Se hvordan bildet flytter seg, og når det skifter fra reelt/invertert til virtuelt/opprett.</p>
-     <canvas id="lensCanvas" height="300"></canvas>
+     <canvas id="lensCanvas" height="300" role="img" aria-label="Interaktiv figur av tynnlinse-avbildning som oppdateres når du justerer objektavstand og brennvidde nedenfor."></canvas>
      <div class="controls">
        <div class="ctrl"><label>Objektavstand $s_o$ <span class="v" id="soVal"></span></label><input type="range" id="soSlider" min="20" max="320" value="180"></div>
        <div class="ctrl"><label>Brennvidde $f$ <span class="v" id="fVal"></span></label><input type="range" id="fSlider" min="40" max="160" value="90"></div>
@@ -201,7 +201,7 @@ M.push({
      <p>Et helt system er <strong>produktet</strong> av elementmatrisene. Da kan du behandle et komplisert instrument som én enkelt matrise og lese av alt du trenger fra de fire tallene $A,B,C,D$.</p>`)
   + `<div class="card viz"><h3><span class="dot"></span>Visuelt: strålevektoren $(y,\\alpha)$</h3>
      <p>Hver stråle er ett punkt beskrevet av to tall: høyden $y$ over aksen og helningen $\\alpha$. Det er disse to tallene matrisene virker på.</p>
-     <canvas id="rayVecCanvas"></canvas>
+     <canvas id="rayVecCanvas" role="img" aria-label="Figur som viser strålevektoren med høyde y og vinkel alfa over den optiske aksen."></canvas>
      </div>`
   + `<div class="card"><h3><span class="dot"></span>Fortegnskonvensjon — fest dette først</h3>
      <p>Feil fortegn er vanligere enn feil algebra. Pedrotti-konvensjonen (lys går venstre → høyre):</p>
@@ -218,7 +218,7 @@ M.push({
      </div>`
   + `<div class="card viz"><h3><span class="dot"></span>Visuelt: fortegn & avbildning</h3>
      <p>Objektavstand $s_o$ (venstre) og bildeavstand $s_i$ (høyre) måles fra linsen, brennvidden $f$ til brennpunktene $F,F'$. To hjelpestråler — parallell$\\to$gjennom $F'$, og rett gjennom sentrum — konstruerer bildet. Objektet står utenfor $2f$, så bildet blir reelt, invertert og forminsket.</p>
-     <canvas id="signConvCanvas"></canvas>
+     <canvas id="signConvCanvas" role="img" aria-label="Figur som illustrerer fortegnskonvensjonen for objekt- og bildeavstand ved avbildning."></canvas>
      </div>`
   + `<div class="card"><h3><span class="dot"></span>De fem byggematrisene</h3>
      <h4>1 · Translasjon (fri propagasjon avstand $d$)</h4>
@@ -240,7 +240,7 @@ M.push({
      </div>`
   + `<div class="card viz"><h3><span class="dot"></span>Visuelt: hva hvert element gjør med en stråle</h3>
      <p>Translasjon flytter strålen uten å endre vinkelen; en tynn linse knekker vinkelen mot brennpunktet; en brytende flate endrer vinkelen etter Snell (høyden $y$ er kontinuerlig). Det er nettopp disse virkningene matrisene koder.</p>
-     <canvas id="elemActCanvas"></canvas>
+     <canvas id="elemActCanvas" role="img" aria-label="Figur som viser hvordan hvert optiske byggeelement virker på en stråle."></canvas>
      </div>`
   + formulas([
       ['$T(d)=\\begin{pmatrix}1 & d \\\\ 0 & 1\\end{pmatrix}$','Translasjon (fri propagasjon).'],
@@ -282,7 +282,7 @@ M.push({
       `<p>Den klassiske «match the optical system with the ray-transfer matrix» tester strukturgjenkjenning: et nullelement nederst til venstre ($C=0$) = afokalt; et rent $B$-tall = en translasjon; $A=1, D=1$ med $C\\neq0$ = én tynn linse. Andre oppgaver gir en systemmatrise og ber om forstørrelsen ($m=A$ når $B=0$), effektiv brennvidde ($-1/C$), eller hvor et fjernt objekt fokuserer ($-A/C$). Regneoppgaver ber deg multiplisere 2–4 matriser — pass på rekkefølgen og bruk $\\det M$ som sjekk.</p>`)
   + `<div class="card viz"><h3><span class="dot"></span>Interaktivt: to-linse ray tracer</h3>
      <p>En punktkilde sender en stråleknippe gjennom to tynne linser. Dra brennviddene og avstanden og se strålene bøye i hvert linseplan og hvor det endelige bildet (oransje) dannes. Systemmatrisen $M=L_2\\,T(D)\\,L_1$ regnes ut live under figuren.</p>
-     <canvas id="rayCanvas" height="320"></canvas>
+     <canvas id="rayCanvas" height="320" role="img" aria-label="Interaktiv to-linse ray tracer som oppdateres når du justerer brennvidder og avstand nedenfor."></canvas>
      <div class="controls">
        <div class="ctrl"><label>Brennvidde linse 1 $f_1$ <span class="v" id="f1Val"></span></label><input type="range" id="f1Slider" min="40" max="220" value="90"></div>
        <div class="ctrl"><label>Brennvidde linse 2 $f_2$ <span class="v" id="f2Val"></span></label><input type="range" id="f2Slider" min="40" max="220" value="70"></div>
@@ -489,7 +489,7 @@ M.push({
      </div>`
   + `<div class="card viz"><h3><span class="dot"></span>Interaktivt: Fresnel-reflektans vs. vinkel</h3>
      <p>Endre forholdet $n_2/n_1$. Se Brewster-vinkelen (TM→0) og — ved internt forhold &lt;1 — den kritiske vinkelen der begge går til 1.</p>
-     <canvas id="fresnelCanvas" height="300"></canvas>
+     <canvas id="fresnelCanvas" height="300" role="img" aria-label="Interaktiv graf av Fresnel-reflektans mot innfallsvinkel som oppdateres med brytningsindeksene nedenfor."></canvas>
      <div class="controls">
        <div class="ctrl"><label>$n_1$ (innfallsmedium) <span class="v" id="n1Val"></span></label><input type="range" id="n1Slider" min="100" max="200" value="100"></div>
        <div class="ctrl"><label>$n_2$ (transmisjonsmedium) <span class="v" id="n2Val"></span></label><input type="range" id="n2Slider" min="100" max="250" value="152"></div>
@@ -583,7 +583,7 @@ M.push({
      </div>`
   + `<div class="card viz"><h3><span class="dot"></span>Interaktivt: Youngs interferensmønster</h3>
      <p>Endre spaltavstand og bølgelengde, og se hvordan stripene trekkes sammen eller spres.</p>
-     <canvas id="youngCanvas" height="220"></canvas>
+     <canvas id="youngCanvas" height="220" role="img" aria-label="Interaktivt Youngs interferensmønster som oppdateres når du justerer spalteavstand og bølgelengde nedenfor."></canvas>
      <div class="controls">
        <div class="ctrl"><label>Spaltavstand $a$ <span class="v" id="aVal"></span></label><input type="range" id="aSlider" min="20" max="200" value="80"></div>
        <div class="ctrl"><label>Bølgelengde $\\lambda$ <span class="v" id="lamVal"></span></label><input type="range" id="lamSlider" min="400" max="700" value="550"></div>
@@ -825,7 +825,7 @@ M.push({
      </div>`
   + `<div class="card viz"><h3><span class="dot"></span>Interaktivt: enkelt- og flerspalt-diffraksjon</h3>
      <p>Sett antall spalter $N$, spaltbredde $b$ og avstand $a$. Se hvordan den brede enkeltspalt-konvolutten moduleres av de skarpe flerspalt-toppene.</p>
-     <canvas id="diffCanvas" height="240"></canvas>
+     <canvas id="diffCanvas" height="240" role="img" aria-label="Interaktivt diffraksjonsmønster for enkelt- og flerspalt som oppdateres med kontrollene nedenfor."></canvas>
      <div class="controls">
        <div class="ctrl"><label>Antall spalter $N$ <span class="v" id="NVal"></span></label><input type="range" id="NSlider" min="1" max="8" value="1"></div>
        <div class="ctrl"><label>Spaltbredde $b$ <span class="v" id="bVal"></span></label><input type="range" id="bSlider" min="10" max="60" value="25"></div>
@@ -1212,9 +1212,9 @@ function moduleShortTitle(m){
 
 function renderOverview(){
   return renderHero() + `<section class="module">
-    <div class="card"><h3><span class="dot"></span>Velg side i menyen</h3>
-      <p class="lede">Modulene er nå separate sider. Bruk menyen til venstre for å hoppe mellom temaene uten å bla gjennom hele pensumet.</p>
-      <p>Hver modul har fått mer forklaring, ett ekstra regneeksempel og to ekstra kontrollspørsmål. Fremgangen lagres fortsatt lokalt i nettleseren.</p>
+    <div class="card"><h3><span class="dot"></span>Slik kommer du i gang</h3>
+      <p class="lede">Velg en modul nedenfor, eller bruk menyen til venstre for å hoppe rett til et tema.</p>
+      <p>Usikker på rekkefølgen? Start med <a href="#plan" data-page="plan">studieplanen</a> — den viser hvordan temaene bygger på hverandre uke for uke. Fremgangen din lagres lokalt i nettleseren, så avkryssede moduler huskes til neste gang.</p>
     </div>
     <div class="overview-grid">
       ${M.map(m=>`<a class="module-tile" href="#${m.id}" data-page="${m.id}">
@@ -1375,8 +1375,14 @@ function bindPageLinks(){
 }
 
 function resetProgress(){ saveProg({}); renderRoute(); }
-function closeMenu(){ document.getElementById('sidebar').classList.remove('open'); document.getElementById('scrim').classList.remove('show'); }
-function toggleMenu(){ document.getElementById('sidebar').classList.toggle('open'); document.getElementById('scrim').classList.toggle('show'); }
+function setMenuState(open){
+  document.getElementById('sidebar').classList.toggle('open',open);
+  document.getElementById('scrim').classList.toggle('show',open);
+  const t=document.querySelector('.menu-toggle');
+  if(t){ t.setAttribute('aria-expanded',open?'true':'false'); t.setAttribute('aria-label',open?'Lukk meny':'Åpne meny'); }
+}
+function closeMenu(){ setMenuState(false); }
+function toggleMenu(){ setMenuState(!document.getElementById('sidebar').classList.contains('open')); }
 
 /* ============================ VISUALISERINGER ============================ */
 function fitCanvas(c){ const r=c.getBoundingClientRect(); const dpr=window.devicePixelRatio||1; c.width=r.width*dpr; c.height=c.height*dpr/(c.__h?c.__h:1); }
