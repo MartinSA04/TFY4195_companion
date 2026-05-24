@@ -3,9 +3,19 @@
    Innhold bygget fra pensumliste, formelark og eksamenssett (2018–2025)
    =================================================================== */
 
+/* ---------- datainnsamling ----------
+   Formel- og spørsmålsdata samles automatisk mens modulene bygges, slik at
+   innholdet finnes ett sted (modulene under) men også som søkbare register
+   (FORMULAS / QUESTIONS) for formelark-side, flashcards og prøveeksamen. */
+let __pendingFormulas = [];
+let __pendingQuestions = [];
+
 /* ---------- små byggesteiner for HTML ---------- */
 const goals = (items)=>`<div class="card goals"><h3><span class="dot"></span>Læringsmål</h3><ul>${items.map(i=>`<li>${i}</li>`).join('')}</ul></div>`;
-const formulas = (rows)=>`<div class="formula-box">${rows.map(r=>`<div class="formula-row${r[2]?' offsheet':''}"><span class="fx">${r[0]}</span><span class="desc">${r[1]}${r[2]?' <span class="pugg" title="Står ikke på formelarket – må pugges">★ ikke på formelarket</span>':''}</span></div>`).join('')}</div>`;
+const formulas = (rows)=>{
+  __pendingFormulas.push(...rows.map(r=>({ latex:r[0], desc:r[1], onSheet:!r[2], mustMemorize:!!r[2] })));
+  return `<div class="formula-box">${rows.map(r=>`<div class="formula-row${r[2]?' offsheet':''}"><span class="fx">${r[0]}</span><span class="desc">${r[1]}${r[2]?' <span class="pugg" title="Står ikke på formelarket – må pugges">★ ikke på formelarket</span>':''}</span></div>`).join('')}</div>`;
+};
 const exam = (tags, body)=>`<div class="card exam"><h3><span class="dot"></span>Slik testes dette på eksamen</h3><div class="tagrow">${tags.map(t=>`<span class="tag">${t}</span>`).join('')}</div>${body}</div>`;
 const reveal = (label, html)=>`<details class="reveal"><summary>${label||'Vis løsning'}</summary>${html}</details>`;
 const concept = (title, html)=>`<div class="card concept"><h3><span class="dot"></span>${title}</h3>${html}</div>`;
@@ -17,6 +27,7 @@ const practiceBlock = (cfg)=>concept(cfg.explainTitle, cfg.explain)
 /* quiz-bygger: spørsmål med alternativer (riktig markert), forklaring */
 let QID=0;
 function quizCard(title, questions){
+  __pendingQuestions.push(...questions.map(q=>({ n:q.n||'', q:q.q, opts:q.opts, answer:q.answer, ex:q.ex||'', type:'MC', topic:null, difficulty:null, source:null })));
   const qs = questions.map(q=>{
     const qid='q'+(QID++);
     const opts = q.opts.map((o,i)=>`<button class="opt" data-qid="${qid}" data-correct="${i===q.answer}">${o}<span class="mark"></span></button>`).join('');
@@ -28,8 +39,16 @@ function quizCard(title, questions){
 /* ============================ MODULER ============================ */
 const M = [];
 
+/* Legg til en modul og fest formlene/spørsmålene som ble samlet inn mens
+   modulens html ble bygget (helperne over fyller __pending*-bufferne). */
+function addModule(obj){
+  obj.__formulas = __pendingFormulas; __pendingFormulas = [];
+  obj.__questions = __pendingQuestions; __pendingQuestions = [];
+  M.push(obj);
+}
+
 /* ---- 0. Foton & radiometri ---- */
-M.push({
+addModule({
   id:'foton', num:'00', kicker:'Introduksjon', title:'Foton, bølger & radiometri', week:'Uke 2 · PP Kap. 1',
   html:
   goals([
@@ -76,7 +95,7 @@ M.push({
 });
 
 /* ---- 1. Geometrisk optikk I ---- */
-M.push({
+addModule({
   id:'geo1', num:'01', kicker:'Geometrisk optikk I', title:'Avbildning, Snell, Fermat & tynne linser', week:'Uke 3 · PP Kap. 2',
   html:
   goals([
@@ -136,7 +155,7 @@ M.push({
 });
 
 /* ---- 2. Geometrisk optikk II — matriser ---- */
-M.push({
+addModule({
   id:'geo2', num:'02', kicker:'Geometrisk optikk II', title:'Stråle-transfer-matriser (ray tracing)', week:'Uke 4 · PP Kap. 18 / 2.8',
   html:
   goals([
@@ -184,7 +203,7 @@ M.push({
 });
 
 /* ---- Ray tracing — komplett matriseguide (eksamensfokus) ---- */
-M.push({
+addModule({
   id:'raytracing', num:'RT', kicker:'Eksamensfokus · Geometrisk optikk', title:'Ray tracing — komplett matriseguide', week:'Eksamensguide · PP Kap. 18 / 2.8',
   html:
   goals([
@@ -215,6 +234,57 @@ M.push({
        <tr><td>$f$</td><td>samlende element</td><td>positiv linse / konkavt speil</td></tr>
      </table>
      <p>Vinkelen holdes liten (paraksial: $\\sin\\alpha\\approx\\tan\\alpha\\approx\\alpha$ i radianer).</p>
+     </div>`
+  + `<div class="card"><h3><span class="dot"></span>Manuell strålegang med linjal (grafisk metode)</h3>
+     <p class="lede">På eksamen besvares to oppgaver for hånd, og én er nesten alltid strålegang. Du trenger bare linjal, blyant og noen få faste regler — ingen matriser. Tegn den optiske aksen, marker linsa/speilet og brennpunktene $F$ og $F'$ i målestokk, og la lyset gå fra venstre mot høyre.</p>
+     <h4>Positiv (samlende) linse — tre hovedstråler</h4>
+     <p>Tegn to av disse fra objektets topp; bildet er der de krysser. Den tredje er en gratis kontroll.</p>
+     <ol>
+       <li><strong>Parallellstrålen:</strong> inn parallelt med aksen → brytes og går gjennom bakre brennpunkt $F'$.</li>
+       <li><strong>Sentralstrålen:</strong> rett gjennom linsens sentrum → fortsetter <em>ubrutt</em> (rett linje).</li>
+       <li><strong>Brennpunktstrålen:</strong> inn gjennom fremre brennpunkt $F$ → kommer ut <em>parallelt</em> med aksen.</li>
+     </ol>
+     <h4>Negativ (sprende) linse — samme stråler, lett endret</h4>
+     <ol>
+       <li><strong>Parallellstrålen</strong> brytes som om den kom fra fremre $F$ — forleng den <em>bakover</em> med stiplet linje.</li>
+       <li><strong>Sentralstrålen</strong> går rett gjennom.</li>
+       <li>En stråle <strong>rettet mot bakre $F'$</strong> kommer ut parallelt med aksen.</li>
+     </ol>
+     <p>Strålene spriker etter linsa, så bildet ligger der de <em>bakover-forlengede</em> (stiplede) strålene møtes: alltid <strong>virtuelt, opprett og forminsket</strong>.</p>
+     <h4>Speil — refleksjonsregler</h4>
+     <table class="ftable">
+       <tr><th>Stråle inn</th><th>Konkavt (samlende, $f=R/2>0$)</th><th>Konvekst (sprende, $f<0$)</th></tr>
+       <tr><td>Parallelt med aksen</td><td>reflekteres gjennom $F$</td><td>ser ut til å komme fra $F$ bak speilet</td></tr>
+       <tr><td>Gjennom (mot) $F$</td><td>reflekteres parallelt med aksen</td><td>reflekteres parallelt med aksen</td></tr>
+       <tr><td>Mot krumningssenter $C$</td><td>reflekteres rett tilbake langs seg selv</td><td>samme</td></tr>
+       <tr><td>Mot vertex (aksens treffpunkt)</td><td>reflekteres symmetrisk om aksen</td><td>samme</td></tr>
+     </table>
+     <h4>Les av svaret</h4>
+     <ul>
+       <li><strong>Reelt</strong> bilde der virkelige stråler krysser (heltrukket); <strong>virtuelt</strong> der bare de stiplede forlengelsene krysser.</li>
+       <li><strong>Invertert</strong> hvis bildetoppen havner under aksen, <strong>opprett</strong> hvis over.</li>
+       <li>Mål og kontroller med forstørrelsen $m=-s_i/s_o$: $m<0$ = invertert, $|m|>1$ = forstørret.</li>
+       <li>Fortegn følger samme konvensjon som tabellen over ($s_o,s_i,f$ positive til «riktig» side).</li>
+     </ul>
+     <p class="practice-note">Tips: marker $F$ og $F'$ nøyaktig i målestokk før du tegner — unøyaktige brennpunkt er den vanligste feilen.</p>
+     </div>`
+  + `<div class="card viz"><h3><span class="dot"></span>Interaktivt: steg-for-steg strålegang</h3>
+     <p>Velg oppsett og klikk «Neste steg» for å tegne hver hovedstråle slik du ville gjort for hånd. Heltrukne linjer er virkelige stråler, stiplede er bakover-forlengelser (virtuelle bilder).</p>
+     <div class="rg-scenarios">
+       <button type="button" class="fs-chip active" data-scn="conv">Positiv linse</button>
+       <button type="button" class="fs-chip" data-scn="div">Negativ linse</button>
+       <button type="button" class="fs-chip" data-scn="concave">Konkavt speil</button>
+       <button type="button" class="fs-chip" data-scn="convex">Konvekst speil</button>
+       <button type="button" class="fs-chip" data-scn="double">Dobbel linse</button>
+     </div>
+     <canvas id="rayGuideCanvas" height="300" role="img" aria-label="Steg-for-steg strålegang som tegnes opp stråle for stråle når du klikker Neste steg."></canvas>
+     <div class="rg-steptext" id="rgStepText" aria-live="polite"></div>
+     <div class="rg-controls">
+       <button type="button" class="page-link" id="rgPrev">‹ Forrige</button>
+       <span class="rg-count" id="rgCount"></span>
+       <button type="button" class="page-link" id="rgNext">Neste steg ›</button>
+       <button type="button" class="page-link" id="rgReset">Tilbakestill</button>
+     </div>
      </div>`
   + `<div class="card viz"><h3><span class="dot"></span>Visuelt: fortegn & avbildning</h3>
      <p>Objektavstand $s_o$ (venstre) og bildeavstand $s_i$ (høyre) måles fra linsen, brennvidden $f$ til brennpunktene $F,F'$. To hjelpestråler — parallell$\\to$gjennom $F'$, og rett gjennom sentrum — konstruerer bildet. Objektet står utenfor $2f$, så bildet blir reelt, invertert og forminsket.</p>
@@ -363,7 +433,7 @@ M.push({
 /* === fortsettelse: moduler 3+ === */
 
 /* ---- 3. Geometrisk optikk III — instrumenter ---- */
-M.push({
+addModule({
   id:'geo3', num:'03', kicker:'Geometrisk optikk III', title:'Lupe, mikroskop, teleskop, kamera & øyet', week:'Uke 5 · PP Kap. 3 / 19',
   html:
   goals([
@@ -407,7 +477,7 @@ M.push({
 });
 
 /* ---- 4. Bølgeoptikk I — Maxwell & EM-bølger ---- */
-M.push({
+addModule({
   id:'wave1', num:'04', kicker:'Bølgeoptikk I', title:'Maxwells likninger & EM-bølger', week:'Uke 6 · PP Kap. 4',
   html:
   goals([
@@ -453,7 +523,7 @@ M.push({
 });
 
 /* ---- 5. Bølgeoptikk II — Fresnel, Brewster, polarisering ---- */
-M.push({
+addModule({
   id:'wave2', num:'05', kicker:'Bølgeoptikk II', title:'Fresnels likninger, Brewster & polarisering', week:'Uke 7 · PP Kap. 23 / 12',
   html:
   goals([
@@ -507,7 +577,7 @@ M.push({
 });
 
 /* ---- 6. Bølgeoptikk III — TIR, evanescente bølger, regnbue ---- */
-M.push({
+addModule({
   id:'wave3', num:'06', kicker:'Bølgeoptikk III', title:'Total intern refleksjon, evanescente bølger & regnbuen', week:'Uke 8/12 · PP Kap. 23 / 10',
   html:
   goals([
@@ -550,7 +620,7 @@ M.push({
 });
 
 /* ---- 7. Bølgeoptikk IV — superposisjon & Youngs dobbeltspalt ---- */
-M.push({
+addModule({
   id:'wave4', num:'07', kicker:'Bølgeoptikk IV', title:'Superposisjon & Youngs dobbeltspalt', week:'Uke 8 · PP Kap. 5–7',
   html:
   goals([
@@ -602,7 +672,7 @@ M.push({
 
 
 /* ---- 8. Bølgeoptikk V — koherens, Michelson, tynne filmer ---- */
-M.push({
+addModule({
   id:'wave5', num:'08', kicker:'Bølgeoptikk V', title:'Koherens, Michelson-interferometer & tynne filmer', week:'Uke 11 · PP Kap. 9',
   html:
   goals([
@@ -647,7 +717,7 @@ M.push({
 });
 
 /* ---- 9. Bølgeoptikk VI — optiske fibre ---- */
-M.push({
+addModule({
   id:'wave6', num:'09', kicker:'Bølgeoptikk VI', title:'Optiske fibre & kommunikasjon', week:'Påske-selvstudium · PP Kap. 13',
   html:
   goals([
@@ -790,7 +860,7 @@ M.push({
 });
 
 /* ---- 10. Diffraksjon I — Fraunhofer & oppløsning ---- */
-M.push({
+addModule({
   id:'diff1', num:'10', kicker:'Diffraksjon I', title:'Fraunhofer-diffraksjon & oppløsning', week:'Uke 9 · PP Kap. 11 / 10',
   html:
   goals([
@@ -844,7 +914,7 @@ M.push({
 });
 
 /* ---- 11. Diffraksjon II — Fourier-optikk & gitter ---- */
-M.push({
+addModule({
   id:'diff2', num:'11', kicker:'Diffraksjon II', title:'Fourier-optikk & diffraksjonsgitteret', week:'Uke 10 · PP Kap. 12 / 11',
   html:
   goals([
@@ -1128,7 +1198,14 @@ const EXTRAS = {
 
 M.forEach(m=>{
   if(EXTRAS[m.id]) m.html += practiceBlock(EXTRAS[m.id]);
+  // practiceBlock kjører quizCard etter at modulen ble lagt til, så samle opp de ekstra spørsmålene her
+  if(__pendingQuestions.length){ m.__questions = m.__questions.concat(__pendingQuestions); __pendingQuestions = []; }
 });
+
+/* ---------- søkbare register (grunnlag for formelark-side, flashcards, prøveeksamen) ---------- */
+const FORMULAS = M.flatMap(m => (m.__formulas||[]).map((f,i)=>({ id:`${m.id}-f${i+1}`, module:m.id, ...f })));
+const QUESTIONS = M.flatMap(m => (m.__questions||[]).map((q,i)=>({ id:`${m.id}-q${i+1}`, module:m.id, ...q })));
+if(typeof window!=='undefined'){ window.TFY = Object.assign(window.TFY||{}, { FORMULAS, QUESTIONS, modules:M }); }
 
 
 /* ============================ STUDIEPLAN ============================ */
@@ -1150,13 +1227,54 @@ const PLAN = [
 /* ============================ RENDER ============================ */
 const PROG_KEY='tfy4195_progress_v1';
 const THEME_KEY='tfy4195_theme_v1';
+const FLASH_KEY='tfy4195_flash_v1';
 let currentPage='top';
 let canvasResizeHandlers=[];
+// flashcard-økt (settes opp i bindFlashcards)
+let flashState={}, flashDeck='alle', flashQueue=[], flashIdx=0, flashRevealed=false, flashReviewed=0, flashIgnoreSchedule=false;
 
 function loadProg(){ try{ return JSON.parse(localStorage.getItem(PROG_KEY))||{}; }catch(e){ return window.__prog||{}; } }
 function saveProg(p){ window.__prog=p; try{ localStorage.setItem(PROG_KEY,JSON.stringify(p)); }catch(e){} }
 function loadTheme(){ try{ return localStorage.getItem(THEME_KEY)||'light'; }catch(e){ return 'light'; } }
 function saveTheme(theme){ try{ localStorage.setItem(THEME_KEY,theme); }catch(e){} }
+function loadFlash(){ try{ return JSON.parse(localStorage.getItem(FLASH_KEY))||{}; }catch(e){ return {}; } }
+function saveFlash(s){ try{ localStorage.setItem(FLASH_KEY,JSON.stringify(s)); }catch(e){} }
+
+/* ---------- sikkerhetskopi: eksport/import av fremgang (erstatter sync uten backend) ---------- */
+const STATE_VERSION = 1;
+function setBackupMsg(text, ok){
+  const el=document.getElementById('backupMsg');
+  if(el){ el.textContent=text; el.style.color = ok===false ? 'var(--red)' : 'var(--green)'; }
+}
+function exportState(){
+  const data = { app:'tfy4195-optikk', version:STATE_VERSION, exportedAt:new Date().toISOString(), progress:loadProg(), theme:loadTheme(), flash:loadFlash() };
+  const blob = new Blob([JSON.stringify(data,null,2)], {type:'application/json'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href=url; a.download=`tfy4195-fremgang-${new Date().toISOString().slice(0,10)}.json`;
+  document.body.appendChild(a); a.click(); a.remove();
+  URL.revokeObjectURL(url);
+  setBackupMsg('Lastet ned ✓');
+}
+function importState(file){
+  const reader = new FileReader();
+  reader.onload = ()=>{
+    let data;
+    try{ data = JSON.parse(reader.result); }
+    catch(e){ setBackupMsg('Kunne ikke lese filen.', false); return; }
+    if(!data || typeof data.progress !== 'object' || data.progress === null){
+      setBackupMsg('Ugyldig fil — fant ingen fremgang.', false); return;
+    }
+    saveProg(data.progress);
+    if(data.theme==='dark' || data.theme==='light'){ saveTheme(data.theme); applyTheme(data.theme); }
+    if(data.flash && typeof data.flash==='object'){ saveFlash(data.flash); }
+    renderRoute();
+    const n = Object.values(data.progress).filter(Boolean).length;
+    setBackupMsg(`Importert ✓ (${n} fullførte moduler)`);
+  };
+  reader.onerror = ()=> setBackupMsg('Kunne ikke lese filen.', false);
+  reader.readAsText(file);
+}
 
 function applyTheme(theme){
   const mode = theme === 'dark' ? 'dark' : 'light';
@@ -1181,8 +1299,9 @@ function pageFromHash(){
   return raw || 'top';
 }
 
+const TOOL_PAGES = ['formelark','flashcards'];
 function validPage(page){
-  return page === 'top' || page === 'plan' || M.some(m=>m.id===page);
+  return page === 'top' || page === 'plan' || TOOL_PAGES.includes(page) || M.some(m=>m.id===page);
 }
 
 function navigate(page){
@@ -1215,6 +1334,12 @@ function renderOverview(){
     <div class="card"><h3><span class="dot"></span>Slik kommer du i gang</h3>
       <p class="lede">Velg en modul nedenfor, eller bruk menyen til venstre for å hoppe rett til et tema.</p>
       <p>Usikker på rekkefølgen? Start med <a href="#plan" data-page="plan">studieplanen</a> — den viser hvordan temaene bygger på hverandre uke for uke. Fremgangen din lagres lokalt i nettleseren, så avkryssede moduler huskes til neste gang.</p>
+      <div class="backup-row">
+        <span class="backup-label">Sikkerhetskopi (flytt mellom enheter):</span>
+        <button type="button" class="page-link" data-action="export">Eksporter fremgang</button>
+        <label class="page-link import-label">Importer<input type="file" accept="application/json,.json" hidden></label>
+        <span id="backupMsg" class="backup-msg" aria-live="polite"></span>
+      </div>
     </div>
     <div class="overview-grid">
       ${M.map(m=>`<a class="module-tile" href="#${m.id}" data-page="${m.id}">
@@ -1282,6 +1407,9 @@ function renderSidebar(prog, activePage){
   let h = `<div class="nav-section">Kom i gang</div>
     <a class="nav-link ${activePage==='top'?'active':''}" href="#top" data-page="top"><span class="nav-num">↑</span>Oversikt</a>
     <a class="nav-link ${activePage==='plan'?'active':''}" href="#plan" data-page="plan"><span class="nav-num">★</span>Studieplan</a>
+    <div class="nav-section">Verktøy</div>
+    <a class="nav-link ${activePage==='formelark'?'active':''}" href="#formelark" data-page="formelark"><span class="nav-num">∑</span>Formelark</a>
+    <a class="nav-link ${activePage==='flashcards'?'active':''}" href="#flashcards" data-page="flashcards"><span class="nav-num">⚡</span>Flashcards</a>
     <div class="nav-section">Moduler</div>`;
   M.forEach(m=>{
     h += `<a class="nav-link ${prog[m.id]?'done':''} ${activePage===m.id?'active':''}" href="#${m.id}" data-page="${m.id}">
@@ -1301,6 +1429,16 @@ function boot(){
   applyTheme(loadTheme());
   const themeBtn=document.getElementById('themeToggle');
   if(themeBtn) themeBtn.addEventListener('click',toggleTheme);
+  createCmdk();
+  const searchBtn=document.getElementById('searchBtn');
+  if(searchBtn) searchBtn.addEventListener('click',openCmdk);
+  document.addEventListener('keydown',e=>{
+    if((e.ctrlKey||e.metaKey) && (e.key==='k'||e.key==='K')){
+      e.preventDefault();
+      const el=document.getElementById('cmdk');
+      if(el && !el.hidden) closeCmdk(); else openCmdk();
+    }
+  });
   window.addEventListener('hashchange', renderRoute);
   renderRoute();
 }
@@ -1313,6 +1451,7 @@ function renderRoute(){
   document.getElementById('sidebar').innerHTML = renderSidebar(prog,page);
   document.getElementById('content').innerHTML = renderPage(page, prog) + renderFooter();
   bindPageLinks();
+  bindBackupControls();
   updateProgress(prog);
 
   // KaTeX
@@ -1350,14 +1489,20 @@ function renderRoute(){
     });
   });
 
+  // verktøysider
+  if(page==='formelark') bindFormulaSheet();
+  if(page==='flashcards') bindFlashcards();
+
   // init visualizations
-  initLens(); initFresnel(); initYoung(); initDiff(); initRayTrace(); initRayVec(); initSignConv(); initElemAct();
+  initRayGuide(); initLens(); initFresnel(); initYoung(); initDiff(); initRayTrace(); initRayVec(); initSignConv(); initElemAct();
   window.scrollTo(0,0);
 }
 
 function renderPage(page, prog){
   if(page === 'top') return renderOverview();
   if(page === 'plan') return renderPlan();
+  if(page === 'formelark') return renderFormulaSheet();
+  if(page === 'flashcards') return renderFlashcards();
   const idx=M.findIndex(m=>m.id===page);
   return idx >= 0 ? renderModule(M[idx], idx, prog) : renderOverview();
 }
@@ -1374,6 +1519,17 @@ function bindPageLinks(){
   }));
 }
 
+function bindBackupControls(){
+  const expBtn=document.querySelector('[data-action="export"]');
+  if(expBtn) expBtn.addEventListener('click', exportState);
+  const impInput=document.querySelector('.import-label input[type="file"]');
+  if(impInput) impInput.addEventListener('change', e=>{
+    const f=e.target.files && e.target.files[0];
+    if(f) importState(f);
+    e.target.value='';
+  });
+}
+
 function resetProgress(){ saveProg({}); renderRoute(); }
 function setMenuState(open){
   document.getElementById('sidebar').classList.toggle('open',open);
@@ -1383,6 +1539,242 @@ function setMenuState(open){
 }
 function closeMenu(){ setMenuState(false); }
 function toggleMenu(){ setMenuState(!document.getElementById('sidebar').classList.contains('open')); }
+
+function katexRender(el){
+  if(el && window.renderMathInElement){
+    renderMathInElement(el,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}],throwOnError:false});
+  }
+}
+
+/* ============================ FORMELARK (Prioritet 1) ============================ */
+function fsListHTML(filter, query){
+  const q=(query||'').trim().toLowerCase();
+  let html='';
+  M.forEach(m=>{
+    let rows = FORMULAS.filter(f=>f.module===m.id);
+    if(filter==='sheet') rows=rows.filter(f=>f.onSheet);
+    else if(filter==='memo') rows=rows.filter(f=>f.mustMemorize);
+    if(q) rows=rows.filter(f=>(f.latex+' '+f.desc).toLowerCase().includes(q));
+    if(!rows.length) return;
+    html += `<h3 class="fs-group"><span class="nav-num">${m.num}</span>${moduleShortTitle(m)}</h3>`
+      + `<div class="formula-box">` + rows.map(f=>
+          `<div class="formula-row${f.mustMemorize?' offsheet':''}"><span class="fx">${f.latex}</span><span class="desc">${f.desc}${f.mustMemorize?' <span class="pugg" title="Står ikke på formelarket – må pugges">★ ikke på formelarket</span>':''}</span></div>`
+        ).join('') + `</div>`;
+  });
+  return html || `<p class="fs-empty">Ingen formler matcher søket.</p>`;
+}
+function renderFormulaSheet(){
+  const total=FORMULAS.length, onSheet=FORMULAS.filter(f=>f.onSheet).length, memo=total-onSheet;
+  return `<section class="module" id="formelark">
+    <div class="mod-head"><div class="mod-index">∑</div><div class="meta">
+      <div class="mod-kicker">Verktøy</div><h2>Formelark</h2>
+      <div class="week">Alle ${total} formlene samlet · ${onSheet} på det utdelte arket · ${memo} må pugges ★</div>
+    </div></div>
+    <div class="card">
+      <div class="fs-controls">
+        <input type="search" id="fsSearch" class="fs-search" placeholder="Søk i formler og symboler …" aria-label="Søk i formler">
+        <div class="fs-filters" role="group" aria-label="Filtrer formler">
+          <button type="button" class="fs-chip active" data-filter="all">Alle</button>
+          <button type="button" class="fs-chip" data-filter="sheet">På formelarket</button>
+          <button type="button" class="fs-chip" data-filter="memo">★ Må pugges</button>
+        </div>
+      </div>
+      <div id="fsList" class="fs-list">${fsListHTML('all','')}</div>
+    </div>
+  </section>`;
+}
+function bindFormulaSheet(){
+  const search=document.getElementById('fsSearch');
+  const list=document.getElementById('fsList');
+  if(!search || !list) return;
+  let filter='all';
+  const update=()=>{ list.innerHTML=fsListHTML(filter, search.value); katexRender(list); };
+  search.addEventListener('input', update);
+  document.querySelectorAll('.fs-chip').forEach(chip=>chip.addEventListener('click',()=>{
+    document.querySelectorAll('.fs-chip').forEach(c=>c.classList.remove('active'));
+    chip.classList.add('active'); filter=chip.dataset.filter; update();
+  }));
+}
+
+/* ============================ FLASHCARDS (Prioritet 3) ============================ */
+const FLASH_INTERVALS=[0,0,1,3,7,16]; // dager per Leitner-boks (indeks = boks 1..5)
+function flashDueMs(box){ return (FLASH_INTERVALS[box]||0)*86400000; }
+function buildFlashDeck(deck){
+  const cards=[];
+  if(deck==='alle' || deck==='formler' || deck==='memo'){
+    FORMULAS.forEach(f=>{
+      if(deck==='memo' && !f.mustMemorize) return;
+      cards.push({ id:'f:'+f.id, module:f.module, front:f.desc, back:f.latex, badge:f.mustMemorize?'★ må pugges':'' });
+    });
+  }
+  if(deck==='alle' || deck==='feller'){
+    QUESTIONS.forEach(q=>{
+      cards.push({ id:'q:'+q.id, module:q.module, front:q.q,
+        back:`<strong>${q.opts[q.answer]}</strong>${q.ex?`<div class="fc-ex">${q.ex}</div>`:''}`, badge:'eksamensfelle' });
+    });
+  }
+  return cards;
+}
+function flashDue(card, now){ const st=flashState[card.id]; return !st || st.due<=now; }
+function buildFlashQueue(){
+  const now=Date.now();
+  let cards=buildFlashDeck(flashDeck);
+  if(!flashIgnoreSchedule) cards=cards.filter(c=>flashDue(c,now));
+  for(let i=cards.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [cards[i],cards[j]]=[cards[j],cards[i]]; }
+  flashQueue=cards; flashIdx=0; flashRevealed=false;
+}
+function gradeFlash(known){
+  const card=flashQueue[flashIdx]; if(!card) return;
+  const st=flashState[card.id]||{box:1,due:0};
+  st.box = known ? Math.min((st.box||1)+1,5) : 1;
+  st.due = Date.now() + flashDueMs(st.box);
+  flashState[card.id]=st; saveFlash(flashState);
+  flashReviewed++; flashIdx++; flashRevealed=false;
+  renderFlashCard();
+}
+const FLASH_DECK_LABEL={alle:'Alle',memo:'Må pugges',formler:'Formler',feller:'Eksamensfeller'};
+function flashFinishedCount(){
+  const deckCards=buildFlashDeck(flashDeck);
+  const done=deckCards.filter(c=>{ const s=flashState[c.id]; return s && s.box>=2; }).length;
+  return {done, total:deckCards.length};
+}
+function renderFlashCard(){
+  const host=document.getElementById('flashHost'); if(!host) return;
+  const fc=flashFinishedCount();
+  const tally=`<div class="fc-tally">${fc.done} / ${fc.total} markert «kan» ✓</div>`;
+  if(flashIdx>=flashQueue.length){
+    host.innerHTML = tally + `<div class="fc-done">${ flashQueue.length
+        ? `<p class="lede">Ferdig for nå 🎉</p><p>Du gikk gjennom ${flashReviewed} kort i denne økten. Kortene kommer tilbake etter Leitner-planen (1 → 3 → 7 → 16 dager).</p>`
+        : `<p class="lede">Ingen kort å repetere akkurat nå 🎉</p><p>Alt er oppdatert i denne kortstokken. Kom tilbake senere, eller …</p>` }
+      <div class="fc-nav">
+        <button type="button" class="page-link" data-fc="prev"${flashQueue.length?'':' disabled'}>‹ Forrige</button>
+        <button type="button" class="page-link" data-fc="all">Repeter alle uansett</button>
+      </div></div>`;
+    katexRender(host); return;
+  }
+  const card=flashQueue[flashIdx];
+  host.innerHTML = tally + `
+    <div class="fc-progress">Kort ${flashIdx+1} / ${flashQueue.length} i økten · ${FLASH_DECK_LABEL[flashDeck]||flashDeck}</div>
+    <div class="fc-card">
+      ${card.badge?`<div class="fc-badge">${card.badge}</div>`:''}
+      <div class="fc-side fc-front">${card.front}</div>
+      ${flashRevealed?`<div class="fc-divider"></div><div class="fc-side fc-back">${card.back}</div>`:''}
+    </div>
+    <div class="fc-actions">
+      ${flashRevealed
+        ? `<button type="button" class="page-link fc-again" data-fc="again">Øv mer</button><button type="button" class="page-link fc-known" data-fc="known">Kan den ✓</button>`
+        : `<button type="button" class="page-link fc-reveal" data-fc="reveal">Vis svar</button>`}
+    </div>
+    <div class="fc-nav">
+      <button type="button" class="page-link" data-fc="prev"${flashIdx<=0?' disabled':''}>‹ Forrige</button>
+      <button type="button" class="page-link" data-fc="next">Neste ›</button>
+    </div>`;
+  katexRender(host);
+}
+function renderFlashcards(){
+  return `<section class="module" id="flashcards">
+    <div class="mod-head"><div class="mod-index">⚡</div><div class="meta">
+      <div class="mod-kicker">Verktøy</div><h2>Flashcards</h2>
+      <div class="week">Spaced repetition · bygd automatisk fra formlene og eksamensfellene</div>
+    </div></div>
+    <div class="card">
+      <div class="fc-decks fs-filters" role="group" aria-label="Velg kortstokk">
+        <button type="button" class="fs-chip active" data-deck="alle">Alle</button>
+        <button type="button" class="fs-chip" data-deck="memo">★ Må pugges</button>
+        <button type="button" class="fs-chip" data-deck="formler">Formler</button>
+        <button type="button" class="fs-chip" data-deck="feller">Eksamensfeller</button>
+      </div>
+      <div id="flashHost" class="fc-host"></div>
+    </div>
+    <p class="practice-note">Hvilke kort du kan lagres lokalt og følger med i sikkerhetskopien (Oversikt → Eksporter fremgang).</p>
+  </section>`;
+}
+function bindFlashcards(){
+  flashState=loadFlash(); flashDeck='alle'; flashReviewed=0; flashIgnoreSchedule=false;
+  buildFlashQueue(); renderFlashCard();
+  document.querySelectorAll('.fc-decks .fs-chip').forEach(ch=>ch.addEventListener('click',()=>{
+    document.querySelectorAll('.fc-decks .fs-chip').forEach(c=>c.classList.remove('active'));
+    ch.classList.add('active'); flashDeck=ch.dataset.deck; flashReviewed=0; flashIgnoreSchedule=false;
+    buildFlashQueue(); renderFlashCard();
+  }));
+  const host=document.getElementById('flashHost');
+  if(host) host.addEventListener('click',e=>{
+    const b=e.target.closest('[data-fc]'); if(!b) return;
+    const act=b.dataset.fc;
+    if(act==='reveal'){ flashRevealed=true; renderFlashCard(); }
+    else if(act==='known'){ gradeFlash(true); }
+    else if(act==='again'){ gradeFlash(false); }
+    else if(act==='prev'){ if(flashIdx>0){ flashIdx--; flashRevealed=false; renderFlashCard(); } }
+    else if(act==='next'){ if(flashIdx<flashQueue.length){ flashIdx++; flashRevealed=false; renderFlashCard(); } }
+    else if(act==='all'){ flashIgnoreSchedule=true; flashReviewed=0; buildFlashQueue(); renderFlashCard(); }
+  });
+}
+
+/* ============================ SØK / KOMMANDOPALETT (Ctrl-K) ============================ */
+let SEARCH_INDEX=[], cmdkList=[], cmdkSel=0;
+function moduleNum(id){ const m=M.find(x=>x.id===id); return m?m.num:''; }
+function plainText(s){ return String(s).replace(/<[^>]*>/g,'').replace(/\$/g,'').replace(/\\[a-zA-Z]+/g,' ').replace(/[{}^_]/g,'').replace(/\s+/g,' ').trim(); }
+function escapeHtml(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+function buildSearchIndex(){
+  const idx=[
+    {label:'Oversikt', sub:'Side', page:'top'},
+    {label:'Studieplan', sub:'Side', page:'plan'},
+    {label:'Formelark', sub:'Verktøy', page:'formelark'},
+    {label:'Flashcards', sub:'Verktøy', page:'flashcards'}
+  ];
+  M.forEach(m=> idx.push({label:m.title, sub:'Modul '+m.num, page:m.id}));
+  FORMULAS.forEach(f=> idx.push({label:plainText(f.desc), sub:'Formel · modul '+moduleNum(f.module), page:f.module}));
+  QUESTIONS.forEach(q=> idx.push({label:plainText(q.q), sub:'Spørsmål · modul '+moduleNum(q.module), page:q.module}));
+  idx.forEach(e=> e.hay=(e.label+' '+e.sub).toLowerCase());
+  SEARCH_INDEX=idx;
+}
+function cmdkFilter(query){
+  const q=(query||'').trim().toLowerCase();
+  return (q ? SEARCH_INDEX.filter(e=>e.hay.includes(q)) : SEARCH_INDEX).slice(0,40);
+}
+function renderCmdkResults(query){
+  cmdkList=cmdkFilter(query);
+  const ul=document.getElementById('cmdkResults'); if(!ul) return;
+  ul.innerHTML = cmdkList.length
+    ? cmdkList.map((e,i)=>`<li class="cmdk-item${i===cmdkSel?' sel':''}" role="option" data-page="${e.page}"><span class="cmdk-label">${escapeHtml(e.label)}</span><span class="cmdk-sub">${escapeHtml(e.sub)}</span></li>`).join('')
+    : `<li class="cmdk-empty">Ingen treff</li>`;
+}
+function paintCmdkSel(){
+  document.querySelectorAll('.cmdk-item').forEach((li,i)=>li.classList.toggle('sel',i===cmdkSel));
+  const sel=document.querySelector('.cmdk-item.sel'); if(sel) sel.scrollIntoView({block:'nearest'});
+}
+function openCmdk(){
+  const el=document.getElementById('cmdk'); if(!el) return;
+  el.hidden=false;
+  const input=document.getElementById('cmdkInput');
+  input.value=''; cmdkSel=0; renderCmdkResults(''); input.focus();
+}
+function closeCmdk(){ const el=document.getElementById('cmdk'); if(el) el.hidden=true; }
+function createCmdk(){
+  if(document.getElementById('cmdk')) return;
+  buildSearchIndex();
+  const el=document.createElement('div');
+  el.id='cmdk'; el.className='cmdk'; el.hidden=true;
+  el.innerHTML=`<div class="cmdk-backdrop" data-cmdk-close></div>
+    <div class="cmdk-panel" role="dialog" aria-modal="true" aria-label="Søk">
+      <input id="cmdkInput" class="cmdk-input" type="search" autocomplete="off" placeholder="Søk moduler, formler, spørsmål … (Esc lukker)" aria-label="Søk">
+      <ul id="cmdkResults" class="cmdk-results" role="listbox"></ul>
+    </div>`;
+  document.body.appendChild(el);
+  el.addEventListener('click',e=>{
+    if(e.target.closest('[data-cmdk-close]')){ closeCmdk(); return; }
+    const li=e.target.closest('[data-page]');
+    if(li){ navigate(li.dataset.page); closeCmdk(); }
+  });
+  const input=el.querySelector('#cmdkInput');
+  input.addEventListener('input',()=>{ cmdkSel=0; renderCmdkResults(input.value); });
+  input.addEventListener('keydown',e=>{
+    if(e.key==='ArrowDown'){ e.preventDefault(); cmdkSel=Math.min(cmdkSel+1,cmdkList.length-1); paintCmdkSel(); }
+    else if(e.key==='ArrowUp'){ e.preventDefault(); cmdkSel=Math.max(cmdkSel-1,0); paintCmdkSel(); }
+    else if(e.key==='Enter'){ e.preventDefault(); const c=cmdkList[cmdkSel]; if(c){ navigate(c.page); closeCmdk(); } }
+    else if(e.key==='Escape'){ closeCmdk(); }
+  });
+}
 
 /* ============================ VISUALISERINGER ============================ */
 function fitCanvas(c){ const r=c.getBoundingClientRect(); const dpr=window.devicePixelRatio||1; c.width=r.width*dpr; c.height=c.height*dpr/(c.__h?c.__h:1); }
@@ -1398,6 +1790,149 @@ function setupCanvas(id,cssH){
   const onResize=()=>{ size(); if(c.__draw)c.__draw(); };
   c.style.height=cssH+'px'; size(); window.addEventListener('resize',onResize); canvasResizeHandlers.push(onResize);
   return c;
+}
+
+/* ----- 0. Steg-for-steg strålegang (manuell konstruksjon) ----- */
+const RG_STEPS = {
+  conv:[
+    'Oppsett: aksen, en positiv (samlende) linse, brennpunktene F og F′, og et objekt utenfor 2F.',
+    'Stråle 1 — parallellstrålen: parallelt inn med aksen, brytes gjennom bakre brennpunkt F′.',
+    'Stråle 2 — sentralstrålen: rett gjennom linsesentrum, helt ubrutt.',
+    'Stråle 3 (kontroll): inn gjennom fremre F, ut parallelt med aksen.',
+    'Bildet ligger der strålene krysser — reelt, invertert og forminsket.'
+  ],
+  div:[
+    'Oppsett: en negativ (sprende) linse med brennpunktene F og F′, og et objekt foran.',
+    'Stråle 1 — parallellstrålen: brytes utover som om den kom fra fremre brennpunkt (stiplet bakover).',
+    'Stråle 2 — sentralstrålen: rett gjennom linsesentrum.',
+    'Bildet ligger der de stiplede bakover-forlengelsene møtes — virtuelt, opprett og forminsket.'
+  ],
+  concave:[
+    'Oppsett: et konkavt (samlende) speil med brennpunkt F og krumningssenter C. Lyset reflekteres tilbake mot venstre.',
+    'Stråle 1 — parallellstrålen: reflekteres gjennom brennpunktet F.',
+    'Stråle 2 — vertexstrålen: treffer speilets midtpunkt og reflekteres symmetrisk om aksen.',
+    'Bildet ligger der de reflekterte strålene krysser — reelt, invertert og forminsket.'
+  ],
+  convex:[
+    'Oppsett: et konvekst (sprende) speil. Brennpunkt F og senter C ligger bak speilet.',
+    'Stråle 1 — parallellstrålen: reflekteres som om den kom fra F bak speilet (stiplet).',
+    'Stråle 2 — vertexstrålen: reflekteres symmetrisk om aksen.',
+    'Bildet ligger bak speilet der de stiplede forlengelsene møtes — virtuelt, opprett og forminsket.'
+  ],
+  double:[
+    'Oppsett: to positive linser L₁ og L₂ med hver sine brennpunkt, og et objekt til venstre for L₁.',
+    'Tegn to stråler gjennom L₁ — parallellstrålen og sentralstrålen.',
+    'Der de krysser mellom linsene ligger mellombildet I₁ (det L₁ ville laget alene).',
+    'Strålene fortsetter og brytes på nytt i L₂ — sikt mot det endelige bildet.',
+    'Endelig bilde I₂ — her reelt, opprett (to inversjoner) og forstørret.'
+  ]
+};
+function initRayGuide(){
+  const c=setupCanvas('rayGuideCanvas',300); if(!c) return; const ctx=c.getContext('2d');
+  const stepText=document.getElementById('rgStepText');
+  const countEl=document.getElementById('rgCount');
+  const prevBtn=document.getElementById('rgPrev'), nextBtn=document.getElementById('rgNext'), resetBtn=document.getElementById('rgReset');
+  if(!stepText || !prevBtn) return;
+  let scn='conv', step=0;
+  const maxStepOf = s => RG_STEPS[s].length-1;
+
+  const yAt=(A,B,x)=> A.y + (B.y-A.y)*(x-A.x)/(B.x-A.x);
+  function axis(W,cy){ ctx.strokeStyle=cssVar('--line2'); ctx.lineWidth=1; ctx.setLineDash([2,4]); ctx.beginPath(); ctx.moveTo(0,cy); ctx.lineTo(W,cy); ctx.stroke(); ctx.setLineDash([]); }
+  function lensGlyph(x,cy,hh,diverging){
+    ctx.strokeStyle=cssVar('--accent'); ctx.lineWidth=2.5; ctx.setLineDash([]);
+    ctx.beginPath(); ctx.moveTo(x,cy-hh); ctx.lineTo(x,cy+hh); ctx.stroke();
+    ctx.lineWidth=2; const a=7;
+    [[cy-hh,1],[cy+hh,-1]].forEach(p=>{ const yy=p[0],dir=p[1]*(diverging?-1:1); ctx.beginPath(); ctx.moveTo(x-a,yy+dir*a); ctx.lineTo(x,yy); ctx.lineTo(x+a,yy+dir*a); ctx.stroke(); });
+  }
+  function mirrorArc(Mx,cy,f){
+    const R=Math.abs(2*f), C=Mx-2*f, ang=Math.asin(Math.min(0.94,92/R));
+    ctx.strokeStyle=cssVar('--accent'); ctx.lineWidth=2.5; ctx.setLineDash([]); ctx.beginPath();
+    if(f>0) ctx.arc(C,cy,R,-ang,ang); else ctx.arc(C,cy,R,Math.PI-ang,Math.PI+ang);
+    ctx.stroke();
+  }
+  function focal(x,cy,label){ ctx.fillStyle=cssVar('--cyan'); ctx.beginPath(); ctx.arc(x,cy,3,0,7); ctx.fill(); ctx.fillStyle=cssVar('--ink-faint'); ctx.font='11px IBM Plex Mono'; ctx.fillText(label,x-4,cy+16); }
+  function objectArrow(Ox,cy,ho){ ctx.strokeStyle=cssVar('--green'); ctx.lineWidth=2.5; ctx.setLineDash([]); arrow(ctx,Ox,cy,Ox,cy-ho); ctx.fillStyle=cssVar('--ink-dim'); ctx.font='12px IBM Plex Mono'; ctx.fillText('objekt',Ox-16,cy+16); }
+  function imageArrow(Ix,cy,hi,real,label){ ctx.strokeStyle=real?cssVar('--red'):cssVar('--orange'); ctx.lineWidth=2.5; ctx.setLineDash(real?[]:[5,4]); arrow(ctx,Ix,cy,Ix,cy-hi); ctx.setLineDash([]); ctx.fillStyle=cssVar('--ink-dim'); ctx.font='12px IBM Plex Mono'; ctx.fillText(label,Ix+5,cy+16); }
+  function ray(tip,hit,P,fwd,W,color){
+    ctx.strokeStyle=color; ctx.lineWidth=1.7; ctx.setLineDash([]);
+    if(tip.x!==hit.x || tip.y!==hit.y){ ctx.beginPath(); ctx.moveTo(tip.x,tip.y); ctx.lineTo(hit.x,hit.y); ctx.stroke(); }
+    const dx=P.x-hit.x, dy=P.y-hit.y;
+    if(Math.sign(dx)===fwd){
+      ctx.beginPath(); ctx.moveTo(hit.x,hit.y); ctx.lineTo(hit.x+dx*1.18,hit.y+dy*1.18); ctx.stroke();
+    } else {
+      const target = fwd>0?W:0, t=(hit.x-target)/(dx||1e-6);
+      ctx.beginPath(); ctx.moveTo(hit.x,hit.y); ctx.lineTo(target,hit.y-dy*t); ctx.stroke();
+      ctx.setLineDash([5,4]); ctx.beginPath(); ctx.moveTo(hit.x,hit.y); ctx.lineTo(P.x,P.y); ctx.stroke(); ctx.setLineDash([]);
+    }
+  }
+  // single lens (conv/div)
+  function renderLens(W,H,cfg,ms){
+    const cy=H/2, Lx=cfg.Lx*W, F=cfg.F*W, Ox=cfg.Ox*W, ho=cfg.ho;
+    const so=Lx-Ox, si=1/(1/F-1/so), Ix=Lx+si, m=-si/so, hi=m*ho, real=si>0;
+    const tip={x:Ox,y:cy-ho}, P={x:Ix,y:cy-hi};
+    axis(W,cy); lensGlyph(Lx,cy,90,cfg.diverging);
+    focal(Math.min(Lx-F,Lx+F),cy,'F'); focal(Math.max(Lx-F,Lx+F),cy,"F'");
+    objectArrow(Ox,cy,ho);
+    if(ms>=1) ray(tip,{x:Lx,y:tip.y},P,1,W,cssVar('--yellow'));
+    if(ms>=2) ray(tip,{x:Lx,y:cy},P,1,W,cssVar('--cyan'));
+    if(!cfg.diverging && ms>=3){ const hy=yAt(tip,{x:Lx-F,y:cy},Lx); ray(tip,{x:Lx,y:hy},P,1,W,cssVar('--violet')); }
+    if(ms>=(cfg.diverging?3:4)) imageArrow(Ix,cy,hi,real,'bilde');
+  }
+  // single mirror (concave/convex)
+  function renderMirror(W,H,cfg,ms){
+    const cy=H/2, Mx=cfg.Mx*W, f=cfg.f*W, Ox=cfg.Ox*W, ho=cfg.ho;
+    const so=Mx-Ox, si=1/(1/f-1/so), Ix=Mx-si, m=-si/so, hi=m*ho, real=si>0;
+    const tip={x:Ox,y:cy-ho}, P={x:Ix,y:cy-hi};
+    axis(W,cy); mirrorArc(Mx,cy,f);
+    focal(Mx-f,cy,'F'); focal(Mx-2*f,cy,'C');
+    objectArrow(Ox,cy,ho);
+    if(ms>=1) ray(tip,{x:Mx,y:tip.y},P,-1,W,cssVar('--yellow'));
+    if(ms>=2) ray(tip,{x:Mx,y:cy},P,-1,W,cssVar('--cyan'));
+    if(ms>=3) imageArrow(Ix,cy,hi,real,'bilde');
+  }
+  // two-lens system
+  function renderDouble(W,H,ms){
+    const cy=H/2, L1x=0.24*W,L2x=0.56*W,f1=0.10*W,f2=0.08*W,ho=38,Ox=0.04*W;
+    const so1=L1x-Ox, si1=1/(1/f1-1/so1), I1x=L1x+si1, m1=-si1/so1, hi1=m1*ho, P1={x:I1x,y:cy-hi1};
+    const so2=L2x-I1x, si2=1/(1/f2-1/so2), I2x=L2x+si2, m2=-si2/so2, hi2=m2*hi1, P2={x:I2x,y:cy-hi2}, real2=si2>0;
+    axis(W,cy); lensGlyph(L1x,cy,90,false); lensGlyph(L2x,cy,90,false);
+    ctx.fillStyle=cssVar('--ink-faint'); ctx.font='12px IBM Plex Mono'; ctx.fillText('L₁',L1x-7,cy-96); ctx.fillText('L₂',L2x-7,cy-96);
+    focal(L1x-f1,cy,'F'); focal(L1x+f1,cy,"F'"); focal(L2x-f2,cy,'F'); focal(L2x+f2,cy,"F'");
+    objectArrow(Ox,cy,ho);
+    const tip={x:Ox,y:cy-ho}, A1={x:L1x,y:tip.y}, A2={x:L2x,y:yAt(A1,P1,L2x)}, B1={x:L1x,y:cy}, B2={x:L2x,y:yAt(B1,P1,L2x)};
+    if(ms>=1){
+      ctx.setLineDash([]); ctx.lineWidth=1.7;
+      ctx.strokeStyle=cssVar('--yellow'); ctx.beginPath(); ctx.moveTo(tip.x,tip.y); ctx.lineTo(A1.x,A1.y); ctx.lineTo(A2.x,A2.y); ctx.stroke();
+      ctx.strokeStyle=cssVar('--cyan'); ctx.beginPath(); ctx.moveTo(tip.x,tip.y); ctx.lineTo(B1.x,B1.y); ctx.lineTo(B2.x,B2.y); ctx.stroke();
+    }
+    if(ms>=2){
+      ctx.fillStyle=cssVar('--orange'); ctx.beginPath(); ctx.arc(P1.x,P1.y,3,0,7); ctx.fill();
+      ctx.strokeStyle=cssVar('--orange'); ctx.lineWidth=2; ctx.setLineDash([4,3]); arrow(ctx,P1.x,cy,P1.x,P1.y); ctx.setLineDash([]);
+      ctx.fillStyle=cssVar('--ink-dim'); ctx.font='12px IBM Plex Mono'; ctx.fillText('I₁',P1.x+4,cy-4);
+    }
+    if(ms>=3){ ray(A2,A2,P2,1,W,cssVar('--yellow')); ray(B2,B2,P2,1,W,cssVar('--cyan')); }
+    if(ms>=4) imageArrow(I2x,cy,hi2,real2,'I₂');
+  }
+  const CFG={ conv:{diverging:false,Lx:0.40,F:0.13,Ox:0.114,ho:52}, div:{diverging:true,Lx:0.50,F:-0.15,Ox:0.20,ho:50},
+              concave:{Mx:0.62,f:0.16,Ox:0.18,ho:50}, convex:{Mx:0.52,f:-0.16,Ox:0.18,ho:50} };
+  function draw(){
+    const W=c.__w,H=c.__h; ctx.clearRect(0,0,W,H);
+    if(scn==='double') renderDouble(W,H,step);
+    else if(scn==='concave'||scn==='convex') renderMirror(W,H,CFG[scn],step);
+    else renderLens(W,H,CFG[scn],step);
+    stepText.textContent = RG_STEPS[scn][step]||'';
+    countEl.textContent = `Steg ${step+1} / ${RG_STEPS[scn].length}`;
+    prevBtn.disabled = step<=0; nextBtn.disabled = step>=maxStepOf(scn);
+  }
+  function setStep(s){ step=Math.max(0,Math.min(maxStepOf(scn),s)); draw(); }
+  prevBtn.addEventListener('click',()=>setStep(step-1));
+  nextBtn.addEventListener('click',()=>setStep(step+1));
+  resetBtn.addEventListener('click',()=>setStep(0));
+  document.querySelectorAll('.rg-scenarios .fs-chip').forEach(ch=>ch.addEventListener('click',()=>{
+    document.querySelectorAll('.rg-scenarios .fs-chip').forEach(x=>x.classList.remove('active'));
+    ch.classList.add('active'); scn=ch.dataset.scn; step=0; draw();
+  }));
+  c.__draw=draw; draw();
 }
 
 /* ----- 1. Tynnlinse ----- */
