@@ -1,0 +1,151 @@
+---
+order: 5
+title: "Lupe, mikroskop, teleskop, kamera & øyet"
+summary: "Instrumentene bygges av linsene fra modul 1–2. Nøkkelen er vinkelforstørrelse (MP): hvor mye større vinkel objektet spenner ut på netthinnen sammenlignet med de"
+importance: useful
+estMinutes: 20
+tags: ["Geometrisk optikk III"]
+part: "Geometrisk optikk"
+updated: 2026-05-28
+---
+
+<LearningGoals>
+
+- Beregne **vinkelforstørrelse** for lupe, mikroskop og teleskop.
+- Forstå den **afokale** oppstillingen (to positive linser separert med $f_1+f_2$).
+- Knytte aperturblender, f-tall og dybdeskarphet til kamera og øyet.
+
+</LearningGoals>
+
+### Kjernen i temaet
+
+Instrumentene bygges av linsene fra modul 1–2. Nøkkelen er <Term name="Vinkelforstørrelse">vinkelforstørrelse</Term> (MP): hvor mye større vinkel objektet spenner ut på netthinnen sammenlignet med det blotte øye på nærpunktet (25 cm).
+
+#### Afokalt to-linsesystem
+
+To positive linser med avstand $d=f_1+f_2$ deler en felles brennpunktsplan. Parallelt lys inn gir parallelt lys ut ($C=0$). Brukes både i teleskop og som mikroskop-prinsipp i øvingene.
+
+- **Mikroskop** (objekt nær $f_1$): bildet er **reelt og invertert**, og forstørrelsen er $h_i/h_o=f_2/f_1$.
+- **Teleskop** (objekt i uendelig): vinkelforstørrelse $MP=-f_o/f_e$ (objektivets brennvidde delt på okularets).
+- Endring av avstanden $d$ ødelegger den <Term name="Afokalt system">afokale</Term> betingelsen, men for mikroskop-tilfellet over endrer den ikke selve forholdet $f_2/f_1$.
+
+<Formula tex={"MP_\\text{lupe}=\\dfrac{25\\text{ cm}}{f}"} caption={"Enkel lupe (bilde i uendelig). $MP$ = vinkelforstørrelse (ikke lateral $m$); 25 cm = øyets nærpunkt."} memorize />
+
+<Formula tex={"M_\\text{mik}=-\\dfrac{L}{f_o}\\cdot\\dfrac{25}{f_e}"} caption={"Sammensatt mikroskop, tubuslengde $L$. $f_o$ = objektiv-, $f_e$ = okularbrennvidde."} memorize />
+
+<Formula tex={"MP_\\text{tel}=-\\dfrac{f_o}{f_e}"} caption={"Teleskop (refraktor): vinkelforstørrelse = objektiv- delt på okularbrennvidde."} memorize />
+
+<Formula tex={"f\\#=\\dfrac{f}{D}"} caption={"f-tall: brennvidde / aperturdiameter."} memorize />
+
+<ExamFocus title="Slik testes dette på eksamen">
+
+*Mikroskop: reelt/invertert + m · Teleskop-MP · Øyets optikk*
+
+En gjenganger: «to positive linser i avstand $f_1+f_2$ – er bildet reelt eller virtuelt, opprett eller invertert, hva er forstørrelsen, og endrer avstanden noe?» Riktig svar er typisk *reelt, invertert, $h_i/h_o=f_2/f_1$*. Tegneoppgaver (på papir) ber om full strålegang gjennom mikroskop/teleskop.
+
+</ExamFocus>
+
+<Example>
+
+To positive linser, $f_1=4$ cm og $f_2=5$ cm, settes i avstand $f_1+f_2=9$ cm. Objektet står i brennplanet til linse 1. Bildetype og forstørrelse?
+
+<Solution>
+
+Linse 1 lager parallelt lys (objekt i $f_1$). Linse 2 fokuserer dette i sitt brennplan ⇒ reelt bilde til høyre.
+
+Systemet inverterer bildet én gang ⇒ **invertert**. Vinkelforstørrelse $=f_2/f_1=5/4=1{,}25$.
+
+<Answer>Reelt, invertert, $m = f_2/f_1 = 1{,}25$</Answer>
+
+</Solution>
+
+</Example>
+
+#### Sjekk deg selv
+
+<Quiz
+  question={"Du bygger «mikroskop» av to positive linser i avstand $f_1+f_2$. Bildet er:"}
+  options={["virtuelt og opprett","reelt og invertert, $h_i/h_o=f_2/f_1$","reelt og opprett","i uendelig"]}
+  answer={1}
+  explanation={"Afokal oppstilling med objekt nær $f_1$: reelt, invertert bilde i brennplanet til linse 2, forstørrelse $f_2/f_1$."}
+/>
+
+<Quiz
+  question={"Et teleskop har $f_o=100$ cm, $f_e=2$ cm. Vinkelforstørrelsen er omtrent:"}
+  options={["×2","×50","×200","×0,02"]}
+  answer={1}
+  explanation={"$MP=-f_o/f_e=-100/2=-50$. Størrelse 50×, invertert."}
+/>
+
+### Mer forklaring — vinkelforstørrelse er ikke bildestørrelse
+
+Instrumentoppgaver handler ofte om vinkler, ikke bare centimeter på et mellomliggende bilde. En lupe eller et teleskop hjelper fordi objektet dekker større vinkel på øyet.
+
+For teleskop er fortegnet i <FormulaRef id="teleskop">$MP=-f_o/f_e$</FormulaRef> en orienteringsmarkør: negativt betyr invertert bilde. Størrelsen $|MP|$ er vanligvis det oppgaven mener når den spør om «forstørrelse».
+
+<Compare>
+
+<CompareCol title="Mikroskop">
+
+- Objektet står **nær** objektivets brennpunkt ($s_o\gtrsim f_o$).
+- Lager et reelt, forstørret mellombilde som okularet forstørrer videre.
+- Forstørrelse $M=-\dfrac{L}{f_o}\cdot\dfrac{25}{f_e}$ ($L$ = tubuslengde).
+- Brukes på små, nære objekter.
+
+</CompareCol>
+
+<CompareCol title="Teleskop">
+
+- Objektet er i **uendelig** — parallelt lys inn.
+- Afokal: objektivets bildeplan = okularets fremre brennplan.
+- Vinkelforstørrelse $MP=-\dfrac{f_o}{f_e}$.
+- Brukes på store, fjerne objekter.
+
+</CompareCol>
+
+</Compare>
+
+<Example title="teleskoplengde og forstørrelse">
+
+Et Kepler-teleskop har objektiv $f_o=80\text{ cm}$ og okular $f_e=4\text{ cm}$. Finn rørlengden i afokal oppstilling og vinkelforstørrelsen.
+
+<Solution>
+
+**Afokal avstand.**
+
+For to positive linser er avstanden $d=f_o+f_e=84\text{ cm}$.
+
+**Forstørrelse.**
+
+$MP=-f_o/f_e=-80/4=-20$. Bildet er invertert, og vinkelstørrelsen er 20 ganger større.
+
+<Answer>$d = 84$ cm, $MP = -20$</Answer>
+
+</Solution>
+
+</Example>
+
+#### Flere kontrollspørsmål
+
+<Quiz
+  question={"Hvorfor er et Kepler-teleskop afokalt når linseavstanden er $f_o+f_e$?"}
+  options={["fordi bildet ligger på objektivet","fordi felles brennplan deles","fordi okularet blir negativt","fordi $B=0$ alltid"]}
+  answer={1}
+  explanation={"Objektivets bildeplan faller sammen med okularets fremre brennplan, så parallelt lys kommer parallelt ut."}
+/>
+
+<Quiz
+  question={"Et større f-tall i kamera betyr vanligvis:"}
+  options={["større apertur","mindre apertur","kortere brennvidde uansett","ingen endring i lysmengde"]}
+  answer={1}
+  explanation={"$f\\#=f/D$. For gitt brennvidde gir større f-tall mindre aperturdiameter."}
+/>
+
+<KeyTakeaways>
+
+- Instrumenter måles i **vinkelforstørrelse** $MP$, ikke lateral $m$.
+- Lupe: $MP=25\,\text{cm}/f$. Teleskop: $MP=-f_o/f_e$ (afokal lengde $f_o+f_e$).
+- To positive linser i avstand $f_1+f_2$ er afokale ($C=0$): «mikroskop»-bildet er reelt, invertert, $f_2/f_1$.
+- Kamera/øye: $f\#=f/D$ — større f-tall ⇒ mindre apertur, mer dybdeskarphet, mindre lys.
+
+</KeyTakeaways>

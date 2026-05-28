@@ -1,0 +1,164 @@
+---
+order: 3
+title: "Stråle-transfer-matriser (ray tracing)"
+summary: "En stråle beskrives av høyde $y$ og vinkel $\\alpha$ over aksen. Hvert optisk element virker som en lineær transformasjon — en matrise. Et helt system er produkt"
+importance: useful
+estMinutes: 20
+tags: ["Geometrisk optikk II"]
+part: "Geometrisk optikk"
+updated: 2026-05-28
+---
+
+<LearningGoals>
+
+- Sette opp **2×2 stråle-transfer-matriser** for translasjon, brytning og tynne linser.
+- Multiplisere matriser i **riktig rekkefølge** for å få systemmatrisen.
+- Tolke elementene og finne forstørrelse og bildetype fra systemmatrisen.
+
+</LearningGoals>
+
+### Kjernen i temaet
+
+En stråle beskrives av høyde $y$ og vinkel $\alpha$ over aksen. Hvert optisk element virker som en lineær transformasjon — en <Term name="Stråle-transfer-matrise">matrise</Term>. Et helt system er produktet av matrisene.
+
+$\begin{pmatrix} y_2 \\ \alpha_2 \end{pmatrix} = \begin{pmatrix} A & B \\ C & D \end{pmatrix}\begin{pmatrix} y_1 \\ \alpha_1 \end{pmatrix}$
+
+#### Rekkefølge!
+
+Lys treffer elementene i rekkefølge 1, 2, 3 … men matrisen skrives **i motsatt rekkefølge**: $M = M_n \cdots M_2 M_1$. Det siste elementet lyset møter står lengst til venstre.
+
+#### Tolkning
+
+- **B = 0**: inn- og utplan er konjugerte (objekt/bilde). Da er $A=m$ (lateral forstørrelse).
+- **C = 0**: teleskopisk/<Term name="Afokalt system">afokalt system</Term> (parallelt inn → parallelt ut).
+- **$\det M = n_1/n_2$** (=1 om samme medium) — nyttig kontroll.
+- $-1/C = f$ for systemets effektive brennvidde.
+
+<Formula tex={"\\begin{pmatrix}1 & d \\\\ 0 & 1\\end{pmatrix}"} caption={"Translasjon avstand $d$ (i samme medium)."} />
+
+<Formula tex={"\\begin{pmatrix}1 & 0 \\\\ -1/f & 1\\end{pmatrix}"} caption={"Tynn linse med brennvidde $f$."} />
+
+<Formula tex={"\\begin{pmatrix}1 & 0 \\\\ 0 & n_1/n_2\\end{pmatrix}"} caption={"Brytning i plan flate."} />
+
+<Formula tex={"\\begin{pmatrix}1 & 0 \\\\ \\frac{n_1-n_2}{n_2 R} & n_1/n_2\\end{pmatrix}"} caption={"Brytning i sfærisk flate radius $R$."} />
+
+<Steps>
+
+<Step title="Del systemet i elementer">
+Gå langs aksen og list opp hvert element lyset møter i tur og orden: fri propagasjon ($d$), tynn linse ($f$), plan eller sfærisk flate ($R$).
+</Step>
+
+<Step title="Skriv hver elementmatrise">
+Slå opp $2\times2$-matrisen for hvert element fra listen over.
+</Step>
+
+<Step title="Multipliser i motsatt rekkefølge">
+Det siste elementet lyset møter står lengst til venstre: $M=M_n\cdots M_2 M_1$.
+</Step>
+
+<Step title="Kontroller determinanten">
+I samme medium skal $\det M=1$ (ellers $n_1/n_2$) — en rask feilsjekk før du tolker.
+</Step>
+
+<Step title="Les av diagnostikken">
+$B=0$ ⇒ konjugerte plan og $A=m$; $C=0$ ⇒ afokalt; $-1/C=f_\text{eff}$.
+</Step>
+
+</Steps>
+
+<ExamFocus title="Slik testes dette på eksamen">
+
+*Match system ↔ matrise · Forstørrelse fra A · Virtuelt bilde*
+
+Typisk «Match the optical system with the ray-transfer matrix». Du kjenner igjen elementene fra strukturen: et nullelement i nedre venstre = afokalt; et bestemt $B$ = en translasjon. Andre oppgaver gir en systemmatrise $A$ og ber deg finne forstørrelsen $M$ og om bildet er virtuelt (negativ avstand som gir $M>0$).
+
+</ExamFocus>
+
+<Example>
+
+En tynn linse $f=10$ cm, så fri rom $d=15$ cm til skjermen. Finn systemmatrisen fra linseplan til skjerm, og avgjør om skjermen er i bildeplanet for et fjernt objekt.
+
+<Solution>
+
+**Rekkefølge.**
+
+Lys: linse → translasjon. Matrise: $M = T\,L$.
+
+**Produkt.**
+
+$M=\begin{pmatrix}1&15\\0&1\end{pmatrix}\begin{pmatrix}1&0\\-1/10&1\end{pmatrix}=\begin{pmatrix}1-1{,}5&15\\-0{,}1&1\end{pmatrix}=\begin{pmatrix}-0{,}5&15\\-0{,}1&1\end{pmatrix}$.
+
+Fjernt objekt ⇒ parallelle stråler ($\alpha_1=0$) fokuserer ved $f=10$ cm, ikke 15 cm. $B\neq0$, så skjermen er *ikke* i bildeplanet for uendelig objekt.
+
+<Answer>$M=\begin{pmatrix}-0{,}5 & 15\\-0{,}1 & 1\end{pmatrix}$; fokus ved 10 cm</Answer>
+
+</Solution>
+
+</Example>
+
+#### Sjekk deg selv
+
+<Quiz
+  question={"I systemmatrisen betyr elementet $B=0$ at …"}
+  options={["systemet er afokalt","inn- og utplan er objekt/bilde-konjugerte","forstørrelsen er 1","strålen er parallell"]}
+  answer={1}
+  explanation={"$B=0$ ⇒ utgangshøyden er uavhengig av inngangsvinkel ⇒ planene er konjugerte (bilde dannes). Da er $A=m$."}
+/>
+
+<Quiz
+  question={"Et system består av element 1 (først), så 2, så 3. Systemmatrisen er …"}
+  options={["$M_1M_2M_3$","$M_3M_2M_1$","$M_2M_1M_3$","rekkefølge spiller ingen rolle"]}
+  answer={1}
+  explanation={"Elementet lyset møter sist står lengst til venstre: $M=M_3M_2M_1$."}
+/>
+
+### Mer forklaring — hva matrisen egentlig gjør
+
+Ray-transfer-metoden er mest nyttig når du bruker matriseelementene som diagnostikk. $B=0$ betyr at utgangshøyden ikke avhenger av inngangsvinkelen; alle stråler fra samme objektpunkt møtes i bildeplanet.
+
+For et system i samme medium bør determinanten være 1. Det er en enkel kvalitetskontroll etter matrisemultiplikasjon.
+
+<Example title="finn bildeplanet med $B=0$">
+
+Et objekt står $s_o=30\text{ cm}$ foran en tynn linse med $f=10\text{ cm}$. Bruk matriseideen til å finne avstanden $d$ fra linsen til bildeplanet.
+
+<Solution>
+
+**System.**
+
+Fra objektplan til bildeplan: $M=T(d)L(f)T(s_o)$. Bildeplan krever $B=0$.
+
+**Resultat.**
+
+Multiplikasjon gir $B=s_o+d-ds_o/f$. Sett $B=0$: $30+d-3d=0\Rightarrow d=15\text{ cm}$.
+
+<Answer>$d = 15$ cm</Answer>
+
+</Solution>
+
+</Example>
+
+#### Flere kontrollspørsmål
+
+<Quiz
+  question={"Hva er en rask kontroll for et system som starter og slutter i samme medium?"}
+  options={["$A=0$","$B=1$","$\\det M=1$","$C=D$"]}
+  answer={2}
+  explanation={"For tapsfri paraxial stråleoptikk i samme medium er determinanten 1."}
+/>
+
+<Quiz
+  question={"Et afokalt system kjennetegnes ved:"}
+  options={["$B=0$","$C=0$","$A=0$","$D=0$"]}
+  answer={1}
+  explanation={"$C=0$ gjør at parallelle inngående stråler fortsatt er parallelle ut."}
+/>
+
+<KeyTakeaways>
+
+- En stråle er $(y,\alpha)$; hvert element er en $2\times2$-matrise, systemet er produktet.
+- Multipliser i **motsatt** rekkefølge av lysets gang: $M=M_n\cdots M_2 M_1$.
+- Matriseelementene er diagnostikk: $B=0$ ⇒ bilde ($A=m$), $C=0$ ⇒ afokalt, $-1/C=f_\text{eff}$.
+- $\det M=1$ i samme medium er din raske feilsjekk.
+
+</KeyTakeaways>

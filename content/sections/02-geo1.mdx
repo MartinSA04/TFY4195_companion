@@ -1,0 +1,183 @@
+---
+order: 2
+title: "Avbildning, Snell, Fermat & tynne linser"
+summary: "Geometrisk optikk modellerer lys som rette stråler. Alt følger av to prinsipper: lys tar den vei som gir stasjonær (oftest minste) optisk veilengde (Fermat), og"
+importance: useful
+estMinutes: 20
+tags: ["Geometrisk optikk I"]
+part: "Geometrisk optikk"
+updated: 2026-05-28
+---
+
+<LearningGoals>
+
+- Bruke **Fermats** og **Huygens** prinsipp til å forklare brytning og refleksjon.
+- Anvende **Snells lov** og refleksjonsloven, inkl. total intern refleksjon.
+- Mestre **tynnlinse-likningen**, **linsemakerformelen** og **lateral forstørrelse** med riktig fortegnskonvensjon.
+- Avgjøre om et bilde er reelt/virtuelt, opprett/invertert, forstørret/forminsket.
+
+</LearningGoals>
+
+### Kjernen i temaet
+
+Geometrisk optikk modellerer lys som rette stråler. Alt følger av to prinsipper: lys tar den vei som gir *stasjonær* (oftest minste) <Term name="Optisk veilengde">optisk veilengde</Term> (Fermat), og hvert punkt på en bølgefront er kilde til nye kulebølger (<Term name="Huygens' prinsipp">Huygens</Term>).
+
+<Statement kind="principle" name="Fermats prinsipp">
+
+Lys følger veien mellom to punkter som gir **stasjonær** optisk veilengde — i praksis oftest den korteste i tid. Både Snells lov og refleksjonsloven kan utledes fra dette ene prinsippet.
+
+</Statement>
+
+#### Snells lov og refleksjon
+
+Ved en flate mellom medier $n_i$ og $n_t$: $n_i\sin\theta_i = n_t\sin\theta_t$. Refleksjonsvinkel = innfallsvinkel. Begge følger direkte av Fermat.
+
+<Statement kind="law" name="Snells lov">
+
+Ved en grenseflate mellom to medier gjelder $n_i\sin\theta_i=n_t\sin\theta_t$, der vinklene måles **fra normalen**. Går lyset mot et tettere medium ($n_t>n_i$), brytes det mot normalen; mot et tynnere medium, fra normalen.
+
+</Statement>
+
+#### Fortegnskonvensjon (Pedrotti) — kritisk!
+
+- Lys går venstre → høyre. Objekt-avstand $s_o>0$ til venstre for linsen.
+- Bilde-avstand $s_i>0$ (reelt) til høyre; $s_i<0$ (virtuelt) til venstre.
+- $R>0$ hvis krumningssenteret ligger til høyre for flaten.
+- $f>0$ for konvergerende (positiv) linse.
+
+#### Linsemakerformelen
+
+Forteller hvilken <Term name="Brennvidde">brennvidde</Term> en linseform gir (<FormulaRef id="linsemaker" />). En **positiv** (samlende) linse i luft er tykkere på midten; én konveks side mot objektet gir $R_1>0,\ R_2<0$.
+
+<Formula tex={"n_i\\sin\\theta_i=n_t\\sin\\theta_t"} caption={"Snells lov. Vinkler måles fra normalen; indeks i = innfallsmedium, t = transmittert medium."} />
+
+<Formula tex={"\\dfrac{1}{s_o}+\\dfrac{1}{s_i}=\\dfrac{1}{f}"} caption={"Tynnlinse-/avbildningslikningen. $s_o$ = objektavstand, $s_i$ = bildeavstand, $f$ = brennvidde."} />
+
+<Formula tex={"m=-\\dfrac{s_i}{s_o}"} caption={"Lateral forstørrelse. m = invertert."} />
+
+<Formula tex={"\\dfrac{1}{f}=\\dfrac{n_2-n_1}{n_1}\\!\\left(\\dfrac{1}{R_1}-\\dfrac{1}{R_2}\\right)"} caption={"Linsemakerformelen (linse $n_2$ i medium $n_1$). $R_1,R_2$ = krumningsradier for fram- og bakflate (med fortegn)."} />
+
+<Formula tex={"f=\\mp\\dfrac{R}{2}"} caption={"Sfærisk speil (konkavt $f>0$)."} />
+
+<ExamFocus title="Slik testes dette på eksamen">
+
+*Linsemaker-design (MC) · Bildeplassering · Reelt/virtuelt + m · Speil*
+
+Klassiker «Lensmaker F»: gitt $f$ og $n$, hvilken av flere linsegeometrier (verdier av $R_1, R_2$) gir en positiv linse med riktig brennvidde? Du må sette inn fortegn riktig. Andre oppgaver gir objektavstand og ber om bildeplassering, forstørrelse og bildetype.
+
+</ExamFocus>
+
+<Example title="linsemaker">
+
+En tynn linse i luft skal ha $f=12{,}0$ cm av et materiale med $n=1{,}40$. En plan-konveks linse har den buede siden mot objektet med $|R|=4{,}8$ cm og flat bakside. Stemmer det?
+
+<Solution>
+
+**Fortegn.**
+
+Konveks framside: $R_1=+4{,}8$ cm. Flat bakside: $R_2=\infty \Rightarrow 1/R_2=0$.
+
+**Innsetting.**
+
+$\dfrac1f=(1{,}40-1)\left(\dfrac{1}{4{,}8}-0\right)=0{,}40\cdot 0{,}2083=0{,}0833\,\text{cm}^{-1}$.
+
+$f = 1/0{,}0833 = 12{,}0$ cm. ✓
+
+<Answer>$f = 12{,}0$ cm — gyldig positiv linse</Answer>
+
+</Solution>
+
+</Example>
+
+Dra objektavstanden og brennvidden. Se hvordan bildet flytter seg, og når det skifter fra reelt/invertert til virtuelt/opprett.
+
+<Simulation src={"/sims/lensCanvas.js"} title={"Interaktivt: tynnlinse-avbildning"} height={300} />
+
+#### Sjekk deg selv
+
+<Quiz
+  question={"Et objekt står $2f$ foran en positiv linse. Bildet er …"}
+  options={["virtuelt, opprett, forstørret","reelt, invertert, like stort (m=−1) ved $2f$","reelt, opprett ved f","i uendelig"]}
+  answer={1}
+  explanation={"Ved $s_o=2f$ gir likningen $s_i=2f$ og $m=-1$: reelt, invertert, samme størrelse."}
+/>
+
+<Quiz
+  question={"For en positiv linse i luft, hvilket fortegnsett gir en gyldig form?"}
+  options={["$R_1<0,\\ R_2>0$ (bikonkav)","$R_1>0,\\ R_2<0$ (bikonveks)","begge R negative","R uten betydning"]}
+  answer={1}
+  explanation={"Bikonveks: $R_1>0$ (senter til høyre), $R_2<0$. Da blir $(1/R_1-1/R_2)>0$ og $f>0$."}
+/>
+
+### Mer forklaring — fortegn før tall
+
+I linseoppgaver er feil fortegn vanligere enn feil algebra. Start derfor med en skisse: hvor er objektet, hvor forventer du bildet, og er linsen samlende eller spredende?
+
+For en positiv linse med objekt utenfor brennvidden forventer du et reelt bilde på motsatt side: $s_i>0$ og $m<0$ (sett inn i <FormulaRef id="tynnlinse" />). Hvis regningen gir noe annet, bør du kontrollere fortegnene før du går videre.
+
+<Compare>
+
+<CompareCol title="Reelt bilde">
+
+- Strålene møtes **virkelig** — kan fanges på en skjerm.
+- Ligger på utgangssiden av en samlelinse: $s_i>0$.
+- Alltid **invertert** ($m<0$).
+- Eksempel: projektor, kamerasensor, øyets netthinne.
+
+</CompareCol>
+
+<CompareCol title="Virtuelt bilde">
+
+- Bare strålenes **forlengelser** møtes — ingen skjerm fanger det.
+- Ligger på objektsiden: $s_i<0$.
+- Alltid **opprett** ($m>0$).
+- Eksempel: forstørrelsesglass, spredelinse, planspeil.
+
+</CompareCol>
+
+</Compare>
+
+<Example title="bildeplassering og forstørrelse">
+
+Et objekt står $30\text{ cm}$ foran en positiv linse med $f=10\text{ cm}$. Finn bildeavstand, forstørrelse og bildetype.
+
+<Solution>
+
+**Linseformel.**
+
+$1/s_i=1/f-1/s_o=1/10-1/30=2/30=1/15$.
+
+**Tolkning.**
+
+$s_i=15\text{ cm}>0$, så bildet er reelt og ligger på andre siden av linsen. $m=-s_i/s_o=-15/30=-0{,}50$, altså invertert og halv størrelse.
+
+<Answer>$s_i = 15$ cm, $m = -0{,}50$ — reelt og invertert</Answer>
+
+</Solution>
+
+</Example>
+
+#### Flere kontrollspørsmål
+
+<Quiz
+  question={"Et positivt $s_i$ i tynnlinseformelen betyr vanligvis:"}
+  options={["virtuelt bilde på objektsiden","reelt bilde på bildesiden","ingen avbildning","negativ forstørrelse automatisk større enn 1"]}
+  answer={1}
+  explanation={"Med standard fortegn ligger et positivt bildepunkt på utgangssiden av linsen og er reelt."}
+/>
+
+<Quiz
+  question={"Hvis $s_o=f$ for en positiv linse, blir bildet:"}
+  options={["ved $f$ på bildesiden","ved $2f$","i uendelig","virtuelt og opprett ved $f/2$"]}
+  answer={2}
+  explanation={"Da blir $1/s_i=1/f-1/f=0$, altså $s_i\\to\\infty$."}
+/>
+
+<KeyTakeaways>
+
+- **Fermat** og **Huygens** er fundamentet; Snells lov og refleksjonsloven følger av dem.
+- Tegn alltid en skisse og sett fortegn **før** tall — feil fortegn er den vanligste feilen.
+- $s_i>0$ ⇒ reelt, invertert bilde på bildesiden; $s_i<0$ ⇒ virtuelt, opprett på objektsiden.
+- Linsemakerformelen kobler form ($R_1,R_2,n$) til brennvidde; bikonveks i luft gir $f>0$.
+
+</KeyTakeaways>

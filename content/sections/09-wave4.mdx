@@ -1,0 +1,145 @@
+---
+order: 9
+title: "Superposisjon & Youngs dobbeltspalt"
+summary: "To koherente bølger som møtes legger seg sammen. Resultatet avhenger av faseforskjellen: i fase ⇒ konstruktiv (lyst), i motfase ⇒ destruktiv (mørkt). Youngs dob"
+importance: useful
+estMinutes: 20
+tags: ["Bølgeoptikk IV"]
+part: "Bølgeoptikk"
+updated: 2026-05-28
+---
+
+<LearningGoals>
+
+- Legge sammen bølger med **fasoraddisjon** og finne resulterende amplitude og fase.
+- Utlede og bruke **Youngs** interferensmønster og stripeavstand.
+- Beregne effekten av en innskutt glassplate (stripeforskyvning).
+
+</LearningGoals>
+
+### Kjernen i temaet
+
+To koherente bølger som møtes <Term name="Superposisjonsprinsippet">legger seg sammen</Term>. Resultatet avhenger av faseforskjellen: i fase ⇒ konstruktiv (lyst), i motfase ⇒ destruktiv (mørkt). Youngs dobbeltspalt er det rene skoleeksemplet.
+
+<Statement kind="principle" name="Superposisjonsprinsippet">
+
+Når flere bølger møtes, er det resulterende feltet summen av de enkelte feltene i hvert punkt. Intensiteten følger av amplituden i andre potens, så kryssleddet $2E_{01}E_{02}\cos(\Delta\alpha)$ er selve interferensen.
+
+</Statement>
+
+#### Fasoraddisjon
+
+For to felt med amplituder $E_{01},E_{02}$ og faser $\alpha_1,\alpha_2$ blir resulterende amplitude $E_0^2=E_{01}^2+E_{02}^2+2E_{01}E_{02}\cos(\alpha_2-\alpha_1)$. Kryssleddet er interferensen.
+
+#### Youngs dobbeltspalt
+
+To spalter med avstand $a$, lys $\lambda$, skjerm i avstand $L$. Veiforskjellen til vinkel $\theta$ er $a\sin\theta$. Maksima når $a\sin\theta=m\lambda$. Stripene er jevnt fordelt med avstand $\Delta y=\lambda L/a$.
+
+Skyver du en glassplate (tykkelse $t$, indeks $n$) foran én spalt, øker den optiske veilengden med $(n-1)t$, og mønsteret forskyves med antall striper $N=(n-1)t/\lambda$.
+
+<Formula tex={"E_0^2=E_{01}^2+E_{02}^2+2E_{01}E_{02}\\cos(\\alpha_2-\\alpha_1)"} caption={"Resulterende amplitude (fasoraddisjon)."} />
+
+<Formula tex={"I_\\text{tot}=4I_0\\cos^2\\!\\big(\\tfrac{\\pi a\\sin\\theta}{\\lambda}\\big)"} caption={"Youngs intensitetsmønster. $a$ = spalteavstand (senter til senter)."} />
+
+<Formula tex={"\\Delta y=\\dfrac{\\lambda L}{a}"} caption={"Stripeavstand på skjermen. $L$ = skjermavstand, $a$ = spalteavstand."} />
+
+<Formula tex={"N=\\dfrac{(n-1)t}{\\lambda}"} caption={"Stripeforskyvning fra glassplate over én spalt. $t$ = platetykkelse, $N$ = antall striper mønsteret forskyves."} memorize />
+
+<ExamFocus title="Slik testes dette på eksamen">
+
+*Fasoraddisjon (regn) · Stripeavstand · Glassplate-forskyvning · Veiforskjell ↔ halv-maks*
+
+Tre-i-ett-oppgave: (i) finn skjermavstanden $L$ for ønsket $\Delta y$ (bruk $\Delta y=\lambda L/a$); (ii) hvor mange striper forskyves mønsteret av en glassplate; (iii) hvilken veiforskjell tilsvarer skiftet fra topp-maks til halv-maks (svar: $\lambda/4$ i veiforskjell, dvs. $\Delta=\lambda/4$ … kontroller fra $\cos^2$).
+
+</ExamFocus>
+
+<Example>
+
+Spaltavstand $a=0{,}5$ mm, $\lambda=600$ nm. (i) Hvilken $L$ gir stripeavstand 1 mm? (ii) En glassplate $n=1{,}502$, $t=100\,\mu$m over én spalt — hvor mange striper forskyves?
+
+<Solution>
+
+**(i).**
+
+$L=\dfrac{a\,\Delta y}{\lambda}=\dfrac{(0{,}5\times10^{-3})(1\times10^{-3})}{600\times10^{-9}}=0{,}833$ m.
+
+**(ii).**
+
+$N=\dfrac{(n-1)t}{\lambda}=\dfrac{(0{,}502)(100\times10^{-6})}{600\times10^{-9}}=83{,}7\approx 83{,}3$ striper.
+
+<Answer>$L = 0{,}833$ m; ≈ 83 striper</Answer>
+
+</Solution>
+
+</Example>
+
+Endre spaltavstand og bølgelengde, og se hvordan stripene trekkes sammen eller spres.
+
+<Simulation src={"/sims/youngCanvas.js"} title={"Interaktivt: Youngs interferensmønster"} height={220} />
+
+#### Sjekk deg selv
+
+<Quiz
+  question={"Hvis du dobler spaltavstanden $a$ i et Young-oppsett, blir stripeavstanden:"}
+  options={["dobbelt så stor","halvparten","uendret","firedobbel"]}
+  answer={1}
+  explanation={"$\\Delta y=\\lambda L/a$ — omvendt proporsjonal med $a$. Større $a$ ⇒ tettere striper."}
+/>
+
+<Quiz
+  question={"To koherente bølger med lik amplitude $E_0$ i motfase ($\\Delta\\alpha=\\pi$) gir resulterende intensitet:"}
+  options={["$4I_0$","$2I_0$","$I_0$","0"]}
+  answer={3}
+  explanation={"$\\cos\\pi=-1$ ⇒ $E_0^2=E_0^2+E_0^2-2E_0^2=0$. Fullstendig destruktiv."}
+/>
+
+### Mer forklaring — fase er optisk veilengde i forkledning
+
+Interferensoppgaver blir ofte en oversettelse mellom veiforskjell, faseforskjell og intensitet. Bruk $\Delta\phi=2\pi\Delta/\lambda$.
+
+Maksimum krever heltalls bølgelengder i veiforskjell. Minimum krever halv-heltalls bølgelengder. Halv intensitet i et tostråleoppsett ligger midt i fase mellom maksimum og minimum (jf. <FormulaRef id="young">intensitetsmønsteret</FormulaRef>).
+
+<Example title="fase og intensitet">
+
+To like sterke koherente stråler har veiforskjell $\Delta=\lambda/3$. Hva blir intensiteten relativt til maksimum?
+
+<Solution>
+
+**Fase.**
+
+$\Delta\phi=2\pi(\Delta/\lambda)=2\pi/3$.
+
+**Relativ intensitet.**
+
+For like amplituder er $I/I_\text{max}=\cos^2(\Delta\phi/2)=\cos^2(\pi/3)=1/4$.
+
+<Answer>$I = 0{,}25\,I_\text{max}$</Answer>
+
+</Solution>
+
+</Example>
+
+#### Flere kontrollspørsmål
+
+<Quiz
+  question={"Veiforskjellen $\\lambda/2$ gir for to like sterke stråler:"}
+  options={["maksimum","minimum","halv maksimum","ingen faseforskjell"]}
+  answer={1}
+  explanation={"$\\lambda/2$ tilsvarer faseforskjell $\\pi$, altså destruktiv interferens."}
+/>
+
+<Quiz
+  question={"En glassplate foran én spalt øker optisk veilengde med:"}
+  options={["$t$","$(n-1)t$","$nt/2$","$\\lambda/t$"]}
+  answer={1}
+  explanation={"Luftveien $t$ erstattes av glassveien $nt$, så økningen er $(n-1)t$."}
+/>
+
+<KeyTakeaways>
+
+- Superposisjon: felt summeres, intensitet går som amplitude², og kryssleddet er interferensen.
+- Young: maksima ved $a\sin\theta=m\lambda$, stripeavstand $\Delta y=\lambda L/a$ (større $a$ ⇒ tettere striper).
+- Oversett alltid mellom veiforskjell, fase ($\Delta\phi=2\pi\Delta/\lambda$) og intensitet ($\cos^2$).
+- En glassplate ($n,t$) over én spalt forskyver mønsteret $N=(n-1)t/\lambda$ striper.
+
+</KeyTakeaways>

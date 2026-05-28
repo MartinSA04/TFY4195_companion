@@ -1,0 +1,135 @@
+schemaVersion: 1
+code: TFY4195
+title: Optikk
+subtitle: Interaktiv pensumguide
+term: V2026
+language: nb
+repoUrl: "https://github.com/MartinSA04/TFY4195_companion"
+repoBranch: main
+accent: "#1f5f8b"
+accentDark: "#6ea9d8"
+exam:
+  format: MC/matching + 2 håndregningsoppgaver
+  aids: Godkjent kalkulator + utdelt formelark
+features:
+  progress: true
+  search: true
+  flashcards: true
+  theme: true
+links:
+  - { label: "Emneside (NTNU)", url: "https://www.ntnu.no/studier/emner/TFY4195" }
+glossary:
+  - { term: "Foton", definition: "Lysets kvant: en masseløs energipakke med energi $E=hf$ og impuls $p=h/\\lambda$. Et boson, så det adlyder Bose–Einstein-statistikk.", section: "Foton & radiometri" }
+  - { term: "Irradians", definition: "Strålingseffekt per areal inn på en flate, $[\\text{W/m}^2]$. En objektiv radiometrisk størrelse, i motsetning til den øyevektede fotometrien.", section: "Foton & radiometri" }
+  - { term: "Romvinkel", definition: "Vinkelutstrekningen til en flate sett fra et punkt, $\\Omega=A/r^2$, målt i steradianer (sr). En hel kule spenner $4\\pi\\,\\text{sr}$.", section: "Foton & radiometri" }
+  - { term: "Brytningsindeks", definition: "Forholdet $n=c/v$ mellom lysfarten i vakuum og i mediet. Bestemmer brytning (Snells lov) og bølgelengden i mediet, $\\lambda/n$.", section: "Geometrisk optikk" }
+  - { term: "Fermats prinsipp", definition: "Lys følger veien som gir stasjonær (oftest minste) optisk veilengde. Snells lov og refleksjonsloven følger direkte av dette.", section: "Geometrisk optikk" }
+  - { term: "Huygens' prinsipp", definition: "Hvert punkt på en bølgefront er kilde til nye kulebølger; den nye fronten er innhyllingen av disse. Forklarer brytning, refleksjon og diffraksjon geometrisk.", section: "Geometrisk optikk" }
+  - { term: "Optisk veilengde", definition: "$\\text{OPL}=\\sum_j n_j d_j$ — geometrisk lengde vektet med brytningsindeks. Lyset «føler» optisk vei, ikke geometrisk avstand; Fermats prinsipp gjelder OPL.", section: "Geometrisk optikk" }
+  - { term: "Paraksial tilnærming", definition: "Småvinkel-grensen $\\sin\\alpha\\approx\\tan\\alpha\\approx\\alpha$ der optikken blir lineær — grunnlaget for tynnlinse-likningen og stråle-transfer-matrisene.", section: "Geometrisk optikk" }
+  - { term: "Reelt bilde", definition: "Et bilde der lysstrålene faktisk møtes, så det kan fanges på en skjerm. Ligger på motsatt side av en samlelinse ($s_i>0$).", section: "Geometrisk optikk" }
+  - { term: "Virtuelt bilde", definition: "Et bilde der bare strålenes forlengelser møtes; kan ikke fanges på skjerm, men ses gjennom optikken ($s_i<0$). Alltid opprett.", section: "Geometrisk optikk" }
+  - { term: "Brennvidde", definition: "Avstanden $f$ fra en linse eller et speil til brennpunktet der innfallende parallelt lys samles. Positiv for samlende, negativ for spredende.", section: "Geometrisk optikk" }
+  - { term: "Lateral forstørrelse", definition: "Forholdet $m=-s_i/s_o$ mellom bilde- og objekthøyde. $|m|>1$ betyr forstørret, $m<0$ betyr invertert.", section: "Geometrisk optikk" }
+  - { term: "Vinkelforstørrelse", definition: "Forholdet $MP$ mellom synsvinkelen med og uten instrument — det relevante målet for lupe, mikroskop og teleskop (ikke lateral $m$).", section: "Geometrisk optikk" }
+  - { term: "Stråle-transfer-matrise", definition: "$2\\times2$-matrise som virker på strålevektoren $(y,\\alpha)$. Et helt system er produktet av elementmatrisene i motsatt rekkefølge av lysets gang.", section: "Geometrisk optikk" }
+  - { term: "Afokalt system", definition: "System uten endelig brennvidde ($C=0$ i systemmatrisen): parallelt lys inn gir parallelt lys ut. Teleskopet og beam-expanderen er afokale.", section: "Geometrisk optikk" }
+  - { term: "Fresnels likninger", definition: "Gir refleksjons- og transmisjonskoeffisientene ($r_{TE},r_{TM},t$) ved en grenseflate som funksjon av innfallsvinkel og brytningsindekser.", section: "Bølgeoptikk: felt, refleksjon & polarisering" }
+  - { term: "TE- og TM-polarisering", definition: "TE (s): $\\vec E$ står vinkelrett på innfallsplanet. TM (p): $\\vec E$ ligger i innfallsplanet. Fresnel-koeffisientene er ulike for de to.", section: "Bølgeoptikk: felt, refleksjon & polarisering" }
+  - { term: "Polarisering", definition: "Retningen til det elektriske feltet i en EM-bølge. Kan være lineær, sirkulær eller elliptisk; styres bl.a. av refleksjon (Brewster) og polarisasjonsfiltre.", section: "Bølgeoptikk: felt, refleksjon & polarisering" }
+  - { term: "Brewster-vinkel", definition: "Innfallsvinkelen $\\theta_p=\\arctan(n_2/n_1)$ der reflektert lys blir fullstendig lineært polarisert (TM-komponenten forsvinner).", section: "Bølgeoptikk: felt, refleksjon & polarisering" }
+  - { term: "Reflektans", definition: "Andelen av innfallende effekt som reflekteres, $R=r^2$. Sammen med transmittansen $T$ er $R+T=1$ (energibevaring).", section: "Bølgeoptikk: felt, refleksjon & polarisering" }
+  - { term: "Total intern refleksjon", definition: "Ved innfall fra tett mot tynt medium over den kritiske vinkelen reflekteres alt lyset internt — ingen transmittert stråle.", section: "Bølgeoptikk: felt, refleksjon & polarisering" }
+  - { term: "Evanescent bølge", definition: "Det eksponentielt avtagende feltet $E\\propto e^{-z/d}$ som lekker en kort vei inn i det tynne mediet ved total intern refleksjon.", section: "Bølgeoptikk: felt, refleksjon & polarisering" }
+  - { term: "Dispersjon", definition: "At brytningsindeksen $n(\\lambda)$ varierer med bølgelengde, så ulike farger brytes ulikt (prisme, regnbue) og reiser ulikt fort i en fiber (materialdispersjon).", section: "Bølgeoptikk: felt, refleksjon & polarisering" }
+  - { term: "Superposisjonsprinsippet", definition: "Det resulterende feltet av flere bølger er summen av feltene i hvert punkt; intensitetens kryssledd $2E_{01}E_{02}\\cos\\Delta\\alpha$ er interferensen.", section: "Bølgeoptikk: interferens & koherens" }
+  - { term: "Koherens", definition: "Et felts evne til å interferere med en forsinket (temporal) eller forskjøvet (spatial) kopi av seg selv. Settes av spektralbredde og kildestørrelse.", section: "Bølgeoptikk: interferens & koherens" }
+  - { term: "Synlighet", definition: "Stripekontrast $V=(I_\\text{max}-I_\\text{min})/(I_\\text{max}+I_\\text{min})$. Faller mot null når veiforskjellen overstiger koherenslengden (visibility).", section: "Bølgeoptikk: interferens & koherens" }
+  - { term: "Michelson-interferometer", definition: "Stråledeler sender lys mot to speil og rekombinerer; $I=4I_0\\cos^2(\\delta/2)$. Flytter du ett speil $\\Delta d$, teller du $2\\Delta d/\\lambda$ striper.", section: "Bølgeoptikk: interferens & koherens" }
+  - { term: "Antirefleksbelegg", definition: "Kvartbølgelag ($2n_f t=\\lambda/2$) som gir destruktiv refleksjon ved én bølgelengde, så mer lys transmitteres. Et tynnfilm-interferens-fenomen.", section: "Bølgeoptikk: interferens & koherens" }
+  - { term: "Numerisk apertur", definition: "$NA=\\sqrt{n_1^2-n_2^2}$ — sinus av den største akseptansevinkelen en fiber kan fange og lede ved total intern refleksjon.", section: "Optiske fibre" }
+  - { term: "Step-index-fiber", definition: "Fiber med skarp indeksovergang kjerne→kappe. Enkel og billig, men har mest modal dispersjon.", section: "Optiske fibre" }
+  - { term: "Graded-index-fiber", definition: "GRIN-fiber der indeksen avtar gradvis utover; strålene bøyes kontinuerlig og får nesten lik gangtid ⇒ mye mindre modal dispersjon.", section: "Optiske fibre" }
+  - { term: "Modal dispersjon", definition: "Pulsutsmøring fordi ulike moder har ulik gangtid. Verst i multimodus step-index; fjernes i singelmodus og reduseres kraftig i GRIN.", section: "Optiske fibre" }
+  - { term: "Materialdispersjon", definition: "Pulsutsmøring fordi $n(\\lambda)$ varierer, så ulike bølgelengder reiser ulikt fort. Skaleres med kildens spektralbredde; null nær 1,3 µm i silika.", section: "Optiske fibre" }
+  - { term: "Rayleigh-spredning", definition: "Spredning på små tetthetsvariasjoner i glasset, tverrsnitt $\\propto1/\\lambda^4$. Dominerer fiberens intrinsiske tap — derfor velges lange bølgelengder.", section: "Optiske fibre" }
+  - { term: "Båndbredde–avstand-produkt", definition: "$\\nu_\\text{max}L=0{,}5/(\\delta\\tau/L)$ — fiberens nøkkeltall for hvor høy bitrate den tåler over en gitt lengde.", section: "Optiske fibre" }
+  - { term: "EDFA", definition: "Erbium-dopet fiberforsterker, pumpet ved ~980 nm, som forsterker hele C-båndet optisk ved stimulert emisjon — uten elektrisk OEO-regenerering.", section: "Optiske fibre" }
+  - { term: "WDM", definition: "Bølgelengdemultipleksing: flere bærebølgelengder samtidig i én fiber. DWDM pakker ~45 kanaler à 0,8 nm (100 GHz) i C-båndet.", section: "Optiske fibre" }
+  - { term: "Fiber-Bragg-gitter", definition: "Periodisk indeksmodulasjon (periode $\\Lambda$) som virker som et bølgelengdespesifikt speil; reflekterer $\\lambda_B=2n_1\\Lambda$.", section: "Optiske fibre" }
+  - { term: "Mach–Zehnder-interferometer", definition: "To-arms fiberinterferometer brukt som mux/demux: veiforskjellen velges så én bølgelengde gir konstruktiv og en annen destruktiv interferens.", section: "Optiske fibre" }
+  - { term: "Diffraksjon", definition: "Bølgers avbøyning og spredning når de passerer en åpning eller kant på størrelse med bølgelengden.", section: "Diffraksjon" }
+  - { term: "Fraunhofer-diffraksjon", definition: "Diffraksjon i fjernfeltet ($L\\gg b^2/\\lambda$), der mønsteret er Fourier-transformen av aperturen.", section: "Diffraksjon" }
+  - { term: "Airy-skive", definition: "Diffraksjonsmønsteret fra en sirkulær apertur: en sentral skive med mørke ringer. Første mørke ring ved $\\Delta\\theta=1{,}22\\lambda/D$.", section: "Diffraksjon" }
+  - { term: "Diffraksjonsgitter", definition: "En periodisk struktur av mange spalter som gir skarpe, lyssterke maksima; brukes til å splitte lys etter bølgelengde.", section: "Diffraksjon" }
+  - { term: "Oppløsningsevne", definition: "Et instruments evne til å skille to nære detaljer — to bølgelengder ($\\mathcal R=\\lambda/\\Delta\\lambda=mN$) eller to punkter (Rayleigh-kriteriet).", section: "Diffraksjon" }
+  - { term: "Fritt spektralområde", definition: "Bølgelengdeintervallet $\\lambda_\\text{fsr}=\\lambda_1/m$ før naboordener fra et gitter (eller et Fabry–Perot) overlapper.", section: "Diffraksjon" }
+formulas:
+  - { tex: "E=hf=\\dfrac{hc}{\\lambda}", label: "Foton-energi fra frekvens / bølgelengde. h = Plancks konstant.", section: "Foton & radiometri", id: "foton-energi" }
+  - { tex: "p=\\dfrac{E}{c}=\\dfrac{h}{\\lambda}", label: "Foton-impuls.", section: "Foton & radiometri", id: "foton-impuls" }
+  - { tex: "\\lambda f = c,\\quad v=\\dfrac{pc^2}{E}=c", label: "Fart i vakuum.", section: "Foton & radiometri", id: "fart-vakuum" }
+  - { tex: "\\Omega = \\dfrac{A}{r^2}", label: "Romvinkel i steradianer.", section: "Foton & radiometri", memorize: true, onSheet: false, id: "romvinkel" }
+  - { tex: "n_i\\sin\\theta_i=n_t\\sin\\theta_t", label: "Snells lov. Vinkler måles fra normalen; indeks i = innfallsmedium, t = transmittert medium.", section: "Geometrisk optikk: Snell & linser", id: "snells" }
+  - { tex: "\\dfrac{1}{s_o}+\\dfrac{1}{s_i}=\\dfrac{1}{f}", label: "Tynnlinse-/avbildningslikningen. $s_o$ = objektavstand, $s_i$ = bildeavstand, $f$ = brennvidde.", section: "Geometrisk optikk: Snell & linser", id: "tynnlinse" }
+  - { tex: "m=-\\dfrac{s_i}{s_o}", label: "Lateral forstørrelse. m = invertert.", section: "Geometrisk optikk: Snell & linser", id: "lateral-forstorrelse" }
+  - { tex: "\\dfrac{1}{f}=\\dfrac{n_2-n_1}{n_1}\\!\\left(\\dfrac{1}{R_1}-\\dfrac{1}{R_2}\\right)", label: "Linsemakerformelen (linse $n_2$ i medium $n_1$). $R_1,R_2$ = krumningsradier for fram- og bakflate (med fortegn).", section: "Geometrisk optikk: Snell & linser", id: "linsemaker" }
+  - { tex: "f=\\mp\\dfrac{R}{2}", label: "Sfærisk speil (konkavt $f>0$).", section: "Geometrisk optikk: Snell & linser", id: "sfaerisk-speil" }
+  - { tex: "\\begin{pmatrix}1 & d \\\\ 0 & 1\\end{pmatrix}", label: "Translasjon avstand $d$ (i samme medium).", section: "Stråle-transfer-matriser", id: "matrise-translasjon" }
+  - { tex: "\\begin{pmatrix}1 & 0 \\\\ -1/f & 1\\end{pmatrix}", label: "Tynn linse med brennvidde $f$.", section: "Stråle-transfer-matriser", id: "matrise-tynnlinse" }
+  - { tex: "\\begin{pmatrix}1 & 0 \\\\ 0 & n_1/n_2\\end{pmatrix}", label: "Brytning i plan flate.", section: "Stråle-transfer-matriser", id: "matrise-plan" }
+  - { tex: "\\begin{pmatrix}1 & 0 \\\\ \\frac{n_1-n_2}{n_2 R} & n_1/n_2\\end{pmatrix}", label: "Brytning i sfærisk flate radius $R$.", section: "Stråle-transfer-matriser", id: "matrise-sfaerisk" }
+  - { tex: "T(d)=\\begin{pmatrix}1 & d \\\\ 0 & 1\\end{pmatrix}", label: "Translasjon (fri propagasjon).", section: "Ray tracing — byggematriser", id: "rt-translasjon" }
+  - { tex: "R_P=\\begin{pmatrix}1 & 0 \\\\ 0 & n_1/n_2\\end{pmatrix}", label: "Brytning, plan flate.", section: "Ray tracing — byggematriser", id: "rt-plan" }
+  - { tex: "R_S=\\begin{pmatrix}1 & 0 \\\\ \\frac{n_1-n_2}{n_2 R} & n_1/n_2\\end{pmatrix}", label: "Brytning, sfærisk flate.", section: "Ray tracing — byggematriser", id: "rt-sfaerisk" }
+  - { tex: "L(f)=\\begin{pmatrix}1 & 0 \\\\ -1/f & 1\\end{pmatrix}", label: "Tynn linse.", section: "Ray tracing — byggematriser", id: "rt-linse" }
+  - { tex: "M_\\text{speil}=\\begin{pmatrix}1 & 0 \\\\ -2/R & 1\\end{pmatrix}", label: "Sfærisk speil ($f=R/2$).", section: "Ray tracing — byggematriser", memorize: true, onSheet: false, id: "rt-speil" }
+  - { tex: "MP_\\text{lupe}=\\dfrac{25\\text{ cm}}{f}", label: "Enkel lupe (bilde i uendelig). $MP$ = vinkelforstørrelse (ikke lateral $m$); 25 cm = øyets nærpunkt.", section: "Optiske instrumenter", memorize: true, onSheet: false, id: "lupe" }
+  - { tex: "M_\\text{mik}=-\\dfrac{L}{f_o}\\cdot\\dfrac{25}{f_e}", label: "Sammensatt mikroskop, tubuslengde $L$. $f_o$ = objektiv-, $f_e$ = okularbrennvidde.", section: "Optiske instrumenter", memorize: true, onSheet: false, id: "mikroskop" }
+  - { tex: "MP_\\text{tel}=-\\dfrac{f_o}{f_e}", label: "Teleskop (refraktor): vinkelforstørrelse = objektiv- delt på okularbrennvidde.", section: "Optiske instrumenter", memorize: true, onSheet: false, id: "teleskop" }
+  - { tex: "f\\#=\\dfrac{f}{D}", label: "f-tall: brennvidde / aperturdiameter.", section: "Optiske instrumenter", memorize: true, onSheet: false, id: "f-tall" }
+  - { tex: "\\nabla^2\\vec E=\\dfrac{n^2}{c^2}\\dfrac{\\partial^2\\vec E}{\\partial t^2}", label: "Bølgelikningen for EM-felt.", section: "Maxwell & EM-bølger", id: "bolgelikning" }
+  - { tex: "\\vec E=\\vec E_0\\cos(\\vec k\\cdot\\vec r-\\omega t)", label: "Plan-bølge, med $\\omega=kv,\\ k=2\\pi/\\lambda$.", section: "Maxwell & EM-bølger", memorize: true, onSheet: false, id: "plan-bolge" }
+  - { tex: "B_0=E_0/v", label: "Forhold mellom amplitudene.", section: "Maxwell & EM-bølger", memorize: true, onSheet: false, id: "b0-e0" }
+  - { tex: "\\vec S=c^2\\varepsilon_0(\\vec E\\times\\vec B)", label: "Poynting-vektor (energifluks).", section: "Maxwell & EM-bølger", id: "poynting" }
+  - { tex: "I=\\langle S\\rangle=\\tfrac12 c\\,n\\,\\varepsilon_0 E_0^2", label: "Intensitet (tidsmidlet).", section: "Maxwell & EM-bølger", id: "intensitet" }
+  - { tex: "r_{TE}=\\dfrac{\\cos\\theta-\\sqrt{n^2-\\sin^2\\theta}}{\\cos\\theta+\\sqrt{n^2-\\sin^2\\theta}}", label: "TE-refleksjonskoeff. (s-pol: $\\vec E$ vinkelrett på innfallsplanet). $n=n_2/n_1$.", section: "Fresnel, Brewster & polarisering", id: "r-te" }
+  - { tex: "r_{TM}=\\dfrac{-n^2\\cos\\theta+\\sqrt{n^2-\\sin^2\\theta}}{n^2\\cos\\theta+\\sqrt{n^2-\\sin^2\\theta}}", label: "TM-refleksjonskoeff. (p-pol: $\\vec E$ i innfallsplanet).", section: "Fresnel, Brewster & polarisering", id: "r-tm" }
+  - { tex: "R=r^2,\\quad T=n\\dfrac{\\cos\\theta_t}{\\cos\\theta}\\,t^2", label: "Energi-reflektans og -transmittans, $R+T=1$.", section: "Fresnel, Brewster & polarisering", id: "reflektans-transmittans" }
+  - { tex: "\\theta_p=\\arctan\\!\\dfrac{n_2}{n_1}", label: "Brewster-vinkel (reflektert lys lineært polarisert).", section: "Fresnel, Brewster & polarisering", id: "brewster" }
+  - { tex: "\\sin\\theta_c=\\dfrac{n_2}{n_1}", label: "Kritisk vinkel (tett→tynt, $n_1>n_2$).", section: "Total intern refleksjon & evanescente bølger", memorize: true, onSheet: false, id: "kritisk-vinkel" }
+  - { tex: "|r|=1\\text{ for }\\theta>\\theta_c", label: "Total intern refleksjon, kompleks $r$ (faseforskyvning).", section: "Total intern refleksjon & evanescente bølger", memorize: true, onSheet: false, id: "tir" }
+  - { tex: "E(z)\\propto e^{-z/d}", label: "Evanescent bølge, eksponentielt avtagende. $z$ = dybde inn i det tynne mediet, $d$ = inntrengningsdybde.", section: "Total intern refleksjon & evanescente bølger", memorize: true, onSheet: false, id: "evanescent" }
+  - { tex: "\\theta_\\text{regn}\\approx 42^\\circ\\,(1°),\\,51^\\circ\\,(2°)", label: "Primær- og sekundærbue.", section: "Total intern refleksjon & evanescente bølger", memorize: true, onSheet: false, id: "regnbue" }
+  - { tex: "E_0^2=E_{01}^2+E_{02}^2+2E_{01}E_{02}\\cos(\\alpha_2-\\alpha_1)", label: "Resulterende amplitude (fasoraddisjon).", section: "Superposisjon & Youngs dobbeltspalt", id: "fasoraddisjon" }
+  - { tex: "I_\\text{tot}=4I_0\\cos^2\\!\\big(\\tfrac{\\pi a\\sin\\theta}{\\lambda}\\big)", label: "Youngs intensitetsmønster. $a$ = spalteavstand (senter til senter).", section: "Superposisjon & Youngs dobbeltspalt", id: "young" }
+  - { tex: "\\Delta y=\\dfrac{\\lambda L}{a}", label: "Stripeavstand på skjermen. $L$ = skjermavstand, $a$ = spalteavstand.", section: "Superposisjon & Youngs dobbeltspalt", id: "stripeavstand" }
+  - { tex: "N=\\dfrac{(n-1)t}{\\lambda}", label: "Stripeforskyvning fra glassplate over én spalt. $t$ = platetykkelse, $N$ = antall striper mønsteret forskyves.", section: "Superposisjon & Youngs dobbeltspalt", memorize: true, onSheet: false, id: "glassplate" }
+  - { tex: "l_c=\\dfrac{\\lambda_0^2}{\\Delta\\lambda}=\\dfrac{c}{\\Delta f}", label: "Temporal koherenslengde. $\\Delta\\lambda$ = kildens spektralbredde.", section: "Koherens, Michelson & tynne filmer", id: "koherenslengde" }
+  - { tex: "l_s<\\dfrac{1{,}22\\lambda}{\\theta}", label: "Spatial koherenslengde (sirkulær apertur). $\\theta$ = kildens vinkelutstrekning.", section: "Koherens, Michelson & tynne filmer", id: "spatial-koherens" }
+  - { tex: "I=4I_0\\cos^2(\\delta/2),\\ \\Delta p=2d\\cos\\theta", label: "Michelson-interferometer. $\\delta$ = faseforskjell mellom armene, $\\Delta p$ = veiforskjell, $d$ = speilforskyvning.", section: "Koherens, Michelson & tynne filmer", id: "michelson" }
+  - { tex: "V=\\dfrac{I_\\text{max}-I_\\text{min}}{I_\\text{max}+I_\\text{min}}", label: "Synlighet (visibility).", section: "Koherens, Michelson & tynne filmer", id: "visibility" }
+  - { tex: "\\Delta=2n_f t\\cos\\theta_t", label: "Tynnfilm: optisk veiforskjell. $n_f$ = filmens brytningsindeks, $t$ = filmtykkelse, $\\theta_t$ = brytningsvinkel i filmen.", section: "Koherens, Michelson & tynne filmer", id: "tynnfilm" }
+  - { tex: "\\sin\\phi_c=\\dfrac{n_2}{n_1}", label: "Kritisk vinkel ved kjerne–kappe. $\\phi_c$ måles fra grenseflaten (ikke normalen).", section: "Optiske fibre & kommunikasjon", memorize: true, onSheet: false, id: "fiber-kritisk" }
+  - { tex: "NA=n_0\\sin\\theta_\\text{max}=\\sqrt{n_1^2-n_2^2}", label: "Numerisk apertur / akseptansevinkel.", section: "Optiske fibre & kommunikasjon", memorize: true, onSheet: false, id: "na" }
+  - { tex: "L_s=\\dfrac{d}{\\tan\\theta'}=d\\sqrt{\\left(\\dfrac{n_1}{n_0\\sin\\theta}\\right)^2-1}", label: "Skip-avstand mellom refleksjoner ($d$ = kjernediameter).", section: "Optiske fibre & kommunikasjon", memorize: true, onSheet: false, id: "skip-avstand" }
+  - { tex: "m_{x,\\text{max}}\\cong\\dfrac{2d}{\\lambda}\\,NA", label: "Høyeste modetall (slab-tilnærming).", section: "Optiske fibre & kommunikasjon", memorize: true, onSheet: false, id: "modetall-max" }
+  - { tex: "N_\\text{moder}\\approx 4\\left(\\dfrac{d\\,NA}{\\lambda}\\right)^2", label: "Totalt antall moder, sylindrisk fiber.", section: "Optiske fibre & kommunikasjon", memorize: true, onSheet: false, id: "antall-moder" }
+  - { tex: "d<\\dfrac{2{,}4\\,\\lambda}{\\pi\\,NA}", label: "Singelmodus-betingelse (kjernediameter).", section: "Optiske fibre & kommunikasjon", memorize: true, onSheet: false, id: "singelmodus" }
+  - { tex: "I_L=I_0e^{-\\alpha L},\\quad \\alpha=\\dfrac{1}{L}\\ln\\dfrac{I_0}{I_L}", label: "Beers lov (dempningskoeffisient).", section: "Optiske fibre & kommunikasjon", memorize: true, onSheet: false, id: "beer" }
+  - { tex: "\\alpha_\\text{dB}=10\\log_{10}\\dfrac{P_\\text{inn}}{P_\\text{ut}}=\\dfrac{10}{\\ln 10}\\,\\alpha", label: "Dempning i dB/km (over 1 km).", section: "Optiske fibre & kommunikasjon", memorize: true, onSheet: false, id: "dempning-db" }
+  - { tex: "\\left(\\dfrac{\\delta\\tau}{L}\\right)_\\text{step}=\\dfrac{n_1}{c}\\dfrac{n_1-n_2}{n_2}", label: "Modal dispersjon, step-index. $\\delta\\tau/L$ = pulsutsmøring per lengde.", section: "Optiske fibre & kommunikasjon", memorize: true, onSheet: false, id: "modal-step" }
+  - { tex: "\\left(\\dfrac{\\delta\\tau}{L}\\right)_\\text{GRIN}\\approx\\dfrac{n_1}{2c}\\Delta_n^{2}", label: "Modal dispersjon, parabolisk GRIN ($\\Delta_n\\approx\\tfrac{n_1-n_2}{n_1}$).", section: "Optiske fibre & kommunikasjon", memorize: true, onSheet: false, id: "modal-grin" }
+  - { tex: "\\dfrac{\\delta\\tau}{L}=-M\\,\\Delta\\lambda", label: "Materialdispersjon ($M$ i ps/(nm·km)).", section: "Optiske fibre & kommunikasjon", memorize: true, onSheet: false, id: "materialdispersjon" }
+  - { tex: "\\nu_\\text{max}L=\\dfrac{0{,}5}{(\\delta\\tau/L)}", label: "Båndbredde–avstand-produkt.", section: "Optiske fibre & kommunikasjon", memorize: true, onSheet: false, id: "baandbredde" }
+  - { tex: "\\lambda_B=2n_1\\Lambda", label: "Fiber-Bragg-gitter: reflektert bølgelengde. $\\Lambda$ = gitterets periode.", section: "Optiske fibre & kommunikasjon", memorize: true, onSheet: false, id: "fbg" }
+  - { tex: "\\Delta L=\\dfrac{m\\lambda_1}{n}=\\dfrac{(m+\\tfrac12)\\lambda_2}{n}", label: "Mach–Zehnder to-kanals demux (begge må gjelde).", section: "Optiske fibre & kommunikasjon", memorize: true, onSheet: false, id: "mach-zehnder" }
+  - { tex: "\\mathcal R\\approx\\dfrac{500}{d\\,[\\mu\\text{m}]}", label: "Spatial oppløsning til fiberbunt (lin/mm).", section: "Optiske fibre & kommunikasjon", memorize: true, onSheet: false, id: "fiberbunt" }
+  - { tex: "I=I_0\\left(\\dfrac{\\sin\\beta}{\\beta}\\right)^2,\\ \\beta=\\dfrac{\\pi b\\sin\\theta}{\\lambda}", label: "Enkeltspalt-intensitet. $b$ = spaltbredde (ikke spalteavstand $a$).", section: "Fraunhofer-diffraksjon & oppløsning", id: "enkeltspalt" }
+  - { tex: "b\\sin\\theta_m=m\\lambda", label: "Minima for enkeltspalt (utledbar fra $\\sin\\beta=0$).", section: "Fraunhofer-diffraksjon & oppløsning", memorize: true, onSheet: false, id: "enkeltspalt-minima" }
+  - { tex: "\\Delta\\theta_{1/2}=\\dfrac{1{,}22\\lambda}{D}\\approx\\dfrac{\\Delta x}{L}", label: "Airy-skive / Rayleigh-kriteriet. $D$ = aperturdiameter, $\\Delta x$ = spotradius, $L$ = avstand.", section: "Fraunhofer-diffraksjon & oppløsning", id: "rayleigh" }
+  - { tex: "L\\gg\\dfrac{b^2}{\\lambda}", label: "Fraunhofer (fjernfelt) gyldig.", section: "Fraunhofer-diffraksjon & oppløsning", id: "fjernfelt" }
+  - { tex: "I=I_0\\big(\\tfrac{\\sin\\beta}{\\beta}\\big)^2\\big(\\tfrac{\\sin N\\alpha}{\\sin\\alpha}\\big)^2", label: "$N$ spalter, bredde $b$, avstand $a$.", section: "Fourier-optikk & gitteret", id: "flerspalt" }
+  - { tex: "m\\lambda=a(\\sin\\theta_i+\\sin\\theta_m)", label: "Gitterlikningen. $a$ = spalteavstand (gitterkonstant), $\\theta_i$ = innfalls-, $\\theta_m$ = utfallsvinkel for orden $m$.", section: "Fourier-optikk & gitteret", id: "gitter" }
+  - { tex: "\\mathcal R=\\dfrac{\\lambda}{\\Delta\\lambda}=mN", label: "Spektral oppløsning $\\mathcal R$ = evnen til å skille to nære bølgelengder; $N$ = antall belyste spalter.", section: "Fourier-optikk & gitteret", id: "gitter-opplosning" }
+  - { tex: "\\mathcal D=\\dfrac{d\\theta_m}{d\\lambda}=\\dfrac{m}{a\\cos\\theta_m}", label: "Vinkeldispersjon $\\mathcal D$ = hvor mye utfallsvinkelen endrer seg per bølgelengde.", section: "Fourier-optikk & gitteret", id: "gitter-dispersjon" }
+  - { tex: "\\lambda_\\text{fsr}=\\dfrac{\\lambda_1}{m}", label: "Fritt spektralområde: bølgelengdeintervallet før naboordener (orden $m$) overlapper.", section: "Fourier-optikk & gitteret", id: "fsr" }

@@ -1,0 +1,161 @@
+---
+order: 7
+title: "Fresnels likninger, Brewster & polarisering"
+summary: "Når lys treffer en flate, deles det i en reflektert og en transmittert del. Hvor mye, og hvilken polarisering, gis av Fresnels likninger. Disse skiller mellom T"
+importance: useful
+estMinutes: 20
+tags: ["Bølgeoptikk II"]
+part: "Bølgeoptikk"
+updated: 2026-05-28
+---
+
+<LearningGoals>
+
+- Bruke **Fresnels likninger** for TE- og TM-polarisering ved en flate.
+- Beregne **reflektans R** og **transmittans T** (energibevaring $R+T=1$).
+- Finne og forklare **Brewster-vinkelen** og polariseringstilstanden til reflektert lys.
+
+</LearningGoals>
+
+### Kjernen i temaet
+
+Når lys treffer en flate, deles det i en reflektert og en transmittert del. Hvor mye, og hvilken polarisering, gis av <Term name="Fresnels likninger">Fresnels likninger</Term>. Disse skiller mellom **<Term name="TE- og TM-polarisering">TE</Term>** (s, E vinkelrett innfallsplanet) og **TM** (p, E i innfallsplanet).
+
+#### Brewster-vinkelen
+
+Ved $\theta_p=\arctan(n_2/n_1)$ er $r_{TM}=0$: TM-komponenten reflekteres ikke. Da er **alt reflektert lys lineært <Term name="Polarisering">polarisert</Term>** (kun TE). Dette er prinsippet bak polariserte solbriller og Brewster-vinduer i lasere.
+
+<Statement kind="law" name="Brewsters lov">
+
+Reflektert lys blir fullstendig lineært polarisert (kun TE) når innfallsvinkelen er $\theta_p=\arctan(n_2/n_1)$. Da står den reflekterte og den transmitterte strålen vinkelrett på hverandre.
+
+</Statement>
+
+#### Tolkning av Fresnel-kurvene
+
+- <Term name="Reflektans">Reflektansen</Term> ved normal innfall: $R=\left(\dfrac{n_1-n_2}{n_1+n_2}\right)^2$ (≈4 % for glass/luft).
+- TM-kurven krysser null ved Brewster; TE øker monotont.
+- Internt (fra tett til tynt medium) over kritisk vinkel: $|r|=1$ for begge — total intern refleksjon.
+
+<Formula tex={"r_{TE}=\\dfrac{\\cos\\theta-\\sqrt{n^2-\\sin^2\\theta}}{\\cos\\theta+\\sqrt{n^2-\\sin^2\\theta}}"} caption={"TE-refleksjonskoeff. (s-pol: $\\vec E$ vinkelrett på innfallsplanet). $n=n_2/n_1$."} />
+
+<Formula tex={"r_{TM}=\\dfrac{-n^2\\cos\\theta+\\sqrt{n^2-\\sin^2\\theta}}{n^2\\cos\\theta+\\sqrt{n^2-\\sin^2\\theta}}"} caption={"TM-refleksjonskoeff. (p-pol: $\\vec E$ i innfallsplanet)."} />
+
+<Formula tex={"R=r^2,\\quad T=n\\dfrac{\\cos\\theta_t}{\\cos\\theta}\\,t^2"} caption={"Energi-reflektans og -transmittans, $R+T=1$."} />
+
+<Formula tex={"\\theta_p=\\arctan\\!\\dfrac{n_2}{n_1}"} caption={"Brewster-vinkel (reflektert lys lineært polarisert)."} />
+
+<ExamFocus title="Slik testes dette på eksamen">
+
+*«Fate of laser» (MC) · Brewster · Polarisering ved refleksjon · TIR*
+
+«FresnelC»: en 45°-polarisert (lik TE/TM) stråle treffer en flate på en gitt vinkel — hva skjer? Du regner Brewster og kritisk vinkel, og sammenligner. Andre oppgaver: hva er polariseringstilstanden til reflektert lys ved Brewster (svar: lineært polarisert, kun TE)? Sirkulærpolarisert lys reflektert ved Brewster blir lineært.
+
+</ExamFocus>
+
+<Example title="Brewster">
+
+Lys går fra luft ($n_1=1{,}0$) mot glass ($n_2=1{,}52$). Hva er Brewster-vinkelen, og hva skjer med 45°-polarisert lys ved denne vinkelen?
+
+<Solution>
+
+$\theta_p=\arctan(1{,}52/1{,}0)=\arctan(1{,}52)\approx 56{,}7^\circ$.
+
+Ved $\theta_p$ er $r_{TM}=0$. Den reflekterte strålen inneholder bare TE-komponenten ⇒ **fullstendig lineært polarisert** (vinkelrett innfallsplanet). TM-delen transmitteres fullt.
+
+<Answer>$\theta_p \approx 56{,}7^\circ$; reflektert lys er lineært polarisert (TE)</Answer>
+
+</Solution>
+
+</Example>
+
+Endre forholdet $n_2/n_1$. Se Brewster-vinkelen (TM→0) og — ved internt forhold &lt;1 — den kritiske vinkelen der begge går til 1.
+
+<Simulation src={"/sims/fresnelCanvas.js"} title={"Interaktivt: Fresnel-reflektans vs. vinkel"} height={300} />
+
+#### Sjekk deg selv
+
+<Quiz
+  question={"Uppolarisert lys treffer glass ved Brewster-vinkelen. Det reflekterte lyset er:"}
+  options={["uppolarisert","fullstendig lineært polarisert","sirkulært polarisert","ikke-eksisterende"]}
+  answer={1}
+  explanation={"Ved Brewster er $r_{TM}=0$, så bare TE-komponenten reflekteres ⇒ lineært polarisert."}
+/>
+
+<Quiz
+  question={"Ved normal innfall luft→glass ($n=1{,}5$) er reflektansen omtrent:"}
+  options={["0 %","4 %","25 %","50 %"]}
+  answer={1}
+  explanation={"$R=((1-1{,}5)/(1+1{,}5))^2=(0{,}2)^2=0{,}04=4\\%$."}
+/>
+
+### Mer forklaring — TE/TM uten pugging
+
+TE og TM er definert relativt til innfallsplanet, ikke relativt til bordet eller skjermen. Tegn innfallsplanet først: det spennes ut av innkommende stråle og normalen.
+
+TE betyr at E-feltet står vinkelrett på dette planet. TM betyr at E-feltet ligger i planet. Ved Brewster (<FormulaRef id="brewster" />) forsvinner TM-refleksjonen, derfor blir reflektert lys rent TE.
+
+<Compare>
+
+<CompareCol title="TE (s-polarisert)">
+
+- $\vec E$ står **vinkelrett** på innfallsplanet.
+- $r_{TE}$ øker monotont med vinkelen — ingen nullpunkt.
+- Er den eneste komponenten som overlever refleksjon ved Brewster.
+
+</CompareCol>
+
+<CompareCol title="TM (p-polarisert)">
+
+- $\vec E$ ligger **i** innfallsplanet.
+- $r_{TM}$ krysser null ved Brewster-vinkelen $\theta_p$.
+- Transmitteres fullstendig ved $\theta_p$ — derav polariserende refleksjon.
+
+</CompareCol>
+
+</Compare>
+
+<Example title="normalrefleksjon ved glass">
+
+Lys går normalt fra luft til glass med $n=1{,}50$. Finn reflektansen ved flaten.
+
+<Solution>
+
+**Normal innfall.**
+
+$R=\left((n_1-n_2)/(n_1+n_2)\right)^2$.
+
+**Innsetting.**
+
+$R=((1{,}00-1{,}50)/(1{,}00+1{,}50))^2=(-0{,}20)^2=0{,}040$.
+
+<Answer>$R = 4{,}0$ %</Answer>
+
+</Solution>
+
+</Example>
+
+#### Flere kontrollspørsmål
+
+<Quiz
+  question={"Ved Brewster-vinkelen for luft→glass er hvilken komponent null i refleksjon?"}
+  options={["TE","TM","begge","ingen"]}
+  answer={1}
+  explanation={"Brewster-betingelsen er $r_{TM}=0$."}
+/>
+
+<Quiz
+  question={"Innfallsplanet bestemmes av:"}
+  options={["E-feltet alene","B-feltet alene","innkommende stråle og normalen","overflaten alene"]}
+  answer={2}
+  explanation={"Innfallsplanet er planet som inneholder stråleretningen og normalen til flaten."}
+/>
+
+<KeyTakeaways>
+
+- Fresnels likninger gir $r_{TE}$ og $r_{TM}$; energi bevares som $R+T=1$ med $R=r^2$.
+- **TE** har $\vec E$ vinkelrett på innfallsplanet, **TM** har $\vec E$ i planet.
+- Ved Brewster $\theta_p=\arctan(n_2/n_1)$ er $r_{TM}=0$ ⇒ reflektert lys er rent TE (lineært polarisert).
+- Normal innfall luft→glass gir $R\approx 4\,\%$; internt over kritisk vinkel gir $|r|=1$ (TIR).
+
+</KeyTakeaways>

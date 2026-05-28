@@ -1,0 +1,139 @@
+---
+order: 8
+title: "Total intern refleksjon, evanescente bølger & regnbuen"
+summary: "Når lys forsøker å gå fra et tett til et tynt medium ved stor vinkel, reflekteres alt internt. Men feltet «lekker» en kort avstand inn i det tynne mediet som en"
+importance: useful
+estMinutes: 20
+tags: ["Bølgeoptikk III"]
+part: "Bølgeoptikk"
+updated: 2026-05-28
+---
+
+<LearningGoals>
+
+- Beregne **kritisk vinkel** og forstå total intern refleksjon (TIR).
+- Beskrive **evanescente bølger** og anvendelser (TIR-mikroskopi, bølgeledere).
+- Forklare **regnbuen** kvantitativt (primær ~42°, sekundær ~51°, dispersjon).
+
+</LearningGoals>
+
+### Kjernen i temaet
+
+Når lys forsøker å gå fra et tett til et tynt medium ved stor vinkel, reflekteres alt internt. Men feltet «lekker» en kort avstand inn i det tynne mediet som en <Term name="Evanescent bølge">evanescent bølge</Term> — grunnlaget for fiberoptikk og nær-felt-mikroskopi.
+
+#### Kritisk vinkel
+
+$\sin\theta_c=n_2/n_1$ (fra tett $n_1$ til tynt $n_2$). For $\theta>\theta_c$: TIR, og $r_{TE},r_{TM}$ blir komplekse med $|r|=1$ — full refleksjon, men med faseforskyvning (Goos–Hänchen).
+
+<Statement kind="law" name="Total intern refleksjon">
+
+Går lys fra et tett mot et tynt medium og innfallsvinkelen overstiger den kritiske vinkelen (<FormulaRef id="kritisk-vinkel" />), reflekteres alt internt: $|r|=1$, uten transmittert stråle.
+
+</Statement>
+
+#### Evanescent bølge
+
+Amplituden avtar eksponentielt: $E\propto e^{-z/d}$, der inntrengningsdybden $d\sim\lambda$. Ingen netto energi transporteres bort (ved isolert flate).
+
+#### Regnbuen
+
+Primærbuen: én indre refleksjon i vanndråpen, minimum avbøyning ≈ **42°** (rødt ytterst). Sekundærbuen: to refleksjoner, ≈ **51°**, fargene snudd, og mørkt bånd (Alexanders) imellom. <Term name="Dispersjon">Dispersjonen</Term> i $n(\lambda)$ skiller fargene.
+
+<Formula tex={"\\sin\\theta_c=\\dfrac{n_2}{n_1}"} caption={"Kritisk vinkel (tett→tynt, $n_1>n_2$)."} memorize />
+
+<Formula tex={"|r|=1\\text{ for }\\theta>\\theta_c"} caption={"Total intern refleksjon, kompleks $r$ (faseforskyvning)."} memorize />
+
+<Formula tex={"E(z)\\propto e^{-z/d}"} caption={"Evanescent bølge, eksponentielt avtagende. $z$ = dybde inn i det tynne mediet, $d$ = inntrengningsdybde."} memorize />
+
+<Formula tex={"\\theta_\\text{regn}\\approx 42^\\circ\\,(1°),\\,51^\\circ\\,(2°)"} caption={"Primær- og sekundærbue."} memorize />
+
+<ExamFocus title="Slik testes dette på eksamen">
+
+*Strålegang i prisme · TIR-betingelse · Sirkulær polarisering etter TIR*
+
+Prisme-oppgaver («$n\approx1{,}5$ i luft — hvilken strålegang er mulig?») tester om TIR inntreffer på innsiden. Polariseringsoppgaver: venstre-sirkulært lys som treffer en indre flate over kritisk vinkel får en relativ faseforskyvning mellom TE og TM ⇒ blir generelt elliptisk/endret håndethet — i motsetning til ved en vanlig refleksjon under Brewster der det blir lineært.
+
+</ExamFocus>
+
+<Example>
+
+Glass $n=1{,}50$ i luft. Hva er kritisk vinkel, og vil en stråle som treffer den indre flaten med 45° gjennomgå TIR?
+
+<Solution>
+
+$\sin\theta_c=1{,}00/1{,}50=0{,}667\Rightarrow\theta_c=41{,}8^\circ$.
+
+$45^\circ>41{,}8^\circ$ ⇒ **ja, total intern refleksjon**. Derfor brukes 45°-prismer som speil i kikkerter.
+
+<Answer>$\theta_c = 41{,}8^\circ$; 45° gir TIR</Answer>
+
+</Solution>
+
+</Example>
+
+#### Sjekk deg selv
+
+<Quiz
+  question={"For total intern refleksjon må lyset gå …"}
+  options={["fra tynt til tett medium","fra tett til tynt medium, over kritisk vinkel","ved normal innfall","aldri – det finnes ikke"]}
+  answer={1}
+  explanation={"TIR krever $n_1>n_2$ og $\\theta>\\theta_c$ der $\\sin\\theta_c=n_2/n_1$."}
+/>
+
+<Quiz
+  question={"Primærregnbuen sees i en vinkel på omtrent:"}
+  options={["10°","42°","90°","180°"]}
+  answer={1}
+  explanation={"Minimum avbøyning for én indre refleksjon gir ≈42° (rødt ytterst)."}
+/>
+
+### Mer forklaring — TIR betyr ikke null felt utenfor
+
+Total intern refleksjon betyr at netto energitransport inn i medium 2 forsvinner, ikke at feltet er null der. Det evanescente feltet finnes nær grenseflaten og avtar raskt.
+
+Dette skiller TIR fra en perfekt metallrefleksjon: ved TIR er faseforskyvningen polarisasjonsavhengig, og den kan endre elliptisiteten til polarisert lys.
+
+<Example title="vann til luft">
+
+Lys går fra vann ($n=1{,}33$) til luft. Finn kritisk vinkel og avgjør om $50^\circ$ gir TIR.
+
+<Solution>
+
+**Kritisk vinkel.**
+
+$\sin\theta_c=n_2/n_1=1{,}00/1{,}33=0{,}752$.
+
+**Sammenligning.**
+
+$\theta_c=48{,}8^\circ$. Siden $50^\circ>48{,}8^\circ$, får vi total intern refleksjon.
+
+<Answer>$\theta_c \approx 48{,}8^\circ$, så 50° gir TIR</Answer>
+
+</Solution>
+
+</Example>
+
+#### Flere kontrollspørsmål
+
+<Quiz
+  question={"Hva skjer med reflektansen over kritisk vinkel?"}
+  options={["den blir 0","den blir 1","den blir 4 %","den er lik Brewster-vinkelen"]}
+  answer={1}
+  explanation={"Ved TIR er $|r|=1$, så all effekt reflekteres."}
+/>
+
+<Quiz
+  question={"Det evanescente feltet:"}
+  options={["øker lineært inn i medium 2","avtar eksponentielt","er alltid null","finnes bare i vakuum"]}
+  answer={1}
+  explanation={"Feltamplituden avtar omtrent som $e^{-z/d}$ bort fra grenseflaten."}
+/>
+
+<KeyTakeaways>
+
+- TIR krever $n_1>n_2$ **og** $\theta>\theta_c$, der $\sin\theta_c=n_2/n_1$; da er $|r|=1$.
+- Feltet forsvinner ikke i medium 2 — en **evanescent bølge** $E\propto e^{-z/d}$ lekker en dybde $d\sim\lambda$ inn.
+- TIR gir en polarisasjonsavhengig faseforskyvning (kan endre elliptisitet), ulikt en metallrefleksjon.
+- Regnbuen: primær ≈ 42° (én refleksjon), sekundær ≈ 51° (to, farger snudd); dispersjon skiller fargene.
+
+</KeyTakeaways>

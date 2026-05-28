@@ -1,0 +1,134 @@
+---
+order: 1
+title: "Foton, bølger & radiometri"
+summary: "Lys oppfører seg både som en bølge og som en strøm av kvantepartikler – fotoner. Hele faget veksler mellom disse to beskrivelsene; geometrisk optikk og bølgeopt"
+importance: useful
+estMinutes: 20
+tags: ["Introduksjon"]
+part: "Grunnlag"
+updated: 2026-05-28
+---
+
+<LearningGoals>
+
+- Beskrive lysets dobbeltnatur og fotonets egenskaper (hvilemasse, statistikk, spinn).
+- Regne foton-energi, -impuls og bølgelengde fram og tilbake mellom *E, p, λ, f*.
+- Forstå radiometriske grunnbegreper: strålingsenergi, irradians og romvinkel.
+
+</LearningGoals>
+
+### Kjernen i temaet
+
+Lys oppfører seg både som en bølge og som en strøm av kvantepartikler – <Term name="Foton">fotoner</Term>. Hele faget veksler mellom disse to beskrivelsene; geometrisk optikk og bølgeoptikk er to grenser av samme fysikk.
+
+#### Fotonet
+
+- **Null hvilemasse**, beveger seg alltid med *c* i vakuum.
+- Adlyder **Bose–Einstein-statistikk** (er en boson) – *ikke* Fermi–Dirac. Dette er et klassisk MC-spørsmål.
+- Energien leveres **kvantisert** i pakker $E=hf$.
+- Bærer **impuls** $p=E/c$ og **dreieimpuls** (spinn ±ħ, knyttet til sirkulær polarisering).
+
+#### Radiometri
+
+Radiometriske størrelser måler strålingseffekt objektivt (i watt), i motsetning til fotometri som vekter etter øyets følsomhet. <Term name="Irradians">Irradians</Term> $E_e$ er effekt per areal $[\text{W/m}^2]$ inn på en flate; **radians** er effekt per areal per **romvinkel**. <Term name="Romvinkel">Romvinkelen</Term> $\Omega = A/r^2$ måles i steradianer; en hel kule er $4\pi\,\text{sr}$.
+
+<Formula tex={"E=hf=\\dfrac{hc}{\\lambda}"} caption={"Foton-energi fra frekvens / bølgelengde. h = Plancks konstant."} />
+
+<Formula tex={"p=\\dfrac{E}{c}=\\dfrac{h}{\\lambda}"} caption={"Foton-impuls."} />
+
+<Formula tex={"\\lambda f = c,\\quad v=\\dfrac{pc^2}{E}=c"} caption={"Fart i vakuum."} />
+
+<Formula tex={"\\Omega = \\dfrac{A}{r^2}"} caption={"Romvinkel i steradianer."} memorize />
+
+<ExamFocus title="Slik testes dette på eksamen">
+
+*Foton-energi fra spektrum · Egenskaper (MC) · Enhetsregning*
+
+Et veldig vanlig oppgave-par: du får et spektrum (f.eks. en blå LED fra ThorLabs) og skal finne **foton-energien** ved toppbølgelengden, ofte som forberedelse til et koherens-spørsmål. MC-spørsmål spør hvilken egenskap som *ikke* hører til fotonet (fellen er Fermi–Dirac).
+
+</ExamFocus>
+
+<Example>
+
+En LED har toppbølgelengde $\lambda \approx 465\text{ nm}$. Hva er foton-energien (i eV)?
+
+<Solution>
+
+**Innsetting.**
+
+$E=\dfrac{1240\text{ eV}\cdot\text{nm}}{465\text{ nm}} \approx 2{,}67\text{ eV}$.
+
+Sjekk i joule: $E=\dfrac{(6{,}63\times10^{-34})(3{,}0\times10^{8})}{465\times10^{-9}}\approx 4{,}3\times10^{-19}\text{ J}$, og $4{,}3\times10^{-19}/1{,}6\times10^{-19}\approx 2{,}7\text{ eV}$. ✓
+
+<Answer>$E \approx 2{,}67$ eV</Answer>
+
+</Solution>
+
+</Example>
+
+#### Sjekk deg selv
+
+<Quiz
+  question={"Hvilken egenskap hører <em>ikke</em> til fotonet?"}
+  options={["Null hvilemasse","Adlyder Fermi–Dirac-statistikk","Kvantisert energilevering","Bærer dreieimpuls"]}
+  answer={1}
+  explanation={"Fotoner er bosoner og adlyder Bose–Einstein-statistikk. Fermi–Dirac gjelder fermioner (f.eks. elektroner)."}
+/>
+
+<Quiz
+  question={"En kilde dobler bølgelengden. Foton-energien …"}
+  options={["dobles","halveres","er uendret","firedobles"]}
+  answer={1}
+  explanation={"$E=hc/\\lambda$ — energi er omvendt proporsjonal med bølgelengde, så dobbel λ gir halv energi."}
+/>
+
+### Mer forklaring — energi, effekt og fotonfluks
+
+Eksamen blander ofte størrelser som ser like ut, men som har ulik fysisk betydning. **Energi per foton** er bestemt av bølgelengden alene, mens **effekt** forteller hvor mange fotoner som kommer per sekund.
+
+En god arbeidsregel er: finn først foton-energien (<FormulaRef id="foton-energi" />). Deretter kan du koble til makroskopiske størrelser med $P=N E_\text{foton}/t$. Hvis oppgaven gir areal, går du videre til irradians $E_e=P/A$.
+
+<Example title="fotonfluks fra laser">
+
+En grønn laser har effekt $P=2{,}0\text{ mW}$ og bølgelengde $\lambda=532\text{ nm}$. Hvor mange fotoner sendes ut per sekund?
+
+<Solution>
+
+**Fotonenergi.**
+
+$E=hc/\lambda=(6{,}63\times10^{-34})(3{,}00\times10^8)/(532\times10^{-9})=3{,}74\times10^{-19}\text{ J}$.
+
+**Antall per sekund.**
+
+Effekt er energi per tid: $N/t=P/E=(2{,}0\times10^{-3})/(3{,}74\times10^{-19})=5{,}35\times10^{15}\text{ s}^{-1}$.
+
+<Answer>$\approx 5{,}3\times10^{15}$ fotoner/s</Answer>
+
+</Solution>
+
+</Example>
+
+#### Flere kontrollspørsmål
+
+<Quiz
+  question={"En lyskilde har samme effekt ved 400 nm og 800 nm. Hvilken stråle har flest fotoner per sekund?"}
+  options={["400 nm","800 nm","like mange","det avhenger bare av arealet"]}
+  answer={1}
+  explanation={"Ved lengre bølgelengde er hvert foton mindre energirikt. Samme effekt betyr derfor flere fotoner per sekund ved 800 nm."}
+/>
+
+<Quiz
+  question={"Irradians måles i:"}
+  options={["J","W","W/m²","sr"]}
+  answer={2}
+  explanation={"Irradians er effekt per areal på en flate, altså watt per kvadratmeter."}
+/>
+
+<KeyTakeaways>
+
+- Lys er både bølge og partikkel; geometrisk optikk og bølgeoptikk er to grenser av samme fysikk.
+- Fotonet er masseløst, et **boson** (Bose–Einstein), med $E=hf=hc/\lambda$ og $p=E/c$.
+- **Energi per foton** avhenger bare av $\lambda$; **effekt** sier hvor mange fotoner per sekund — bland dem aldri.
+- Radiometri måler effekt objektivt: irradians i $\text{W/m}^2$, radians i tillegg per romvinkel ($\text{sr}$).
+
+</KeyTakeaways>

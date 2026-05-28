@@ -1,0 +1,165 @@
+---
+order: 10
+title: "Koherens, Michelson-interferometer & tynne filmer"
+summary: "Interferens krever koherens. Temporal koherens (langs strålen) settes av spektralbredden; spatial koherens (på tvers) av kildens utstrekning. En LED har kort ko"
+importance: useful
+estMinutes: 20
+tags: ["Bølgeoptikk V"]
+part: "Bølgeoptikk"
+updated: 2026-05-28
+---
+
+<LearningGoals>
+
+- Skille **temporal** og **spatial** koherens og beregne koherenslengder.
+- Analysere **Michelson-interferometeret** og bruke **synlighet (visibility)**.
+- Beregne **tynnfilm-interferens** og designe antirefleksbelegg.
+
+</LearningGoals>
+
+### Kjernen i temaet
+
+Interferens krever <Term name="Koherens">koherens</Term>. Temporal koherens (langs strålen) settes av spektralbredden; spatial koherens (på tvers) av kildens utstrekning. En LED har kort koherenslengde, en laser lang.
+
+#### Koherenslengder
+
+**Temporal:** $l_c=\dfrac{\lambda_0^2}{\Delta\lambda}=\dfrac{c}{\Delta f}$. Smalt spektrum ⇒ lang koherens. **Spatial:** $l_s<\dfrac{1{,}22\lambda}{\theta}$ for en kilde som spenner vinkelen $\theta$.
+
+<Compare>
+
+<CompareCol title="Temporal koherens">
+
+- Interferensevne **langs** strålen (i tid).
+- Settes av kildens **spektralbredde**: $l_c=\dfrac{\lambda_0^2}{\Delta\lambda}=\dfrac{c}{\Delta f}$.
+- Smalt spektrum (laser) ⇒ lang $l_c$; bredt (LED) ⇒ kort.
+- Begrenser veiforskjellen i en Michelson før stripene vaskes ut.
+
+</CompareCol>
+
+<CompareCol title="Spatial koherens">
+
+- Interferensevne **på tvers** av strålen.
+- Settes av kildens **vinkelutstrekning** $\theta$: $l_s<\dfrac{1{,}22\lambda}{\theta}$.
+- Liten/fjern kilde ⇒ stor $l_s$; utstrakt kilde ⇒ liten.
+- Avgjør om Youngs to spalter ser «samme» bølgefront.
+
+</CompareCol>
+
+</Compare>
+
+#### Michelson
+
+Stråledeler sender lys mot to speil; ved rekombinasjon: $I=4I_0\cos^2(\delta/2)$ med $\delta=\frac{2\pi}{\lambda}\Delta p$ og veiforskjell $\Delta p=2d\cos\theta$. Flytter du ett speil $\Delta d$, teller du $\Delta m=2\Delta d/\lambda$ striper.
+
+#### Tynne filmer
+
+Optisk veiforskjell <FormulaRef id="tynnfilm">$\Delta=2n_f t\cos\theta_t$</FormulaRef>. Husk evt. ekstra $\lambda/2$ ($\Delta_r$) fra refleksjon ved hardere medium. **<Term name="Antirefleksbelegg">Antirefleks</Term>**: destruktiv refleksjon ⇒ $2n_f t=\lambda/2$ (kvartbølgelag) ved normal innfall.
+
+<Formula tex={"l_c=\\dfrac{\\lambda_0^2}{\\Delta\\lambda}=\\dfrac{c}{\\Delta f}"} caption={"Temporal koherenslengde. $\\Delta\\lambda$ = kildens spektralbredde."} />
+
+<Formula tex={"l_s<\\dfrac{1{,}22\\lambda}{\\theta}"} caption={"Spatial koherenslengde (sirkulær apertur). $\\theta$ = kildens vinkelutstrekning."} />
+
+<Formula tex={"I=4I_0\\cos^2(\\delta/2),\\ \\Delta p=2d\\cos\\theta"} caption={"Michelson-interferometer. $\\delta$ = faseforskjell mellom armene, $\\Delta p$ = veiforskjell, $d$ = speilforskyvning."} />
+
+<Formula tex={"V=\\dfrac{I_\\text{max}-I_\\text{min}}{I_\\text{max}+I_\\text{min}}"} caption={"Synlighet (visibility)."} />
+
+<Formula tex={"\\Delta=2n_f t\\cos\\theta_t"} caption={"Tynnfilm: optisk veiforskjell. $n_f$ = filmens brytningsindeks, $t$ = filmtykkelse, $\\theta_t$ = brytningsvinkel i filmen."} />
+
+<ExamFocus title="Slik testes dette på eksamen">
+
+*Koherenslengde fra spektrum · AR-belegg ved vinkel · Michelson-skift · Fabry–Perot vs Michelson*
+
+«coherencelengthA/B»: finn først foton-energi, deretter koherenslengde fra spektralbredden via $l_c=c/\Delta f$. Tynnfilm-klassiker: et MgF₂-lag ($n=1{,}38$) er antirefleks ved 580 nm normalt innfall — hvilken bølgelengde slukkes minimalt ved 45°? (Bruk $\cos\theta_t$ via Snell.) Fabry–Perot: høy $r$ ⇒ skarpe striper ⇒ høyere oppløsning.
+
+</ExamFocus>
+
+<Example title="AR-belegg ved vinkel">
+
+MgF₂ ($n_f=1{,}38$) på glass er antirefleks ved 580 nm ved normal innfall. Hvilken bølgelengde slukkes minimalt ved 45° innfall?
+
+<Solution>
+
+**Tykkelse.**
+
+Normalt: $2n_f t=\lambda/2\Rightarrow t=\dfrac{580}{4\cdot1{,}38}=105{,}1$ nm.
+
+**Vinkel i film.**
+
+Snell: $\sin\theta_t=\sin45^\circ/1{,}38=0{,}512\Rightarrow\theta_t=30{,}8^\circ,\ \cos\theta_t=0{,}859$.
+
+**Ny bølgelengde.**
+
+$\lambda'=4n_f t\cos\theta_t=4(1{,}38)(105{,}1)(0{,}859)\approx 498$ nm.
+
+<Answer>$\lambda' \approx 498$ nm</Answer>
+
+</Solution>
+
+</Example>
+
+#### Sjekk deg selv
+
+<Quiz
+  question={"En kilde med smalere spektralbredde $\\Delta\\lambda$ har …"}
+  options={["kortere koherenslengde","lengre koherenslengde","samme koherenslengde","ingen koherens"]}
+  answer={1}
+  explanation={"$l_c=\\lambda_0^2/\\Delta\\lambda$ — mindre $\\Delta\\lambda$ gir lengre $l_c$. Lasere er svært monokromatiske."}
+/>
+
+<Quiz
+  question={"I et Fabry–Perot gir høy speilrefleksjon ($r=0{,}9$) …"}
+  options={["lav oppløsning, brede striper","høy oppløsning, skarpe striper","ingen interferens","samme som Michelson"]}
+  answer={1}
+  explanation={"Høy $r$ ⇒ mange runder ⇒ skarpe, smale striper ⇒ høy spektral oppløsning."}
+/>
+
+### Mer forklaring — koherens setter kontrasten
+
+Interferensmønsterets <Term name="Synlighet">synlighet</Term> faller når veiforskjellen blir større enn koherenslengden. Derfor kan en <Term name="Michelson-interferometer">Michelson</Term> brukes til å måle spektralbredde: du flytter speilet til stripene vaskes ut.
+
+I Michelson dobles speilforskyvningen som optisk veiforskjell, fordi lyset går fram og tilbake i armen.
+
+<Example title="telle striper i Michelson">
+
+I et Michelson-interferometer brukes $\lambda=633\text{ nm}$. Ett speil flyttes $0{,}50\text{ mm}$. Hvor mange lyse striper passerer?
+
+<Solution>
+
+**Dobbel vei.**
+
+Veiforskjellen endres med $2\Delta d=1{,}00\text{ mm}$.
+
+**Antall striper.**
+
+$\Delta m=2\Delta d/\lambda=(1{,}00\times10^{-3})/(633\times10^{-9})=1{,}58\times10^3$.
+
+<Answer>$\approx 1{,}6\times10^3$ striper</Answer>
+
+</Solution>
+
+</Example>
+
+#### Flere kontrollspørsmål
+
+<Quiz
+  question={"Hvorfor brukes faktoren 2 i Michelson når ett speil flyttes?"}
+  options={["to polarisasjoner","fram- og tilbakevei","to speil alltid flyttes","fordi intensiteten dobles"]}
+  answer={1}
+  explanation={"Lyset går til speilet og tilbake, så armens optiske vei endres med dobbelt speilforskyvningen."}
+/>
+
+<Quiz
+  question={"Lav synlighet $V$ betyr:"}
+  options={["stor kontrast","liten forskjell mellom maks og min","ingen bølgelengde","bare TE-polarisering"]}
+  answer={1}
+  explanation={"$V=(I_\\text{max}-I_\\text{min})/(I_\\text{max}+I_\\text{min})$ måler kontrast."}
+/>
+
+<KeyTakeaways>
+
+- **Temporal** koherens kommer fra spektralbredden ($l_c=\lambda_0^2/\Delta\lambda$); **spatial** fra kildestørrelsen.
+- Michelson: $I=4I_0\cos^2(\delta/2)$; ett speil flyttet $\Delta d$ teller $\Delta m=2\Delta d/\lambda$ striper (fram + tilbake).
+- Synlighet $V=(I_\text{max}-I_\text{min})/(I_\text{max}+I_\text{min})$ faller når veiforskjellen overstiger $l_c$.
+- Tynnfilm: $\Delta=2n_f t\cos\theta_t$ (+ evt. $\lambda/2$); AR-belegg er et kvartbølgelag, $2n_f t=\lambda/2$.
+
+</KeyTakeaways>

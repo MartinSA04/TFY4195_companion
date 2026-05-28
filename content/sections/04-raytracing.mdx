@@ -1,0 +1,474 @@
+---
+order: 4
+num: "RT"
+title: "Ray tracing — komplett matriseguide"
+summary: "Ray tracing med matriser er den mest eksamensnære delen av geometrisk optikk: nesten hvert eksamenssett har en «match system ↔ matrise»-oppgave eller ber deg re"
+importance: useful
+estMinutes: 20
+tags: ["Eksamensfokus · Geometrisk optikk"]
+part: "Geometrisk optikk"
+updated: 2026-05-28
+---
+
+<LearningGoals>
+
+- Representere en paraksial stråle som en vektor $(y,\alpha)$ og vite hva hvert tall betyr.
+- Skrive ned **alle byggematrisene** (translasjon, plan/sfærisk brytning, tynn linse, speil) fra hukommelsen.
+- Sette sammen **systemmatrisen** i riktig rekkefølge og kontrollere med determinanten.
+- Lese ut **bildeplan ($B=0$), forstørrelse ($A=m$), afokalitet ($C=0$) og effektiv brennvidde ($f=-1/C$)**.
+- Koble matriseelementene til **kardinalpunkt-formlene** på formelarket.
+
+</LearningGoals>
+
+### Kjernen i temaet
+
+Ray tracing med matriser er den mest eksamensnære delen av geometrisk optikk: nesten hvert eksamenssett har en «match system ↔ matrise»-oppgave eller ber deg regne deg gjennom et linsesystem. Hele trikset er at <Term name="Paraksial tilnærming">paraksial</Term> optikk er *lineær*.
+
+En stråle beskrives ved **høyden $y$** over den optiske aksen og **vinkelen $\alpha$** den danner med aksen. Hvert optisk element transformerer $(y,\alpha)$ lineært, så det kan skrives som en $2\times2$-matrise:
+
+$\begin{pmatrix} y_2 \\ \alpha_2 \end{pmatrix} = \begin{pmatrix} A & B \\ C & D \end{pmatrix}\begin{pmatrix} y_1 \\ \alpha_1 \end{pmatrix}$
+
+Et helt system er **produktet** av elementmatrisene. Da kan du behandle et komplisert instrument som én enkelt matrise og lese av alt du trenger fra de fire tallene $A,B,C,D$.
+
+Hver stråle er ett punkt beskrevet av to tall: høyden $y$ over aksen og helningen $\alpha$. Det er disse to tallene matrisene virker på.
+
+<Simulation src={"/sims/rayVecCanvas.js"} title={"Visuelt: strålevektoren $(y,\\alpha)$"} height={190} />
+
+### Fortegnskonvensjon — fest dette først
+
+Feil fortegn er vanligere enn feil algebra. Pedrotti-konvensjonen (lys går venstre → høyre):
+
+| Størrelse | Positiv når … | Tolkning |
+| --- | --- | --- |
+| $y$ | over aksen | strålehøyde |
+| $\alpha$ | strålen heller oppover (mot klokken) | liten vinkel, $\tan\alpha\approx\alpha$ |
+| $R$ | krumningssenter til *høyre* for flaten | konveks mot innkommende lys ⇒ $R>0$ |
+| $s_o$ | objekt til venstre for flaten | reelt objekt |
+| $s_i$ | bilde til høyre for flaten | reelt bilde |
+| $f$ | samlende element | positiv linse / konkavt speil |
+
+Vinkelen holdes liten (paraksial: $\sin\alpha\approx\tan\alpha\approx\alpha$ i radianer).
+
+### Manuell strålegang med linjal (grafisk metode)
+
+På eksamen besvares to oppgaver for hånd, og én er nesten alltid strålegang. Du trenger bare linjal, blyant og noen få faste regler — ingen matriser. Tegn den optiske aksen, marker linsa/speilet og brennpunktene $F$ og $F'$ i målestokk, og la lyset gå fra venstre mot høyre.
+
+#### Positiv (samlende) linse — tre hovedstråler
+
+Tegn to av disse fra objektets topp; bildet er der de krysser. Den tredje er en gratis kontroll.
+
+1. **Parallellstrålen:** inn parallelt med aksen → brytes og går gjennom bakre brennpunkt $F'$.
+1. **Sentralstrålen:** rett gjennom linsens sentrum → fortsetter *ubrutt* (rett linje).
+1. **Brennpunktstrålen:** inn gjennom fremre brennpunkt $F$ → kommer ut *parallelt* med aksen.
+
+#### Negativ (sprende) linse — samme stråler, lett endret
+
+1. **Parallellstrålen** brytes som om den kom fra fremre $F$ — forleng den *bakover* med stiplet linje.
+1. **Sentralstrålen** går rett gjennom.
+1. En stråle **rettet mot bakre $F'$** kommer ut parallelt med aksen.
+
+Strålene spriker etter linsa, så bildet ligger der de *bakover-forlengede* (stiplede) strålene møtes: alltid **virtuelt, opprett og forminsket**.
+
+#### Speil — refleksjonsregler
+
+| Stråle inn | Konkavt (samlende, $f=R/2>0$) | Konvekst (sprende, $f<0$) |
+| --- | --- | --- |
+| Parallelt med aksen | reflekteres gjennom $F$ | ser ut til å komme fra $F$ bak speilet |
+| Gjennom (mot) $F$ | reflekteres parallelt med aksen | reflekteres parallelt med aksen |
+| Mot krumningssenter $C$ | reflekteres rett tilbake langs seg selv | samme |
+| Mot vertex (aksens treffpunkt) | reflekteres symmetrisk om aksen | samme |
+
+#### Les av svaret
+
+- **Reelt** bilde der virkelige stråler krysser (heltrukket); **virtuelt** der bare de stiplede forlengelsene krysser.
+- **Invertert** hvis bildetoppen havner under aksen, **opprett** hvis over.
+- Mål og kontroller med forstørrelsen $m=-s_i/s_o$: $m<0$ = invertert, $|m|>1$ = forstørret.
+- Fortegn følger samme konvensjon som tabellen over ($s_o,s_i,f$ positive til «riktig» side).
+
+Tips: marker $F$ og $F'$ nøyaktig i målestokk før du tegner — unøyaktige brennpunkt er den vanligste feilen.
+
+Velg oppsett og klikk «Neste steg» for å tegne hver hovedstråle slik du ville gjort for hånd. Heltrukne linjer er virkelige stråler, stiplede er bakover-forlengelser (virtuelle bilder).
+
+<Simulation src={"/sims/rayGuideCanvas.js"} title={"Interaktivt: steg-for-steg strålegang"} height={300} />
+
+Objektavstand $s_o$ (venstre) og bildeavstand $s_i$ (høyre) måles fra linsen, brennvidden $f$ til brennpunktene $F,F'$. To hjelpestråler — parallell$\to$gjennom $F'$, og rett gjennom sentrum — konstruerer bildet. Objektet står utenfor $2f$, så bildet blir reelt, invertert og forminsket.
+
+<Simulation src={"/sims/signConvCanvas.js"} title={"Visuelt: fortegn & avbildning"} height={280} />
+
+### De fem byggematrisene
+
+#### 1 · Translasjon (fri propagasjon avstand $d$)
+
+Vinkelen er uendret, høyden vokser: $y_2=y_1+d\,\alpha_1,\ \alpha_2=\alpha_1$.
+
+$T(d)=\begin{pmatrix}1 & d \\ 0 & 1\end{pmatrix}$ &nbsp;($d$ er en geometrisk avstand — samme uansett medium).
+
+#### 2 · Brytning i plan flate ($n_1\to n_2$)
+
+Høyden er uendret; Snell i paraksial form $n_1\alpha_1=n_2\alpha_2$ gir $\alpha_2=(n_1/n_2)\alpha_1$.
+
+$R_P=\begin{pmatrix}1 & 0 \\ 0 & n_1/n_2\end{pmatrix}$
+
+#### 3 · Brytning i sfærisk flate (radius $R$)
+
+Grunnsteinen — tynn og tykk linse bygges av to slike.
+
+$R_S=\begin{pmatrix}1 & 0 \\ \dfrac{n_1-n_2}{n_2 R} & n_1/n_2\end{pmatrix}$
+
+#### 4 · Tynn linse (brennvidde $f$)
+
+To sfæriske flater med neglisjerbar tykkelse kollapser til ett «kick» i vinkelen: $\alpha_2=\alpha_1-y/f$.
+
+$L(f)=\begin{pmatrix}1 & 0 \\ -1/f & 1\end{pmatrix},\qquad \dfrac1f=\dfrac{n_2-n_1}{n_1}\!\left(\dfrac1{R_1}-\dfrac1{R_2}\right)$
+
+#### 5 · Sfærisk speil (radius $R$)
+
+Virker som en linse med $f=R/2$, men folder strålegangen. Utbrettet matrise:
+
+$M_\text{speil}=\begin{pmatrix}1 & 0 \\ -2/R & 1\end{pmatrix}=\begin{pmatrix}1 & 0 \\ -1/f & 1\end{pmatrix}$
+
+**Tykk linse:** $M=R_S^{(2)}\,T(t)\,R_S^{(1)}$ — to flater med glasstykkelse $t$ imellom.
+
+Translasjon flytter strålen uten å endre vinkelen; en tynn linse knekker vinkelen mot brennpunktet; en brytende flate endrer vinkelen etter Snell (høyden $y$ er kontinuerlig). Det er nettopp disse virkningene matrisene koder.
+
+<Simulation src={"/sims/elemActCanvas.js"} title={"Visuelt: hva hvert element gjør med en stråle"} height={200} />
+
+<Formula tex={"T(d)=\\begin{pmatrix}1 & d \\\\ 0 & 1\\end{pmatrix}"} caption={"Translasjon (fri propagasjon)."} />
+
+<Formula tex={"R_P=\\begin{pmatrix}1 & 0 \\\\ 0 & n_1/n_2\\end{pmatrix}"} caption={"Brytning, plan flate."} />
+
+<Formula tex={"R_S=\\begin{pmatrix}1 & 0 \\\\ \\frac{n_1-n_2}{n_2 R} & n_1/n_2\\end{pmatrix}"} caption={"Brytning, sfærisk flate."} />
+
+<Formula tex={"L(f)=\\begin{pmatrix}1 & 0 \\\\ -1/f & 1\\end{pmatrix}"} caption={"Tynn linse."} />
+
+<Formula tex={"M_\\text{speil}=\\begin{pmatrix}1 & 0 \\\\ -2/R & 1\\end{pmatrix}"} caption={"Sfærisk speil ($f=R/2$)."} memorize />
+
+### Bygg systemmatrisen — rekkefølgen er alt
+
+Lyset møter elementene i rekkefølge 1, 2, 3 …, men matrisene skrives i **motsatt** rekkefølge fordi de virker fra høyre på strålevektoren:
+
+$M_\text{sys}=M_n\cdots M_2\,M_1$ &nbsp;— det siste elementet lyset møter står lengst til venstre.
+
+- **Determinant-sjekk:** $\det M_\text{sys}=n_\text{start}/n_\text{slutt}$. Starter og slutter du i samme medium (f.eks. luft) skal $\det M=1$. Dette fanger regnefeil umiddelbart.
+- Tegn systemet i fysisk rekkefølge på papir først, og «les baklengs» når du setter opp produktet.
+
+### Les av de fire tallene
+
+| Betingelse | Betyr | Bruk |
+| --- | --- | --- |
+| $B=0$ | inn- og utplan er konjugerte (objekt↔bilde) | finn bildeplanet |
+| $A$ ved $B=0$ | lateral forstørrelse $m$ | $m=A$; fortegn ⇒ reelt/virtuelt |
+| $C=0$ | afokalt / teleskopisk system | parallelt inn ⇒ parallelt ut |
+| $D$ ved $C=0$ | vinkelforstørrelse | $\alpha_2=D\,\alpha_1$ |
+| $-1/C$ | effektiv brennvidde $f$ | systemets brennvidde |
+| $-A/C$ | bakre brennavstand (BFD) | hvor fjernt lys fokuserer bak utplanet |
+
+**Kobling til formelarket:** kardinalpunkt-formlene ($p=D/C,\ q=-A/C,\ f_s=-1/C$ osv.) er nettopp disse matriseelementene. Kjenner du $A,B,C,D$, plugger du rett inn.
+
+### Ekvivalens av optiske veier
+
+Den **<Term name="Optisk veilengde">optiske veilengden</Term>** (OPL) er $\text{OPL}=\sum_j n_j d_j$ — geometrisk lengde vektet med <Term name="Brytningsindeks">brytningsindeks</Term>. Lyset «føler» optisk vei, ikke geometrisk avstand: hver meter teller mer i et tregt medium (høy $n$).
+
+**Fermats prinsipp:** en stråle følger den veien som gir *stasjonær* (oftest minste) optiske veilengde.
+
+#### Avbildningsteoremet
+
+<Statement kind="theorem" name="Avbildningsteoremet">
+
+Mellom et objektpunkt og dets bildepunkt har **alle stråler samme optiske veilengde** — de er likeverdige. Derfor ankommer de i fase og danner et skarpt, reelt bilde.
+
+</Statement>
+
+En samlende linse fungerer nettopp fordi den *utligner* veiene: en randstråle går lengre i luft, men gjennom mindre glass; en aksenær stråle går kortere i luft, men gjennom mer (tregt) glass — netto OPL blir lik.
+
+Formelarket skriver betingelsen for en brytende flate som $n_o d_o + n_i d_i = n_o s_o + n_i s_i$: to ulike veier mellom konjugerte punkter har lik optisk lengde.
+
+#### Kobling til matrisemetoden
+
+Betingelsen $B=0$ er stråleoptikkens versjon av akkurat dette: utgangshøyden er uavhengig av inngangsvinkelen ⇔ alle stråler fra ett objektpunkt møtes igjen i ett bildepunkt ⇔ hver stråle har lik optisk vei dit. Bølge- og strålebildet sier altså det samme.
+
+<ExamFocus title="Slik testes dette på eksamen">
+
+*Match system ↔ matrise · Forstørrelse fra A · Afokalt (C=0) · Effektiv f fra C · Kardinalpunkter*
+
+Den klassiske «match the optical system with the ray-transfer matrix» tester strukturgjenkjenning: et nullelement nederst til venstre ($C=0$) = afokalt; et rent $B$-tall = en translasjon; $A=1, D=1$ med $C\neq0$ = én tynn linse. Andre oppgaver gir en systemmatrise og ber om forstørrelsen ($m=A$ når $B=0$), effektiv brennvidde ($-1/C$), eller hvor et fjernt objekt fokuserer ($-A/C$). Regneoppgaver ber deg multiplisere 2–4 matriser — pass på rekkefølgen og bruk $\det M$ som sjekk.
+
+</ExamFocus>
+
+En punktkilde sender en stråleknippe gjennom to tynne linser. Dra brennviddene og avstanden og se strålene bøye i hvert linseplan og hvor det endelige bildet (oransje) dannes. Systemmatrisen $M=L_2\,T(D)\,L_1$ regnes ut live under figuren.
+
+<Simulation src={"/sims/rayCanvas.js"} title={"Interaktivt: to-linse ray tracer"} height={320} />
+
+<Example label="Regneeksempel 1" title="tynn linse via matrise">
+
+Et objekt står $s_o=30\text{ cm}$ foran en tynn linse med $f=20\text{ cm}$. Sett opp systemmatrisen fra objekt- til bildeplan, og finn bildeavstand og forstørrelse.
+
+<Solution>
+
+**Oppsett.**
+
+Fra objekt til bilde: $M=T(s_i)\,L(f)\,T(s_o)$. Utmultiplisert:
+
+$M=\begin{pmatrix}1-\frac{s_i}{f} & s_o+s_i-\frac{s_i s_o}{f}\\ -\frac1f & 1-\frac{s_o}{f}\end{pmatrix}$.
+
+**Bildeplan: $B=0$.**
+
+$s_o+s_i-\frac{s_i s_o}{f}=0$. Med $s_o=30,\ f=20$: $30+s_i-1{,}5\,s_i=0\Rightarrow 30-0{,}5\,s_i=0\Rightarrow s_i=60\text{ cm}$.
+
+**Forstørrelse.**
+
+$m=A=1-\frac{s_i}{f}=1-\frac{60}{20}=-2$. Kontroll: $\det M=1$ ✓.
+
+<Answer>$s_i = 60$ cm, $m = -2$ — reelt, invertert, 2× forstørret</Answer>
+
+</Solution>
+
+</Example>
+
+<Example label="Regneeksempel 2" title="enkelt sfærisk flate">
+
+En lang glasstav ($n=1{,}50$) har en konveks endeflate med $R=+20\text{ mm}$. Et objekt står $80\text{ mm}$ ute i lufta foran flaten. Hvor dannes bildet, og hva er forstørrelsen?
+
+<Solution>
+
+**Avbildningslikning.**
+
+$B=0$ for $T(s_i)\,R_S\,T(s_o)$ gir enkeltflate-likningen $\dfrac{n_1}{s_o}+\dfrac{n_2}{s_i}=\dfrac{n_2-n_1}{R}$.
+
+**Innsetting.**
+
+$\dfrac{1}{80}+\dfrac{1{,}5}{s_i}=\dfrac{0{,}5}{20}=0{,}025\Rightarrow \dfrac{1{,}5}{s_i}=0{,}0125\Rightarrow s_i=120\text{ mm}$ (inne i glasset, reelt).
+
+**Forstørrelse.**
+
+$m=-\dfrac{n_1 s_i}{n_2 s_o}=-\dfrac{1\cdot120}{1{,}5\cdot80}=-1$ (invertert, like stort).
+
+<Answer>$s_i = 120$ mm inne i glasset, $m = -1$</Answer>
+
+</Solution>
+
+</Example>
+
+<Example label="Regneeksempel 3" title="afokalt teleskop">
+
+Et Kepler-teleskop har objektiv $f_1=100\text{ cm}$ og okular $f_2=4\text{ cm}$, satt i avstand $D=f_1+f_2=104\text{ cm}$. Vis at systemet er afokalt og finn vinkelforstørrelsen.
+
+<Solution>
+
+**Systemmatrise.**
+
+$M=L(f_2)\,T(D)\,L(f_1)$ gir $C=-\dfrac1{f_1}-\dfrac1{f_2}+\dfrac{D}{f_1 f_2}$.
+
+**Afokal-sjekk.**
+
+$C=-0{,}01-0{,}25+\dfrac{104}{400}=-0{,}26+0{,}26=0$ ⇒ afokalt ✓.
+
+**Vinkelforstørrelse.**
+
+$D_\text{el}=1-\dfrac{D}{f_2}=1-26=-25$. Parallelt inn ⇒ $\alpha_2=D_\text{el}\,\alpha_1$, så $MP=-25\ (=-f_1/f_2)$.
+
+<Answer>$C = 0$ (afokalt), $MP = -25$</Answer>
+
+</Solution>
+
+</Example>
+
+### Flere regneoppgaver
+
+Prøv selv før du åpner løsningen. Tegn systemet og bruk $\det M=1$ som sjekk.
+
+<Example label="Oppgave a)">
+
+To tynne linser, $f_1=+15\text{ cm}$ og $f_2=-15\text{ cm}$, står i avstand $D=10\text{ cm}$ (luft). Finn systemmatrisen og effektiv brennvidde.
+
+<Solution>
+
+$A=1-D/f_1=1-\tfrac{10}{15}=\tfrac13$, &nbsp; $B=D=10$, &nbsp; $D_\text{el}=1-D/f_2=1+\tfrac{10}{15}=\tfrac53$.
+
+$C=-\dfrac1{15}-\dfrac1{-15}+\dfrac{10}{15\cdot(-15)}=-\dfrac{10}{225}=-0{,}0444\text{ cm}^{-1}$.
+
+$\det M=\tfrac13\cdot\tfrac53-10\cdot(-0{,}0444)=0{,}556+0{,}444=1$ ✓. &nbsp; $f=-1/C=+22{,}5\text{ cm}$.
+
+<Answer>$f_\text{eff} = 22{,}5$ cm — telefoto: lengre $f$ enn begge linsene hver for seg</Answer>
+
+</Solution>
+
+</Example>
+
+<Example label="Oppgave b)">
+
+Et konkavt speil har $R=40\text{ cm}$. Et objekt står $60\text{ cm}$ foran. Hvor dannes bildet?
+
+<Solution>
+
+Speil: $f=R/2=20\text{ cm}$. $\dfrac1{s_i}=\dfrac1f-\dfrac1{s_o}=\dfrac1{20}-\dfrac1{60}=\dfrac1{30}$.
+
+$s_i=30\text{ cm}$, &nbsp; $m=-s_i/s_o=-0{,}5$.
+
+<Answer>$s_i = 30$ cm foran speilet, reelt og invertert, $m = -0{,}5$</Answer>
+
+</Solution>
+
+</Example>
+
+<Example label="Oppgave c)">
+
+En fisk svømmer $12\text{ cm}$ under vannflaten ($n=1{,}33$). På hvilken dybde ser du fisken rett ovenfra?
+
+<Solution>
+
+Plan flate, $R=\infty$ ⇒ $\dfrac{n_1}{s_o}+\dfrac{n_2}{s_i}=0$. Lys vann→luft: $n_1=1{,}33,\ n_2=1{,}0$.
+
+$s_i=-\dfrac{n_2}{n_1}s_o=-\dfrac{1}{1{,}33}\cdot12=-9{,}0\text{ cm}$ (virtuelt, grunnere).
+
+<Answer>Tilsynelatende dybde $\approx 9{,}0$ cm</Answer>
+
+</Solution>
+
+</Example>
+
+<Example label="Oppgave d)">
+
+En beam expander bruker $f_1=20\text{ mm}$ og $f_2=100\text{ mm}$ i afokal oppstilling. Hvor mye utvides en kollimert stråle?
+
+<Solution>
+
+Afokal: $D=f_1+f_2=120\text{ mm}$ ⇒ $C=0$. &nbsp; $A=1-D/f_1=1-6=-5$.
+
+Kollimert inn ($\alpha_1=0$): $y_2=A\,y_1$, så stråle­diameteren skaleres med $|A|=5$.
+
+<Answer>5× utvidelse $(= f_2/f_1)$</Answer>
+
+</Solution>
+
+</Example>
+
+<Example label="Oppgave e)" title="prøv med gradvise hint">
+
+To tynne linser, $f_1=+10\text{ cm}$ og $f_2=+20\text{ cm}$, står i avstand $D=40\text{ cm}$ i luft. Hvor langt bak linse 2 fokuserer et fjernt objekt?
+
+<Hints>
+
+<Hint>
+
+Et fjernt objekt betyr parallelt lys inn ($\alpha_1=0$). Du leter etter **bakre brennavstand** (BFD), ikke effektiv $f$.
+
+</Hint>
+
+<Hint>
+
+Sett opp $M=L(f_2)\,T(D)\,L(f_1)$ og finn $A$ og $C$. BFD $=-A/C$, målt fra utgangsplanet (linse 2).
+
+</Hint>
+
+<Hint solution>
+
+$A=1-D/f_1=1-4=-3$ og $C=-\tfrac1{10}-\tfrac1{20}+\tfrac{40}{200}=-0{,}15+0{,}20=0{,}05\text{ cm}^{-1}$.
+
+BFD $=-A/C=3/0{,}05=60\text{ cm}$ bak linse 2. Kontroll: $\det M=1$ ✓.
+
+</Hint>
+
+</Hints>
+
+</Example>
+
+#### Sjekk deg selv
+
+<Quiz
+  question={"Lyset møter element 1, så 2, så 3. Systemmatrisen er …"}
+  options={["$M_1M_2M_3$","$M_3M_2M_1$","$M_2M_3M_1$","rekkefølgen er likegyldig"]}
+  answer={1}
+  explanation={"Matrisene virker fra høyre på $(y,\\alpha)$, så det siste elementet lyset møter står lengst til venstre: $M_3M_2M_1$."}
+/>
+
+<Quiz
+  question={"For et system som starter og slutter i luft skal determinanten være …"}
+  options={["$0$","$1$","$n_1/n_2$","$-1$"]}
+  answer={1}
+  explanation={"$\\det M=n_\\text{start}/n_\\text{slutt}=1$ i samme medium — en rask regnefeil-sjekk."}
+/>
+
+<Quiz
+  question={"$B=0$ i systemmatrisen betyr at …"}
+  options={["systemet er afokalt","inn- og utplan er objekt/bilde-konjugerte","forstørrelsen er 1","strålen er parallell med aksen"]}
+  answer={1}
+  explanation={"$B=0$ ⇒ utgangshøyden er uavhengig av inngangsvinkelen ⇒ alle stråler fra ett objektpunkt samles ⇒ bilde. Da er $A=m$."}
+/>
+
+<Quiz
+  question={"Et afokalt (teleskopisk) system kjennetegnes ved …"}
+  options={["$A=0$","$B=0$","$C=0$","$D=0$"]}
+  answer={2}
+  explanation={"$C=0$ gjør at parallelle stråler inn forblir parallelle ut."}
+/>
+
+<Quiz
+  question={"Den effektive brennvidden til et system leses av som …"}
+  options={["$f=B$","$f=-1/C$","$f=A/D$","$f=\\det M$"]}
+  answer={1}
+  explanation={"$f=-1/C$. Kardinalpunkt-formlene på formelarket bygger på nettopp dette."}
+/>
+
+<Quiz
+  question={"Hvilken byggematrise står IKKE på formelarket?"}
+  options={["translasjon","tynn linse","sfærisk speil","plan brytning"]}
+  answer={2}
+  explanation={"Speilmatrisen $\\begin{pmatrix}1&0\\\\-2/R&1\\end{pmatrix}$ må du huske selv; arket gir bare $f=\\mp R/2$."}
+/>
+
+### Mer forklaring — effektiv f vs. bakre brennavstand
+
+Effektiv brennvidde $f=-1/C$ måles fra *hovedplanet*, ikke fra glasset. Bakre brennavstand (BFD) $=-A/C$ måles fra *utgangsplanet* (siste flate). For en tykk linse eller et sammensatt system faller disse ikke sammen — derfor finnes hovedplan og kardinalpunkter.
+
+Når en oppgave spør «hvor må skjermen stå for et fjernt objekt», spør den om BFD ($-A/C$), ikke om $f$.
+
+<Example title="tolk en gitt systemmatrise">
+
+Et system i luft har $M=\begin{pmatrix}0{,}5 & -3\text{ cm}\\ -0{,}1\text{ cm}^{-1} & 2{,}6\end{pmatrix}$. (a) Er den gyldig? (b) Effektiv brennvidde? (c) Hvor fokuserer et fjernt objekt bak utgangsplanet?
+
+<Solution>
+
+**Determinant.**
+
+$\det M=0{,}5\cdot2{,}6-(-3)(-0{,}1)=1{,}3-0{,}3=1$ ✓ — gyldig (luft→luft).
+
+**Effektiv f.**
+
+$f=-1/C=-1/(-0{,}1)=10\text{ cm}$.
+
+**Fjernt objekt.**
+
+Parallelt inn ($\alpha_1=0$): $y_2=Ay_1,\ \alpha_2=Cy_1$. Fokus der høyden blir null: $x=-A/C=-0{,}5/(-0{,}1)=5\text{ cm}$ bak utgangsplanet (BFD).
+
+<Answer>$\det M = 1$ ✓, $f = 10$ cm, skjerm 5 cm bak utgangsplanet</Answer>
+
+</Solution>
+
+</Example>
+
+#### Flere kontrollspørsmål
+
+<Quiz
+  question={"Hvorfor er bakre brennavstand mindre enn effektiv brennvidde her?"}
+  options={["fordi $A<1$ flytter hovedplanet bak utgangsplanet","fordi lyset taper energi","fordi $\\det M\\neq1$","rent tilfeldig"]}
+  answer={0}
+  explanation={"Hovedplanet ligger foran utgangsplanet, så avstanden fra glasset (BFD) blir kortere enn $f$ målt fra hovedplanet."}
+/>
+
+<Quiz
+  question={"Et fjernt objekt avbildes alltid i …"}
+  options={["hovedplanet","brennplanet","utgangsplanet","uendelig"]}
+  answer={1}
+  explanation={"Parallelle stråler fra uendelig samles i det bakre brennplanet."}
+/>
+
+<KeyTakeaways>
+
+- En stråle er $(y,\alpha)$; de fem byggematrisene (translasjon, plan/sfærisk brytning, tynn linse, speil) er alt du trenger.
+- Bygg $M_\text{sys}=M_n\cdots M_2 M_1$ — **motsatt** av lysets gang — og sjekk med $\det M=n_\text{start}/n_\text{slutt}$.
+- Les av tallene: $B=0$ ⇒ bilde ($m=A$), $C=0$ ⇒ afokalt, $f=-1/C$, BFD $=-A/C$.
+- Effektiv $f$ måles fra hovedplanet; BFD fra utgangsplanet — spør oppgaven «hvor står skjermen?», mener den BFD.
+- Speilmatrisen $\begin{pmatrix}1&0\\-2/R&1\end{pmatrix}$ står **ikke** på arket — den må du huske.
+
+</KeyTakeaways>

@@ -1,1 +1,6 @@
 course_content/*
+
+# study-companion (Astro) build artifacts
+node_modules/
+dist/
+.astro/

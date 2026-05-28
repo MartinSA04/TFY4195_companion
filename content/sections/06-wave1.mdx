@@ -1,0 +1,143 @@
+---
+order: 6
+title: "Maxwells likninger & EM-bølger"
+summary: "Lys er en elektromagnetisk bølge. Maxwells fire likninger kombineres til en bølgelikning der lyshastigheten i et medium er $v=c/n$. Detaljene i utledningen er i"
+importance: useful
+estMinutes: 20
+tags: ["Bølgeoptikk I"]
+part: "Bølgeoptikk"
+updated: 2026-05-28
+---
+
+<LearningGoals>
+
+- Kjenne Maxwells likninger i vakuum og i transparente medier (uten ladning/strøm).
+- Utlede og bruke **bølgelikningen** og plan-bølge-løsningen.
+- Forstå transversaliteten $E\perp B\perp k$ og bruke **Poynting-vektoren** for intensitet.
+
+</LearningGoals>
+
+### Kjernen i temaet
+
+Lys er en elektromagnetisk bølge. Maxwells fire likninger kombineres til en bølgelikning der lyshastigheten i et medium er $v=c/n$. Detaljene i utledningen er ikke pensum, men du må kjenne strukturen og de viktige grunnleggerne (Maxwell, Faraday, Hertz).
+
+#### Plan-bølge-løsningen
+
+$\vec E = \vec E_0\cos(\vec k\cdot\vec r-\omega t)$ løser bølgelikningen når $\omega=kv$. Her er $k=2\pi/\lambda$ bølgetallet og $\omega=2\pi f$ vinkelfrekvensen.
+
+#### Geometri (ofte spurt om)
+
+- $\vec E$, $\vec B$ og utbredelsesretningen $\vec k$ er **innbyrdes vinkelrette**, og $\vec E\times\vec B$ peker langs $\vec k$.
+- Amplitudene henger sammen: $|\vec B| = |\vec E|/v$ (i vakuum $B_0=E_0/c$).
+- Bølgelengden leses rett av fra $k$: $\lambda = 2\pi/k$.
+
+<Statement kind="theorem" name="Transversalitet">
+
+I en plan EM-bølge står $\vec E$, $\vec B$ og utbredelsesretningen $\vec k$ innbyrdes vinkelrett, og $\vec E\times\vec B$ peker langs $\vec k$. Amplitudene er koblet ved $B_0=E_0/v$.
+
+</Statement>
+
+<Formula tex={"\\nabla^2\\vec E=\\dfrac{n^2}{c^2}\\dfrac{\\partial^2\\vec E}{\\partial t^2}"} caption={"Bølgelikningen for EM-felt."} />
+
+<Formula tex={"\\vec E=\\vec E_0\\cos(\\vec k\\cdot\\vec r-\\omega t)"} caption={"Plan-bølge, med $\\omega=kv,\\ k=2\\pi/\\lambda$."} memorize />
+
+<Formula tex={"B_0=E_0/v"} caption={"Forhold mellom amplitudene."} memorize />
+
+<Formula tex={"\\vec S=c^2\\varepsilon_0(\\vec E\\times\\vec B)"} caption={"Poynting-vektor (energifluks)."} />
+
+<Formula tex={"I=\\langle S\\rangle=\\tfrac12 c\\,n\\,\\varepsilon_0 E_0^2"} caption={"Intensitet (tidsmidlet)."} />
+
+<ExamFocus title="Slik testes dette på eksamen">
+
+*Bølgelengde fra k · B-feltets retning/styrke · Intensitet*
+
+«EMwave»-oppgaven gir et uttrykk $\vec E=E_0\cos(kz-\omega t)\hat x$ og spør om **bølgelengden** ($\lambda=2\pi/k$) og **magnetfeltets retning og styrke** (vinkelrett, langs $\hat y$ slik at $\hat x\times\hat y=\hat z$, med $B_0=E_0/c$). «Select two alternatives».
+
+</ExamFocus>
+
+<Example>
+
+$\vec E = 30\cos(1{,}26\times10^{7} z - \omega t)\,\hat x$ V/m i vakuum. Finn $\lambda$ og beskriv $\vec B$.
+
+<Solution>
+
+**Bølgelengde.**
+
+$k=1{,}26\times10^{7}\,\text{m}^{-1}\Rightarrow \lambda=2\pi/k\approx 4{,}99\times10^{-7}\text{ m}\approx 500$ nm.
+
+**B-felt.**
+
+Utbredelse langs $+\hat z$, $\vec E$ langs $\hat x$. For at $\vec E\times\vec B \parallel \hat z$ må $\vec B$ ligge langs $\hat y$. Amplitude $B_0=E_0/c=30/(3\times10^8)=1{,}0\times10^{-7}$ T.
+
+<Answer>$\lambda \approx 500$ nm; $\vec B \parallel \hat y$, $B_0 \approx 1{,}0\times10^{-7}$ T</Answer>
+
+</Solution>
+
+</Example>
+
+#### Sjekk deg selv
+
+<Quiz
+  question={"En plan EM-bølge i vakuum har $\\vec E$ langs $\\hat x$ og utbreder seg langs $+\\hat z$. $\\vec B$ ligger langs:"}
+  options={["$\\hat z$","$\\hat x$","$\\hat y$","$-\\hat z$"]}
+  answer={2}
+  explanation={"$\\vec E\\times\\vec B$ må peke langs $+\\hat z$. $\\hat x\\times\\hat y=\\hat z$, så $\\vec B\\parallel\\hat y$."}
+/>
+
+<Quiz
+  question={"I et medium med $n=1{,}5$ er lysets fart:"}
+  options={["$1{,}5c$","$c$","$c/1{,}5\\approx 2{,}0\\times10^8$ m/s","avhenger av amplituden"]}
+  answer={2}
+  explanation={"$v=c/n=3{,}0\\times10^8/1{,}5=2{,}0\\times10^8$ m/s."}
+/>
+
+### Mer forklaring — les bølgeuttrykket systematisk
+
+Et uttrykk som $E_0\cos(kz-\omega t)$ gir tre ting samtidig: amplituden $E_0$, utbredelsesretningen fra fortegnet foran $\omega t$, og bølgelengden fra $k$.
+
+Husk også at <FormulaRef id="intensitet">intensiteten</FormulaRef> går som amplitude i andre potens. Dobler du $E_0$, firedobles intensiteten.
+
+<Example title="intensitet fra feltamplitude">
+
+En plan bølge i luft har elektrisk feltamplitude $E_0=100\text{ V/m}$. Estimer tidsmidlet intensitet.
+
+<Solution>
+
+**Formel.**
+
+Bruk $I=\tfrac12 c\varepsilon_0E_0^2$ for luft/vakuum.
+
+**Innsetting.**
+
+$I=0{,}5(3{,}00\times10^8)(8{,}85\times10^{-12})(100)^2=13{,}3\text{ W/m}^2$.
+
+<Answer>$I \approx 13\ \text{W/m}^2$</Answer>
+
+</Solution>
+
+</Example>
+
+#### Flere kontrollspørsmål
+
+<Quiz
+  question={"Hvis $E_0$ dobles, endres intensiteten med faktor:"}
+  options={["2","4","1/2","8"]}
+  answer={1}
+  explanation={"Intensitet er proporsjonal med $E_0^2$."}
+/>
+
+<Quiz
+  question={"I $\\cos(kz-\\omega t)$ beveger bølgen seg:"}
+  options={["langs +z","langs −z","langs +x","står stille"]}
+  answer={0}
+  explanation={"Konstant fase krever $kz-\\omega t=\\text{konstant}$, altså øker z når t øker."}
+/>
+
+<KeyTakeaways>
+
+- Maxwells likninger gir bølgelikningen; lysfarten i et medium er $v=c/n$.
+- Plan-bølge: $\vec E=\vec E_0\cos(\vec k\cdot\vec r-\omega t)$, med $k=2\pi/\lambda$, $\omega=2\pi f$, $\omega=kv$.
+- $\vec E\perp\vec B\perp\vec k$, $\vec E\times\vec B\parallel\vec k$, og $B_0=E_0/v$.
+- Intensitet $I=\tfrac12 cn\varepsilon_0 E_0^2 \propto E_0^2$ — dobler du feltet, firedobles intensiteten.
+
+</KeyTakeaways>

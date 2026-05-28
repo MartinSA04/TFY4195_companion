@@ -1,0 +1,71 @@
+name: Deploy to GitHub Pages
+
+# Builds the Astro site and publishes dist/ to GitHub Pages.
+#
+# One-time setup in the repo (Settings → Pages):
+#   • Source: "GitHub Actions"  (NOT "Deploy from a branch")
+#   • Custom domain: optikk.martinsundal.no  (kept by public/CNAME below)
+#
+# The study-companion framework is pulled from its GitHub tag
+# (github:MartinSA04/StudyCompanion#v1.0.1) during `pnpm install`, so that repo
+# must be public (or add a token to the install step).
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+# Least-privilege token scoped to what the Pages deploy needs.
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Never run two deploys at once; let an in-flight run finish (don't cancel a
+# half-published deploy).
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # Installs the pnpm version pinned in package.json's "packageManager".
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      # `astro build` → dist/, then the integration builds the Pagefind index.
+      - name: Build
+        run: pnpm build
+
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
