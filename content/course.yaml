@@ -16,6 +16,8 @@ features:
   search: true
   flashcards: true
   theme: true
+analytics:
+  goatcounter: "https://optikkmartinsundal.goatcounter.com/count"
 links:
   - { label: "Emneside (NTNU)", url: "https://www.ntnu.no/studier/emner/TFY4195" }
 glossary:
