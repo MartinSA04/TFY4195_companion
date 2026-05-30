@@ -4,6 +4,7 @@ title: Optikk
 subtitle: Interaktiv pensumguide
 term: V2026
 language: nb
+courseUrl: "https://www.ntnu.no/studier/emner/TFY4195"
 repoUrl: "https://github.com/MartinSA04/TFY4195_companion"
 repoBranch: main
 accent: "#1f5f8b"
@@ -18,8 +19,6 @@ features:
   theme: true
 analytics:
   goatcounter: "https://optikkmartinsundal.goatcounter.com/count"
-links:
-  - { label: "Emneside (NTNU)", url: "https://www.ntnu.no/studier/emner/TFY4195" }
 glossary:
   - { term: "Foton", definition: "Lysets kvant: en masseløs energipakke med energi $E=hf$ og impuls $p=h/\\lambda$. Et boson, så det adlyder Bose–Einstein-statistikk.", section: "Foton & radiometri" }
   - { term: "Irradians", definition: "Strålingseffekt per areal inn på en flate, $[\\text{W/m}^2]$. En objektiv radiometrisk størrelse, i motsetning til den øyevektede fotometrien.", section: "Foton & radiometri" }
