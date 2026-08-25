@@ -26,7 +26,7 @@ glossary:
   - { term: "Brytningsindeks", definition: "Forholdet $n=c/v$ mellom lysfarten i vakuum og i mediet. Bestemmer brytning (Snells lov) og bølgelengden i mediet, $\\lambda/n$.", section: "Geometrisk optikk" }
   - { term: "Fermats prinsipp", definition: "Lys følger veien som gir stasjonær (oftest minste) optisk veilengde. Snells lov og refleksjonsloven følger direkte av dette.", section: "Geometrisk optikk" }
   - { term: "Huygens' prinsipp", definition: "Hvert punkt på en bølgefront er kilde til nye kulebølger; den nye fronten er innhyllingen av disse. Forklarer brytning, refleksjon og diffraksjon geometrisk.", section: "Geometrisk optikk" }
-  - { term: "Optisk veilengde", definition: "$\\text{OPL}=\\sum_j n_j d_j$: geometrisk lengde vektet med brytningsindeks. Lyset «føler» optisk vei, ikke geometrisk avstand; Fermats prinsipp gjelder OPL.", section: "Geometrisk optikk" }
+  - { term: "Optisk veilengde", definition: "$\\text{OPL}=\\sum_j n_j d_j$: geometrisk lengde vektet med brytningsindeks. Fermats prinsipp gjelder optisk vei, ikke geometrisk avstand.", section: "Geometrisk optikk" }
   - { term: "Paraksial tilnærming", definition: "Småvinkel-grensen $\\sin\\alpha\\approx\\tan\\alpha\\approx\\alpha$ der optikken blir lineær. Grunnlaget for tynnlinselikningen og stråle-transfer-matrisene.", section: "Geometrisk optikk" }
   - { term: "Reelt bilde", definition: "Et bilde der lysstrålene faktisk møtes, så det kan fanges på en skjerm. Ligger på motsatt side av en samlelinse ($s_i>0$).", section: "Geometrisk optikk" }
   - { term: "Virtuelt bilde", definition: "Et bilde der bare strålenes forlengelser møtes; kan ikke fanges på skjerm, men ses gjennom optikken ($s_i<0$). Alltid opprett.", section: "Geometrisk optikk" }
