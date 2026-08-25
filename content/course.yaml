@@ -26,8 +26,8 @@ glossary:
   - { term: "Brytningsindeks", definition: "Forholdet $n=c/v$ mellom lysfarten i vakuum og i mediet. Bestemmer brytning (Snells lov) og bølgelengden i mediet, $\\lambda/n$.", section: "Geometrisk optikk" }
   - { term: "Fermats prinsipp", definition: "Lys følger veien som gir stasjonær (oftest minste) optisk veilengde. Snells lov og refleksjonsloven følger direkte av dette.", section: "Geometrisk optikk" }
   - { term: "Huygens' prinsipp", definition: "Hvert punkt på en bølgefront er kilde til nye kulebølger; den nye fronten er innhyllingen av disse. Forklarer brytning, refleksjon og diffraksjon geometrisk.", section: "Geometrisk optikk" }
-  - { term: "Optisk veilengde", definition: "$\\text{OPL}=\\sum_j n_j d_j$ — geometrisk lengde vektet med brytningsindeks. Lyset «føler» optisk vei, ikke geometrisk avstand; Fermats prinsipp gjelder OPL.", section: "Geometrisk optikk" }
-  - { term: "Paraksial tilnærming", definition: "Småvinkel-grensen $\\sin\\alpha\\approx\\tan\\alpha\\approx\\alpha$ der optikken blir lineær — grunnlaget for tynnlinse-likningen og stråle-transfer-matrisene.", section: "Geometrisk optikk" }
+  - { term: "Optisk veilengde", definition: "$\\text{OPL}=\\sum_j n_j d_j$: geometrisk lengde vektet med brytningsindeks. Lyset «føler» optisk vei, ikke geometrisk avstand; Fermats prinsipp gjelder OPL.", section: "Geometrisk optikk" }
+  - { term: "Paraksial tilnærming", definition: "Småvinkel-grensen $\\sin\\alpha\\approx\\tan\\alpha\\approx\\alpha$ der optikken blir lineær. Grunnlaget for tynnlinselikningen og stråle-transfer-matrisene.", section: "Geometrisk optikk" }
   - { term: "Reelt bilde", definition: "Et bilde der lysstrålene faktisk møtes, så det kan fanges på en skjerm. Ligger på motsatt side av en samlelinse ($s_i>0$).", section: "Geometrisk optikk" }
   - { term: "Virtuelt bilde", definition: "Et bilde der bare strålenes forlengelser møtes; kan ikke fanges på skjerm, men ses gjennom optikken ($s_i<0$). Alltid opprett.", section: "Geometrisk optikk" }
   - { term: "Brennvidde", definition: "Avstanden $f$ fra en linse eller et speil til brennpunktet der innfallende parallelt lys samles. Positiv for samlende, negativ for spredende.", section: "Geometrisk optikk" }
@@ -42,7 +42,7 @@ glossary:
   - { term: "Polarisering", definition: "Retningen til det elektriske feltet i en EM-bølge. Kan være lineær, sirkulær eller elliptisk; styres bl.a. av refleksjon (Brewster) og polarisasjonsfiltre.", section: "Bølgeoptikk: felt, refleksjon & polarisering" }
   - { term: "Brewster-vinkel", definition: "Innfallsvinkelen $\\theta_p=\\arctan(n_2/n_1)$ der reflektert lys blir fullstendig lineært polarisert (TM-komponenten forsvinner).", section: "Bølgeoptikk: felt, refleksjon & polarisering" }
   - { term: "Reflektans", definition: "Andelen av innfallende effekt som reflekteres, $R=r^2$. Sammen med transmittansen $T$ er $R+T=1$ (energibevaring).", section: "Bølgeoptikk: felt, refleksjon & polarisering" }
-  - { term: "Total intern refleksjon", definition: "Ved innfall fra tett mot tynt medium over den kritiske vinkelen reflekteres alt lyset internt — ingen transmittert stråle.", section: "Bølgeoptikk: felt, refleksjon & polarisering" }
+  - { term: "Total intern refleksjon", definition: "Ved innfall fra tett mot tynt medium over den kritiske vinkelen reflekteres alt lyset internt; ingen netto effekt transmitteres.", section: "Bølgeoptikk: felt, refleksjon & polarisering" }
   - { term: "Evanescent bølge", definition: "Det eksponentielt avtagende feltet $E\\propto e^{-z/d}$ som lekker en kort vei inn i det tynne mediet ved total intern refleksjon.", section: "Bølgeoptikk: felt, refleksjon & polarisering" }
   - { term: "Dispersjon", definition: "At brytningsindeksen $n(\\lambda)$ varierer med bølgelengde, så ulike farger brytes ulikt (prisme, regnbue) og reiser ulikt fort i en fiber (materialdispersjon).", section: "Bølgeoptikk: felt, refleksjon & polarisering" }
   - { term: "Superposisjonsprinsippet", definition: "Det resulterende feltet av flere bølger er summen av feltene i hvert punkt; intensitetens kryssledd $2E_{01}E_{02}\\cos\\Delta\\alpha$ er interferensen.", section: "Bølgeoptikk: interferens & koherens" }
@@ -50,14 +50,14 @@ glossary:
   - { term: "Synlighet", definition: "Stripekontrast $V=(I_\\text{max}-I_\\text{min})/(I_\\text{max}+I_\\text{min})$. Faller mot null når veiforskjellen overstiger koherenslengden (visibility).", section: "Bølgeoptikk: interferens & koherens" }
   - { term: "Michelson-interferometer", definition: "Stråledeler sender lys mot to speil og rekombinerer; $I=4I_0\\cos^2(\\delta/2)$. Flytter du ett speil $\\Delta d$, teller du $2\\Delta d/\\lambda$ striper.", section: "Bølgeoptikk: interferens & koherens" }
   - { term: "Antirefleksbelegg", definition: "Kvartbølgelag ($2n_f t=\\lambda/2$) som gir destruktiv refleksjon ved én bølgelengde, så mer lys transmitteres. Et tynnfilm-interferens-fenomen.", section: "Bølgeoptikk: interferens & koherens" }
-  - { term: "Numerisk apertur", definition: "$NA=\\sqrt{n_1^2-n_2^2}$ — sinus av den største akseptansevinkelen en fiber kan fange og lede ved total intern refleksjon.", section: "Optiske fibre" }
+  - { term: "Numerisk apertur", definition: "$NA=\\sqrt{n_1^2-n_2^2}$: sinus til den største akseptansevinkelen en fiber kan fange og lede ved total intern refleksjon.", section: "Optiske fibre" }
   - { term: "Step-index-fiber", definition: "Fiber med skarp indeksovergang kjerne→kappe. Enkel og billig, men har mest modal dispersjon.", section: "Optiske fibre" }
-  - { term: "Graded-index-fiber", definition: "GRIN-fiber der indeksen avtar gradvis utover; strålene bøyes kontinuerlig og får nesten lik gangtid ⇒ mye mindre modal dispersjon.", section: "Optiske fibre" }
+  - { term: "Graded-index-fiber", definition: "GRIN-fiber der indeksen avtar gradvis utover; strålene bøyes kontinuerlig og får nesten lik gangtid, så den modale dispersjonen blir mye mindre.", section: "Optiske fibre" }
   - { term: "Modal dispersjon", definition: "Pulsutsmøring fordi ulike moder har ulik gangtid. Verst i multimodus step-index; fjernes i singelmodus og reduseres kraftig i GRIN.", section: "Optiske fibre" }
   - { term: "Materialdispersjon", definition: "Pulsutsmøring fordi $n(\\lambda)$ varierer, så ulike bølgelengder reiser ulikt fort. Skaleres med kildens spektralbredde; null nær 1,3 µm i silika.", section: "Optiske fibre" }
-  - { term: "Rayleigh-spredning", definition: "Spredning på små tetthetsvariasjoner i glasset, tverrsnitt $\\propto1/\\lambda^4$. Dominerer fiberens intrinsiske tap — derfor velges lange bølgelengder.", section: "Optiske fibre" }
-  - { term: "Båndbredde–avstand-produkt", definition: "$\\nu_\\text{max}L=0{,}5/(\\delta\\tau/L)$ — fiberens nøkkeltall for hvor høy bitrate den tåler over en gitt lengde.", section: "Optiske fibre" }
-  - { term: "EDFA", definition: "Erbium-dopet fiberforsterker, pumpet ved ~980 nm, som forsterker hele C-båndet optisk ved stimulert emisjon — uten elektrisk OEO-regenerering.", section: "Optiske fibre" }
+  - { term: "Rayleigh-spredning", definition: "Spredning på små tetthetsvariasjoner i glasset, tverrsnitt $\\propto1/\\lambda^4$. Dominerer fiberens intrinsiske tap, og er grunnen til at lange bølgelengder velges.", section: "Optiske fibre" }
+  - { term: "Båndbredde–avstand-produkt", definition: "$\\nu_\\text{max}L=0{,}5/(\\delta\\tau/L)$: fiberens nøkkeltall for hvor høy bitrate den tåler over en gitt lengde.", section: "Optiske fibre" }
+  - { term: "EDFA", definition: "Erbium-dopet fiberforsterker, pumpet ved 980 nm, som forsterker hele C-båndet optisk ved stimulert emisjon, uten elektrisk regenerering.", section: "Optiske fibre" }
   - { term: "WDM", definition: "Bølgelengdemultipleksing: flere bærebølgelengder samtidig i én fiber. DWDM pakker ~45 kanaler à 0,8 nm (100 GHz) i C-båndet.", section: "Optiske fibre" }
   - { term: "Fiber-Bragg-gitter", definition: "Periodisk indeksmodulasjon (periode $\\Lambda$) som virker som et bølgelengdespesifikt speil; reflekterer $\\lambda_B=2n_1\\Lambda$.", section: "Optiske fibre" }
   - { term: "Mach–Zehnder-interferometer", definition: "To-arms fiberinterferometer brukt som mux/demux: veiforskjellen velges så én bølgelengde gir konstruktiv og en annen destruktiv interferens.", section: "Optiske fibre" }
@@ -65,7 +65,7 @@ glossary:
   - { term: "Fraunhofer-diffraksjon", definition: "Diffraksjon i fjernfeltet ($L\\gg b^2/\\lambda$), der mønsteret er Fourier-transformen av aperturen.", section: "Diffraksjon" }
   - { term: "Airy-skive", definition: "Diffraksjonsmønsteret fra en sirkulær apertur: en sentral skive med mørke ringer. Første mørke ring ved $\\Delta\\theta=1{,}22\\lambda/D$.", section: "Diffraksjon" }
   - { term: "Diffraksjonsgitter", definition: "En periodisk struktur av mange spalter som gir skarpe, lyssterke maksima; brukes til å splitte lys etter bølgelengde.", section: "Diffraksjon" }
-  - { term: "Oppløsningsevne", definition: "Et instruments evne til å skille to nære detaljer — to bølgelengder ($\\mathcal R=\\lambda/\\Delta\\lambda=mN$) eller to punkter (Rayleigh-kriteriet).", section: "Diffraksjon" }
+  - { term: "Oppløsningsevne", definition: "Et instruments evne til å skille to nære detaljer: to bølgelengder ($\\mathcal R=\\lambda/\\Delta\\lambda=mN$) eller to punkter (Rayleigh-kriteriet).", section: "Diffraksjon" }
   - { term: "Fritt spektralområde", definition: "Bølgelengdeintervallet $\\lambda_\\text{fsr}=\\lambda_1/m$ før naboordener fra et gitter (eller et Fabry–Perot) overlapper.", section: "Diffraksjon" }
 formulas:
   - { tex: "E=hf=\\dfrac{hc}{\\lambda}", label: "Foton-energi fra frekvens / bølgelengde. h = Plancks konstant.", section: "Foton & radiometri", id: "foton-energi" }
@@ -86,11 +86,7 @@ formulas:
   - { tex: "\\begin{pmatrix}1 & 0 \\\\ 0 & n_1/n_2\\end{pmatrix}", label: "Brytning i plan flate.", section: "Stråle-transfer-matriser", id: "matrise-plan" }
   - { tex: "\\begin{pmatrix}1 & 0 \\\\ \\frac{n_1-n_2}{n_2 R} & n_1/n_2\\end{pmatrix}", label: "Brytning i sfærisk flate radius $R$.", section: "Stråle-transfer-matriser", id: "matrise-sfaerisk" }
   - { tex: "f=-\\dfrac{1}{C},\\quad H_1:\\ \\dfrac{D-1}{C},\\quad H_2:\\ \\dfrac{1-A}{C}", label: "Effektiv brennvidde og hovedplan i luft, målt fra inn- og utplanet. $F_1=H_1-f$, $F_2=H_2+f$; nodalpunktene faller sammen med hovedpunktene i luft.", section: "Stråle-transfer-matriser", id: "kardinalpunkter" }
-  - { tex: "T(d)=\\begin{pmatrix}1 & d \\\\ 0 & 1\\end{pmatrix}", label: "Translasjon (fri propagasjon).", section: "Ray tracing — byggematriser", id: "rt-translasjon" }
-  - { tex: "R_P=\\begin{pmatrix}1 & 0 \\\\ 0 & n_1/n_2\\end{pmatrix}", label: "Brytning, plan flate.", section: "Ray tracing — byggematriser", id: "rt-plan" }
-  - { tex: "R_S=\\begin{pmatrix}1 & 0 \\\\ \\frac{n_1-n_2}{n_2 R} & n_1/n_2\\end{pmatrix}", label: "Brytning, sfærisk flate.", section: "Ray tracing — byggematriser", id: "rt-sfaerisk" }
-  - { tex: "L(f)=\\begin{pmatrix}1 & 0 \\\\ -1/f & 1\\end{pmatrix}", label: "Tynn linse.", section: "Ray tracing — byggematriser", id: "rt-linse" }
-  - { tex: "M_\\text{speil}=\\begin{pmatrix}1 & 0 \\\\ -2/R & 1\\end{pmatrix}", label: "Sfærisk speil ($f=R/2$).", section: "Ray tracing — byggematriser", id: "rt-speil" }
+  - { tex: "M_\\text{speil}=\\begin{pmatrix}1 & 0 \\\\ -2/R & 1\\end{pmatrix}", label: "Sfærisk speil, utbrettet; her med konvensjonen $R>0$ for konkavt speil, så $f=R/2>0$.", section: "Stråle-transfer-matriser", id: "rt-speil" }
   - { tex: "MP_\\text{lupe}=\\dfrac{25\\text{ cm}}{f}", label: "Enkel lupe (bilde i uendelig). $MP$ = vinkelforstørrelse (ikke lateral $m$); 25 cm = øyets nærpunkt.", section: "Optiske instrumenter", id: "lupe" }
   - { tex: "M_\\text{mik}=-\\dfrac{L}{f_o}\\cdot\\dfrac{25}{f_e}", label: "Sammensatt mikroskop, tubuslengde $L$. $f_o$ = objektiv-, $f_e$ = okularbrennvidde.", section: "Optiske instrumenter", id: "mikroskop" }
   - { tex: "MP_\\text{tel}=-\\dfrac{f_o}{f_e}", label: "Teleskop (refraktor): vinkelforstørrelse = objektiv- delt på okularbrennvidde.", section: "Optiske instrumenter", id: "teleskop" }
