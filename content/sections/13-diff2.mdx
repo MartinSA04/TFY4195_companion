@@ -1,147 +1,187 @@
 ---
 order: 13
 title: "Fourier-optikk & diffraksjonsgitteret"
-summary: "Mange spalter (et gitter) gir skarpe, lyssterke topper — ideelt til å splitte lys i bølgelengder. Fourier-optikken sier at fjernfeltet er Fourier-transformen av"
-importance: useful
+summary: "Linsen som Fourier-transformator: fjernfeltet i brennplanet, og diffraksjonsgitteret som spektroskop med gitterlikning, dispersjon, oppløsning og fritt spektralområde."
+importance: core
 tag: "Diffraksjon II"
 part: "Diffraksjon"
-updated: 2026-05-28
+updated: 2026-08-25
 ---
+
+Fjernfeltmønsteret er Fourier-transformen av åpningen. Den setningen har to
+praktiske konsekvenser, og de deler modulen: en linse henter
+Fourier-transformen inn i sitt brennplan, så du slipper å vente på
+fjernfeltet, og et gitter med tusenvis av spalter gjør transformen til et
+måleinstrument som sorterer lys etter bølgelengde.
 
 <LearningGoals>
 
-- Bruke flerspalt-formelen og **gitterlikningen**.
-- Beregne et gitters **dispersjon**, **oppløsning** og **frie spektralområde**.
-- Forstå Fourier-optikk-bildet: fjernfeltmønsteret som transform av åpningen.
+- Forklare hvorfor fjernfeltet er Fourier-transformen av åpningsfeltet, og hva en linse gjør med det.
+- Bruke flerspaltformelen og <Term name="Diffraksjonsgitter">gitterlikningen</Term>.
+- Beregne et gitters dispersjon, <Term name="Oppløsningsevne">oppløsning</Term> og <Term name="Fritt spektralområde">frie spektralområde</Term>.
 
 </LearningGoals>
 
-### Kjernen i temaet
+## Linsen som Fourier-transformator
 
-Mange spalter (<Term name="Diffraksjonsgitter">et gitter</Term>) gir skarpe, lyssterke topper — ideelt til å splitte lys i bølgelengder. Fourier-optikken sier at fjernfeltet er Fourier-transformen av åpningsfunksjonen, så «mønster ↔ struktur» blir et transformpar.
+Fraunhofer-integralet fra forrige modul er matematisk en Fourier-transform:
+hvert punkt i fjernfeltet svarer til én romlig frekvens i åpningen. Grove
+strukturer sender lys i små vinkler, fine strukturer i store. Kravet for å
+bruke det direkte er strengt: fjernfeltet begynner først når
+$\text{areal}/(\lambda R)\ll1$, og for en åpning på 1 cm² i synlig lys
+betyr det avstander på hundrevis av meter.
 
-#### Flerspalt-intensitet
+Linsen løser det. En tynn linse forsinker lyset mest på midten, og
+tykkelsesfunksjonen gir den fasetransmisjonen
 
-$I=I_0\left(\dfrac{\sin\beta}{\beta}\right)^2\left(\dfrac{\sin N\alpha}{\sin\alpha}\right)^2$, med $\alpha=\tfrac12 ak\sin\theta$ (mellom-spalt) og $\beta=\tfrac12 bk\sin\theta$ (enkeltspalt). Enkeltspalt-leddet er konvolutten; gitter-leddet gir de skarpe hovedmaksima.
+<Formula tex={"t_a(x,y)=e^{-ik(x^2+y^2)/2f}"} caption={"Tynn linse som faseelement; på veien dukker linsemakerformelen opp i $1/f$."} />
 
-#### Gitterlikningen
+Settes dette inn i diffraksjonsintegralet med skjermen i brennplanet,
+kansellerer linsens kvadratiske fase nøyaktig integralets egen, og det som
+står igjen er en ren Fourier-transform av aperturfeltet. En linse henter
+altså fjernfeltet inn i brennplanet sitt, på en brennviddes avstand. Det er
+grunnlaget for all optisk bildebehandling i frekvensplanet.
 
-$m\lambda=a(\sin\theta_i+\sin\theta_m)$. Ordenstallet $m$ gir flere spektre. Et gitters kvalitet måles ved <Term name="Oppløsningsevne">oppløsning</Term> <FormulaRef id="gitter-opplosning">$\mathcal R=mN$</FormulaRef> (orden × antall opplyste spalter) og dispersjon <FormulaRef id="gitter-dispersjon">$\mathcal D=m/(a\cos\theta_m)$</FormulaRef>.
+Faser kan i det hele tatt manipuleres på tre måter: endre veilengden (en
+linse), endre brytningsindeksen, eller bruke diffraksjon. Moderne romlige
+lysmodulatorer styrer fasen piksel for piksel på akkurat dette grunnlaget.
+
+<Quiz
+  question={"Med skjermen i linsens brennplan viser mønsteret …"}
+  options={["et skarpt bilde av åpningen","Fourier-transformen av åpningsfeltet","alltid en Airy-skive","skyggen av åpningen"]}
+  answer={1}
+  explanation={"Linsens kvadratiske fase kansellerer diffraksjonsintegralets, og brennplanet viser fjernfeltet, altså transformen."}
+/>
+
+## Gitteret
+
+Flerspaltformelen fra forrige modul er gitterets ligning i forkledning:
+
+<Formula tex={"I=I_0'\\left(\\dfrac{\\sin\\beta}{\\beta}\\right)^2\\left(\\dfrac{\\sin N\\alpha}{\\sin\\alpha}\\right)^2"} caption={"$N$ spalter med bredde $b$ og avstand $a$; $\\alpha=\\pi a\\sin\\theta/\\lambda$, $\\beta=\\pi b\\sin\\theta/\\lambda$."} />
+
+Ved $\alpha=m\pi$ er alle spaltene i fase, og grenseverdien (L'Hôpital)
+viser at hovedmaksima vokser som $N^2$ i høyde og krymper som $1/N$ i
+bredde. Mellom to hovedmaksima ligger $N-1$ minima (der $N\alpha=p\pi$ uten
+at $\alpha$ selv er et multiplum av $\pi$) og $N-2$ svake sekundærmaksima.
+Med titusenvis av riller blir toppene knivskarpe, og posisjonene gis av
+gitterlikningen:
 
 <Statement kind="law" name="Gitterlikningen">
 
-Hovedmaksima fra et gitter med spalteavstand $a$ ligger ved $m\lambda=a(\sin\theta_i+\sin\theta_m)$, der $\theta_i$ er innfalls- og $\theta_m$ utfallsvinkel for orden $m$. Hver orden gir et eget spektrum.
+Hovedmaksima fra et gitter med spalteavstand $a$ ligger ved
+$m\lambda=a(\sin\theta_i+\sin\theta_m)$, der $\theta_i$ er innfalls- og
+$\theta_m$ utfallsvinkelen for orden $m$. Ved normalt innfall:
+$a\sin\theta_m=m\lambda$. Hver orden gir et eget spektrum.
 
 </Statement>
 
-<Formula tex={"I=I_0\\big(\\tfrac{\\sin\\beta}{\\beta}\\big)^2\\big(\\tfrac{\\sin N\\alpha}{\\sin\\alpha}\\big)^2"} caption={"$N$ spalter, bredde $b$, avstand $a$."} />
+Skarpe topper hvis posisjon avhenger av $\lambda$ er nettopp et
+spektroskop: en inngangsspalt, gitteret og en detektorrekke er hele
+instrumentet.
 
-<Formula tex={"m\\lambda=a(\\sin\\theta_i+\\sin\\theta_m)"} caption={"Gitterlikningen. $a$ = spalteavstand (gitterkonstant), $\\theta_i$ = innfalls-, $\\theta_m$ = utfallsvinkel for orden $m$."} />
+<Example title="natriumdubletten">
 
-<Formula tex={"\\mathcal R=\\dfrac{\\lambda}{\\Delta\\lambda}=mN"} caption={"Spektral oppløsning $\\mathcal R$ = evnen til å skille to nære bølgelengder; $N$ = antall belyste spalter."} />
-
-<Formula tex={"\\mathcal D=\\dfrac{d\\theta_m}{d\\lambda}=\\dfrac{m}{a\\cos\\theta_m}"} caption={"Vinkeldispersjon $\\mathcal D$ = hvor mye utfallsvinkelen endrer seg per bølgelengde."} />
-
-<Formula tex={"\\lambda_\\text{fsr}=\\dfrac{\\lambda_1}{m}"} caption={"Fritt spektralområde: bølgelengdeintervallet før naboordener (orden $m$) overlapper."} />
-
-<ExamFocus title="Slik testes dette på eksamen">
-
-*Flerspalt → λ og a · Gitter-oppløsning · Antall hovedmaksima · Dispersjon*
-
-«Multislit»: gitt mønstre for én spalt og for $N=4$ spalter, les av (1) bølgelengden (fra enkeltspalt-konvoluttens minima) og (2) spaltavstanden $a$ (fra de tette hovedmaksima). Gitteroppgaver: hvilken oppløsning kreves for å skille to nære linjer ⇒ bruk $\mathcal R=mN$.
-
-</ExamFocus>
-
-<Example title="flerspalt">
-
-Et gitter med $N=4$ spalter, $a=88{,}6\,\mu$m bredde-info ... gitt at hovedmaksima på en 7 m skjerm ligger med avstand $\Delta x$. Hva er prinsippet for å finne $\lambda$ og $a$?
+Natrium har to gule linjer på 589,00 og 589,59 nm. Hvor mange belyste
+gitterspalter trengs for å skille dem i første orden, og i andre?
 
 <Solution>
 
-**λ fra konvolutten.**
+Oppløsningen som kreves, er
+$\mathcal R=\dfrac{\lambda}{\Delta\lambda}=\dfrac{589{,}3}{0{,}59}\approx1{,}0\times10^3$.
 
-Den brede enkeltspalt-konvolutten har minima ved $b\sin\theta=\lambda$. Mål første minimum-vinkel ⇒ $\lambda=b\sin\theta\approx b\,(x/L)$.
+Med $\mathcal R=mN$ trengs $N\approx1000$ spalter i første orden, og halvparten,
+rundt 500, i andre. Et gitter på noen millimeter klarer det med god margin.
 
-**a fra hovedmaksima.**
-
-De skarpe gitter-toppene ligger ved $a\sin\theta=m\lambda$. Mål avstanden mellom dem ⇒ $a=\dfrac{m\lambda L}{x_m}$.
-
-Mellom to hovedmaksima ligger $N-1=3$ minima og $N-2=2$ sekundærmaksima — en god kontroll på at $N=4$.
-
-<Answer>$\lambda$ fra enkeltspalt-minima; $a$ fra hovedmaksima-avstand</Answer>
+<Answer>$N\approx1000$ i 1. orden, $\approx500$ i 2. orden</Answer>
 
 </Solution>
 
 </Example>
 
-#### Sjekk deg selv
+## Dispersjon, oppløsning og fritt spektralområde
 
-<Quiz
-  question={"Et gitter med $N=5000$ spalter brukes i 2. orden. Oppløsningen $\\mathcal R$ er:"}
-  options={["5000","10000","2500","50000"]}
-  answer={1}
-  explanation={"$\\mathcal R=mN=2\\times5000=10000$."}
-/>
+Tre tall karakteriserer gitteret som spektroskop. Dispersjonen sier hvor
+mye vinkelen endrer seg per bølgelengde, oppløsningen hvilke linjer som kan
+skilles, og det frie spektralområdet hvor bredt spektrum som kan måles før
+ordenene blander seg:
 
-<Quiz
-  question={"Mellom to nabo-hovedmaksima fra et $N$-spaltgitter er det:"}
-  options={["$N$ minima","$N-1$ minima","1 minimum","ingen minima"]}
-  answer={1}
-  explanation={"$(\\sin N\\alpha/\\sin\\alpha)^2$ har $N-1$ nullpunkter (minima) og $N-2$ sekundærmaksima mellom hovedmaksima."}
-/>
+<Formula tex={"\\mathcal D=\\dfrac{d\\theta_m}{d\\lambda}=\\dfrac{m}{a\\cos\\theta_m}"} caption={"Vinkeldispersjon: høyere orden og tettere riller sprer spekteret mer."} />
 
-### Mer forklaring — gitteret skiller bølgelengder med orden og antall spalter
+<Formula tex={"\\mathcal R=\\dfrac{\\lambda}{\\Delta\\lambda}=mN"} caption={"Oppløsning: orden ganger antall belyste spalter."} />
 
-Et gitter gir smale topper fordi mange spalter må være i fase samtidig. Flere belyste spalter gir smalere topper og bedre evne til å skille nære bølgelengder.
+<Formula tex={"\\lambda_\\text{fsr}=\\dfrac{\\lambda_1}{m}"} caption={"Fritt spektralområde: bølgelengdeintervallet før naboordenen overlapper."} />
 
-Høyere orden gir også bedre oppløsning, men ordenene kan overlappe; det <Term name="Fritt spektralområde">frie spektralområdet</Term> <FormulaRef id="fsr">$\lambda_\text{fsr}=\lambda_1/m$</FormulaRef> er intervallet før de overlapper. Derfor må du alltid sjekke hvilke bølgelengder som kan eksistere i samme vinkelområde (jf. <FormulaRef id="gitter" />).
+Høyere orden gir bedre oppløsning og dispersjon, men mindre fritt
+spektralområde, fordi gitterlikningen bare inneholder produktet $m\lambda$:
+600 nm i første orden lander i samme vinkel som 300 nm i andre. Et
+spektrometer må derfor filtrere bort ordener det ikke vil se.
 
 <Example title="gittervinkel og oppløsning">
 
-Et gitter har 600 linjer/mm og belyses normalt med $\lambda=500\text{ nm}$. Finn vinkelen for 1. orden og oppløsningen hvis 3000 spalter er belyst.
+Et gitter har 600 linjer/mm og belyses normalt med $\lambda=500$ nm. Finn
+vinkelen for første orden, og oppløsningen når 3000 spalter er belyst.
 
 <Solution>
 
-**Gitteravstand.**
+Gitterkonstanten er $a=1/600$ mm $=1{,}67$ µm. Normalt innfall gir
+$\sin\theta_1=\lambda/a=0{,}300$, så $\theta_1=17{,}5^\circ$.
 
-$a=1/(600\times10^3)=1{,}67\times10^{-6}\text{ m}$.
+Oppløsningen er $\mathcal R=mN=1\cdot3000=3000$, nok til å skille linjer
+0,17 nm fra hverandre ved 500 nm.
 
-**Vinkel.**
-
-Normal innfall: $m\lambda=a\sin\theta$. For $m=1$: $\sin\theta=500\times10^{-9}/1{,}67\times10^{-6}=0{,}300$, så $\theta=17{,}5^\circ$.
-
-**Oppløsning.**
-
-$\mathcal R=mN=1\cdot3000=3000$.
-
-<Answer>$\theta_1 \approx 17{,}5^\circ$, $\mathcal R = 3000$</Answer>
+<Answer>$\theta_1\approx17{,}5^\circ$; $\mathcal R=3000$</Answer>
 
 </Solution>
 
 </Example>
 
-#### Flere kontrollspørsmål
+<ExamFocus title="Typiske oppgaver">
+
+Gitteroppgavene følger øvingens mønster: vinkelavstand mellom to
+bølgelengder i en gitt orden (inverter gitterlikningen), antall spalter for
+å skille en dublett ($\mathcal R=mN$), oppløsning fra gitterbredde ganger
+rilletetthet, og ordensoverlapp via det frie spektralområdet. Pass på
+fellen mellom hovedmaksima ($\alpha=m\pi$) og minima ($N\alpha=p\pi$):
+nabominimumet til en topp ligger $1/N$ av en ordensavstand unna.
+Flerspaltmønstre leses også baklengs: bølgelengden fra konvoluttens minima,
+spalteavstanden fra toppene.
+
+</ExamFocus>
 
 <Quiz
-  question={"Hva øker gitterets spektrale oppløsning?"}
-  options={["lavere orden og færre spalter","høyere orden eller flere belyste spalter","kortere skjermavstand alene","mindre intensitet alene"]}
+  question={"Et gitter med 5000 belyste spalter brukes i 2. orden. Oppløsningen er …"}
+  options={["5000","10000","2500","50000"]}
   answer={1}
-  explanation={"$\\mathcal R=mN$, så både orden m og antall belyste spalter N øker oppløsningen."}
+  explanation={"$\\mathcal R=mN=2\\cdot5000=10000$."}
 />
 
 <Quiz
-  question={"Gitterordener kan overlappe fordi:"}
+  question={"Mellom to nabo-hovedmaksima fra et $N$-spaltgitter ligger …"}
+  options={["$N$ minima","$N-1$ minima","1 minimum","ingen minima"]}
+  answer={1}
+  explanation={"$(\\sin N\\alpha/\\sin\\alpha)^2$ har $N-1$ nullpunkter og $N-2$ sekundærmaksima mellom hovedtoppene."}
+/>
+
+<Quiz
+  question={"Gitterordener kan overlappe fordi …"}
   options={["samme vinkel kan tilfredsstille likningen for ulike $m$ og $\\lambda$","alle bølgelengder har samme energi","spaltene er for brede","Fourier-transformen mangler fase"]}
   answer={0}
-  explanation={"Gitterlikningen inneholder produktet $m\\lambda$, så ulike kombinasjoner kan gi samme vinkel."}
+  explanation={"Likningen inneholder bare produktet $m\\lambda$: 600 nm i 1. orden og 300 nm i 2. treffer samme vinkel."}
+/>
+
+<Quiz
+  question={"Hva øker gitterets spektrale oppløsning?"}
+  options={["lavere orden og færre spalter","høyere orden eller flere belyste spalter","kortere skjermavstand","mindre intensitet"]}
+  answer={1}
+  explanation={"$\\mathcal R=mN$: begge faktorene hjelper, men høyere orden koster fritt spektralområde."}
 />
 
 <KeyTakeaways>
 
-- Flerspalt: enkeltspalt-leddet $(\sin\beta/\beta)^2$ er konvolutten; gitter-leddet $(\sin N\alpha/\sin\alpha)^2$ gir de skarpe toppene.
-- Gitterlikningen $m\lambda=a(\sin\theta_i+\sin\theta_m)$ plasserer hovedmaksima; flere ordener $m$ gir flere spektre.
-- Oppløsning $\mathcal R=mN$ (orden × belyste spalter); dispersjon $\mathcal D=m/(a\cos\theta_m)$.
-- Mellom to hovedmaksima ligger $N-1$ minima og $N-2$ sekundærmaksima — en sjekk på $N$.
-- Fourier-optikk: fjernfeltet er Fourier-transformen av åpningen («mønster ↔ struktur»).
+- Fjernfeltet er Fourier-transformen av åpningen, og en linse henter det inn i brennplanet sitt; fasen kan styres via veilengde, indeks eller diffraksjon.
+- Flerspaltformelen bærer gitteret: hovedmaksima vokser som $N^2$ og smalner som $1/N$, med $N-1$ minima imellom.
+- Gitterlikningen $m\lambda=a(\sin\theta_i+\sin\theta_m)$ plasserer ordenene; hver orden er et eget spektrum.
+- Dispersjon $\mathcal D=m/(a\cos\theta_m)$, oppløsning $\mathcal R=mN$, fritt spektralområde $\lambda_1/m$; høyere orden gir skarpere spektre men mer overlapp.
+- Flerspaltmønstre leses baklengs: konvolutten gir $\lambda$ og spaltbredden, toppene gir spalteavstanden.
 
 </KeyTakeaways>

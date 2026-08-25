@@ -1,150 +1,197 @@
 ---
 order: 12
 title: "Fraunhofer-diffraksjon & oppløsning"
-summary: "Når lys passerer en åpning på størrelse med bølgelengden, sprer det seg — diffraksjon. I fjernfeltet (Fraunhofer) er mønsteret Fourier-transformen av åpningen."
-importance: useful
+summary: "Enkeltspaltens sinc-mønster fra Huygens-integralet, dobbeltspalt med diffraksjonskonvolutt og manglende ordener, N-spaltformelen, og Airy-mønsteret med Rayleigh-kriteriet for oppløsning."
+importance: core
 tag: "Diffraksjon I"
 part: "Diffraksjon"
-updated: 2026-05-28
+updated: 2026-08-25
 ---
+
+Interferens handlet om noen få kilder; diffraksjon er det samme regnestykket
+med uendelig mange. Hvert punkt i åpningen er en Huygens-kilde, integralet
+over dem gir mønsteret, og i fjernfeltet får svaret en enkel form. Den samme
+regningen setter også grensen for hva et instrument kan skille, fra øyet til
+romteleskop.
 
 <LearningGoals>
 
-- Bruke enkeltspalt-formelen $I=I_0(\sin\beta/\beta)^2$ og finne minima.
-- Sjekke **fjernfelt-betingelsen** (Fraunhofer-grensen).
-- Anvende **Airy-skiven** og **Rayleigh-kriteriet** for oppløsning og stråledivergens.
+- Bruke enkeltspaltformelen $I=I_0(\sin\beta/\beta)^2$, finne minima og sentraltoppens bredde.
+- Kontrollere fjernfeltbetingelsen (<Term name="Fraunhofer-diffraksjon">Fraunhofer-grensen</Term>).
+- Kombinere diffraksjonskonvolutt og interferens for dobbelt- og $N$-spalt, og finne manglende ordener.
+- Bruke <Term name="Airy-skive">Airy-mønsteret</Term> og Rayleigh-kriteriet på oppløsning og stråledivergens.
 
 </LearningGoals>
 
-### Kjernen i temaet
+## Enkeltspalten
 
-Når lys passerer en åpning på størrelse med bølgelengden, sprer det seg — <Term name="Diffraksjon">diffraksjon</Term>. I fjernfeltet (<Term name="Fraunhofer-diffraksjon">Fraunhofer</Term>) er mønsteret Fourier-transformen av åpningen.
+Del en spalt med bredde $b$ i uendelig mange smale strimler og summer
+bidragene i retning $\theta$. Integralet over faseforskjellene gir
+amplituden $\sin\beta/\beta$, og dermed
 
-#### Enkeltspalt
+<Formula tex={"I=I_0\\left(\\dfrac{\\sin\\beta}{\\beta}\\right)^2,\\quad \\beta=\\dfrac{\\pi b\\sin\\theta}{\\lambda}"} caption={"Enkeltspaltmønsteret. Merk konvensjonen: $b$ er spaltbredden, $a$ er spalteavstanden."} />
 
-$I=I_0\left(\dfrac{\sin\beta}{\beta}\right)^2$, $\beta=\tfrac12 kb\sin\theta=\dfrac{\pi b\sin\theta}{\lambda}$. **Minima** ved $b\sin\theta=m\lambda$ ($m=1,2,\dots$). Sentraltoppen er dobbelt så bred som de øvrige.
+Minima ligger der $\sin\beta=0$ uten at $\beta=0$, altså ved
+$b\sin\theta=m\lambda$ for $m=\pm1,\pm2,\dots$ Sentraltoppen er dobbelt så
+bred som sidetoppene, med full bredde $W=2\lambda L/b$ på en skjerm i
+avstand $L$. Trangere spalt eller lengre bølgelengde gir bredere mønster;
+det er diffraksjonens signatur.
 
-#### Fjernfelt-betingelse
+Fjernfeltformelen gjelder når skjermen står langt nok unna:
+$L\gg b^2/\lambda$. Kvotienten $L/(b^2/\lambda)$ er en rask kontroll på om
+du er trygt i Fraunhofer-regimet.
 
-Gyldig når $L\gg \dfrac{(\text{aperturareal})}{\lambda}$, dvs. $L\gg b^2/\lambda$ for en spalt med bredde $b$. Forholdet $L/L_\text{min}$ forteller hvor «trygt» i fjernfeltet du er.
+<Example title="spaltbredde fra mønsteret">
 
-#### Sirkulær apertur — Airy
-
-Vinkelradius til første mørke ring: $\Delta\theta_{1/2}=\dfrac{1{,}22\lambda}{D}$. Dette gir **Rayleigh-kriteriet** for oppløsning og bestemmer en stråles diffraksjonsspredning.
-
-<Statement kind="law" name="Rayleigh-kriteriet">
-
-To punktkilder er akkurat oppløst når sentrum av den enes Airy-skive faller på første mørke ring til den andre: vinkelavstand $\Delta\theta=\dfrac{1{,}22\lambda}{D}$. Mindre apertur eller lengre bølgelengde ⇒ dårligere oppløsning.
-
-</Statement>
-
-<Formula tex={"I=I_0\\left(\\dfrac{\\sin\\beta}{\\beta}\\right)^2,\\ \\beta=\\dfrac{\\pi b\\sin\\theta}{\\lambda}"} caption={"Enkeltspalt-intensitet. $b$ = spaltbredde (ikke spalteavstand $a$)."} />
-
-<Formula tex={"b\\sin\\theta_m=m\\lambda"} caption={"Minima for enkeltspalt (utledbar fra $\\sin\\beta=0$)."} memorize />
-
-<Formula tex={"\\Delta\\theta_{1/2}=\\dfrac{1{,}22\\lambda}{D}\\approx\\dfrac{\\Delta x}{L}"} caption={"Airy-skive / Rayleigh-kriteriet. $D$ = aperturdiameter, $\\Delta x$ = spotradius, $L$ = avstand."} />
-
-<Formula tex={"L\\gg\\dfrac{b^2}{\\lambda}"} caption={"Fraunhofer (fjernfelt) gyldig."} />
-
-<ExamFocus title="Slik testes dette på eksamen">
-
-*Spaltbredde fra mønster · Fjernfelt-sjekk L/Lₘᵢₙ · Stråledivergens · Aperturdiameter (Airy)*
-
-Klassiker: mål avstanden mellom tredje minima på hver side ⇒ finn spaltbredden $b$ fra $b\sin\theta=m\lambda$, og sjekk så $L/L_\text{min}$ for å bekrefte fjernfelt. Stråle-oppgave: estimer hvor mye en laserstråle ($b=0{,}5$ mm) brer seg over 10 m. Airy-oppgave: finn ukjent aperturdiameter fra spotstørrelsen på en fjern vegg.
-
-</ExamFocus>
-
-<Example title="spaltbredde">
-
-Laser 632,8 nm, skjerm $L=2$ m. Avstand mellom 3. minima på hver side er 5,625 cm. Finn $b$, og sjekk fjernfeltet.
+En laser med 632,8 nm belyser en spalt, og på en skjerm 2,0 m unna er
+avstanden mellom tredje minimum på hver side 5,625 cm. Finn spaltbredden, og
+kontroller fjernfeltet.
 
 <Solution>
 
-**Vinkel.**
+Tredje minimum ligger $x=2{,}81$ cm fra sentrum, så
+$\sin\theta\approx x/L=0{,}0141$. Med $m=3$ er
 
-Halve avstanden til 3. minimum: $x=2{,}8125$ cm ⇒ $\sin\theta\approx \theta = x/L=0{,}02813/2=0{,}01406$. Med $m=3$:
+$$b=\dfrac{m\lambda}{\sin\theta}=\dfrac{3\cdot632{,}8\times10^{-9}}{0{,}0141}\approx0{,}13\ \text{mm}.$$
 
-**Spaltbredde.**
+Fjernfeltskravet: $b^2/\lambda=(1{,}35\times10^{-4})^2/(632{,}8\times10^{-9})\approx2{,}9$
+cm, og $L=2$ m er 70 ganger større. Trygt i fjernfeltet.
 
-$b=\dfrac{m\lambda}{\sin\theta}=\dfrac{3(632{,}8\times10^{-9})}{0{,}01406}\approx 1{,}35\times10^{-4}$ m $=0{,}13$ mm.
-
-**Fjernfelt.**
-
-$L_\text{min}\sim b^2/\lambda=(1{,}35\times10^{-4})^2/632{,}8\times10^{-9}\approx 0{,}029$ m. $L/L_\text{min}\approx 2/0{,}029\approx 70$–$140$ (avhengig av definisjon) ⇒ trygt i fjernfeltet.
-
-<Answer>$b \approx 0{,}13$ mm; fjernfelt bekreftet</Answer>
+<Answer>$b\approx0{,}13$ mm; fjernfeltet bekreftet</Answer>
 
 </Solution>
 
 </Example>
 
-Sett antall spalter $N$, spaltbredde $b$ og avstand $a$. Se hvordan den brede enkeltspalt-konvolutten moduleres av de skarpe flerspalt-toppene.
+## Dobbeltspalt på nytt, og N spalter
+
+Youngs regning antok uendelig smale spalter. Med reell bredde $b$ og
+avstand $a$ ganges interferensleddet med diffraksjonskonvolutten:
+
+<Formula tex={"I=I_0\\left(\\dfrac{\\sin\\beta}{\\beta}\\right)^2\\cos^2\\alpha,\\quad \\alpha=\\dfrac{\\pi a\\sin\\theta}{\\lambda}"} caption={"Dobbeltspalt med konvolutt: interferensstriper under enkeltspaltens omhylling."} />
+
+Konvolutten kan slukke en interferenstopp. Orden $m$ mangler når
+toppen faller på et konvoluttnull, altså når $m\,b/a$ er et helt tall, og
+under sentralkonvolutten er det plass til $2(a/b)-1$ lyse striper. Måler du
+hvilken orden som mangler, har du målt forholdet $a/b$.
+
+Med $N$ spalter skjerpes toppene:
+
+<Formula tex={"I=I_0'\\left(\\dfrac{\\sin\\beta}{\\beta}\\right)^2\\left(\\dfrac{\\sin N\\alpha}{\\sin\\alpha}\\right)^2"} caption={"$N$ spalter: hovedmaksima ved $\\alpha=m\\pi$, med $N-2$ småtopper imellom."} />
+
+Hovedmaksima ligger fortsatt ved $a\sin\theta=m\lambda$, men høyden vokser
+som $N^2$ og bredden krymper som $1/N$. Formelen er broen til
+diffraksjonsgitteret, som er tema for spektroskopidelen.
+
+Sett antall spalter $N$, spaltbredde $b$ og avstand $a$ i figuren, og se
+den brede konvolutten modulere de skarpe toppene.
 
 <Simulation src={"/sims/diffCanvas.js"} title={"Interaktivt: enkelt- og flerspalt-diffraksjon"} height={240} />
 
-#### Sjekk deg selv
-
 <Quiz
-  question={"Hva øker diameteren på Airy-skiven?"}
-  options={["kun større $\\lambda$","kun mindre apertur $D$","kun større skjermavstand","alle tre over"]}
-  answer={3}
-  explanation={"$\\Delta x\\approx 1{,}22\\lambda L/D$ — øker med $\\lambda$ og $L$, og med mindre $D$."}
-/>
-
-<Quiz
-  question={"En 0,5 mm bred stråle (546 nm) over 10 m brer seg til omtrent:"}
-  options={["0,5 mm","≈ 22 mm","≈ 2 m","uendret"]}
+  question={"I et dobbeltspaltmønster med $a=3b$ mangler …"}
+  options={["annenhver orden","hver tredje orden ($m=3,6,\\dots$)","ingen ordener","alle partallsordener"]}
   answer={1}
-  explanation={"Spredning $\\approx 2\\lambda L/b=2(546\\text{e-}9)(10)/(0{,}5\\text{e-}3)\\approx 0{,}022$ m ≈ 22 mm."}
+  explanation={"Orden $m$ mangler når $m\\,b/a=m/3$ er et helt tall, altså for $m=3,6,9,\\dots$: toppen faller på et konvoluttnull."}
 />
 
-### Mer forklaring — minima er ofte enklere enn maksima
+<Quiz
+  question={"Første minimum for en enkeltspalt kommer når …"}
+  options={["$b\\sin\\theta=\\lambda$","$b\\sin\\theta=\\lambda/2$","$D=1{,}22\\lambda$","$L=b^2\\lambda$"]}
+  answer={0}
+  explanation={"Minima ligger ved $b\\sin\\theta=m\\lambda$; det første ved $m=1$. Mørke striper har eksakte betingelser, sidetopper ikke."}
+/>
 
-I enkeltspaltoppgaver er mørke striper enklest å bruke fordi de har nøyaktige betingelser: $b\sin\theta=m\lambda$. Maksima utenom sentraltoppen ligger ikke nøyaktig midt mellom minima.
+## To dimensjoner: rektangel og Airy
 
-For sirkulære åpninger er Rayleigh-kriteriet (<FormulaRef id="rayleigh" />) den viktigste huskeregelen: mindre åpning eller større bølgelengde gir større <Term name="Airy-skive">Airy-skive</Term> og dårligere oppløsning.
+For en rektangulær åpning separerer integralet i to retninger, og mønsteret
+er produktet av to sinc-kvadrater, ett per kant. For en sirkulær åpning gir
+sylindersymmetrien Bessel-funksjoner i stedet:
 
-<Example title="apertur fra Airy-spot">
+<Formula tex={"I=I_0\\left(\\dfrac{2J_1(\\gamma)}{\\gamma}\\right)^2,\\quad \\gamma=\\dfrac{\\pi D\\sin\\theta}{\\lambda}"} caption={"Airy-mønsteret fra en sirkulær apertur med diameter $D$; $J_1$ er førsteordens Bessel-funksjon."} />
 
-En laser med $\lambda=633\text{ nm}$ sendes gjennom en sirkulær apertur og lager første mørke ring med radius $1{,}5\text{ mm}$ på en vegg $5{,}0\text{ m}$ unna. Finn aperturdiameteren.
+Første nullpunkt ligger ved $\gamma=3{,}832$, og oversatt til vinkel er det
+den berømte Airy-radien $\Delta\theta=1{,}22\,\lambda/D$: en lys skive
+omgitt av svake ringer. Selve Bessel-regningen er for forståelsen; det er
+sluttresultatet du bruker.
+
+<Statement kind="law" name="Rayleigh-kriteriet">
+
+To punktkilder er akkurat oppløst når sentrum av den enes Airy-skive faller
+på første mørke ring til den andre: vinkelavstanden er
+$\Delta\theta=1{,}22\,\lambda/D$. Mindre apertur eller lengre bølgelengde
+gir dårligere oppløsning.
+
+</Statement>
+
+Kriteriet gjelder alt med en rund åpning. Øyets pupill setter grensen for
+hva du kan skjelne, et teleskops hovedspeil for hva det kan skille på
+himmelen, og den samme formelen gir divergensen til en laserstråle med
+diameter $D$.
+
+<Example title="billyktene">
+
+To billykter sitter 1,1 m fra hverandre. Øyets pupill er 5,0 mm og
+$\lambda=550$ nm. På hvilken avstand kan øyet så vidt skille dem, etter
+Rayleigh?
 
 <Solution>
 
-**Rayleigh.**
+Grensen er vinkelen
+$\Delta\theta=\dfrac{1{,}22\lambda}{D}=\dfrac{1{,}22\cdot550\times10^{-9}}{5{,}0\times10^{-3}}=1{,}34\times10^{-4}$
+rad.
 
-$\theta\approx x/L=1{,}5\times10^{-3}/5{,}0=3{,}0\times10^{-4}$ rad.
+Lyktene skilles så lenge $s/L>\Delta\theta$, altså ut til
 
-**Diameter.**
+$$L=\dfrac{s}{\Delta\theta}=\dfrac{1{,}1}{1{,}34\times10^{-4}}\approx8\ \text{km}.$$
 
-$D=1{,}22\lambda/\theta=1{,}22(633\times10^{-9})/(3{,}0\times10^{-4})=2{,}57\times10^{-3}\text{ m}$.
+I praksis begrenser atmosfæren og netthinnen før diffraksjonen gjør det.
 
-<Answer>$D \approx 2{,}6$ mm</Answer>
+<Answer>$L\approx8$ km</Answer>
 
 </Solution>
 
 </Example>
 
-#### Flere kontrollspørsmål
+<ExamFocus title="Typiske oppgaver">
+
+Enkeltspalt baklengs går igjen: mål avstanden mellom minima, finn
+spaltbredden, og kontroller fjernfeltet med $L\gg b^2/\lambda$.
+Dobbeltspaltoppgaver bruker manglende ordener til å finne $a/b$ og spør om
+relativ intensitet i de første ordenene. Oppløsningsoppgavene er
+ordproblemer rundt $1{,}22\lambda/D$: to lykter, to stjerner, en ukjent
+aperturdiameter fra spotstørrelsen, eller divergensen til en stråle.
+
+</ExamFocus>
 
 <Quiz
-  question={"Første minimum for enkeltspalt kommer når:"}
-  options={["$b\\sin\\theta=\\lambda$","$b\\sin\\theta=\\lambda/2$","$D=1{,}22\\lambda$","$L=b^2\\lambda$"]}
-  answer={0}
-  explanation={"Minima for enkeltspalt er $b\\sin\\theta=m\\lambda$, første for $m=1$."}
+  question={"Hva øker diameteren på Airy-skiven på en skjerm?"}
+  options={["kun større $\\lambda$","kun mindre apertur $D$","kun større avstand","alle tre"]}
+  answer={3}
+  explanation={"Spotradien er $\\approx1{,}22\\lambda L/D$: den vokser med bølgelengde og avstand, og med mindre apertur."}
 />
 
 <Quiz
-  question={"Hvis aperturdiameteren dobles, blir Airy-vinkelen:"}
-  options={["doblet","halvert","uendret","fire ganger større"]}
+  question={"En 0,5 mm bred stråle (546 nm) brer seg over 10 m til omtrent …"}
+  options={["0,5 mm","22 mm","2 m","uendret bredde"]}
   answer={1}
-  explanation={"$\\Delta\\theta=1{,}22\\lambda/D$, altså omvendt proporsjonal med D."}
+  explanation={"$W=2\\lambda L/b=2\\cdot546\\times10^{-9}\\cdot10/(0{,}5\\times10^{-3})\\approx22$ mm."}
+/>
+
+<Quiz
+  question={"Dobles aperturdiameteren, blir Airy-vinkelen …"}
+  options={["doblet","halvert","uendret","firedoblet"]}
+  answer={1}
+  explanation={"$\\Delta\\theta=1{,}22\\lambda/D$ er omvendt proporsjonal med $D$: større optikk gir skarpere bilder."}
 />
 
 <KeyTakeaways>
 
-- Enkeltspalt: $I=I_0(\sin\beta/\beta)^2$ med minima ved $b\sin\theta=m\lambda$; sentraltoppen er dobbelt så bred.
-- **Minima** er enklest å regne med — de har eksakte betingelser, maksima (utenom sentrum) ikke.
-- Fraunhofer (fjernfelt) krever $L\gg b^2/\lambda$ — sjekk alltid $L/L_\text{min}$.
-- Sirkulær apertur: Airy-skive $\Delta\theta=1{,}22\lambda/D$ gir Rayleigh-oppløsning og stråledivergens.
+- Enkeltspalt: $I=I_0(\sin\beta/\beta)^2$ med minima ved $b\sin\theta=m\lambda$; sentraltoppen har bredde $W=2\lambda L/b$.
+- Konvensjonen er fast: $b$ er spaltbredde, $a$ er spalteavstand.
+- Reelle spalter gir interferens under en diffraksjonskonvolutt; orden $m$ mangler når $m\,b/a$ er et helt tall.
+- $N$ spalter skjerper toppene som $N^2$ i høyde og $1/N$ i bredde; det er gitterets prinsipp.
+- Sirkulær apertur: Airy-skive med $\Delta\theta=1{,}22\lambda/D$, som er Rayleigh-grensen for oppløsning og stråledivergens.
+- Fraunhofer gjelder når $L\gg b^2/\lambda$; sjekk kvotienten før du bruker formlene.
 
 </KeyTakeaways>
