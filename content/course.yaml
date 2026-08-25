@@ -22,6 +22,7 @@ glossary:
   - { term: "Foton", definition: "Lysets kvant: en masseløs energipakke med energi $E=hf$ og impuls $p=h/\\lambda$. Et boson, så det adlyder Bose–Einstein-statistikk.", section: "Foton & radiometri" }
   - { term: "Irradians", definition: "Strålingseffekt per areal inn på en flate, $[\\text{W/m}^2]$. En objektiv radiometrisk størrelse, i motsetning til den øyevektede fotometrien.", section: "Foton & radiometri" }
   - { term: "Romvinkel", definition: "Vinkelutstrekningen til en flate sett fra et punkt, $\\Omega=A/r^2$, målt i steradianer (sr). En hel kule spenner $4\\pi\\,\\text{sr}$.", section: "Foton & radiometri" }
+  - { term: "Radians", definition: "Strålingseffekt per areal per romvinkel fra en utstrakt kilde, $L_e$ $[\\text{W/(sr·m}^2)]$. Skiller en laser fra en lyspære: samme fluks kan ha vidt forskjellig radians.", section: "Foton & radiometri" }
   - { term: "Brytningsindeks", definition: "Forholdet $n=c/v$ mellom lysfarten i vakuum og i mediet. Bestemmer brytning (Snells lov) og bølgelengden i mediet, $\\lambda/n$.", section: "Geometrisk optikk" }
   - { term: "Fermats prinsipp", definition: "Lys følger veien som gir stasjonær (oftest minste) optisk veilengde. Snells lov og refleksjonsloven følger direkte av dette.", section: "Geometrisk optikk" }
   - { term: "Huygens' prinsipp", definition: "Hvert punkt på en bølgefront er kilde til nye kulebølger; den nye fronten er innhyllingen av disse. Forklarer brytning, refleksjon og diffraksjon geometrisk.", section: "Geometrisk optikk" }
@@ -31,8 +32,10 @@ glossary:
   - { term: "Virtuelt bilde", definition: "Et bilde der bare strålenes forlengelser møtes; kan ikke fanges på skjerm, men ses gjennom optikken ($s_i<0$). Alltid opprett.", section: "Geometrisk optikk" }
   - { term: "Brennvidde", definition: "Avstanden $f$ fra en linse eller et speil til brennpunktet der innfallende parallelt lys samles. Positiv for samlende, negativ for spredende.", section: "Geometrisk optikk" }
   - { term: "Lateral forstørrelse", definition: "Forholdet $m=-s_i/s_o$ mellom bilde- og objekthøyde. $|m|>1$ betyr forstørret, $m<0$ betyr invertert.", section: "Geometrisk optikk" }
-  - { term: "Vinkelforstørrelse", definition: "Forholdet $MP$ mellom synsvinkelen med og uten instrument — det relevante målet for lupe, mikroskop og teleskop (ikke lateral $m$).", section: "Geometrisk optikk" }
+  - { term: "Vinkelforstørrelse", definition: "Forholdet $MP$ mellom synsvinkelen med og uten instrument, det relevante målet for lupe, mikroskop og teleskop (ikke lateral $m$).", section: "Geometrisk optikk" }
+  - { term: "Nærpunkt", definition: "Den korteste avstanden øyet kan fokusere på, standardisert til $d_0=25$ cm for et normalt øye. Vinkelforstørrelse defineres relativt til objektet sett på nærpunktet.", section: "Geometrisk optikk" }
   - { term: "Stråle-transfer-matrise", definition: "$2\\times2$-matrise som virker på strålevektoren $(y,\\alpha)$. Et helt system er produktet av elementmatrisene i motsatt rekkefølge av lysets gang.", section: "Geometrisk optikk" }
+  - { term: "Hovedplan", definition: "De to planene $H_1,H_2$ der et sammensatt system oppfører seg som én tynn linse: tynnlinselikningen gjelder når $s_o$ måles til $H_1$ og $s_i$ fra $H_2$, og brennvidden måles fra dem.", section: "Geometrisk optikk" }
   - { term: "Afokalt system", definition: "System uten endelig brennvidde ($C=0$ i systemmatrisen): parallelt lys inn gir parallelt lys ut. Teleskopet og beam-expanderen er afokale.", section: "Geometrisk optikk" }
   - { term: "Fresnels likninger", definition: "Gir refleksjons- og transmisjonskoeffisientene ($r_{TE},r_{TM},t$) ved en grenseflate som funksjon av innfallsvinkel og brytningsindekser.", section: "Bølgeoptikk: felt, refleksjon & polarisering" }
   - { term: "TE- og TM-polarisering", definition: "TE (s): $\\vec E$ står vinkelrett på innfallsplanet. TM (p): $\\vec E$ ligger i innfallsplanet. Fresnel-koeffisientene er ulike for de to.", section: "Bølgeoptikk: felt, refleksjon & polarisering" }
@@ -68,16 +71,21 @@ formulas:
   - { tex: "E=hf=\\dfrac{hc}{\\lambda}", label: "Foton-energi fra frekvens / bølgelengde. h = Plancks konstant.", section: "Foton & radiometri", id: "foton-energi" }
   - { tex: "p=\\dfrac{E}{c}=\\dfrac{h}{\\lambda}", label: "Foton-impuls.", section: "Foton & radiometri", id: "foton-impuls" }
   - { tex: "\\lambda f = c,\\quad v=\\dfrac{pc^2}{E}=c", label: "Fart i vakuum.", section: "Foton & radiometri", id: "fart-vakuum" }
-  - { tex: "\\Omega = \\dfrac{A}{r^2}", label: "Romvinkel i steradianer.", section: "Foton & radiometri", id: "romvinkel" }
+  - { tex: "\\Omega = \\dfrac{A}{r^2}", label: "Romvinkel i steradianer. Smal stråle med full divergens $\\alpha$: $\\Omega=\\pi\\alpha^2/4$.", section: "Foton & radiometri", id: "romvinkel" }
+  - { tex: "I_e=\\dfrac{\\Phi_e}{\\Omega},\\quad L_e=\\dfrac{\\Phi_e}{A\\,\\Omega},\\quad E_e=\\dfrac{\\Phi_e}{A}", label: "Strålingsstyrke, radians og irradians. $\\Phi_e$ = strålingsfluks (effekt).", section: "Foton & radiometri", id: "radiometri" }
   - { tex: "n_i\\sin\\theta_i=n_t\\sin\\theta_t", label: "Snells lov. Vinkler måles fra normalen; indeks i = innfallsmedium, t = transmittert medium.", section: "Geometrisk optikk: Snell & linser", id: "snells" }
   - { tex: "\\dfrac{1}{s_o}+\\dfrac{1}{s_i}=\\dfrac{1}{f}", label: "Tynnlinse-/avbildningslikningen. $s_o$ = objektavstand, $s_i$ = bildeavstand, $f$ = brennvidde.", section: "Geometrisk optikk: Snell & linser", id: "tynnlinse" }
-  - { tex: "m=-\\dfrac{s_i}{s_o}", label: "Lateral forstørrelse. m = invertert.", section: "Geometrisk optikk: Snell & linser", id: "lateral-forstorrelse" }
+  - { tex: "m=-\\dfrac{s_i}{s_o}", label: "Lateral forstørrelse; negativ $m$ betyr invertert bilde. Skrives også $M_T$.", section: "Geometrisk optikk: Snell & linser", id: "lateral-forstorrelse" }
+  - { tex: "x_o\\,x_i=f^2", label: "Newtons form av linselikningen. $x_o=s_o-f$, $x_i=s_i-f$: avstander målt fra brennpunktene.", section: "Geometrisk optikk: Snell & linser", id: "newton-form" }
+  - { tex: "\\dfrac{n_1}{s_o}+\\dfrac{n_2}{s_i}=\\dfrac{n_2-n_1}{R},\\quad m=-\\dfrac{n_1 s_i}{n_2 s_o}", label: "Brytning i én sfærisk flate, med forstørrelse. Planflate ($R\\to\\infty$): $s_i=-\\dfrac{n_2}{n_1}s_o$ (tilsynelatende dybde).", section: "Geometrisk optikk: Snell & linser", id: "sfaerisk-flate" }
+  - { tex: "P=\\dfrac{1}{f}", label: "Brytningsstyrke i dioptrier ($f$ i meter).", section: "Geometrisk optikk: Snell & linser", id: "dioptri" }
   - { tex: "\\dfrac{1}{f}=\\dfrac{n_2-n_1}{n_1}\\!\\left(\\dfrac{1}{R_1}-\\dfrac{1}{R_2}\\right)", label: "Linsemakerformelen (linse $n_2$ i medium $n_1$). $R_1,R_2$ = krumningsradier for fram- og bakflate (med fortegn).", section: "Geometrisk optikk: Snell & linser", id: "linsemaker" }
-  - { tex: "f=\\mp\\dfrac{R}{2}", label: "Sfærisk speil (konkavt $f>0$).", section: "Geometrisk optikk: Snell & linser", id: "sfaerisk-speil" }
+  - { tex: "f=\\mp\\dfrac{R}{2}", label: "Sfærisk speil. Fortegnet på $R$ er konvensjonsavhengig; ankeret er at konkavt speil har $f>0$.", section: "Geometrisk optikk: Snell & linser", id: "sfaerisk-speil" }
   - { tex: "\\begin{pmatrix}1 & d \\\\ 0 & 1\\end{pmatrix}", label: "Translasjon avstand $d$ (i samme medium).", section: "Stråle-transfer-matriser", id: "matrise-translasjon" }
   - { tex: "\\begin{pmatrix}1 & 0 \\\\ -1/f & 1\\end{pmatrix}", label: "Tynn linse med brennvidde $f$.", section: "Stråle-transfer-matriser", id: "matrise-tynnlinse" }
   - { tex: "\\begin{pmatrix}1 & 0 \\\\ 0 & n_1/n_2\\end{pmatrix}", label: "Brytning i plan flate.", section: "Stråle-transfer-matriser", id: "matrise-plan" }
   - { tex: "\\begin{pmatrix}1 & 0 \\\\ \\frac{n_1-n_2}{n_2 R} & n_1/n_2\\end{pmatrix}", label: "Brytning i sfærisk flate radius $R$.", section: "Stråle-transfer-matriser", id: "matrise-sfaerisk" }
+  - { tex: "f=-\\dfrac{1}{C},\\quad H_1:\\ \\dfrac{D-1}{C},\\quad H_2:\\ \\dfrac{1-A}{C}", label: "Effektiv brennvidde og hovedplan i luft, målt fra inn- og utplanet. $F_1=H_1-f$, $F_2=H_2+f$; nodalpunktene faller sammen med hovedpunktene i luft.", section: "Stråle-transfer-matriser", id: "kardinalpunkter" }
   - { tex: "T(d)=\\begin{pmatrix}1 & d \\\\ 0 & 1\\end{pmatrix}", label: "Translasjon (fri propagasjon).", section: "Ray tracing — byggematriser", id: "rt-translasjon" }
   - { tex: "R_P=\\begin{pmatrix}1 & 0 \\\\ 0 & n_1/n_2\\end{pmatrix}", label: "Brytning, plan flate.", section: "Ray tracing — byggematriser", id: "rt-plan" }
   - { tex: "R_S=\\begin{pmatrix}1 & 0 \\\\ \\frac{n_1-n_2}{n_2 R} & n_1/n_2\\end{pmatrix}", label: "Brytning, sfærisk flate.", section: "Ray tracing — byggematriser", id: "rt-sfaerisk" }

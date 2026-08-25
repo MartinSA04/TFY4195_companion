@@ -1,133 +1,199 @@
 ---
 order: 1
 title: "Foton, bølger & radiometri"
-summary: "Lys oppfører seg både som en bølge og som en strøm av kvantepartikler – fotoner. Hele faget veksler mellom disse to beskrivelsene; geometrisk optikk og bølgeopt"
-importance: useful
+summary: "Fotonets energi og impuls, det elektromagnetiske spekteret og radiometriens størrelser: romvinkel, strålingsfluks, strålingsstyrke, radians og irradians, og hvordan du holder enhetene fra hverandre."
+importance: core
 tag: "Introduksjon"
 part: "Grunnlag"
-updated: 2026-05-28
+updated: 2026-08-25
 ---
+
+Faget veksler mellom to beskrivelser av lys. I geometrisk optikk er lys stråler
+som følger regler for brytning og refleksjon; i bølgeoptikk er det et
+elektromagnetisk felt som interfererer og diffrakterer. Fotonet er den tredje
+beskrivelsen, kvantebildet, og det dukker opp der lys utveksler energi med
+materie. Modulen samler fotonets egenskaper og radiometriens størrelser, de to
+tingene resten av faget regner med uten å stoppe opp.
 
 <LearningGoals>
 
-- Beskrive lysets dobbeltnatur og fotonets egenskaper (hvilemasse, statistikk, spinn).
-- Regne foton-energi, -impuls og bølgelengde fram og tilbake mellom *E, p, λ, f*.
-- Forstå radiometriske grunnbegreper: strålingsenergi, irradians og romvinkel.
+- Regne fram og tilbake mellom $E$, $p$, $\lambda$ og $f$ for et foton.
+- Plassere synlig lys i det elektromagnetiske spekteret og bruke snarveien $hc \approx 1240$ eV·nm.
+- Definere <Term name="Romvinkel">romvinkelen</Term> og skille strålingsfluks, strålingsstyrke, <Term name="Radians">radians</Term> og <Term name="Irradians">irradians</Term> fra hverandre.
+- Regne ut irradiansen fra en laser og fra en isotrop kilde, og forklare hvorfor svarene kan overraske.
 
 </LearningGoals>
 
-### Kjernen i temaet
+## Fotonet
 
-Lys oppfører seg både som en bølge og som en strøm av kvantepartikler – <Term name="Foton">fotoner</Term>. Hele faget veksler mellom disse to beskrivelsene; geometrisk optikk og bølgeoptikk er to grenser av samme fysikk.
+Planck innførte i 1900 at energi utveksles mellom stråling og materie i kvanter
+$hf$. Einstein la kvantiseringen i selve lyset: en stråle består av
+<Term name="Foton">fotoner</Term>, hver med energi $E=hf$. De Broglie knyttet
+etterpå bølgelengde til impuls for alle partikler, $\lambda=h/p$, og for en
+masseløs partikkel gir den relativistiske energiligningen $p=E/c$. Fotonet er
+grensetilfellet der begge relasjonene blir enkle.
 
-#### Fotonet
-
-- **Null hvilemasse**, beveger seg alltid med *c* i vakuum.
-- Adlyder **Bose–Einstein-statistikk** (er en boson) – *ikke* Fermi–Dirac. Dette er et klassisk MC-spørsmål.
-- Energien leveres **kvantisert** i pakker $E=hf$.
-- Bærer **impuls** $p=E/c$ og **dreieimpuls** (spinn ±ħ, knyttet til sirkulær polarisering).
-
-#### Radiometri
-
-Radiometriske størrelser måler strålingseffekt objektivt (i watt), i motsetning til fotometri som vekter etter øyets følsomhet. <Term name="Irradians">Irradians</Term> $E_e$ er effekt per areal $[\text{W/m}^2]$ inn på en flate; **radians** er effekt per areal per **romvinkel**. <Term name="Romvinkel">Romvinkelen</Term> $\Omega = A/r^2$ måles i steradianer; en hel kule er $4\pi\,\text{sr}$.
-
-<Formula tex={"E=hf=\\dfrac{hc}{\\lambda}"} caption={"Foton-energi fra frekvens / bølgelengde. h = Plancks konstant."} />
+<Formula tex={"E=hf=\\dfrac{hc}{\\lambda}"} caption={"Foton-energi fra frekvens eller bølgelengde. $h$ er Plancks konstant."} />
 
 <Formula tex={"p=\\dfrac{E}{c}=\\dfrac{h}{\\lambda}"} caption={"Foton-impuls."} />
 
-<Formula tex={"\\lambda f = c,\\quad v=\\dfrac{pc^2}{E}=c"} caption={"Fart i vakuum."} />
+Fotonet har null hvilemasse og beveger seg alltid med $c$ i vakuum, der
+$\lambda f=c$. Det bærer dreieimpuls, spinn $\pm\hbar$ langs bevegelsesretningen,
+og de to spinntilstandene svarer til venstre- og høyredreid sirkulær
+polarisering. Fotonet er dessuten et boson: mange fotoner kan dele samme
+tilstand, og det er derfor en laser i det hele tatt er mulig. Elektroner, som er
+fermioner, kan ikke det.
 
-<Formula tex={"\\Omega = \\dfrac{A}{r^2}"} caption={"Romvinkel i steradianer."} memorize />
+<Quiz
+  question={"Hvilken egenskap hører <em>ikke</em> til fotonet?"}
+  options={["Null hvilemasse","Adlyder Fermi–Dirac-statistikk","Kvantisert energi $E=hf$","Bærer dreieimpuls"]}
+  answer={1}
+  explanation={"Fotoner er bosoner og adlyder Bose–Einstein-statistikk. Fermi–Dirac gjelder fermioner, for eksempel elektroner."}
+/>
 
-<ExamFocus title="Slik testes dette på eksamen">
+## Det elektromagnetiske spekteret
 
-*Foton-energi fra spektrum · Egenskaper (MC) · Enhetsregning*
+Spekteret spenner fra gammastråling til radiobølger, over mer enn femten
+tierpotenser i frekvens. Synlig lys er den smale stripen fra omtrent 400 nm
+(fiolett) til 700 nm (rødt). Foton-energiene følger med: røntgen ligger på
+keV-nivå, synlig lys på et par eV, radiobølger langt under µeV.
 
-Et veldig vanlig oppgave-par: du får et spektrum (f.eks. en blå LED fra ThorLabs) og skal finne **foton-energien** ved toppbølgelengden, ofte som forberedelse til et koherens-spørsmål. MC-spørsmål spør hvilken egenskap som *ikke* hører til fotonet (fellen er Fermi–Dirac).
+For synlig lys og nabolaget er snarveien
 
-</ExamFocus>
+$$E\,[\text{eV}]=\dfrac{1240\ \text{eV·nm}}{\lambda\,[\text{nm}]}$$
 
-<Example>
+raskere enn å slå opp konstanter: grønt lys på 532 nm har $E\approx2{,}3$ eV.
+Legg merke til hva som avhenger av hva. Energien per foton er bestemt av
+bølgelengden alene. Effekten til en kilde sier hvor mange fotoner den sender per
+sekund, og de to må aldri blandes.
 
-En LED har toppbølgelengde $\lambda \approx 465\text{ nm}$. Hva er foton-energien (i eV)?
+<Example title="fotonfluks fra laser">
+
+En grønn laserpeker har effekt $P=2{,}0$ mW og bølgelengde $\lambda=532$ nm.
+Hvor mange fotoner sender den ut per sekund?
 
 <Solution>
 
-**Innsetting.**
+Fotonenergien er
+$E=hc/\lambda=(6{,}63\times10^{-34})(3{,}00\times10^{8})/(532\times10^{-9})
+=3{,}74\times10^{-19}$ J.
 
-$E=\dfrac{1240\text{ eV}\cdot\text{nm}}{465\text{ nm}} \approx 2{,}67\text{ eV}$.
+Effekt er energi per tid, så antall fotoner per sekund er
+$N/t=P/E=(2{,}0\times10^{-3})/(3{,}74\times10^{-19})=5{,}3\times10^{15}\ \text{s}^{-1}$.
 
-Sjekk i joule: $E=\dfrac{(6{,}63\times10^{-34})(3{,}0\times10^{8})}{465\times10^{-9}}\approx 4{,}3\times10^{-19}\text{ J}$, og $4{,}3\times10^{-19}/1{,}6\times10^{-19}\approx 2{,}7\text{ eV}$. ✓
-
-<Answer>$E \approx 2{,}67$ eV</Answer>
+<Answer>$\approx 5{,}3\times10^{15}$ fotoner per sekund</Answer>
 
 </Solution>
 
 </Example>
-
-#### Sjekk deg selv
-
-<Quiz
-  question={"Hvilken egenskap hører <em>ikke</em> til fotonet?"}
-  options={["Null hvilemasse","Adlyder Fermi–Dirac-statistikk","Kvantisert energilevering","Bærer dreieimpuls"]}
-  answer={1}
-  explanation={"Fotoner er bosoner og adlyder Bose–Einstein-statistikk. Fermi–Dirac gjelder fermioner (f.eks. elektroner)."}
-/>
 
 <Quiz
   question={"En kilde dobler bølgelengden. Foton-energien …"}
   options={["dobles","halveres","er uendret","firedobles"]}
   answer={1}
-  explanation={"$E=hc/\\lambda$ — energi er omvendt proporsjonal med bølgelengde, så dobbel λ gir halv energi."}
+  explanation={"$E=hc/\\lambda$: energien er omvendt proporsjonal med bølgelengden, så dobbel $\\lambda$ gir halv energi."}
 />
 
-### Mer forklaring — energi, effekt og fotonfluks
+## Romvinkel og radiometriens størrelser
 
-Eksamen blander ofte størrelser som ser like ut, men som har ulik fysisk betydning. **Energi per foton** er bestemt av bølgelengden alene, mens **effekt** forteller hvor mange fotoner som kommer per sekund.
+Dagligtalens «intensitet» og «belysning» er for upresise til å regne med, og
+foreleseren påpeker at studenter stadig blander watt, joule og watt per
+kvadratmeter under slike ord. Radiometrien rydder opp ved å gi hver størrelse
+et eget navn, et eget symbol og en egen enhet.
 
-En god arbeidsregel er: finn først foton-energien (<FormulaRef id="foton-energi" />). Deretter kan du koble til makroskopiske størrelser med $P=N E_\text{foton}/t$. Hvis oppgaven gir areal, går du videre til irradians $E_e=P/A$.
+Først trengs et mål på vinkelutstrekning i rommet. Romvinkelen til en flate
+$A$ sett fra et punkt i avstand $r$ er
 
-<Example title="fotonfluks fra laser">
+<Formula tex={"\\Omega = \\dfrac{A}{r^2}"} caption={"Romvinkel i steradianer. En hel kule spenner $4\\pi$ sr."} />
 
-En grønn laser har effekt $P=2{,}0\text{ mW}$ og bølgelengde $\lambda=532\text{ nm}$. Hvor mange fotoner sendes ut per sekund?
+For en smal stråle med full divergensvinkel $\alpha$ er tverrsnittet i avstand
+$R$ en sirkel med radius omtrent $R\alpha/2$, så romvinkelen blir
+$\Omega=\pi\alpha^2/4$, uavhengig av $R$. Det er nettopp poenget med
+romvinkelen: den beskriver spredningen uavhengig av avstanden.
+
+Størrelsene deler seg i to grupper. Underveis i rommet: strålingsenergien
+$Q_e$ (J), energitettheten $w_e$ (J/m³) og strålingsfluksen $\Phi_e$ (W), som
+er effekten strålingen frakter. Ved en flate: strålingsstyrken
+$I_e=\Phi_e/\Omega$ (W/sr) for en kilde, radiansen $L_e$ (W/(sr·m²)) for en
+utstrakt kilde, og irradiansen $E_e=\Phi_e/A$ (W/m²) inn på en mottakerflate.
+Fotometriens enheter candela og lumen er de samme størrelsene vektet med øyets
+følsomhet; lyskilder selges i lumen, men i dette faget regner vi radiometrisk.
+
+<Table
+  caption={"Radiometriske størrelser. Indeksen $e$ skiller dem fra fotometriens øyevektede motstykker."}
+  columns={["Symbol", "Navn", "Definisjon", "Enhet"]}
+  rows={[
+    ["$Q_e$", "strålingsenergi", "energi i strålingsfeltet", "J"],
+    ["$\\Phi_e$", "strålingsfluks", "effekt, $dQ_e/dt$", "W"],
+    ["$I_e$", "strålingsstyrke", "$\\Phi_e/\\Omega$ fra en kilde", "W/sr"],
+    ["$L_e$", "radians", "$\\Phi_e/(A\\,\\Omega)$ fra en utstrakt kilde", "W/(sr·m²)"],
+    ["$M_e$", "eksitans", "$\\Phi_e/A$ ut av en flate", "W/m²"],
+    ["$E_e$", "irradians", "$\\Phi_e/A$ inn på en flate", "W/m²"],
+  ]}
+/>
+
+Kontroller alltid at enheten stemmer med spørsmålet. Spør oppgaven etter
+irradians, skal svaret i W/m²; etter energi, i joule. Den kontrollen fanger de
+fleste feilene denne uka inviterer til.
+
+<Example title="laser mot lyspære">
+
+En laserpeker på $P=1{,}0$ mW har utgangsdiameter 1,0 mm og full divergens
+$\alpha=2{,}0$ mrad. En lyspære på 100 W (antatt isotrop) har diameter 5,0 cm.
+Hvilken kilde gir størst irradians på en vegg 3,0 m unna?
 
 <Solution>
 
-**Fotonenergi.**
+Laseren fyller romvinkelen
+$\Omega=\pi\alpha^2/4=\pi(2{,}0\times10^{-3})^2/4=3{,}1\times10^{-6}$ sr.
+På veggen er flekken en sirkel med radius
+$r\approx R\alpha/2=3{,}0\cdot1{,}0\times10^{-3}$ m, altså areal
+$A=\pi r^2=2{,}8\times10^{-5}$ m². Irradiansen er
+$E_e=P/A=(1{,}0\times10^{-3})/(2{,}8\times10^{-5})\approx35$ W/m².
 
-$E=hc/\lambda=(6{,}63\times10^{-34})(3{,}00\times10^8)/(532\times10^{-9})=3{,}74\times10^{-19}\text{ J}$.
+Lyspæra sprer effekten over hele kula. I avstand $R=3{,}0$ m er
+$E_e=P/(4\pi R^2)=100/(4\pi\cdot9{,}0)\approx0{,}88$ W/m².
 
-**Antall per sekund.**
+Pæra leverer hundre tusen ganger mer effekt enn laseren, men laseren gir rundt
+40 ganger høyere irradians på veggen, fordi all effekten samles i én liten
+flekk.
 
-Effekt er energi per tid: $N/t=P/E=(2{,}0\times10^{-3})/(3{,}74\times10^{-19})=5{,}35\times10^{15}\text{ s}^{-1}$.
-
-<Answer>$\approx 5{,}3\times10^{15}$ fotoner/s</Answer>
+<Answer>Laseren: $\approx35$ W/m² mot pærens $\approx0{,}9$ W/m²</Answer>
 
 </Solution>
 
 </Example>
 
-#### Flere kontrollspørsmål
+<ExamFocus title="Typiske oppgaver">
+
+Oppgavesettene henter gjerne foton-energien ut av et oppgitt spektrum (finn
+toppbølgelengden, regn om til eV), ofte som første steg i en større oppgave.
+Radiometridelen testes med romvinkel-beregninger for kjegler og skiver, en
+variant av laser-mot-pære-regnestykket over, og rene enhetsspørsmål der
+irradians, fluks og energi skal holdes fra hverandre.
+
+</ExamFocus>
 
 <Quiz
   question={"En lyskilde har samme effekt ved 400 nm og 800 nm. Hvilken stråle har flest fotoner per sekund?"}
   options={["400 nm","800 nm","like mange","det avhenger bare av arealet"]}
   answer={1}
-  explanation={"Ved lengre bølgelengde er hvert foton mindre energirikt. Samme effekt betyr derfor flere fotoner per sekund ved 800 nm."}
+  explanation={"Ved 800 nm er hvert foton halvparten så energirikt, så samme effekt krever dobbelt så mange fotoner per sekund."}
 />
 
 <Quiz
-  question={"Irradians måles i:"}
-  options={["J","W","W/m²","sr"]}
-  answer={2}
-  explanation={"Irradians er effekt per areal på en flate, altså watt per kvadratmeter."}
+  question={"Radians og irradians skilles ved at radiansen i tillegg regnes per …"}
+  options={["tid","romvinkel","bølgelengde","volum"]}
+  answer={1}
+  explanation={"Irradians er effekt per areal, W/m². Radians er effekt per areal per romvinkel, W/(sr·m²), og brukes om utstrakte kilder."}
 />
 
 <KeyTakeaways>
 
-- Lys er både bølge og partikkel; geometrisk optikk og bølgeoptikk er to grenser av samme fysikk.
-- Fotonet er masseløst, et **boson** (Bose–Einstein), med $E=hf=hc/\lambda$ og $p=E/c$.
-- **Energi per foton** avhenger bare av $\lambda$; **effekt** sier hvor mange fotoner per sekund — bland dem aldri.
-- Radiometri måler effekt objektivt: irradians i $\text{W/m}^2$, radians i tillegg per romvinkel ($\text{sr}$).
+- Fotonet er masseløst, er et boson og har $E=hf=hc/\lambda$ og $p=E/c=h/\lambda$; snarveien er $E=1240\ \text{eV·nm}/\lambda$.
+- Energi per foton bestemmes av bølgelengden alene; effekten sier hvor mange fotoner som kommer per sekund.
+- Romvinkelen $\Omega=A/r^2$ måler spredning uavhengig av avstand; en hel kule er $4\pi$ sr.
+- Irradians $E_e$ er effekt per areal inn på en flate (W/m²), radians $L_e$ er effekt per areal per romvinkel fra en utstrakt kilde.
+- En fokusert milliwatt kan gi høyere irradians enn hundre isotrope watt; sjekk alltid at enheten svarer på spørsmålet.
 
 </KeyTakeaways>

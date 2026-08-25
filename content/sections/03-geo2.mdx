@@ -1,163 +1,221 @@
 ---
 order: 3
 title: "Stråle-transfer-matriser (ray tracing)"
-summary: "En stråle beskrives av høyde $y$ og vinkel $\\alpha$ over aksen. Hvert optisk element virker som en lineær transformasjon — en matrise. Et helt system er produkt"
-importance: useful
+summary: "Matrisemetoden for paraksial optikk: elementmatrisene, systemmatrisen og hva hvert element forteller, med determinantkontroll, de fire spesialtilfellene og kardinalpunktene til et sammensatt system."
+importance: core
 tag: "Geometrisk optikk II"
 part: "Geometrisk optikk"
-updated: 2026-05-28
+updated: 2026-08-25
 ---
+
+Tynnlinsealgebra fungerer for én og to linser, men et kamera-objektiv med fem
+elementer blir fort uoversiktlig. Matrisemetoden skalerer: en paraksial stråle
+er en vektor, hvert element er en $2\times2$-matrise, og hele systemet er ett
+matriseprodukt. Etterpå leser du fysikken rett ut av de fire tallene i
+produktet.
 
 <LearningGoals>
 
-- Sette opp **2×2 stråle-transfer-matriser** for translasjon, brytning og tynne linser.
-- Multiplisere matriser i **riktig rekkefølge** for å få systemmatrisen.
-- Tolke elementene og finne forstørrelse og bildetype fra systemmatrisen.
+- Sette opp <Term name="Stråle-transfer-matrise">stråle-transfer-matrisene</Term> for translasjon, plan og sfærisk flate og tynn linse.
+- Multiplisere elementmatrisene i riktig rekkefølge og kontrollere determinanten.
+- Tolke de fire spesialtilfellene $A=0$, $B=0$, $C=0$ og $D=0$ som optiske utsagn.
+- Finne effektiv brennvidde, <Term name="Hovedplan">hovedplan</Term> og brennpunkter til et sammensatt system fra systemmatrisen.
 
 </LearningGoals>
 
-### Kjernen i temaet
+## Strålen som vektor
 
-En stråle beskrives av høyde $y$ og vinkel $\alpha$ over aksen. Hvert optisk element virker som en lineær transformasjon — en <Term name="Stråle-transfer-matrise">matrise</Term>. Et helt system er produktet av matrisene.
+En paraksial stråle i et gitt plan langs aksen er bestemt av to tall: høyden
+$y$ over aksen og vinkelen $\alpha$ mot den. Alt et optisk element gjør i
+paraksial tilnærming, er lineært i $y$ og $\alpha$, så virkningen er en
+matrise:
 
-$\begin{pmatrix} y_2 \\ \alpha_2 \end{pmatrix} = \begin{pmatrix} A & B \\ C & D \end{pmatrix}\begin{pmatrix} y_1 \\ \alpha_1 \end{pmatrix}$
+$$\begin{pmatrix} y_2 \\ \alpha_2 \end{pmatrix} = \begin{pmatrix} A & B \\ C & D \end{pmatrix}\begin{pmatrix} y_1 \\ \alpha_1 \end{pmatrix}$$
 
-#### Rekkefølge!
+Noen kilder skriver elementene $A_{11},A_{12},A_{21},A_{22}$ i stedet for
+$A,B,C,D$; det er samme matrise. To atomer bygger alt: fri translasjon endrer
+høyden ($y_2=y_1+d\,\alpha_1$), brytning i en flate endrer vinkelen via Snells
+lov i linearisert form.
 
-Lys treffer elementene i rekkefølge 1, 2, 3 … men matrisen skrives **i motsatt rekkefølge**: $M = M_n \cdots M_2 M_1$. Det siste elementet lyset møter står lengst til venstre.
-
-#### Tolkning
-
-- **B = 0**: inn- og utplan er konjugerte (objekt/bilde). Da er $A=m$ (lateral forstørrelse).
-- **C = 0**: teleskopisk/<Term name="Afokalt system">afokalt system</Term> (parallelt inn → parallelt ut).
-- **$\det M = n_1/n_2$** (=1 om samme medium) — nyttig kontroll.
-- $-1/C = f$ for systemets effektive brennvidde.
-
-<Formula tex={"\\begin{pmatrix}1 & d \\\\ 0 & 1\\end{pmatrix}"} caption={"Translasjon avstand $d$ (i samme medium)."} />
-
-<Formula tex={"\\begin{pmatrix}1 & 0 \\\\ -1/f & 1\\end{pmatrix}"} caption={"Tynn linse med brennvidde $f$."} />
+<Formula tex={"\\begin{pmatrix}1 & d \\\\ 0 & 1\\end{pmatrix}"} caption={"Translasjon avstand $d$ i samme medium."} />
 
 <Formula tex={"\\begin{pmatrix}1 & 0 \\\\ 0 & n_1/n_2\\end{pmatrix}"} caption={"Brytning i plan flate."} />
 
-<Formula tex={"\\begin{pmatrix}1 & 0 \\\\ \\frac{n_1-n_2}{n_2 R} & n_1/n_2\\end{pmatrix}"} caption={"Brytning i sfærisk flate radius $R$."} />
+<Formula tex={"\\begin{pmatrix}1 & 0 \\\\ \\frac{n_1-n_2}{n_2 R} & n_1/n_2\\end{pmatrix}"} caption={"Brytning i sfærisk flate med radius $R$ ($R>0$ når flaten buler mot lyset)."} />
+
+<Formula tex={"\\begin{pmatrix}1 & 0 \\\\ -1/f & 1\\end{pmatrix}"} caption={"Tynn linse med brennvidde $f$."} />
+
+Tynnlinsematrisen faller ut av å kjede flate–translasjon–flate og la tykkelsen
+gå mot null; på veien detter linsemakerformelen ut som biprodukt, en fin
+kontroll på at metoden stemmer med forrige modul.
+
+<Callout type="warning" title="Trykkfeil i læreboka">
+
+Foreleseren advarer om at tynnlinsematrisen i Pedrotti 3. utgave, tabell 18-1,
+har en trykkfeil. Den riktige matrisen er $\begin{pmatrix}1&0\\-1/f&1\end{pmatrix}$,
+med minustegnet i nedre venstre hjørne.
+
+</Callout>
+
+## Systemmatrisen
+
+Lyset møter elementene i rekkefølgen 1, 2, 3, men matrisene skrives i motsatt
+rekkefølge: $M=M_n\cdots M_2M_1$, siste element lengst til venstre. Det er den
+vanligste feilen i hele metoden. Etter multiplikasjonen har du to raske
+kontroller. Determinanten skal være $n_1/n_2$, altså 1 når systemet starter og
+slutter i samme medium; forelesningene gjør denne sjekken i hvert eneste
+regneeksempel før tolkningen begynner. Og består systemet bare av tynne linser
+i luft, kan du kontrollere svaret mot tynnlinselikningen brukt linse for
+linse.
 
 <Steps>
 
 <Step title="Del systemet i elementer">
-Gå langs aksen og list opp hvert element lyset møter i tur og orden: fri propagasjon ($d$), tynn linse ($f$), plan eller sfærisk flate ($R$).
+Gå langs aksen og list hvert element lyset møter: translasjon ($d$), tynn linse ($f$), plan eller sfærisk flate ($R$).
 </Step>
 
-<Step title="Skriv hver elementmatrise">
-Slå opp $2\times2$-matrisen for hvert element fra listen over.
+<Step title="Skriv elementmatrisene">
+Slå opp $2\times2$-matrisen for hvert element.
 </Step>
 
 <Step title="Multipliser i motsatt rekkefølge">
-Det siste elementet lyset møter står lengst til venstre: $M=M_n\cdots M_2 M_1$.
+$M=M_n\cdots M_2M_1$: det siste elementet lyset møter står lengst til venstre.
 </Step>
 
 <Step title="Kontroller determinanten">
-I samme medium skal $\det M=1$ (ellers $n_1/n_2$) — en rask feilsjekk før du tolker.
+$\det M=1$ i samme medium, ellers $n_1/n_2$. Feil determinant betyr regnefeil.
 </Step>
 
-<Step title="Les av diagnostikken">
-$B=0$ ⇒ konjugerte plan og $A=m$; $C=0$ ⇒ afokalt; $-1/C=f_\text{eff}$.
+<Step title="Les av fysikken">
+Bruk tabellen under: nuller i matrisen er optiske utsagn.
 </Step>
 
 </Steps>
 
-<ExamFocus title="Slik testes dette på eksamen">
+## De fire spesialtilfellene
 
-*Match system ↔ matrise · Forstørrelse fra A · Virtuelt bilde*
+Det generaliserbare i metoden er hva et null i systemmatrisen betyr. Alle fire
+tilfellene er meningsfulle:
 
-Typisk «Match the optical system with the ray-transfer matrix». Du kjenner igjen elementene fra strukturen: et nullelement i nedre venstre = afokalt; et bestemt $B$ = en translasjon. Andre oppgaver gir en systemmatrise $A$ og ber deg finne forstørrelsen $M$ og om bildet er virtuelt (negativ avstand som gir $M>0$).
+<Table
+  caption={"Tolkning av systemmatrisen $\\begin{pmatrix}A&B\\\\C&D\\end{pmatrix}$ mellom et innplan og et utplan."}
+  columns={["Null", "Optisk utsagn", "Avlesning"]}
+  rows={[
+    ["$B=0$", "inn- og utplan er konjugerte (objekt og bilde)", "$A=m$, lateral forstørrelse"],
+    ["$C=0$", "afokalt (teleskopisk) system: parallelt inn gir parallelt ut", "$D$ = vinkelforstørrelse"],
+    ["$A=0$", "utplanet er bakre brennplan: parallelt inn samles i punkt", "høyden ut avhenger bare av vinkelen inn"],
+    ["$D=0$", "innplanet er fremre brennplan: punktkilde gir parallelt ut", "vinkelen ut avhenger bare av høyden inn"],
+  ]}
+/>
 
-</ExamFocus>
-
-<Example>
-
-En tynn linse $f=10$ cm, så fri rom $d=15$ cm til skjermen. Finn systemmatrisen fra linseplan til skjerm, og avgjør om skjermen er i bildeplanet for et fjernt objekt.
-
-<Solution>
-
-**Rekkefølge.**
-
-Lys: linse → translasjon. Matrise: $M = T\,L$.
-
-**Produkt.**
-
-$M=\begin{pmatrix}1&15\\0&1\end{pmatrix}\begin{pmatrix}1&0\\-1/10&1\end{pmatrix}=\begin{pmatrix}1-1{,}5&15\\-0{,}1&1\end{pmatrix}=\begin{pmatrix}-0{,}5&15\\-0{,}1&1\end{pmatrix}$.
-
-Fjernt objekt ⇒ parallelle stråler ($\alpha_1=0$) fokuserer ved $f=10$ cm, ikke 15 cm. $B\neq0$, så skjermen er *ikke* i bildeplanet for uendelig objekt.
-
-<Answer>$M=\begin{pmatrix}-0{,}5 & 15\\-0{,}1 & 1\end{pmatrix}$; fokus ved 10 cm</Answer>
-
-</Solution>
-
-</Example>
-
-#### Sjekk deg selv
+$B=0$ er selve avbildningskravet: utgangshøyden er uavhengig av
+inngangsvinkelen, så alle stråler fra samme objektpunkt samles i samme
+bildepunkt. $C=0$ kjennetegner teleskopet. De to siste sier hvor brennplanene
+ligger, og det er dem du bruker når systemet ikke er en enkel linse.
 
 <Quiz
-  question={"I systemmatrisen betyr elementet $B=0$ at …"}
+  question={"I systemmatrisen betyr $B=0$ at …"}
   options={["systemet er afokalt","inn- og utplan er objekt/bilde-konjugerte","forstørrelsen er 1","strålen er parallell"]}
   answer={1}
-  explanation={"$B=0$ ⇒ utgangshøyden er uavhengig av inngangsvinkel ⇒ planene er konjugerte (bilde dannes). Da er $A=m$."}
+  explanation={"$B=0$ gjør utgangshøyden uavhengig av inngangsvinkelen, så planene er konjugerte, og da er $A=m$."}
 />
 
 <Quiz
   question={"Et system består av element 1 (først), så 2, så 3. Systemmatrisen er …"}
-  options={["$M_1M_2M_3$","$M_3M_2M_1$","$M_2M_1M_3$","rekkefølge spiller ingen rolle"]}
+  options={["$M_1M_2M_3$","$M_3M_2M_1$","$M_2M_1M_3$","rekkefølgen spiller ingen rolle"]}
   answer={1}
   explanation={"Elementet lyset møter sist står lengst til venstre: $M=M_3M_2M_1$."}
 />
 
-### Mer forklaring — hva matrisen egentlig gjør
-
-Ray-transfer-metoden er mest nyttig når du bruker matriseelementene som diagnostikk. $B=0$ betyr at utgangshøyden ikke avhenger av inngangsvinkelen; alle stråler fra samme objektpunkt møtes i bildeplanet.
-
-For et system i samme medium bør determinanten være 1. Det er en enkel kvalitetskontroll etter matrisemultiplikasjon.
-
 <Example title="finn bildeplanet med $B=0$">
 
-Et objekt står $s_o=30\text{ cm}$ foran en tynn linse med $f=10\text{ cm}$. Bruk matriseideen til å finne avstanden $d$ fra linsen til bildeplanet.
+Et objekt står $s_o=30$ cm foran en tynn linse med $f=10$ cm. Bruk
+matrisemetoden til å finne avstanden $d$ fra linsen til bildeplanet.
 
 <Solution>
 
-**System.**
+Fra objektplan til bildeplan er systemet translasjon, linse, translasjon:
+$M=T(d)\,L(f)\,T(s_o)$. Multiplikasjonen gir $B=s_o+d-ds_o/f$. Bildeplanet
+krever $B=0$:
 
-Fra objektplan til bildeplan: $M=T(d)L(f)T(s_o)$. Bildeplan krever $B=0$.
+$$30+d-3d=0 \quad\Rightarrow\quad d=15\ \text{cm}.$$
 
-**Resultat.**
+Tynnlinselikningen gir det samme, $1/s_i=1/10-1/30=1/15$. Determinanten er 1,
+som den skal.
 
-Multiplikasjon gir $B=s_o+d-ds_o/f$. Sett $B=0$: $30+d-3d=0\Rightarrow d=15\text{ cm}$.
-
-<Answer>$d = 15$ cm</Answer>
+<Answer>$d=15$ cm</Answer>
 
 </Solution>
 
 </Example>
 
-#### Flere kontrollspørsmål
+## Kardinalpunkter: systemet som én linse
+
+Et sammensatt system i luft oppfører seg som én tynn linse, bare ikke målt fra
+noen fysisk flate. Det finnes to plan, hovedplanene $H_1$ og $H_2$, slik at
+tynnlinselikningen gjelder eksakt når $s_o$ måles til $H_1$ og $s_i$ fra
+$H_2$. Sammen med brennpunktene $F_1$ og $F_2$ (og nodalpunktene, som i luft
+faller sammen med hovedpunktene) utgjør de systemets kardinalpunkter. Alt
+leses ut av systemmatrisen mellom første og siste flate:
+
+<Formula tex={"f=-\\dfrac{1}{C},\\qquad H_1:\\ \\dfrac{D-1}{C},\\qquad H_2:\\ \\dfrac{1-A}{C}"} caption={"Effektiv brennvidde og hovedplan i luft, målt fra inn- og utplanet (positiv retning mot høyre). $F_1=H_1-f$ og $F_2=H_2+f$."} />
+
+<Example title="to linser, alle kardinalpunktene">
+
+En spredelinse $f_1=-20$ cm står 5 cm foran en samlelinse $f_2=+10$ cm. Finn
+systemmatrisen, effektiv brennvidde og hovedplanene.
+
+<Solution>
+
+Med lyset gjennom $L_1$, translasjon, $L_2$ er
+$M=L(10)\,T(5)\,L(-20)$:
+
+$$M=\begin{pmatrix}1&0\\-\tfrac{1}{10}&1\end{pmatrix}\begin{pmatrix}1&5\\0&1\end{pmatrix}\begin{pmatrix}1&0\\\tfrac{1}{20}&1\end{pmatrix}=\begin{pmatrix}1{,}25&5\\-0{,}075&0{,}5\end{pmatrix}.$$
+
+Kontroll: $\det M=1{,}25\cdot0{,}5-5\cdot(-0{,}075)=1$. Brennvidden er
+$f=-1/C=40/3\approx13{,}3$ cm. Hovedplanene ligger i
+$H_1=(D-1)/C=(0{,}5-1)/(-0{,}075)=20/3$ cm til høyre for første linse og
+$H_2=(1-A)/C=(1-1{,}25)/(-0{,}075)=10/3$ cm til høyre for den andre.
+Brennpunktene følger: $F_2$ ligger $10/3+40/3=50/3$ cm bak siste linse, og
+$F_1$ ligger $20/3-40/3=-20/3$ cm, altså 6,7 cm til høyre for første linse,
+et virtuelt fremre brennpunkt.
+
+<Answer>$f=40/3$ cm; $H_1$ 6,7 cm bak $L_1$, $H_2$ 3,3 cm bak $L_2$</Answer>
+
+</Solution>
+
+</Example>
+
+<ExamFocus title="Typiske oppgaver">
+
+Gjengangeren er å matche optiske systemer med systemmatriser: kjenn igjen
+strukturen (null i $C$ betyr afokalt, øvre høyre element er en translasjon).
+Ellers bygges en systemmatrise én gang og gjenbrukes for flere
+objektavstander, med determinanten som obligatorisk mellomkontroll, og
+kardinalpunktene brukes til å behandle et sammensatt system som én linse.
+
+</ExamFocus>
 
 <Quiz
   question={"Hva er en rask kontroll for et system som starter og slutter i samme medium?"}
   options={["$A=0$","$B=1$","$\\det M=1$","$C=D$"]}
   answer={2}
-  explanation={"For tapsfri paraxial stråleoptikk i samme medium er determinanten 1."}
+  explanation={"For paraksial stråleoptikk i samme medium er determinanten 1; avvik betyr regnefeil."}
 />
 
 <Quiz
-  question={"Et afokalt system kjennetegnes ved:"}
+  question={"Et afokalt system kjennetegnes ved …"}
   options={["$B=0$","$C=0$","$A=0$","$D=0$"]}
   answer={1}
-  explanation={"$C=0$ gjør at parallelle inngående stråler fortsatt er parallelle ut."}
+  explanation={"$C=0$ gjør at parallelle stråler inn fortsatt er parallelle ut; $D$ er da vinkelforstørrelsen."}
 />
 
 <KeyTakeaways>
 
-- En stråle er $(y,\alpha)$; hvert element er en $2\times2$-matrise, systemet er produktet.
-- Multipliser i **motsatt** rekkefølge av lysets gang: $M=M_n\cdots M_2 M_1$.
-- Matriseelementene er diagnostikk: $B=0$ ⇒ bilde ($A=m$), $C=0$ ⇒ afokalt, $-1/C=f_\text{eff}$.
-- $\det M=1$ i samme medium er din raske feilsjekk.
+- En paraksial stråle er $(y,\alpha)$; hvert element er en $2\times2$-matrise, og systemet er produktet i motsatt rekkefølge av lysets gang.
+- $\det M=n_1/n_2$ (1 i samme medium) er den obligatoriske feilsjekken etter hver multiplikasjon.
+- Nuller er utsagn: $B=0$ bilde med $A=m$, $C=0$ afokalt med $D$ som vinkelforstørrelse, $A=0$ og $D=0$ peker ut brennplanene.
+- Et sammensatt system i luft er én linse med $f=-1/C$, målt fra hovedplanene $H_1$ og $H_2$.
+- Pedrotti 3. utgave, tabell 18-1: tynnlinsematrisen har en trykkfeil; bruk $\begin{pmatrix}1&0\\-1/f&1\end{pmatrix}$.
 
 </KeyTakeaways>
