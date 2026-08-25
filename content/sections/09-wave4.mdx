@@ -1,144 +1,198 @@
 ---
 order: 9
 title: "Superposisjon & Youngs dobbeltspalt"
-summary: "To koherente bølger som møtes legger seg sammen. Resultatet avhenger av faseforskjellen: i fase ⇒ konstruktiv (lyst), i motfase ⇒ destruktiv (mørkt). Youngs dob"
-importance: useful
+summary: "Tostråle-interferens med fasoraddisjon og synlighet, Youngs dobbeltspalt med stripeavstand og glassplateforskyvning, og svevninger som gir fase- og gruppehastighet."
+importance: core
 tag: "Bølgeoptikk IV"
 part: "Bølgeoptikk"
-updated: 2026-05-28
+updated: 2026-08-25
 ---
+
+Bølgelikningen er lineær, så to løsninger lagt sammen er også en løsning.
+Alt i denne modulen følger av den ene setningen: intensiteten til to
+overlagrede felt får et kryssledd, kryssleddet lager striper i Youngs
+dobbeltspalt, og legger du sammen to nærliggende frekvenser i stedet for to
+veier, får du svevninger og begrepet gruppehastighet.
 
 <LearningGoals>
 
-- Legge sammen bølger med **fasoraddisjon** og finne resulterende amplitude og fase.
-- Utlede og bruke **Youngs** interferensmønster og stripeavstand.
-- Beregne effekten av en innskutt glassplate (stripeforskyvning).
+- Legge sammen felt med fasoraddisjon og finne resulterende amplitude og fase.
+- Bruke tostråle-formelen $I=I_1+I_2+2\sqrt{I_1I_2}\cos\delta$ og <Term name="Synlighet">synligheten</Term> $V$.
+- Utlede og bruke Youngs interferensmønster, stripeavstanden og glassplateforskyvningen.
+- Regne på svevninger og skille fasehastighet fra gruppehastighet.
 
 </LearningGoals>
 
-### Kjernen i temaet
-
-To koherente bølger som møtes <Term name="Superposisjonsprinsippet">legger seg sammen</Term>. Resultatet avhenger av faseforskjellen: i fase ⇒ konstruktiv (lyst), i motfase ⇒ destruktiv (mørkt). Youngs dobbeltspalt er det rene skoleeksemplet.
+## Tostråle-interferens
 
 <Statement kind="principle" name="Superposisjonsprinsippet">
 
-Når flere bølger møtes, er det resulterende feltet summen av de enkelte feltene i hvert punkt. Intensiteten følger av amplituden i andre potens, så kryssleddet $2E_{01}E_{02}\cos(\Delta\alpha)$ er selve interferensen.
+Når flere bølger møtes, er det resulterende feltet summen av de enkelte
+feltene i hvert punkt. Intensiteten går som amplituden i andre potens, så
+kryssleddet mellom feltene er selve interferensen.
 
 </Statement>
 
-#### Fasoraddisjon
+To felt med amplituder $E_{01},E_{02}$ og faser $\alpha_1,\alpha_2$ legges
+sammen som fasorer:
 
-For to felt med amplituder $E_{01},E_{02}$ og faser $\alpha_1,\alpha_2$ blir resulterende amplitude $E_0^2=E_{01}^2+E_{02}^2+2E_{01}E_{02}\cos(\alpha_2-\alpha_1)$. Kryssleddet er interferensen.
+<Formula tex={"E_0^2=E_{01}^2+E_{02}^2+2E_{01}E_{02}\\cos(\\alpha_2-\\alpha_1)"} caption={"Fasoraddisjon av to felt med samme frekvens og polarisasjon."} />
 
-#### Youngs dobbeltspalt
+Skrevet i intensiteter er det samme
 
-To spalter med avstand $a$, lys $\lambda$, skjerm i avstand $L$. Veiforskjellen til vinkel $\theta$ er $a\sin\theta$. Maksima når $a\sin\theta=m\lambda$. Stripene er jevnt fordelt med avstand $\Delta y=\lambda L/a$.
+<Formula tex={"I=I_1+I_2+2\\sqrt{I_1I_2}\\cos\\delta"} caption={"Tostråle-interferens; $\\delta=\\tfrac{2\\pi n}{\\lambda}(s_2-s_1)$ er faseforskjellen fra veiforskjellen."} />
 
-Skyver du en glassplate (tykkelse $t$, indeks $n$) foran én spalt, øker den optiske veilengden med $(n-1)t$, og mønsteret forskyves med antall striper $N=(n-1)t/\lambda$.
+For like sterke stråler blir dette $4I_0\cos^2(\delta/2)$: fire ganger én
+stråle på toppene, null i bunnene. Er strålene ulike, fylles bunnene delvis
+igjen, og kontrasten måles med synligheten
+$V=(I_\text{max}-I_\text{min})/(I_\text{max}+I_\text{min})=2\sqrt{I_1I_2}/(I_1+I_2)$:
 
-<Formula tex={"E_0^2=E_{01}^2+E_{02}^2+2E_{01}E_{02}\\cos(\\alpha_2-\\alpha_1)"} caption={"Resulterende amplitude (fasoraddisjon)."} />
+<Table
+  caption={"Synlighet som funksjon av intensitetsforholdet mellom strålene."}
+  columns={["$I_2/I_1$", "$V$"]}
+  rows={[
+    ["1", "1,00"],
+    ["0,5", "0,94"],
+    ["0,1", "0,57"],
+    ["0,01", "0,20"],
+  ]}
+/>
 
-<Formula tex={"I_\\text{tot}=4I_0\\cos^2\\!\\big(\\tfrac{\\pi a\\sin\\theta}{\\lambda}\\big)"} caption={"Youngs intensitetsmønster. $a$ = spalteavstand (senter til senter)."} />
+Kontrasten tåler altså en del skjevhet; selv en tistrede intensitetsforskjell
+gir over halv synlighet.
 
-<Formula tex={"\\Delta y=\\dfrac{\\lambda L}{a}"} caption={"Stripeavstand på skjermen. $L$ = skjermavstand, $a$ = spalteavstand."} />
+## Youngs dobbeltspalt
 
-<Formula tex={"N=\\dfrac{(n-1)t}{\\lambda}"} caption={"Stripeforskyvning fra glassplate over én spalt. $t$ = platetykkelse, $N$ = antall striper mønsteret forskyves."} memorize />
+To spalter med senteravstand $a$ belyses koherent, og skjermen står i
+avstand $L$. Veiforskjellen mot vinkelen $\theta$ er $a\sin\theta$, så
+maksima ligger der $a\sin\theta=m\lambda$, og i småvinkelgrensen er
+mønsteret
 
-<ExamFocus title="Slik testes dette på eksamen">
+<Formula tex={"I=4I_0\\cos^2\\!\\Big(\\dfrac{\\pi a\\sin\\theta}{\\lambda}\\Big)"} caption={"Youngs intensitetsmønster; $a$ er spalteavstanden (senter til senter)."} />
 
-*Fasoraddisjon (regn) · Stripeavstand · Glassplate-forskyvning · Veiforskjell ↔ halv-maks*
+<Formula tex={"\\Delta y=\\dfrac{\\lambda L}{a}"} caption={"Stripeavstanden på skjermen i avstand $L$."} />
 
-Tre-i-ett-oppgave: (i) finn skjermavstanden $L$ for ønsket $\Delta y$ (bruk $\Delta y=\lambda L/a$); (ii) hvor mange striper forskyves mønsteret av en glassplate; (iii) hvilken veiforskjell tilsvarer skiftet fra topp-maks til halv-maks (svar: $\lambda/4$ i veiforskjell, dvs. $\Delta=\lambda/4$ … kontroller fra $\cos^2$).
+Stripene sitter jevnt: større spalteavstand gir tettere striper, lengre
+bølgelengde gir bredere. Skyves en glassplate med tykkelse $t$ og indeks $n$
+foran den ene spalten, øker den optiske veilengden i den armen med
+$(n-1)t$, og hele mønsteret forskyves med
 
-</ExamFocus>
+<Formula tex={"N=\\dfrac{(n-1)t}{\\lambda}"} caption={"Antall striper mønsteret forskyves av en glassplate over én spalt."} />
 
-<Example>
-
-Spaltavstand $a=0{,}5$ mm, $\lambda=600$ nm. (i) Hvilken $L$ gir stripeavstand 1 mm? (ii) En glassplate $n=1{,}502$, $t=100\,\mu$m over én spalt — hvor mange striper forskyves?
-
-<Solution>
-
-**(i).**
-
-$L=\dfrac{a\,\Delta y}{\lambda}=\dfrac{(0{,}5\times10^{-3})(1\times10^{-3})}{600\times10^{-9}}=0{,}833$ m.
-
-**(ii).**
-
-$N=\dfrac{(n-1)t}{\lambda}=\dfrac{(0{,}502)(100\times10^{-6})}{600\times10^{-9}}=83{,}7\approx 83{,}3$ striper.
-
-<Answer>$L = 0{,}833$ m; ≈ 83 striper</Answer>
-
-</Solution>
-
-</Example>
-
-Endre spaltavstand og bølgelengde, og se hvordan stripene trekkes sammen eller spres.
+Endre spalteavstand og bølgelengde i figuren, og se stripene trekkes sammen
+eller spres.
 
 <Simulation src={"/sims/youngCanvas.js"} title={"Interaktivt: Youngs interferensmønster"} height={220} />
 
-#### Sjekk deg selv
+<Example title="stripeavstand og glassplate">
 
-<Quiz
-  question={"Hvis du dobler spaltavstanden $a$ i et Young-oppsett, blir stripeavstanden:"}
-  options={["dobbelt så stor","halvparten","uendret","firedobbel"]}
-  answer={1}
-  explanation={"$\\Delta y=\\lambda L/a$ — omvendt proporsjonal med $a$. Større $a$ ⇒ tettere striper."}
-/>
-
-<Quiz
-  question={"To koherente bølger med lik amplitude $E_0$ i motfase ($\\Delta\\alpha=\\pi$) gir resulterende intensitet:"}
-  options={["$4I_0$","$2I_0$","$I_0$","0"]}
-  answer={3}
-  explanation={"$\\cos\\pi=-1$ ⇒ $E_0^2=E_0^2+E_0^2-2E_0^2=0$. Fullstendig destruktiv."}
-/>
-
-### Mer forklaring — fase er optisk veilengde i forkledning
-
-Interferensoppgaver blir ofte en oversettelse mellom veiforskjell, faseforskjell og intensitet. Bruk $\Delta\phi=2\pi\Delta/\lambda$.
-
-Maksimum krever heltalls bølgelengder i veiforskjell. Minimum krever halv-heltalls bølgelengder. Halv intensitet i et tostråleoppsett ligger midt i fase mellom maksimum og minimum (jf. <FormulaRef id="young">intensitetsmønsteret</FormulaRef>).
-
-<Example title="fase og intensitet">
-
-To like sterke koherente stråler har veiforskjell $\Delta=\lambda/3$. Hva blir intensiteten relativt til maksimum?
+Spalteavstanden er $a=0{,}5$ mm og $\lambda=600$ nm. (i) Hvilken
+skjermavstand $L$ gir stripeavstand 1 mm? (ii) En glassplate med $n=1{,}502$
+og $t=100$ µm legges over den ene spalten. Hvor mange striper forskyves
+mønsteret?
 
 <Solution>
 
-**Fase.**
+(i) $L=\dfrac{a\,\Delta y}{\lambda}=\dfrac{(0{,}5\times10^{-3})(1{,}0\times10^{-3})}{600\times10^{-9}}=0{,}83$ m.
 
-$\Delta\phi=2\pi(\Delta/\lambda)=2\pi/3$.
+(ii) $N=\dfrac{(n-1)t}{\lambda}=\dfrac{0{,}502\cdot100\times10^{-6}}{600\times10^{-9}}\approx84$ striper.
 
-**Relativ intensitet.**
-
-For like amplituder er $I/I_\text{max}=\cos^2(\Delta\phi/2)=\cos^2(\pi/3)=1/4$.
-
-<Answer>$I = 0{,}25\,I_\text{max}$</Answer>
+<Answer>$L=0{,}83$ m; $\approx84$ striper</Answer>
 
 </Solution>
 
 </Example>
 
-#### Flere kontrollspørsmål
-
 <Quiz
-  question={"Veiforskjellen $\\lambda/2$ gir for to like sterke stråler:"}
-  options={["maksimum","minimum","halv maksimum","ingen faseforskjell"]}
+  question={"Hvis du dobler spalteavstanden $a$ i et Young-oppsett, blir stripeavstanden …"}
+  options={["dobbelt så stor","halvparten","uendret","firedobbel"]}
   answer={1}
-  explanation={"$\\lambda/2$ tilsvarer faseforskjell $\\pi$, altså destruktiv interferens."}
+  explanation={"$\\Delta y=\\lambda L/a$ er omvendt proporsjonal med $a$: større avstand gir tettere striper."}
 />
 
 <Quiz
-  question={"En glassplate foran én spalt øker optisk veilengde med:"}
+  question={"To koherente bølger med lik amplitude i motfase ($\\delta=\\pi$) gir resulterende intensitet …"}
+  options={["$4I_0$","$2I_0$","$I_0$","0"]}
+  answer={3}
+  explanation={"$\\cos\\pi=-1$ gjør kryssleddet maksimalt negativt: fullstendig destruktiv interferens."}
+/>
+
+Interferensoppgaver er ofte en oversettelse mellom veiforskjell, fase og
+intensitet, med $\Delta\phi=2\pi\Delta/\lambda$ som ordbok. Maksimum krever
+et helt antall bølgelengder i veiforskjell, minimum et halvtallig antall, og
+alt imellom leses av $\cos^2$-kurven.
+
+<Example title="fase og intensitet">
+
+To like sterke koherente stråler har veiforskjell $\Delta=\lambda/3$. Hva
+blir intensiteten relativt til maksimum?
+
+<Solution>
+
+Faseforskjellen er $\Delta\phi=2\pi(\Delta/\lambda)=2\pi/3$. For like
+amplituder er $I/I_\text{max}=\cos^2(\Delta\phi/2)=\cos^2(\pi/3)=1/4$.
+
+<Answer>$I=0{,}25\,I_\text{max}$</Answer>
+
+</Solution>
+
+</Example>
+
+<Quiz
+  question={"Veiforskjellen $\\lambda/2$ gir for to like sterke stråler …"}
+  options={["maksimum","minimum","halvt maksimum","ingen faseforskjell"]}
+  answer={1}
+  explanation={"$\\lambda/2$ tilsvarer faseforskjell $\\pi$: destruktiv interferens."}
+/>
+
+<Quiz
+  question={"En glassplate foran én spalt øker den optiske veilengden med …"}
   options={["$t$","$(n-1)t$","$nt/2$","$\\lambda/t$"]}
   answer={1}
   explanation={"Luftveien $t$ erstattes av glassveien $nt$, så økningen er $(n-1)t$."}
 />
 
+## To frekvenser: svevninger og gruppehastighet
+
+Legg sammen to like sterke bølger med nesten samme frekvens, og
+produktformelen for cosinus deler resultatet i en rask bærebølge og en
+langsom omhylling:
+
+$$E=2E_0\cos\!\Big(\tfrac{k_1+k_2}{2}z-\tfrac{\omega_1+\omega_2}{2}t\Big)\cos\!\Big(\tfrac{k_1-k_2}{2}z-\tfrac{\omega_1-\omega_2}{2}t\Big)$$
+
+Omhyllingen er svevningen. Bærebølgen beveger seg med fasehastigheten
+$v_p=\omega/k$, omhyllingen med gruppehastigheten
+
+<Formula tex={"v_g=\\dfrac{d\\omega}{dk}=v_p\\left(1+\\dfrac{\\lambda}{n}\\dfrac{dn}{d\\lambda}\\right)"} caption={"Gruppehastighet. I et ikke-dispersivt medium er $v_g=v_p$; med normal dispersjon ($dn/d\\lambda<0$) er $v_g<v_p$."} />
+
+I vakuum følges de to. I et dispersivt medium går energien og
+informasjonen med $v_g$, og ulike spektralkomponenter i en puls går ulikt
+fort, så pulsen smøres ut. Det er denne mekanismen som begrenser hvor fort
+det kan blinkes gjennom en optisk fiber.
+
+<ExamFocus title="Typiske oppgaver">
+
+Youngs oppsett bærer gjerne en oppgave i tre ledd: finn skjermavstanden for
+en ønsket stripeavstand, finn hvor mange striper en glassplate forskyver
+mønsteret, og oversett en veiforskjell til relativ intensitet via
+$\cos^2$. Ellers regnes svevningsfrekvens for to gitte bølger, og fase- mot
+gruppehastighet skilles i et dispersivt medium.
+
+</ExamFocus>
+
+<Quiz
+  question={"I et medium med normal dispersjon ($dn/d\\lambda<0$) er …"}
+  options={["$v_g>v_p$","$v_g=v_p$","$v_g<v_p$","$v_g=c$ alltid"]}
+  answer={2}
+  explanation={"Korreksjonsleddet $(\\lambda/n)(dn/d\\lambda)$ er negativt, så omhyllingen går saktere enn bærebølgen."}
+/>
+
 <KeyTakeaways>
 
-- Superposisjon: felt summeres, intensitet går som amplitude², og kryssleddet er interferensen.
-- Young: maksima ved $a\sin\theta=m\lambda$, stripeavstand $\Delta y=\lambda L/a$ (større $a$ ⇒ tettere striper).
-- Oversett alltid mellom veiforskjell, fase ($\Delta\phi=2\pi\Delta/\lambda$) og intensitet ($\cos^2$).
-- En glassplate ($n,t$) over én spalt forskyver mønsteret $N=(n-1)t/\lambda$ striper.
+- Felt summeres, intensiteter gjør det ikke: $I=I_1+I_2+2\sqrt{I_1I_2}\cos\delta$, og for like stråler $4I_0\cos^2(\delta/2)$.
+- Synligheten $V=2\sqrt{I_1I_2}/(I_1+I_2)$ måler stripekontrasten; den tåler betydelig intensitetsskjevhet.
+- Young: maksima ved $a\sin\theta=m\lambda$, stripeavstand $\Delta y=\lambda L/a$; en glassplate forskyver $N=(n-1)t/\lambda$ striper.
+- Oversett alltid veiforskjell til fase med $\Delta\phi=2\pi\Delta/\lambda$.
+- To nære frekvenser gir bærebølge pluss omhylling: fasehastighet $\omega/k$ mot gruppehastighet $d\omega/dk$, og i dispersive medier går pulser med $v_g$.
 
 </KeyTakeaways>

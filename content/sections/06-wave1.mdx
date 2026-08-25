@@ -1,142 +1,195 @@
 ---
 order: 6
 title: "Maxwells likninger & EM-bølger"
-summary: "Lys er en elektromagnetisk bølge. Maxwells fire likninger kombineres til en bølgelikning der lyshastigheten i et medium er $v=c/n$. Detaljene i utledningen er i"
-importance: useful
+summary: "Fra Maxwells likninger til planbølgen: bølgelikningen i medier, transversalitet, Poynting-vektor og intensitet, og klassifisering av lineær, sirkulær og elliptisk polarisasjon."
+importance: core
 tag: "Bølgeoptikk I"
 part: "Bølgeoptikk"
-updated: 2026-05-28
+updated: 2026-08-25
 ---
+
+Her bytter faget språk: lys er ikke lenger stråler, men et elektromagnetisk
+felt som løser Maxwells likninger. Selve utledningene er uttrykkelig ikke
+pensum, men strukturen er: hvordan de fire likningene gir en bølgelikning,
+hva planbølgeløsningen sier, og hvordan de to feltkomponentene på tvers av
+strålen koder polarisasjonstilstanden.
 
 <LearningGoals>
 
-- Kjenne Maxwells likninger i vakuum og i transparente medier (uten ladning/strøm).
-- Utlede og bruke **bølgelikningen** og plan-bølge-løsningen.
-- Forstå transversaliteten $E\perp B\perp k$ og bruke **Poynting-vektoren** for intensitet.
+- Kjenne Maxwells likninger i vakuum og i transparente medier, og de viktige grunnleggerne bak dem.
+- Lese amplitude, retning, bølgelengde og frekvens rett ut av et planbølgeuttrykk.
+- Bruke transversaliteten $\vec E\perp\vec B\perp\vec k$ og Poynting-vektoren til å finne felt og intensitet.
+- Klassifisere en <Term name="Polarisering">polarisasjonstilstand</Term> som lineær, sirkulær eller elliptisk fra amplituder og faseforskjell.
 
 </LearningGoals>
 
-### Kjernen i temaet
+## Fra Maxwell til bølgelikningen
 
-Lys er en elektromagnetisk bølge. Maxwells fire likninger kombineres til en bølgelikning der lyshastigheten i et medium er $v=c/n$. Detaljene i utledningen er ikke pensum, men du må kjenne strukturen og de viktige grunnleggerne (Maxwell, Faraday, Hertz).
+Likningene bærer navnene til dem som fant bitene: Coulomb og Gauss for
+ladningens felt, Ørsted og Ampère for strømmens magnetfelt, Faraday for
+induksjonen. Maxwell samlet dem, la til forskyvningsstrømmen som fikk
+Ampères lov til å stemme for tidsvarierende felt, og oppdaget at settet har
+bølgeløsninger med fart $1/\sqrt{\varepsilon_0\mu_0}$, som var lysfarten.
+Hertz påviste bølgene i laboratoriet tjue år senere. Denne
+grunnleggerrekken er eksplisitt del av pensum, resten av utledningen er det
+ikke.
 
-#### Plan-bølge-løsningen
+I et lineært, transparent medium svarer materialet med en polarisering som
+skalerer feltet, $\vec D=\varepsilon_0(1+\chi_e)\vec E=\varepsilon_0n^2\vec E$,
+og hele virkningen på bølgen er at brytningsindeksen $n$ dukker opp i
+bølgelikningen:
 
-$\vec E = \vec E_0\cos(\vec k\cdot\vec r-\omega t)$ løser bølgelikningen når $\omega=kv$. Her er $k=2\pi/\lambda$ bølgetallet og $\omega=2\pi f$ vinkelfrekvensen.
+<Formula tex={"\\nabla^2\\vec E=\\dfrac{n^2}{c^2}\\dfrac{\\partial^2\\vec E}{\\partial t^2}"} caption={"Bølgelikningen for EM-felt i et transparent medium; farten er $v=c/n$."} />
 
-#### Geometri (ofte spurt om)
+## Planbølgen
 
-- $\vec E$, $\vec B$ og utbredelsesretningen $\vec k$ er **innbyrdes vinkelrette**, og $\vec E\times\vec B$ peker langs $\vec k$.
-- Amplitudene henger sammen: $|\vec B| = |\vec E|/v$ (i vakuum $B_0=E_0/c$).
-- Bølgelengden leses rett av fra $k$: $\lambda = 2\pi/k$.
+Bølgelikningen løses med separasjon av variable, og den enkleste løsningen
+er planbølgen
+
+<Formula tex={"\\vec E=\\vec E_0\\cos(\\vec k\\cdot\\vec r-\\omega t)"} caption={"Planbølge, med $k=2\\pi/\\lambda$, $\\omega=2\\pi f$ og $\\omega=kv$."} />
+
+Uttrykket gir alt på én linje: amplituden $E_0$, retningen fra $\vec k$,
+bølgelengden fra $k=2\pi/\lambda$, og bevegelsesretningen fra fortegnet, for
+$\cos(kz-\omega t)$ må $z$ øke når $t$ øker, så bølgen går mot $+z$. Punktkilder
+sender i stedet kulebølger med amplitude som faller som $1/r$; de trengs når
+diffraksjonen kommer.
 
 <Statement kind="theorem" name="Transversalitet">
 
-I en plan EM-bølge står $\vec E$, $\vec B$ og utbredelsesretningen $\vec k$ innbyrdes vinkelrett, og $\vec E\times\vec B$ peker langs $\vec k$. Amplitudene er koblet ved $B_0=E_0/v$.
+I en plan EM-bølge står $\vec E$, $\vec B$ og utbredelsesretningen $\vec k$
+innbyrdes vinkelrett, $\vec E\times\vec B$ peker langs $\vec k$, og
+amplitudene er koblet ved $B_0=E_0/v$.
 
 </Statement>
 
-<Formula tex={"\\nabla^2\\vec E=\\dfrac{n^2}{c^2}\\dfrac{\\partial^2\\vec E}{\\partial t^2}"} caption={"Bølgelikningen for EM-felt."} />
+Transversaliteten følger rett av Gauss' lov for en planbølge, og koblingen
+mellom feltene av Faradays lov. Energistrømmen bærer Poyntings navn:
 
-<Formula tex={"\\vec E=\\vec E_0\\cos(\\vec k\\cdot\\vec r-\\omega t)"} caption={"Plan-bølge, med $\\omega=kv,\\ k=2\\pi/\\lambda$."} memorize />
+<Formula tex={"\\vec S=c^2\\varepsilon_0(\\vec E\\times\\vec B)"} caption={"Poynting-vektor: energifluks, retning langs $\\vec k$."} />
 
-<Formula tex={"B_0=E_0/v"} caption={"Forhold mellom amplitudene."} memorize />
+<Formula tex={"I=\\langle S\\rangle=\\tfrac12 c\\,n\\,\\varepsilon_0 E_0^2"} caption={"Intensitet (tidsmidlet irradians)."} />
 
-<Formula tex={"\\vec S=c^2\\varepsilon_0(\\vec E\\times\\vec B)"} caption={"Poynting-vektor (energifluks)."} />
+Intensiteten går som amplituden i andre potens: dobler du $E_0$, firedobles
+$I$. Den koblingen brukes hver gang et felt skal regnes om til noe målbart.
 
-<Formula tex={"I=\\langle S\\rangle=\\tfrac12 c\\,n\\,\\varepsilon_0 E_0^2"} caption={"Intensitet (tidsmidlet)."} />
+<Example title="les bølgeuttrykket">
 
-<ExamFocus title="Slik testes dette på eksamen">
+$\vec E = 30\cos(1{,}26\times10^{7}\,z - \omega t)\,\hat x$ V/m i vakuum.
+Finn bølgelengden og beskriv $\vec B$.
 
-*Bølgelengde fra k · B-feltets retning/styrke · Intensitet*
+<Solution>
 
-«EMwave»-oppgaven gir et uttrykk $\vec E=E_0\cos(kz-\omega t)\hat x$ og spør om **bølgelengden** ($\lambda=2\pi/k$) og **magnetfeltets retning og styrke** (vinkelrett, langs $\hat y$ slik at $\hat x\times\hat y=\hat z$, med $B_0=E_0/c$). «Select two alternatives».
+Bølgetallet er $k=1{,}26\times10^{7}$ m⁻¹, så
+$\lambda=2\pi/k\approx5{,}0\times10^{-7}$ m $=500$ nm.
+
+Bølgen går mot $+\hat z$ og $\vec E$ ligger langs $\hat x$. For at
+$\vec E\times\vec B$ skal peke langs $+\hat z$, må $\vec B$ ligge langs
+$\hat y$, med amplitude $B_0=E_0/c=30/(3{,}0\times10^8)=1{,}0\times10^{-7}$ T.
+
+<Answer>$\lambda\approx500$ nm; $\vec B\parallel\hat y$ med $B_0\approx1{,}0\times10^{-7}$ T</Answer>
+
+</Solution>
+
+</Example>
+
+<Quiz
+  question={"En plan EM-bølge i vakuum har $\\vec E$ langs $\\hat x$ og utbreder seg langs $+\\hat z$. $\\vec B$ ligger langs …"}
+  options={["$\\hat z$","$\\hat x$","$\\hat y$","$-\\hat z$"]}
+  answer={2}
+  explanation={"$\\vec E\\times\\vec B$ må peke langs $+\\hat z$, og $\\hat x\\times\\hat y=\\hat z$."}
+/>
+
+<Quiz
+  question={"I et medium med $n=1{,}5$ er lysets fasefart …"}
+  options={["$1{,}5c$","$c$","$c/1{,}5\\approx2{,}0\\times10^8$ m/s","avhengig av amplituden"]}
+  answer={2}
+  explanation={"$v=c/n$. Frekvensen er uendret; det er bølgelengden som krymper til $\\lambda/n$."}
+/>
+
+<Quiz
+  question={"Hvis $E_0$ dobles, endres intensiteten med faktor …"}
+  options={["2","4","1/2","8"]}
+  answer={1}
+  explanation={"$I\\propto E_0^2$, så dobbel amplitude gir firedobbel intensitet."}
+/>
+
+## Polarisasjonstilstander
+
+Transversaliteten etterlater to frie komponenter på tvers av $\vec k$, og
+forholdet mellom dem er polarisasjonstilstanden. Skriv
+
+$$E_x=E_{0x}\cos(kz-\omega t),\qquad E_y=E_{0y}\cos(kz-\omega t+\varepsilon)$$
+
+med relativ fase $\varepsilon$. I et fast plan tegner feltvektoren da en kurve,
+og kurven klassifiserer tilstanden:
+
+<Table
+  caption={"Klassifisering av polarisasjonstilstand fra amplituder og relativ fase $\\varepsilon$."}
+  columns={["Betingelse", "Kurve", "Tilstand"]}
+  rows={[
+    ["$\\varepsilon=0$ eller $\\pi$", "rett linje i vinkel $\\tan\\theta=\\pm E_{0y}/E_{0x}$", "lineær"],
+    ["$\\varepsilon=\\pm\\pi/2$ og $E_{0x}=E_{0y}$", "sirkel", "sirkulær"],
+    ["alt annet", "ellipse", "elliptisk"],
+  ]}
+/>
+
+Lineær og sirkulær er grensetilfellene; den generelle tilstanden er en
+ellipse, med hovedakse i vinkelen gitt av
+$\tan2\alpha=\dfrac{2E_{0x}E_{0y}\cos\varepsilon}{E_{0x}^2-E_{0y}^2}$. De to
+sirkulære tilstandene er venstre- og høyredreid; hvilken som er hvilken,
+avhenger av om du ser langs eller mot utbredelsesretningen, så hold deg til
+definisjonen slik den gis i oppgaven. Fotonets spinn $\pm\hbar$ er
+kvantesiden av akkurat disse to tilstandene.
+
+<Example title="klassifiser tilstanden">
+
+Klassifiser polarisasjonen i de tre tilfellene
+(a) $E_{0x}=E_{0y}=E_0$, $\varepsilon=0$;
+(b) $E_{0x}=E_{0y}=E_0$, $\varepsilon=\pi/2$;
+(c) $E_{0x}=2E_{0y}$, $\varepsilon=\pi/2$.
+
+<Solution>
+
+(a) Null faseforskjell gir en rett linje med
+$\tan\theta=E_{0y}/E_{0x}=1$: lineær polarisasjon i $45^\circ$.
+
+(b) Kvartperiodes faseforskjell og like amplituder: når $E_x$ er på topp, er
+$E_y$ null, og omvendt. Feltvektoren har konstant lengde og roterer:
+sirkulær.
+
+(c) Samme faseforskjell, men ulike amplituder: kurven er en ellipse med
+hovedaksene langs $x$ og $y$, dobbelt så lang i $x$: elliptisk.
+
+<Answer>(a) lineær i $45^\circ$, (b) sirkulær, (c) elliptisk</Answer>
+
+</Solution>
+
+</Example>
+
+<ExamFocus title="Typiske oppgaver">
+
+Klassikeren gir et konkret bølgeuttrykk og ber om bølgelengden, retningen og
+magnetfeltets retning og styrke; alt leses rett ut av uttrykket og
+transversaliteten. Ellers regnes intensitet om til feltamplitude (og videre
+til fotontetthet), og en oppgitt kombinasjon av $E_x$ og $E_y$ skal
+klassifiseres som lineær, sirkulær eller elliptisk. Grunnleggerrekken bak
+Maxwells likninger kan også dukke opp som kunnskapsspørsmål.
 
 </ExamFocus>
 
-<Example>
-
-$\vec E = 30\cos(1{,}26\times10^{7} z - \omega t)\,\hat x$ V/m i vakuum. Finn $\lambda$ og beskriv $\vec B$.
-
-<Solution>
-
-**Bølgelengde.**
-
-$k=1{,}26\times10^{7}\,\text{m}^{-1}\Rightarrow \lambda=2\pi/k\approx 4{,}99\times10^{-7}\text{ m}\approx 500$ nm.
-
-**B-felt.**
-
-Utbredelse langs $+\hat z$, $\vec E$ langs $\hat x$. For at $\vec E\times\vec B \parallel \hat z$ må $\vec B$ ligge langs $\hat y$. Amplitude $B_0=E_0/c=30/(3\times10^8)=1{,}0\times10^{-7}$ T.
-
-<Answer>$\lambda \approx 500$ nm; $\vec B \parallel \hat y$, $B_0 \approx 1{,}0\times10^{-7}$ T</Answer>
-
-</Solution>
-
-</Example>
-
-#### Sjekk deg selv
-
 <Quiz
-  question={"En plan EM-bølge i vakuum har $\\vec E$ langs $\\hat x$ og utbreder seg langs $+\\hat z$. $\\vec B$ ligger langs:"}
-  options={["$\\hat z$","$\\hat x$","$\\hat y$","$-\\hat z$"]}
-  answer={2}
-  explanation={"$\\vec E\\times\\vec B$ må peke langs $+\\hat z$. $\\hat x\\times\\hat y=\\hat z$, så $\\vec B\\parallel\\hat y$."}
-/>
-
-<Quiz
-  question={"I et medium med $n=1{,}5$ er lysets fart:"}
-  options={["$1{,}5c$","$c$","$c/1{,}5\\approx 2{,}0\\times10^8$ m/s","avhenger av amplituden"]}
-  answer={2}
-  explanation={"$v=c/n=3{,}0\\times10^8/1{,}5=2{,}0\\times10^8$ m/s."}
-/>
-
-### Mer forklaring — les bølgeuttrykket systematisk
-
-Et uttrykk som $E_0\cos(kz-\omega t)$ gir tre ting samtidig: amplituden $E_0$, utbredelsesretningen fra fortegnet foran $\omega t$, og bølgelengden fra $k$.
-
-Husk også at <FormulaRef id="intensitet">intensiteten</FormulaRef> går som amplitude i andre potens. Dobler du $E_0$, firedobles intensiteten.
-
-<Example title="intensitet fra feltamplitude">
-
-En plan bølge i luft har elektrisk feltamplitude $E_0=100\text{ V/m}$. Estimer tidsmidlet intensitet.
-
-<Solution>
-
-**Formel.**
-
-Bruk $I=\tfrac12 c\varepsilon_0E_0^2$ for luft/vakuum.
-
-**Innsetting.**
-
-$I=0{,}5(3{,}00\times10^8)(8{,}85\times10^{-12})(100)^2=13{,}3\text{ W/m}^2$.
-
-<Answer>$I \approx 13\ \text{W/m}^2$</Answer>
-
-</Solution>
-
-</Example>
-
-#### Flere kontrollspørsmål
-
-<Quiz
-  question={"Hvis $E_0$ dobles, endres intensiteten med faktor:"}
-  options={["2","4","1/2","8"]}
+  question={"$E_x$ og $E_y$ har like amplituder og relativ fase $\\varepsilon=\\pi/2$. Tilstanden er …"}
+  options={["lineær i $45^\\circ$","sirkulær","elliptisk med akser utenfor $x,y$","upolarisert"]}
   answer={1}
-  explanation={"Intensitet er proporsjonal med $E_0^2$."}
-/>
-
-<Quiz
-  question={"I $\\cos(kz-\\omega t)$ beveger bølgen seg:"}
-  options={["langs +z","langs −z","langs +x","står stille"]}
-  answer={0}
-  explanation={"Konstant fase krever $kz-\\omega t=\\text{konstant}$, altså øker z når t øker."}
+  explanation={"Like amplituder og kvartperiodes faseforskjell gir en roterende feltvektor med konstant lengde: sirkulær polarisasjon."}
 />
 
 <KeyTakeaways>
 
-- Maxwells likninger gir bølgelikningen; lysfarten i et medium er $v=c/n$.
-- Plan-bølge: $\vec E=\vec E_0\cos(\vec k\cdot\vec r-\omega t)$, med $k=2\pi/\lambda$, $\omega=2\pi f$, $\omega=kv$.
-- $\vec E\perp\vec B\perp\vec k$, $\vec E\times\vec B\parallel\vec k$, og $B_0=E_0/v$.
-- Intensitet $I=\tfrac12 cn\varepsilon_0 E_0^2 \propto E_0^2$ — dobler du feltet, firedobles intensiteten.
+- Maxwells likninger gir bølgelikningen; i et medium er farten $v=c/n$, og hele materialresponsen sitter i $n$.
+- Planbølgen $\vec E_0\cos(\vec k\cdot\vec r-\omega t)$ gir amplitude, retning og $\lambda=2\pi/k$ på én linje.
+- $\vec E\perp\vec B\perp\vec k$ med $B_0=E_0/v$; intensiteten er $I=\tfrac12cn\varepsilon_0E_0^2\propto E_0^2$.
+- Polarisasjonstilstanden sitter i amplitudeforholdet og fasen $\varepsilon$: $0$ eller $\pi$ gir lineær, $\pm\pi/2$ med like amplituder gir sirkulær, ellers elliptisk.
+- Kjenn grunnleggerne: Coulomb, Gauss, Ørsted, Ampère, Faraday, Maxwell, Hertz.
 
 </KeyTakeaways>
