@@ -1,6 +1,8 @@
 course_content/*
 
 # study-companion (Astro) build artifacts
-node_modules/
 dist/
+node_modules/
 .astro/
+.DS_Store
+.pnpm-store/
