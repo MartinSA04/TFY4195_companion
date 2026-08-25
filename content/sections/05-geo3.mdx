@@ -1,15 +1,15 @@
 ---
 order: 5
 title: "Lupe, mikroskop, teleskop, kamera & øyet"
-summary: "Vinkelforstørrelse for lupe, mikroskop og teleskop, kameraets f-tall og eksponering, og øyet som optisk system med akkommodasjon og brillekorreksjon for nær- og langsynthet."
+summary: "Vinkelforstørrelse for lupe, mikroskop og teleskop, kameraets f-tall og eksponering samt øyet som optisk system med akkommodasjon og brillekorreksjon for nær- og langsynthet."
 importance: core
 tag: "Geometrisk optikk III"
 part: "Geometrisk optikk"
 updated: 2026-08-25
 ---
 
-Instrumentene er anvendelsen av alt det geometriske: tynne linser og
-matrisemetoden satt sammen til lupe, mikroskop, teleskop, kamera og til slutt
+Her brukes alt det geometriske: tynne linser og
+matrisemetoden settes sammen til lupe, mikroskop, teleskop, kamera og til slutt
 øyet selv. Det nye begrepet er vinkelforstørrelse, og det gamle nærpunktet på
 25 cm dukker opp i nesten hver formel.
 
@@ -27,7 +27,7 @@ matrisemetoden satt sammen til lupe, mikroskop, teleskop, kamera og til slutt
 
 Et instrument for øyet bedømmes ikke etter hvor stort mellombildet er i
 centimeter, men etter hvor stor synsvinkel objektet ender opp med å spenne på
-netthinnen. Vinkelforstørrelsen er $M=\alpha_M/\alpha_0$: vinkelen med
+netthinnen. Vinkelforstørrelsen er $MP=\alpha_M/\alpha_0$: vinkelen med
 instrument delt på vinkelen uten. Referansen $\alpha_0$ er objektet sett på
 <Term name="Nærpunkt">nærpunktet</Term>, den korteste avstanden øyet kan
 fokusere på, standardisert til $d_0=25$ cm. Lateral forstørrelse $m$ hører til
@@ -38,11 +38,11 @@ instrumenter du ser gjennom.
 
 En samlelinse med objektet rett innenfor brennvidden gir et virtuelt, opprett
 og forstørret bilde. Hvor stor forstørrelsen blir, avhenger av hvor bildet
-legges. Holder du bildet på nærpunktet, er $M=1+d_0/f$; slapper du av øyet og
-legger objektet i brennplanet, går bildet til uendelig og $M=d_0/f$.
+legges. Holder du bildet på nærpunktet, er $MP=1+d_0/f$; slapper du av øyet og
+legger objektet i brennplanet, går bildet til uendelig og $MP=d_0/f$.
 Forskjellen er liten for korte brennvidder, og arbeidsformelen er
 
-<Formula tex={"MP_\\text{lupe}=\\dfrac{25\\ \\text{cm}}{f}"} caption={"Lupe med bildet i uendelig (avslappet øye). Med bildet på nærpunktet: $M=1+25/f$."} />
+<Formula tex={"MP_\\text{lupe}=\\dfrac{25\\ \\text{cm}}{f}"} caption={"Lupe med bildet i uendelig (avslappet øye). Med bildet på nærpunktet: $MP=1+25/f$."} />
 
 En lupe med $f=5$ cm gir altså rundt 5 ganger; skal du høyere, trengs flere
 linser, og det er mikroskopet.
@@ -55,7 +55,7 @@ mellombilde i tubusen. Okularet brukes som lupe på mellombildet. Med
 tubuslengde $L$ (en vanlig standard er $L=16$ cm) er objektivforstørrelsen
 omtrent $-L/f_o$, og totalen er produktet av de to trinnene:
 
-<Formula tex={"M_\\text{mik}=-\\dfrac{L}{f_o}\\cdot\\dfrac{25}{f_e}"} caption={"Sammensatt mikroskop. $f_o$ = objektiv-, $f_e$ = okularbrennvidde, $L$ = tubuslengde."} />
+<Formula tex={"MP_\\text{mik}=-\\dfrac{L}{f_o}\\cdot\\dfrac{25}{f_e}"} caption={"Sammensatt mikroskop. $f_o$ = objektiv-, $f_e$ = okularbrennvidde, $L$ = tubuslengde."} />
 
 Minustegnet betyr invertert bilde; det spiller ingen rolle for en bakterie.
 Korte brennvidder i begge trinn gir stor forstørrelse, og det er derfor
@@ -82,7 +82,7 @@ det oppgaven vanligvis spør om.
 
 - Objektet står like utenfor objektivets brennpunkt.
 - Reelt, forstørret mellombilde som okularet forstørrer videre.
-- $M=-\dfrac{L}{f_o}\cdot\dfrac{25}{f_e}$, $L$ = tubuslengde.
+- $MP=-\dfrac{L}{f_o}\cdot\dfrac{25}{f_e}$, $L$ = tubuslengde.
 - Små, nære objekter.
 
 </CompareCol>
@@ -145,10 +145,10 @@ avbilder alt, uskarpt men uten linse. Linsekameraet bytter hullet med en
 samlelinse og en blenderåpning med diameter $D$. For fjerne motiv er
 bildestørrelsen $y'\approx y\,f/s$, så lang brennvidde gir stort bilde.
 
-<Formula tex={"f\\#=\\dfrac{f}{D}"} caption={"f-tallet: brennvidde delt på aperturdiameter."} />
+<Formula tex={"f\\#=\\dfrac{f}{D}"} caption={"f-tallet: brennvidde delt på blenderåpningens diameter."} />
 
 Irradiansen på sensoren skalerer som $D^2/f^2=1/(f\#)^2$: ett trinn opp i
-f-tall halverer lysmengden. Lite f-tall betyr stor åpning, mye lys og liten
+f-tall halverer lysmengden. Lite f-tall betyr stor blenderåpning, mye lys og liten
 dybdeskarphet; stort f-tall betyr det motsatte.
 
 Bak blenderen ligger et begrepsapparat for avanserte systemer:
@@ -159,14 +159,14 @@ måler den.
 
 <Quiz
   question={"Et større f-tall betyr vanligvis …"}
-  options={["større apertur","mindre apertur","kortere brennvidde uansett","ingen endring i lysmengde"]}
+  options={["større blenderåpning","mindre blenderåpning","kortere brennvidde uansett","ingen endring i lysmengde"]}
   answer={1}
-  explanation={"$f\\#=f/D$: for gitt brennvidde gir større f-tall mindre aperturdiameter, mindre lys og større dybdeskarphet."}
+  explanation={"$f\\#=f/D$: for gitt brennvidde gir større f-tall mindre blenderåpning, mindre lys og større dybdeskarphet."}
 />
 
 ## Øyet
 
-Øyet er et kamera med programvare. Mesteparten av brytningen skjer i
+Mesteparten av brytningen skjer i
 hornhinnen ($n=1{,}376$ mot luftens 1), mens linsen
 ($n\approx1{,}38$–$1{,}41$) står for finjusteringen: ringmuskelen endrer
 linsens krumning og dermed brytningsstyrken, det som kalles akkommodasjon. Et
@@ -197,9 +197,8 @@ Styrken er $P=1/f=-2{,}0$ dioptrier: en spredelinse.
 
 </Example>
 
-Resten av synssansen, netthinnens staver og tapper, fargesyn og
-synsbedrag, hører med som allmenndannelse i forelesningene, men det
-regnbare stoffet er optikken over.
+Netthinnens staver og tapper, fargesyn og synsbedrag hører med som
+bakgrunnsstoff; det regnbare stoffet er optikken over.
 
 <ExamFocus title="Typiske oppgaver">
 
@@ -207,16 +206,16 @@ Gjengangeren er to positive linser i avstand $f_1+f_2$: bildetype,
 forstørrelse og hva som skjer når avstanden endres. Ellers er det innsetting
 i instrumentformlene (lupe, mikroskop, teleskop), strålegang gjennom et
 instrument tegnet for hånd og akkommodasjons- og brilleregning på øyet.
-Forelesningene oppsummerer selv den geometriske blokken slik: løs oppgaver med
-noen få linser og brytende eller reflekterende flater, både med
-tynnlinselikningen og med matrisemetoden.
+Kjerneferdigheten for hele den geometriske blokken: løs oppgaver med noen få
+linser og brytende eller reflekterende flater, både med tynnlinselikningen og
+med matrisemetoden.
 
 </ExamFocus>
 
 <KeyTakeaways>
 
 - Instrumenter for øyet måles i vinkelforstørrelse relativt til nærpunktet $d_0=25$ cm; lateral $m$ hører til skjermer og sensorer.
-- Lupe: $MP=25/f$ (avslappet øye). Mikroskop: $M=-(L/f_o)(25/f_e)$. Teleskop: $MP=-f_o/f_e$ med rørlengde $f_o+f_e$.
+- Lupe: $MP=25/f$ (avslappet øye). Mikroskop: $MP=-(L/f_o)(25/f_e)$. Teleskop: $MP=-f_o/f_e$ med rørlengde $f_o+f_e$.
 - Afokal oppstilling ($C=0$): to positive linser med felles brennplan; parallelt inn gir parallelt ut.
 - Kamera: $f\#=f/D$, og eksponeringen skalerer som $1/(f\#)^2$.
 - Øyet bryter mest i hornhinnen og akkommoderer med linsen; nærsynthet korrigeres med spredelinse, langsynthet med samlelinse.

@@ -11,9 +11,8 @@ updated: 2026-08-25
 Interferensregningen antar at bølgene kan interferere; denne modulen spør når
 de faktisk kan. Svaret heter <Term name="Koherens">koherens</Term> og kommer i to
 retninger: langs strålen, der spektralbredden setter grensen, og på tvers,
-der kildens utstrekning gjør det. Forelesningene sier rett ut at målet er å
-kunne anslå koherenslengdene for idealiserte situasjoner, og det er den
-ferdigheten modulen bygger.
+der kildens utstrekning gjør det. Målet er å kunne anslå koherenslengdene for
+idealiserte situasjoner, og det er den ferdigheten modulen bygger.
 
 <LearningGoals>
 
@@ -83,10 +82,9 @@ bølgelengde.
 
 Instrumentet måler også koherens. Øk armforskjellen til stripene vaskes ut,
 og veiforskjellen der $V$ går mot null er koherenslengden, som igjen gir
-spektralbredden. Historien selv brukte det slik: Michelson og Morley lette
-etter eteren med et slikt interferometer, og fant den ikke. Fabry–Perot,
-flerstråle-slektningen med to høyreflekterende speil, er uttrykkelig
-utenfor pensum her.
+spektralbredden. Michelson og Morley lette etter eteren med et slikt
+interferometer, og fant den ikke. Fabry–Perot, flerstråleinterferometeret med
+to høyreflekterende speil, er ikke pensum her.
 
 <Example title="telle striper i Michelson">
 
@@ -130,7 +128,7 @@ kan interferere. Den formelle regningen integrerer over kilden og gir
 koherensfunksjonen som Fourier-transformen av kildens intensitetsfordeling
 (van Cittert–Zernike-teoremet); for en sirkulær kilde blir resultatet
 
-<Formula tex={"l_s=\\dfrac{1{,}22\\,\\lambda}{\\theta}=\\dfrac{1{,}22\\,\\lambda\\,r}{s}"} caption={"Spatial koherensbredde for en sirkulær kilde med diameter $s$ i avstand $r$; $\\theta=s/r$."} />
+<Formula tex={"l_s<\\dfrac{1{,}22\\,\\lambda}{\\theta}=\\dfrac{1{,}22\\,\\lambda\\,r}{s}"} caption={"Spatial koherensbredde for en sirkulær kilde med diameter $s$ i avstand $r$; $\\theta=s/r$."} />
 
 Faktoren 1,22 kommer igjen i diffraksjonen fra en sirkulær apertur; det er
 samme matematikk. Som estimat: Sola spenner $\theta\approx9$ mrad, så
@@ -189,8 +187,8 @@ skrått; derfor ser AR-belagte briller purpurrøde ut i skrå reflekser.
 
 <ExamFocus title="Typiske oppgaver">
 
-Forelesningene formulerer selv målet: forstå begrepene og kunne anslå
-temporal og spatial koherenslengde for idealiserte situasjoner. Typisk
+Kjernen er å forstå begrepene og kunne anslå temporal og spatial
+koherenslengde for idealiserte situasjoner. Typisk
 kjede: les toppbølgelengde og spektralbredde ut av et oppgitt spektrum,
 regn foton-energi og deretter $l_c$. Ellers går Michelson-telling (finn
 $\lambda$ eller forskyvningen fra stripetall) og
@@ -200,7 +198,7 @@ antirefleks-regning, gjerne med vinkelvrien fra eksempelet over, igjen.
 
 <Quiz
   question={"Lav synlighet $V$ betyr …"}
-  options={["stor kontrast","liten forskjell mellom maksima og minima","ingen bølgelengde","bare TE-polarisering"]}
+  options={["stor kontrast","liten forskjell mellom maksima og minima","ingen bølgelengde","bare TE-polarisasjon"]}
   answer={1}
   explanation={"$V=(I_\\text{max}-I_\\text{min})/(I_\\text{max}+I_\\text{min})$ måler stripekontrasten, og $V=|\\gamma|$ knytter den til koherensgraden."}
 />
@@ -210,7 +208,7 @@ antirefleks-regning, gjerne med vinkelvrien fra eksempelet over, igjen.
 - Temporal koherens settes av spektralbredden: $l_c=\lambda_0^2/\Delta\lambda=c/\Delta f$; LED gir mikrometer, laser centimeter og mer.
 - Spatial koherens settes av kildens vinkelutstrekning: $l_s=1{,}22\lambda/\theta$, med $\lambda/(2\theta)$ som raskt estimat.
 - Synligheten er koherensgraden: $V=|\gamma|$, og den faller mot null når veiforskjellen når $l_c$.
-- Michelson: $\Delta m=2\Delta d/\lambda$ striper per speilforskyvning; instrumentet måler lengder, bølgelengder og koherens. Fabry–Perot er ikke pensum.
+- Michelson: $\Delta m=2\Delta d/\lambda$ striper per speilforskyvning; instrumentet måler lengder, bølgelengder og koherens.
 - Tynnfilm: $\Delta=2n_ft\cos\theta_t$ pluss eventuelle halvbølgeskift; antirefleks er et kvartbølgelag med ideell indeks $\sqrt{n_0n_s}$.
 
 </KeyTakeaways>

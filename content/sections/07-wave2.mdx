@@ -1,6 +1,6 @@
 ---
 order: 7
-title: "Fresnels likninger, Brewster & polarisering"
+title: "Fresnels likninger, Brewster & polarisasjon"
 summary: "Fasetilpasning ved grenseflaten gir Snells lov, Fresnels likninger gir hvor mye som reflekteres for TE og TM, med Brewster-vinkel, intern og ekstern refleksjon, og Lorentz-modellen for dispersjon."
 importance: core
 tag: "Bølgeoptikk II"
@@ -12,13 +12,12 @@ Geometrisk optikk sier hvor strålene går, men ikke hvor mye lys som følger
 dem. Det svarer bølgeoptikken på: kravet om at felt skal henge sammen over en
 grenseflate gir både Snells lov på nytt og, som ny gevinst, Fresnels
 likninger for hvor mye som reflekteres og transmitteres, for hver
-polarisasjonskomponent. Til slutt åpnes materialet selv: hvorfor
-brytningsindeksen avhenger av frekvensen.
+polarisasjonskomponent.
 
 <LearningGoals>
 
 - Forklare hvordan fasetilpasning ved grenseflaten gir refleksjonsloven og Snells lov.
-- Bruke <Term name="Fresnels likninger">Fresnels likninger</Term> for <Term name="TE- og TM-polarisering">TE- og TM-polarisering</Term>, og regne reflektans og transmittans med $R+T=1$.
+- Bruke <Term name="Fresnels likninger">Fresnels likninger</Term> for <Term name="TE- og TM-polarisasjon">TE- og TM-polarisasjon</Term>, og regne reflektans og transmittans med $R+T=1$.
 - Finne Brewster-vinkelen og polarisasjonstilstanden til reflektert lys, for både ekstern og intern refleksjon.
 - Gjøre rede for Lorentz-modellen: hvorfor $n$ avhenger av frekvensen, og hva den komplekse indeksen $\tilde n=n_R+in_I$ betyr.
 
@@ -121,7 +120,7 @@ fullstendig lineært polarisert vinkelrett på innfallsplanet.
 
 </Example>
 
-<Example title="strålens skjebne inne i glasset">
+<Example title="stråle mot grenseflaten innenfra">
 
 En stråle går inne i glass ($n=1{,}50$) mot grenseflaten til luft. Beskriv
 hva som skjer ved innfallsvinklene $33{,}7^\circ$, $40^\circ$ og $45^\circ$.
@@ -166,8 +165,8 @@ refleksjon, alt lyset blir i glasset.
 
 ## Materialets respons: dispersjon
 
-Hvorfor avhenger $n$ av bølgelengden? Lorentz-modellen svarer med klassisk
-mekanikk: et bundet elektron er en dempet, drevet harmonisk oscillator med
+Brytningsindeksen avhenger av bølgelengden, og Lorentz-modellen forklarer
+hvorfor med klassisk mekanikk: et bundet elektron er en dempet, drevet harmonisk oscillator med
 egenfrekvens $\omega_0$, drevet av lysets felt. Løses bevegelseslikningen og
 summeres dipolbidragene, kommer en kompleks brytningsindeks ut:
 
@@ -177,8 +176,8 @@ Realdelen $n_R$ er den vanlige indeksen som styrer fasefarten. Imaginærdelen
 $n_I$ gir dempning: feltet faller som $e^{-2\pi n_I z/\lambda}$ innover i
 mediet, så $n_I$ er stor bare nær resonansene, der mediet absorberer.
 Mellom resonansene vokser $n_R$ med frekvensen. Det er normal
-<Term name="Dispersjon">dispersjon</Term>: blått bryter mer enn rødt, og det
-er grunnen til at prismer og regndråper sorterer farger.
+<Term name="Dispersjon">dispersjon</Term>: blått bryter mer enn rødt, og derfor
+sorterer prismer og regndråper farger.
 
 Et ekte glass har flere resonanser med ulik styrke, og summen av dem gir de
 praktiske glassformlene av Sellmeier-typen,

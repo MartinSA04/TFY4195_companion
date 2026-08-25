@@ -8,15 +8,14 @@ part: "Diffraksjon"
 updated: 2026-08-25
 ---
 
-Fjernfeltmønsteret er Fourier-transformen av åpningen. Den setningen har to
-praktiske konsekvenser, og de deler modulen: en linse henter
-Fourier-transformen inn i sitt brennplan, så du slipper å vente på
-fjernfeltet, og et gitter med tusenvis av spalter gjør transformen til et
+Fjernfeltmønsteret er Fourier-transformen av aperturen. Den setningen har to
+praktiske konsekvenser: en linse henter Fourier-transformen inn i sitt
+brennplan, så du slipper å vente på fjernfeltet, og et gitter med tusenvis av spalter gjør transformen til et
 måleinstrument som sorterer lys etter bølgelengde.
 
 <LearningGoals>
 
-- Forklare hvorfor fjernfeltet er Fourier-transformen av åpningsfeltet, og hva en linse gjør med det.
+- Forklare hvorfor fjernfeltet er Fourier-transformen av aperturfeltet og hva en linse gjør med det.
 - Bruke flerspaltformelen og <Term name="Diffraksjonsgitter">gitterlikningen</Term>.
 - Beregne et gitters dispersjon, <Term name="Oppløsningsevne">oppløsning</Term> og <Term name="Fritt spektralområde">frie spektralområde</Term>.
 
@@ -25,7 +24,7 @@ måleinstrument som sorterer lys etter bølgelengde.
 ## Linsen som Fourier-transformator
 
 Fraunhofer-integralet er matematisk en Fourier-transform:
-hvert punkt i fjernfeltet svarer til én romlig frekvens i åpningen. Grove
+hvert punkt i fjernfeltet svarer til én romlig frekvens i aperturen. Grove
 strukturer sender lys i små vinkler, fine strukturer i store. Kravet for å
 bruke det direkte er strengt: fjernfeltet begynner først når
 $\text{areal}/(\lambda R)\ll1$, og for en åpning på 1 cm² i synlig lys
@@ -48,7 +47,7 @@ lysmodulatorer styrer fasen piksel for piksel på akkurat dette grunnlaget.
 
 <Quiz
   question={"Med skjermen i linsens brennplan viser mønsteret …"}
-  options={["et skarpt bilde av åpningen","Fourier-transformen av åpningsfeltet","alltid en Airy-skive","skyggen av åpningen"]}
+  options={["et skarpt bilde av aperturen","Fourier-transformen av aperturfeltet","alltid en Airy-skive","skyggen av aperturen"]}
   answer={1}
   explanation={"Linsens kvadratiske fase kansellerer diffraksjonsintegralets, og brennplanet viser fjernfeltet, altså transformen."}
 />
@@ -123,7 +122,7 @@ vinkelen for første orden, og oppløsningen når 3000 spalter er belyst.
 
 <Solution>
 
-Gitterkonstanten er $a=1/600$ mm $=1{,}67$ µm. Normalt innfall gir
+Spalteavstanden (gitterkonstanten) er $a=1/600$ mm $=1{,}67$ µm. Normalt innfall gir
 $\sin\theta_1=\lambda/a=0{,}300$, så $\theta_1=17{,}5^\circ$.
 
 Oppløsningen er $\mathcal R=mN=1\cdot3000=3000$, nok til å skille linjer
@@ -137,7 +136,7 @@ Oppløsningen er $\mathcal R=mN=1\cdot3000=3000$, nok til å skille linjer
 
 <ExamFocus title="Typiske oppgaver">
 
-Gitteroppgavene følger øvingens mønster: vinkelavstand mellom to
+Gjengangerne: vinkelavstand mellom to
 bølgelengder i en gitt orden (inverter gitterlikningen), antall spalter for
 å skille en dublett ($\mathcal R=mN$), oppløsning fra gitterbredde ganger
 rilletetthet og ordensoverlapp via det frie spektralområdet. Pass på
@@ -178,8 +177,8 @@ spalteavstanden fra toppene.
 
 <KeyTakeaways>
 
-- Fjernfeltet er Fourier-transformen av åpningen, og en linse henter det inn i brennplanet sitt; fasen kan styres via veilengde, indeks eller diffraksjon.
-- Flerspaltformelen bærer gitteret: hovedmaksima vokser som $N^2$ og smalner som $1/N$, med $N-1$ minima imellom.
+- Fjernfeltet er Fourier-transformen av aperturen, og en linse henter det inn i brennplanet sitt; fasen kan styres via veilengde, indeks eller diffraksjon.
+- Flerspaltformelen med stor $N$ er gitterets ligning: hovedmaksima vokser som $N^2$ og smalner som $1/N$, med $N-1$ minima imellom.
 - Gitterlikningen $m\lambda=a(\sin\theta_i+\sin\theta_m)$ plasserer ordenene; hver orden er et eget spektrum.
 - Dispersjon $\mathcal D=m/(a\cos\theta_m)$, oppløsning $\mathcal R=mN$, fritt spektralområde $\lambda_1/m$; høyere orden gir skarpere spektre men mer overlapp.
 - Flerspaltmønstre leses baklengs: konvolutten gir $\lambda$ og spaltbredden, toppene gir spalteavstanden.

@@ -1,7 +1,7 @@
 ---
 order: 12
 title: "Fraunhofer-diffraksjon & oppløsning"
-summary: "Enkeltspaltens sinc-mønster fra Huygens-integralet, dobbeltspalt med diffraksjonskonvolutt og manglende ordener, N-spaltformelen, og Airy-mønsteret med Rayleigh-kriteriet for oppløsning."
+summary: "Enkeltspaltens sinc-mønster fra Huygens-integralet, dobbeltspalt med diffraksjonskonvolutt og manglende ordener, N-spaltformelen og Airy-mønsteret med Rayleigh-kriteriet for oppløsning."
 importance: core
 tag: "Diffraksjon I"
 part: "Diffraksjon"
@@ -9,7 +9,7 @@ updated: 2026-08-25
 ---
 
 Interferens handlet om noen få kilder; diffraksjon er det samme regnestykket
-med uendelig mange. Hvert punkt i åpningen er en Huygens-kilde, integralet
+med uendelig mange. Hvert punkt i aperturen er en Huygens-kilde, integralet
 over dem gir mønsteret, og i fjernfeltet får svaret en enkel form. Den samme
 regningen setter også grensen for hva et instrument kan skille, fra øyet til
 romteleskop.
@@ -34,8 +34,7 @@ amplituden $\sin\beta/\beta$, og dermed
 Minima ligger der $\sin\beta=0$ uten at $\beta=0$, altså ved
 $b\sin\theta=m\lambda$ for $m=\pm1,\pm2,\dots$ Sentraltoppen er dobbelt så
 bred som sidetoppene, med full bredde $W=2\lambda L/b$ på en skjerm i
-avstand $L$. Trangere spalt eller lengre bølgelengde gir bredere mønster;
-det er diffraksjonens signatur.
+avstand $L$. Trangere spalt eller lengre bølgelengde gir bredere mønster.
 
 Fjernfeltformelen gjelder når skjermen står langt nok unna:
 $L\gg b^2/\lambda$. Kvotienten $L/(b^2/\lambda)$ er en rask kontroll på om
@@ -104,8 +103,8 @@ den brede konvolutten modulere de skarpe toppene.
 
 ## To dimensjoner: rektangel og Airy
 
-For en rektangulær åpning separerer integralet i to retninger, og mønsteret
-er produktet av to sinc-kvadrater, ett per kant. For en sirkulær åpning gir
+For en rektangulær apertur separerer integralet i to retninger, og mønsteret
+er produktet av to sinc-kvadrater, ett per kant. For en sirkulær apertur gir
 sylindersymmetrien Bessel-funksjoner i stedet:
 
 <Formula tex={"I=I_0\\left(\\dfrac{2J_1(\\gamma)}{\\gamma}\\right)^2,\\quad \\gamma=\\dfrac{\\pi D\\sin\\theta}{\\lambda}"} caption={"Airy-mønsteret fra en sirkulær apertur med diameter $D$; $J_1$ er førsteordens Bessel-funksjon."} />
@@ -124,7 +123,7 @@ gir dårligere oppløsning.
 
 </Statement>
 
-Kriteriet gjelder alt med en rund åpning. Øyets pupill setter grensen for
+Kriteriet gjelder alt med en sirkulær apertur. Øyets pupill setter grensen for
 hva du kan skjelne, et teleskops hovedspeil for hva det kan skille på
 himmelen, og den samme formelen gir divergensen til en laserstråle med
 diameter $D$.
@@ -190,7 +189,7 @@ aperturdiameter fra spotstørrelsen, eller divergensen til en stråle.
 - Enkeltspalt: $I=I_0(\sin\beta/\beta)^2$ med minima ved $b\sin\theta=m\lambda$; sentraltoppen har bredde $W=2\lambda L/b$.
 - Konvensjonen er fast: $b$ er spaltbredde, $a$ er spalteavstand.
 - Reelle spalter gir interferens under en diffraksjonskonvolutt; orden $m$ mangler når $m\,b/a$ er et helt tall.
-- $N$ spalter skjerper toppene som $N^2$ i høyde og $1/N$ i bredde; det er gitterets prinsipp.
+- $N$ spalter skjerper toppene som $N^2$ i høyde og $1/N$ i bredde.
 - Sirkulær apertur: Airy-skive med $\Delta\theta=1{,}22\lambda/D$, som er Rayleigh-grensen for oppløsning og stråledivergens.
 - Fraunhofer gjelder når $L\gg b^2/\lambda$; sjekk kvotienten før du bruker formlene.
 

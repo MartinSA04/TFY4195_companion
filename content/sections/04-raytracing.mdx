@@ -4,7 +4,7 @@ num: "RT"
 title: "Ray tracing: komplett matriseguide"
 summary: "Praksismodul for matrisemetoden: fortegnskonvensjonen, grafisk strålegang med linjal, de fem byggematrisene og avlesning av systemmatrisen, med gjennomregnede eksempler og oppgaver med hint."
 importance: useful
-tag: "Eksamensfokus · Geometrisk optikk"
+tag: "Eksamensfokus"
 part: "Geometrisk optikk"
 updated: 2026-08-25
 ---
@@ -41,8 +41,7 @@ blir én matrise, og alt du trenger står i de fire tallene $A,B,C,D$.
 
 ## Fortegnskonvensjonen
 
-Feil fortegn er vanligere enn feil algebra. Pedrotti-konvensjonen, med lys fra
-venstre mot høyre:
+Pedrotti-konvensjonen, med lys fra venstre mot høyre:
 
 <Table
   caption={"Fortegnskonvensjonen for paraksial optikk."}
@@ -162,15 +161,12 @@ høyden er kontinuerlig. Det er disse virkningene matrisene koder.
 
 ## Bygg systemmatrisen
 
-Lyset møter elementene i rekkefølgen 1, 2, 3, men matrisene virker fra høyre på
-strålevektoren, så produktet skrives i motsatt rekkefølge:
-$M_\text{sys}=M_n\cdots M_2\,M_1$, med det siste elementet lengst til venstre.
-Tegn systemet i fysisk rekkefølge på papir først, og les baklengs når du setter
-opp produktet.
-
-Determinanten er kontrollen: $\det M_\text{sys}=n_\text{start}/n_\text{slutt}$,
-altså 1 når systemet starter og slutter i samme medium. Gjør denne sjekken før
-du tolker matrisen; den fanger regnefeil umiddelbart.
+Matrisene virker fra høyre på strålevektoren, så produktet skrives i motsatt
+rekkefølge: $M_\text{sys}=M_n\cdots M_2\,M_1$, med det siste elementet lengst
+til venstre. Tegn systemet i fysisk rekkefølge på papir først, og les baklengs
+når du setter opp produktet. Kontroller determinanten før du tolker:
+$\det M_\text{sys}=n_\text{start}/n_\text{slutt}$, altså 1 når systemet starter
+og slutter i samme medium.
 
 ## Les av de fire tallene
 
@@ -193,7 +189,8 @@ $A,B,C,D$, setter du rett inn.
 Avbildningskravet har også en bølgetolkning. Mellom et objektpunkt og
 bildepunktet har alle stråler samme <Term name="Optisk veilengde">optiske
 veilengde</Term>, så de ankommer i fase; for én brytende flate skrives kravet
-$n_od_o+n_id_i=n_os_o+n_is_i$. $B=0$ er stråleoptikkens versjon av det samme
+$n_od_o+n_id_i=n_os_o+n_is_i$, der $d_o,d_i$ måles langs selve strålen og
+$s_o,s_i$ langs aksen. $B=0$ er stråleoptikkens versjon av det samme
 utsagnet: utgangshøyden uavhengig av inngangsvinkelen betyr at alle strålene
 fra ett objektpunkt samles igjen i ett punkt.
 
@@ -384,20 +381,6 @@ BFD er $-A/C=3/0{,}05=60$ cm bak linse 2, og $\det M=1$ stemmer.
 </Hints>
 
 </Example>
-
-<Quiz
-  question={"Lyset møter element 1, så 2, så 3. Systemmatrisen er …"}
-  options={["$M_1M_2M_3$","$M_3M_2M_1$","$M_2M_3M_1$","rekkefølgen er likegyldig"]}
-  answer={1}
-  explanation={"Matrisene virker fra høyre på $(y,\\alpha)$, så det siste elementet lyset møter står lengst til venstre."}
-/>
-
-<Quiz
-  question={"For et system som starter og slutter i luft skal determinanten være …"}
-  options={["$0$","$1$","$n_1/n_2$","$-1$"]}
-  answer={1}
-  explanation={"$\\det M=n_\\text{start}/n_\\text{slutt}=1$ i samme medium, en rask regnefeilsjekk."}
-/>
 
 <Quiz
   question={"Den effektive brennvidden til et system leses av som …"}

@@ -33,7 +33,7 @@ matrise:
 $$\begin{pmatrix} y_2 \\ \alpha_2 \end{pmatrix} = \begin{pmatrix} A & B \\ C & D \end{pmatrix}\begin{pmatrix} y_1 \\ \alpha_1 \end{pmatrix}$$
 
 Noen kilder skriver elementene $A_{11},A_{12},A_{21},A_{22}$ i stedet for
-$A,B,C,D$; det er samme matrise. To atomer bygger alt: fri translasjon endrer
+$A,B,C,D$; det er samme matrise. To operasjoner bygger alt: fri translasjon endrer
 høyden ($y_2=y_1+d\,\alpha_1$), brytning i en flate endrer vinkelen via Snells
 lov i linearisert form.
 
@@ -51,8 +51,7 @@ kontroll på at metoden stemmer med tynnlinseteorien.
 
 <Callout type="warning" title="Trykkfeil i læreboka">
 
-Foreleseren advarer om at tynnlinsematrisen i Pedrotti 3. utgave, tabell 18-1,
-har en trykkfeil. Den riktige matrisen er $\begin{pmatrix}1&0\\-1/f&1\end{pmatrix}$,
+Tynnlinsematrisen i Pedrotti 3. utgave, tabell 18-1, har en trykkfeil. Den riktige matrisen er $\begin{pmatrix}1&0\\-1/f&1\end{pmatrix}$,
 med minustegnet i nedre venstre hjørne.
 
 </Callout>
@@ -63,8 +62,8 @@ Lyset møter elementene i rekkefølgen 1, 2, 3, men matrisene skrives i motsatt
 rekkefølge: $M=M_n\cdots M_2M_1$, siste element lengst til venstre. Det er den
 vanligste feilen i hele metoden. Etter multiplikasjonen har du to raske
 kontroller. Determinanten skal være $n_1/n_2$, altså 1 når systemet starter og
-slutter i samme medium; forelesningene gjør denne sjekken i hvert eneste
-regneeksempel før tolkningen begynner. Og består systemet bare av tynne linser
+slutter i samme medium; gjør sjekken i hvert regneeksempel før
+tolkningen begynner. Og består systemet bare av tynne linser
 i luft, kan du kontrollere svaret mot tynnlinselikningen brukt linse for
 linse.
 
@@ -94,8 +93,8 @@ Bruk tabellen under: nuller i matrisen er optiske utsagn.
 
 ## De fire spesialtilfellene
 
-Det generaliserbare i metoden er hva et null i systemmatrisen betyr. Alle fire
-tilfellene er meningsfulle:
+Et null i systemmatrisen er et optisk utsagn, og alle fire tilfellene er
+meningsfulle:
 
 <Table
   caption={"Tolkning av systemmatrisen $\\begin{pmatrix}A&B\\\\C&D\\end{pmatrix}$ mellom et innplan og et utplan."}
@@ -155,7 +154,7 @@ Et sammensatt system i luft oppfører seg som én tynn linse, bare ikke målt fr
 noen fysisk flate. Det finnes to plan, hovedplanene $H_1$ og $H_2$, slik at
 tynnlinselikningen gjelder eksakt når $s_o$ måles til $H_1$ og $s_i$ fra
 $H_2$. Sammen med brennpunktene $F_1$ og $F_2$ (og nodalpunktene, som i luft
-faller sammen med hovedpunktene) utgjør de systemets kardinalpunkter. Alt
+faller sammen med hovedpunktene) er de systemets kardinalpunkter. Alt
 leses ut av systemmatrisen mellom første og siste flate:
 
 <Formula tex={"f=-\\dfrac{1}{C},\\qquad H_1:\\ \\dfrac{D-1}{C},\\qquad H_2:\\ \\dfrac{1-A}{C}"} caption={"Effektiv brennvidde og hovedplan i luft, målt fra inn- og utplanet (positiv retning mot høyre). $F_1=H_1-f$ og $F_2=H_2+f$."} />
@@ -188,9 +187,7 @@ første linse, det vanlige reelle fremre brennpunktet.
 
 <ExamFocus title="Typiske oppgaver">
 
-Gjengangeren er å matche optiske systemer med systemmatriser: kjenn igjen
-strukturen (null i $C$ betyr afokalt, øvre høyre element er en translasjon).
-Ellers bygges en systemmatrise én gang og gjenbrukes for flere
+En systemmatrise bygges gjerne én gang og gjenbrukes for flere
 objektavstander, med determinanten som obligatorisk mellomkontroll, og
 kardinalpunktene brukes til å behandle et sammensatt system som én linse.
 
