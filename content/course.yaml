@@ -11,6 +11,52 @@ repoUrl: "https://github.com/MartinSA04/TFY4195_companion"
 repoBranch: main
 accent: "#1f5f8b"
 accentDark: "#6ea9d8"
+# Utvalg av nyere eksamenssett fra Institutt for fysikk. Datoene er lest av
+# filnavnet (E_TFY4195_yymmdd); 2025-settet heter _250500, og datoen 27. mai
+# står på oppgavesettets forside.
+exams:
+  - {
+      label: "Ordinær eksamen, mai 2025",
+      date: 2025-05-27,
+      url: "https://www.ntnu.no/documents/10422/1376329030/E_TFY4195_250500.pdf/94e65239-6c84-5db2-22e3-3178e5aa60ef",
+      solutionUrl: "https://www.ntnu.no/documents/10422/1376329030/L_TFY4195_250500.pdf/d0c51dad-59e8-deb4-fca2-b920a8473384",
+    }
+  - {
+      label: "Ordinær eksamen, mai 2023",
+      date: 2023-05-24,
+      url: "https://www.ntnu.no/documents/10422/1376329030/E_TFY4195_230524.pdf/82c55910-1ccc-4c96-6b80-8854448ec2f8",
+      solutionUrl: "https://www.ntnu.no/documents/10422/1376329030/L_TFY4195_230524.pdf/35f141b6-5f48-e496-8b47-87b6490fb440",
+    }
+  - {
+      label: "Ordinær eksamen, mai 2022",
+      date: 2022-05-28,
+      url: "https://www.ntnu.no/documents/10422/1376329030/E_TFY4195_220528.pdf/5eab276f-0563-f6d3-ef12-0349b8bd9f88",
+      solutionUrl: "https://www.ntnu.no/documents/10422/1376329030/L_TFY4195_220528.pdf/2b29b7b3-8d9b-e138-1298-882731ab9b28",
+    }
+  - {
+      label: "Ordinær eksamen, mai 2021",
+      date: 2021-05-20,
+      url: "https://www.ntnu.no/documents/10422/1376329030/E_TFY4195_210520.pdf/3f748032-4087-c719-0f64-2bfecb2eb1be",
+      solutionUrl: "https://www.ntnu.no/documents/10422/1376329030/L_TFY4195_210520.pdf/a8c2e351-0204-a256-9b30-ceff16050554",
+    }
+  - {
+      label: "Ordinær eksamen, desember 2020",
+      date: 2020-12-05,
+      url: "https://www.ntnu.no/documents/10422/1376329030/E_TFY4195_201205.pdf/0cd7cb30-afc2-923c-dba1-519387b5ee1a",
+      solutionUrl: "https://www.ntnu.no/documents/10422/1376329030/L_TFY4195_201205.pdf/6427e2f9-a9f5-a9ff-5037-38a3ee2bafcb",
+    }
+  - {
+      label: "Ordinær eksamen, november 2019",
+      date: 2019-11-28,
+      url: "https://www.ntnu.no/documents/10422/1376329030/E_TFY4195_191128.pdf/6155326e-e647-f1c5-31fd-8ed7e8460d1d",
+      solutionUrl: "https://www.ntnu.no/documents/10422/1376329030/L_TFY4195_191128.pdf/5bf53392-8d9c-8a8b-4989-e8c075513d61",
+    }
+
+# Hele arkivet hos Institutt for fysikk — rendres som siste rad i lista.
+examArchive:
+  url: "https://www.ntnu.no/fysikk/eksamen/landing/-/asset_publisher/uwSAlUJoweyy/content/tfy4195-optikk"
+  label: "Hele eksamensarkivet hos Institutt for fysikk"
+
 features:
   progress: true
   search: true
