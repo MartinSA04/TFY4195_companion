@@ -66,19 +66,14 @@ cm, og $L=2$ m er 70 ganger større. Trygt i fjernfeltet.
 <ExamRef id="2023-mai" task="15" />
 
 Imagine a parallel beam of 546 nm light of width $b = 0.5$ mm propagating a
-distance of 10 m across the laboratory. Estimate the final width $W$ of the
-beam due to diffraction spreading.
+distance of 10 m across the laboratory.
 
-(a) 21.8 mm &nbsp; (b) 2.18 mm &nbsp; (c) 21.8 m &nbsp; (d) 21.8 nm &nbsp; (e) 2.18 mm
-
-<Solution>
-En stråle med bredde $b$ oppfører seg som lys gjennom en spalte med bredde
-$b$: sentraltoppen har vinkelbredden $2\lambda/b$, og etter avstanden $L$ er
-den $W = 2\lambda L/b = 2\cdot 546\ \text{nm}\cdot 10\ \text{m}/0{,}5\ \text{mm} = 21{,}8$ mm.
-Sjekk at $L = 10$ m er langt nok for Fraunhofer: $b^2/\lambda = 0{,}46$ m.
-
-<Answer>(a), 21,8 mm</Answer>
-</Solution>
+<Quiz
+  question={"Estimate the final width $W$ of the beam due to diffraction spreading."}
+  options={["21.8 mm", "2.18 mm", "21.8 m", "21.8 nm", "2.18 mm"]}
+  answer={0}
+  explanation={"En stråle med bredde $b$ oppfører seg som lys gjennom en spalte med bredde $b$: sentraltoppen har vinkelbredden $2\\lambda/b$, og etter avstanden $L$ er den $W = 2\\lambda L/b = 21{,}8$ mm. Sjekk at $L = 10$ m er langt nok for Fraunhofer: $b^2/\\lambda = 0{,}46$ m."}
+/>
 </Example>
 
 ## Dobbeltspalt på nytt, og N spalter
@@ -180,33 +175,18 @@ approx. 1500 lightyears away and the companion star orbits at approximately
 the same distance as the earth from the sun (1 lightyear $\approx 9.46\times 10^{15}$ m
 and distance sun earth $\approx 1{,}496\times 10^{11}$ m)
 
-How big does the main mirror of your telescope need to be to resolve the two
-objects when observing with visible light (use a wavelength of 550 nm)?
-
 Use the following assumptions:
 
 - atmospheric distortions don't play a role
 - the optics are aberration free
 - the black hole has a bright enough accretion disk to be visible
 
-Select one alternative: 25 m &nbsp;/&nbsp; at least 52 m &nbsp;/&nbsp; at least 2,8 m &nbsp;/&nbsp; at least 5,2 m &nbsp;/&nbsp; at least 64 m &nbsp;/&nbsp; 5.2 m
-
-<Solution>
-Vinkelavstanden mellom de to objektene er
-$\theta = 1{,}496\cdot 10^{11}\ \text{m}/(1500\cdot 9{,}46\cdot 10^{15}\ \text{m}) = 1{,}05\cdot 10^{-8}$ rad.
-Rayleighs kriterium krever $1{,}22\lambda/D \le \theta$, altså
-
-$$
-\begin{aligned}
-D &\ge \frac{1{,}22\lambda}{\theta} \\
-  &= \frac{1{,}22\cdot 550\ \text{nm}}{1{,}05\cdot 10^{-8}} = 64\ \text{m}.
-\end{aligned}
-$$
-
-Hovedspeilet må være minst 64 m i diameter.
-
-<Answer>At least 64 m.</Answer>
-</Solution>
+<Quiz
+  question={"How big does the main mirror of your telescope need to be to resolve the two objects when observing with visible light (use a wavelength of 550 nm)?"}
+  options={["25 m", "at least 52 m", "at least 2,8 m", "at least 5,2 m", "at least 64 m", "5.2 m"]}
+  answer={4}
+  explanation={"Vinkelavstanden er avstanden sol–jord delt på avstanden til systemet: $\\theta = 1{,}05\\cdot 10^{-8}$ rad. Rayleighs kriterium krever $1{,}22\\lambda/D \\le \\theta$, altså $D \\ge 1{,}22\\lambda/\\theta = 64$ m. Hovedspeilet må være minst 64 m i diameter."}
+/>
 </Example>
 
 <ExamFocus title="Typiske oppgaver">

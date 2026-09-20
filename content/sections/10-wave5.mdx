@@ -160,28 +160,12 @@ lights) the diffraction pattern as simulated on the preparation assignment.
 Bringing the laser closer to the double slit the diffraction pattern
 eventually fades away at approx. 24 cm from the double slit.
 
-What was the diameter of the laser aperture?
-
-Select one alternative: 1.0 mm &nbsp;/&nbsp; 0.88 mm &nbsp;/&nbsp; 0.73 mm &nbsp;/&nbsp; 0.59 mm
-
-<Solution>
-Aperturen er en utstrakt, sirkulær kilde med diameter $s$ i avstanden $r$.
-Spaltene får korrelert lys så lenge avstanden mellom dem er mindre enn den
-spatiale koherenslengden $l_s = 1{,}22\lambda r/s$. Stripene forsvinner der
-$l_s$ blir lik spalteavstanden $a = 0{,}20$ mm, ved $r = 24$ cm. Snu formelen:
-
-$$
-\begin{aligned}
-s &= \frac{1{,}22\,\lambda\, r}{a} \\
-  &= \frac{1{,}22\cdot 400\ \text{nm}\cdot 0{,}24\ \text{m}}{0{,}20\ \text{mm}} \\
-  &= 0{,}59\ \text{mm}.
-\end{aligned}
-$$
-
-Spaltebredden på 10 µm trengs ikke.
-
-<Answer>0,59 mm</Answer>
-</Solution>
+<Quiz
+  question={"What was the diameter of the laser aperture?"}
+  options={["1.0 mm", "0.88 mm", "0.73 mm", "0.59 mm"]}
+  answer={3}
+  explanation={"Aperturen er en utstrakt, sirkulær kilde med diameter $s$ i avstanden $r$. Spaltene får korrelert lys så lenge avstanden mellom dem er mindre enn den spatiale koherenslengden $l_s = 1{,}22\\lambda r/s$. Stripene forsvinner der $l_s$ blir lik spalteavstanden $a = 0{,}20$ mm, ved $r = 24$ cm. Snu formelen: $s = 1{,}22\\lambda r/a$, med $\\lambda = 400$ nm, $r = 0{,}24$ m og $a = 0{,}20$ mm, gir $s = 0{,}59$ mm. Spaltebredden på 10 µm trengs ikke."}
+/>
 </Example>
 
 ## Tynne filmer
@@ -229,20 +213,14 @@ skrått; derfor ser AR-belagte briller purpurrøde ut i skrå reflekser.
 <ExamRef id="2023-mai" task="13" />
 
 A thin film of MgF$_2$ ($n = 1.38$) is deposited on glass so that it is
-antireflecting at a wavelength of 580 nm under normal incidence. What
-wavelength is minimally reflected when the light is incident instead at 45°?
+antireflecting at a wavelength of 580 nm under normal incidence.
 
-(a) $\lambda = 532$ nm &nbsp; (b) $\lambda = 448$ nm &nbsp; (c) $\lambda = 1064$ nm &nbsp; (d) $\lambda = 498$ nm &nbsp; (e) $\lambda = 440$ nm
-
-<Solution>
-Ved normalt innfall er filmen en kvartbølgefilm: $t = \lambda_0/4n_f = 105$ nm.
-Ved skrått innfall er veiforskjellen $2n_f t\cos\theta_t$, og minimum i
-refleksjonen krever at den er $\lambda/2$. Snells lov gir
-$\sin\theta_t = \sin 45^\circ/1{,}38 = 0{,}512$, altså $\cos\theta_t = 0{,}859$, og
-$\lambda = 4n_f t\cos\theta_t = 580\ \text{nm}\cdot 0{,}859 = 498$ nm.
-
-<Answer>(d), $\lambda = 498$ nm</Answer>
-</Solution>
+<Quiz
+  question={"What wavelength is minimally reflected when the light is incident instead at 45°?"}
+  options={["$\\lambda = 532$ nm", "$\\lambda = 448$ nm", "$\\lambda = 1064$ nm", "$\\lambda = 498$ nm", "$\\lambda = 440$ nm"]}
+  answer={3}
+  explanation={"Ved normalt innfall er filmen en kvartbølgefilm: $t = \\lambda_0/4n_f = 105$ nm. Ved skrått innfall er veiforskjellen $2n_f t\\cos\\theta_t$, og minimum i refleksjonen krever at den er $\\lambda/2$. Snells lov gir $\\sin\\theta_t = \\sin 45^\\circ/1{,}38 = 0{,}512$, altså $\\cos\\theta_t = 0{,}859$, og $\\lambda = 4n_f t\\cos\\theta_t = 580\\ \\text{nm}\\cdot 0{,}859 = 498$ nm."}
+/>
 </Example>
 
 <Example label="Eksamensoppgave" title="Interference">
@@ -257,26 +235,22 @@ normal incidence? Assume the wavelength of the incoming light to be 550 nm
 Hint: Finding/using the expression for the reflectance at normal incidence
 can be helpful.
 
-Select two alternatives:
+Oppgaven ber om to alternativer fra én liste, ett for brytningsindeksen og
+ett for tykkelsen. Her er listen delt i to spørsmål.
 
-- film refractive index = 1,33
-- Film thickness =109 nm
-- Film thickness =219 nm
-- film refractive index = 1,26
-- Film thickness =103 nm
-- film refractive index = 2,53
-- film refractive index =1,50
-- Film thickness = 92 nm
+<Quiz
+  question={"What refractive index does the layer need to have?"}
+  options={["film refractive index = 1,33", "film refractive index = 1,26", "film refractive index = 2,53", "film refractive index =1,50"]}
+  answer={1}
+  explanation={"De to reflekterte bølgene, fra luft–film og fra film–glass, må være like sterke, og ved normalt innfall er $r = (n_1 - n_2)/(n_1 + n_2)$ for hver flate. Like store $|r|$ gir $n_f = \\sqrt{n_0 n_s} = \\sqrt{1\\cdot 1{,}59} = 1{,}26$."}
+/>
 
-<Solution>
-Null refleksjon krever to ting. De to reflekterte bølgene, fra luft–film og
-fra film–glass, må være like sterke, og ved normalt innfall er
-$r = (n_1 - n_2)/(n_1 + n_2)$ for hver flate; like store $|r|$ gir
-$n_f = \sqrt{n_0 n_s} = \sqrt{1\cdot 1{,}59} = 1{,}26$. Og de må være i motfase,
-altså en kvartbølgefilm: $t = \lambda/4n_f = 550\ \text{nm}/(4\cdot 1{,}26) = 109$ nm.
-
-<Answer>Brytningsindeks 1,26 og tykkelse 109 nm.</Answer>
-</Solution>
+<Quiz
+  question={"What thickness does the layer need to have?"}
+  options={["Film thickness =109 nm", "Film thickness =219 nm", "Film thickness =103 nm", "Film thickness = 92 nm"]}
+  answer={0}
+  explanation={"De to reflekterte bølgene må være i motfase, altså en kvartbølgefilm: $t = \\lambda/4n_f = 550\\ \\text{nm}/(4\\cdot 1{,}26) = 109$ nm."}
+/>
 </Example>
 
 <ExamFocus title="Typiske oppgaver">

@@ -205,28 +205,22 @@ $s = 6$; $d = 6$; $f_1 = 4$; $f_2 = 3$.
 
 <Figure src="/figures/eksamen-2021-05-oppgave-2.png" alt="Et oppreist objekt står avstanden s foran linse 1, linse 2 står avstanden d bak, og bildeavstanden s' bak linse 2 er ukjent." width={830} height={450} caption="Figuren fra oppgavesettet." />
 
-Select two alternatives:
+Oppgaven ber om to alternativer fra én liste, ett for $s'$ og ett for $M_T$.
+Her er listen delt i to spørsmål.
 
-- $M_T = -5/3$
-- $M_T = -2/3$
-- $M_T = -3/2$
-- $M_T = -3/5$
-- $s' = 2$
-- $s' = 20$
-- $s' = 6$
+<Quiz
+  question={"Where do you expect to find the image ($s'$)?"}
+  options={["$s' = 2$", "$s' = 20$", "$s' = 6$"]}
+  answer={0}
+  explanation={"Bygg systemmatrisen fra objekt til bilde, høyre mot venstre: $M = T(s')\\,L(3)\\,T(6)\\,L(4)\\,T(6)$. De fire første faktorene gir $B = 3$ og $D = -3/2$, og den siste translasjonen gjør $B = 3 - 3s'/2$. Bildeplanet ligger der $B = 0$, altså $s' = 2$ cm. Kontroll linse for linse: linse 1 lager et reelt bilde 12 cm bak seg, 6 cm forbi linse 2, som dermed får et virtuelt objekt i $s_{o2} = -6$; $1/s' = 1/3 + 1/6$ gir $s' = 2$."}
+/>
 
-<Solution>
-Bygg systemmatrisen fra objekt til bilde, høyre mot venstre:
-$M = T(s')\,L(3)\,T(6)\,L(4)\,T(6)$. De fire første faktorene gir
-$\begin{pmatrix} -1/2 & 3 \\ -1/12 & -3/2 \end{pmatrix}$, og den siste
-translasjonen gjør $B = 3 - 3s'/2$. Bildeplanet ligger der $B = 0$, altså
-$s' = 2$ cm, og der er $A = -1/2 - s'/12 = -2/3 = M_T$. Kontroll linse for
-linse: linse 1 lager et reelt bilde 12 cm bak seg, 6 cm forbi linse 2, som
-dermed får et virtuelt objekt i $s_{o2} = -6$; $1/s' = 1/3 + 1/6$ gir
-$s' = 2$, og $m_1 m_2 = (-2)(1/3) = -2/3$.
-
-<Answer>$s' = 2$ og $M_T = -2/3$.</Answer>
-</Solution>
+<Quiz
+  question={"What will the magnification ($M_T$) be?"}
+  options={["$M_T = -5/3$", "$M_T = -2/3$", "$M_T = -3/2$", "$M_T = -3/5$"]}
+  answer={1}
+  explanation={"I bildeplanet $s' = 2$ er systemmatrisens $A = -1/2 - s'/12 = -2/3 = M_T$. Kontroll linse for linse: $m_1 m_2 = (-2)(1/3) = -2/3$."}
+/>
 </Example>
 
 <ExamFocus title="Typiske oppgaver">
