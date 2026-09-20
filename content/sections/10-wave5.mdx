@@ -144,6 +144,46 @@ teleskop til stripene forsvant.
   explanation={"Hvert kildepunkt gir sitt forskjøvede mønster; en stor kilde vasker ut kontrasten. Spatial koherens krever liten vinkelutstrekning."}
 />
 
+<Example label="Eksamensoppgave" title="Laserens aperturdiameter fra spatial koherens">
+<ExamRef id="2021-mai" task="5" />
+
+Hildegunn is in the diffraction lab and just set up a Loyd double slit
+experiment using two thin slits (10μm) separated 0.20 mm. There is an eye safe
+laser available ($\lambda = 400$nm) with small divergence and an exit aperture
+which is unknown. By directing the laser beam towards a wall far away she
+notices the spot is circular. She wants to check the diameter of the laser
+aperture using the spatial coherence phenomenon.
+
+Keeping the laser quite far away (some 1-2 meters) on a rail, and directing
+the beam onto the double slits, she observes clearly (by closing the room
+lights) the diffraction pattern as simulated on the preparation assignment.
+Bringing the laser closer to the double slit the diffraction pattern
+eventually fades away at approx. 24 cm from the double slit.
+
+What was the diameter of the laser aperture?
+
+Select one alternative: 1.0 mm &nbsp;/&nbsp; 0.88 mm &nbsp;/&nbsp; 0.73 mm &nbsp;/&nbsp; 0.59 mm
+
+<Solution>
+Aperturen er en utstrakt, sirkulær kilde med diameter $s$ i avstanden $r$.
+Spaltene får korrelert lys så lenge avstanden mellom dem er mindre enn den
+spatiale koherenslengden $l_s = 1{,}22\lambda r/s$. Stripene forsvinner der
+$l_s$ blir lik spalteavstanden $a = 0{,}20$ mm, ved $r = 24$ cm. Snu formelen:
+
+$$
+\begin{aligned}
+s &= \frac{1{,}22\,\lambda\, r}{a} \\
+  &= \frac{1{,}22\cdot 400\ \text{nm}\cdot 0{,}24\ \text{m}}{0{,}20\ \text{mm}} \\
+  &= 0{,}59\ \text{mm}.
+\end{aligned}
+$$
+
+Spaltebredden på 10 µm trengs ikke.
+
+<Answer>0,59 mm</Answer>
+</Solution>
+</Example>
+
 ## Tynne filmer
 
 Lys som reflekteres fra over- og undersiden av en tynn film interfererer.
@@ -183,6 +223,60 @@ skrått; derfor ser AR-belagte briller purpurrøde ut i skrå reflekser.
 
 </Solution>
 
+</Example>
+
+<Example label="Eksamensoppgave" title="Antirefleksbelegg ved skrått innfall">
+<ExamRef id="2023-mai" task="13" />
+
+A thin film of MgF$_2$ ($n = 1.38$) is deposited on glass so that it is
+antireflecting at a wavelength of 580 nm under normal incidence. What
+wavelength is minimally reflected when the light is incident instead at 45°?
+
+(a) $\lambda = 532$ nm &nbsp; (b) $\lambda = 448$ nm &nbsp; (c) $\lambda = 1064$ nm &nbsp; (d) $\lambda = 498$ nm &nbsp; (e) $\lambda = 440$ nm
+
+<Solution>
+Ved normalt innfall er filmen en kvartbølgefilm: $t = \lambda_0/4n_f = 105$ nm.
+Ved skrått innfall er veiforskjellen $2n_f t\cos\theta_t$, og minimum i
+refleksjonen krever at den er $\lambda/2$. Snells lov gir
+$\sin\theta_t = \sin 45^\circ/1{,}38 = 0{,}512$, altså $\cos\theta_t = 0{,}859$, og
+$\lambda = 4n_f t\cos\theta_t = 580\ \text{nm}\cdot 0{,}859 = 498$ nm.
+
+<Answer>(d), $\lambda = 498$ nm</Answer>
+</Solution>
+</Example>
+
+<Example label="Eksamensoppgave" title="Interference">
+<ExamRef id="2025-mai" task="14" />
+
+We want to add a single layer, nonreflective coating to a pair of
+polycarbonate glasses (n=1,59). What refractive index and what thickness does
+the layer need to have to achieve zero reflections for light coming in at
+normal incidence? Assume the wavelength of the incoming light to be 550 nm
+(middle of the visible spectrum).
+
+Hint: Finding/using the expression for the reflectance at normal incidence
+can be helpful.
+
+Select two alternatives:
+
+- film refractive index = 1,33
+- Film thickness =109 nm
+- Film thickness =219 nm
+- film refractive index = 1,26
+- Film thickness =103 nm
+- film refractive index = 2,53
+- film refractive index =1,50
+- Film thickness = 92 nm
+
+<Solution>
+Null refleksjon krever to ting. De to reflekterte bølgene, fra luft–film og
+fra film–glass, må være like sterke, og ved normalt innfall er
+$r = (n_1 - n_2)/(n_1 + n_2)$ for hver flate; like store $|r|$ gir
+$n_f = \sqrt{n_0 n_s} = \sqrt{1\cdot 1{,}59} = 1{,}26$. Og de må være i motfase,
+altså en kvartbølgefilm: $t = \lambda/4n_f = 550\ \text{nm}/(4\cdot 1{,}26) = 109$ nm.
+
+<Answer>Brytningsindeks 1,26 og tykkelse 109 nm.</Answer>
+</Solution>
 </Example>
 
 <ExamFocus title="Typiske oppgaver">

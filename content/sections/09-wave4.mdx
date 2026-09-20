@@ -61,6 +61,56 @@ $V=(I_\text{max}-I_\text{min})/(I_\text{max}+I_\text{min})=2\sqrt{I_1I_2}/(I_1+I
 Kontrasten tåler altså en del skjevhet; selv en tidoblet intensitetsforskjell
 gir over halv synlighet.
 
+<Example label="Eksamensoppgave" title="Superposisjon av to planbølger">
+<ExamRef id="2023-mai" task="11" />
+
+Two plane waves of the same frequency and with vibrations in the
+$z$-direction are given by
+
+$$
+\begin{aligned}
+\Psi(x, t) &= (4\ \text{cm})\cos\Big(\tfrac{\pi}{3\ \text{cm}}x \\
+&\qquad\qquad - \tfrac{20}{\text{s}}t + \pi\Big) \\
+\Psi(y, t) &= (2\ \text{cm})\cos\Big(\tfrac{\pi}{4\ \text{cm}}y \\
+&\qquad\qquad - \tfrac{20}{\text{s}}t + \pi\Big)
+\end{aligned}
+$$
+
+Which would be the resultant wave form expressing their superposition at
+the point x=5 cm and y=2 cm?
+
+(a) $\Psi_R = (2.48\ \text{cm})\cos\left(2.51 - \tfrac{20}{\text{s}}t\right)$
+
+(b) $\Psi_R = (2.48\ \text{cm})\sin\left(2.51 - \tfrac{20}{\text{s}}t\right)$
+
+(c) $\Psi_R = (4\ \text{cm})\cos\left(4.51 - \tfrac{20}{\text{s}}t\right)$
+
+(d) $\Psi_R = (2\ \text{cm})\cos\left(2.51 - \tfrac{20}{\text{s}}t\right)$
+
+(e) $\Psi_R = (2.48\ \text{cm})\cos\left(2.51 + \tfrac{20}{\text{s}}t\right)$
+
+<Solution>
+Sett inn punktet, så står bare fasene igjen: $\alpha_1 = 5\pi/3 + \pi = 8\pi/3$,
+som er det samme som $2\pi/3$, og $\alpha_2 = \pi/2 + \pi = 3\pi/2$. To
+svingninger med samme frekvens legges sammen som fasorer:
+
+$$
+\begin{aligned}
+A^2 &= A_1^2 + A_2^2 \\
+    &\quad + 2A_1A_2\cos(\alpha_2 - \alpha_1) \\
+    &= 16 + 4 + 16\cos(5\pi/6) = 6{,}14,
+\end{aligned}
+$$
+
+så $A = 2{,}48$ cm. Fasen følger av komponentene:
+$\tan\alpha = (4\sin\alpha_1 + 2\sin\alpha_2)/(4\cos\alpha_1 + 2\cos\alpha_2) = 1{,}46/(-2)$,
+med negativ cosinus og positiv sinus, altså $\alpha = 2{,}51$ rad. Resultanten
+er en cosinus med samme fortegn på $t$ som de to bølgene.
+
+<Answer>(a)</Answer>
+</Solution>
+</Example>
+
 ## Youngs dobbeltspalt
 
 To spalter med senteravstand $a$ belyses koherent, og skjermen står i
@@ -151,6 +201,44 @@ amplituder er $I/I_\text{max}=\cos^2(\Delta\phi/2)=\cos^2(\pi/3)=1/4$.
   answer={1}
   explanation={"Luftveien $t$ erstattes av glassveien $nt$, så økningen er $(n-1)t$."}
 />
+
+<Example label="Eksamensoppgave" title="Youngs forsøk med glassplate">
+<ExamRef id="2023-mai" task="12" />
+
+In an interference experiment of the Young type, the distance between slits
+is 0.5 mm, and the wavelength of the light is 600 nm. (i) If it is desired
+to have a fringe spacing of 1 mm at the screen, what is the proper screen
+distance? (ii) If a thin plate of glass $n = 1.502$ of thickness 100 microns
+is placed over one of the slits, what is the lateral fringe displacement at
+the screen? (iii) What path difference corresponds to a shift in the fringe
+pattern from a peak maximum to the (same) peak half-maximum?
+
+(a) (i) 8.33 m, (ii) 83.3 fringes and (iii) $\Delta = 150$ nm
+
+(b) (i) 0.833 m, (ii) 83.3 fringes and (iii) $\Delta = 150$ nm
+
+(c) (i) 0.833 m, (ii) 83.3 fringes and (iii) $\Delta = 100$ nm
+
+(d) (i) 0.833 m, (ii) 8.3 fringes and (iii) $\Delta = 150$ nm
+
+(e) None of the above.
+
+<Solution>
+(i) Stripeavstanden er $\Delta y = \lambda L/a$, så
+$L = \Delta y\,a/\lambda = (1\ \text{mm})(0{,}5\ \text{mm})/(600\ \text{nm}) = 0{,}833$ m.
+
+(ii) Glassplaten legger til veiforskjellen $(n - 1)t$, som flytter mønsteret
+$N = (n-1)t/\lambda = 0{,}502\cdot 100\ \mu\text{m}/600\ \text{nm} = 83{,}7$
+striper. Svaralternativet 83,3 kommer av at fasiten regner med $n = 1{,}5$;
+begge peker på samme alternativ.
+
+(iii) Intensiteten er $4I_0\cos^2(\pi\Delta/\lambda)$. Halv maksimal
+intensitet betyr $\cos^2(\pi\Delta/\lambda) = 1/2$, altså
+$\pi\Delta/\lambda = \pi/4$ og $\Delta = \lambda/4 = 150$ nm.
+
+<Answer>(b)</Answer>
+</Solution>
+</Example>
 
 ## To frekvenser: svevninger og gruppehastighet
 

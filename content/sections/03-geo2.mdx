@@ -185,6 +185,58 @@ første linse, det vanlige reelle fremre brennpunktet.
 
 </Example>
 
+<Example label="Eksamensoppgave" title="RayTrace">
+<ExamRef id="2025-mai" task="16 a–e" />
+
+An illuminated object is placed 12 cm in front of a pair of lenses. The lens
+closest to the object has a negative focal length of 6 cm whereas the other
+lens has a positive focal length of 6 cm. Both lenses can be regarded as thin.
+A real inverted image of the object can be observed on a screen placed 15 cm
+behind the positive lens.
+
+a) What is the size of the object?
+
+b) What is the distance between the lenses?
+
+c) Draw the ray-tracing from the object to the final image via the intermediate image.
+
+d) Find the principal and nodal planes for the lens combination.
+
+e) Draw the ray-tracing from the object to the image using the principal and nodal planes.
+
+<Solution>
+b) først, siden a) trenger avstanden. Systemmatrisen fra objektet til
+skjermen er $M = T(15)\,L(6)\,T(d)\,L(-6)\,T(12)$, og skjermen er et bildeplan
+når $B = 0$. Det er raskere å gå linse for linse. Den negative linsen gir
+$1/s_{i1} = -1/6 - 1/12 = -1/4$, altså et virtuelt mellombilde 4 cm foran
+linse 1, med $m_1 = -s_{i1}/s_{o1} = 1/3$. For den positive linsen er
+objektavstanden $d + 4$, og $1/(d+4) = 1/6 - 1/15 = 1/10$ gir $d = 6$ cm.
+
+a) Settet oppgir ingen objekthøyde, og løsningsforslaget svarer med
+forstørrelsen: $m_2 = -15/10 = -3/2$, så $M_T = m_1 m_2 = -1/2$. Bildet er
+halvparten så høyt som objektet og invertert, altså er objektet dobbelt så
+høyt som bildet på skjermen.
+
+c) Strålene fra objektet spres i den negative linsen og ser ut til å komme fra
+det oppreiste mellombildet 4 cm foran den. Linse 2 samler dem til et reelt,
+invertert bilde 15 cm bak seg.
+
+d) Med inngangsplan i linse 1 og utgangsplan i linse 2 er
+$M = L(6)\,T(6)\,L(-6) = \begin{pmatrix} 2 & 6 \\ -1/6 & 0 \end{pmatrix}$.
+Da er $f = -1/C = 6$ cm, $H_1 = (D-1)/C = 6$ cm bak linse 1, det vil si i
+linse 2, og $H_2 = (1-A)/C = 6$ cm bak linse 2. Brennpunktene er
+$F_1 = H_1 - f = 0$, altså i linse 1, og $F_2 = H_2 + f = 12$ cm bak linse 2.
+I luft faller nodalpunktene sammen med hovedpunktene.
+
+e) Objektet står 18 cm foran $H_1$ og bildet 9 cm bak $H_2$, og
+$1/18 + 1/9 = 1/6$ stemmer med $f$. Tegn strålen parallelt med aksen inn til
+$H_2$ og gjennom $F_2$, og strålen gjennom $F_1$ inn til $H_1$ og ut parallelt;
+de krysser 9 cm bak $H_2$ med $M_T = -9/18 = -1/2$.
+
+<Answer>b) $d = 6$ cm. a) $M_T = -1/2$, objektet er dobbelt så høyt som bildet. d) $f = 6$ cm, $H_1$ i linse 2, $H_2$ 6 cm bak linse 2, $F_1$ i linse 1, $F_2$ 12 cm bak linse 2, $N_1 = H_1$ og $N_2 = H_2$.</Answer>
+</Solution>
+</Example>
+
 <ExamFocus title="Typiske oppgaver">
 
 En systemmatrise bygges gjerne én gang og gjenbrukes for flere

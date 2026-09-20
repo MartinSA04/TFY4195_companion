@@ -134,6 +134,67 @@ Oppløsningen er $\mathcal R=mN=1\cdot3000=3000$, nok til å skille linjer
 
 </Example>
 
+<Example label="Eksamensoppgave" title="Diffraction grating">
+<ExamRef id="2025-mai" task="17 a–e" />
+
+We want to design a simple spectrometer for visible light in the wavelength
+range from 500 to 700 nm:
+
+a) We are especially interested in the wavelength area between the magnesium
+b1 (518,362 nm) and b2 (517,270 nm) bands. How many lines do we need to rule
+on a transmission grating to just resolve these two lines in first and second
+order? [4 Points]
+
+b) If we want to boost the resolution to 1 Å for the whole spectral range,
+how many lines do we need then for the 1st order? [3 points]
+
+c) Lets assume we are making a compact grating with a width of 1 cm for the
+high resolution option in part b). At which angle do you expect the magnesium
+lines to show in the 1st order spectrum? If you did not get an answer in part
+b) assume a grating with 5000 lines. What is the separation between the two
+lines? [4 points]
+
+d) can we also make use of higher orders of the grating? If not, why? If yes,
+which? [4 points]
+
+e) What do we have to do, to ensure that sunlight falling on our 1 cm wide
+grating results in a clear diffraction pattern? Give a quantitative answer
+and assume that the optical path length between entrance of the spectrometer
+and the grating is 40 cm. [5 points]
+
+<Solution>
+a) Oppløsningsevnen er $R = \lambda/\Delta\lambda = mN$. Med
+$\lambda = 517{,}8$ nm og $\Delta\lambda = 1{,}092$ nm trengs $R = 474$, altså
+475 linjer i første orden og 238 i andre.
+
+b) 1 Å er 0,1 nm, og kravet er strengest der $\lambda$ er størst:
+$R = 700\ \text{nm}/0{,}1\ \text{nm} = 7000$, så 7000 linjer i første orden.
+
+c) 7000 linjer på 1 cm gir $a = 1{,}43\ \mu$m, og gitterligningen
+$a\sin\theta = \lambda$ gir $\theta = 21{,}3^\circ$ for magnesiumlinjene.
+Vinkeldispersjonen $d\theta/d\lambda = m/(a\cos\theta)$ gir avstanden
+$\Delta\theta = \Delta\lambda/(a\cos\theta) = 8{,}2\cdot 10^{-4}$ rad, omtrent
+$0{,}047^\circ$. Med 5000 linjer: $a = 2{,}0\ \mu$m, $\theta = 15{,}0^\circ$ og
+$\Delta\theta = 5{,}7\cdot 10^{-4}$ rad.
+
+d) Ja. Gitterligningen krever $m\lambda \le a$, og med $a = 1{,}43\ \mu$m går
+det opp til $m = 2$ for hele området (ved 700 nm er $\sin\theta = 0{,}98$);
+tredje orden finnes ikke. Andre orden av 500–700 nm ligger ved
+$m\lambda = 1000$–1400 nm og overlapper ikke første orden, så den kan brukes
+og dobler oppløsningen. Med 5000 linjer får du også tredje orden opp til
+667 nm.
+
+e) Mønsteret må observeres i fjernfeltet. Kravet er
+$\text{areal}/(\lambda R) \ll 1$, og for en 1 cm bred åpning er
+$(1\ \text{cm})^2/\lambda = 180$ m, langt mer enn de 40 cm som finnes. Sett
+derfor en linse etter gitteret og observer i brennplanet, der fjernfeltet
+ligger, og kollimer sollyset først: en smal inngangsspalte i brennpunktet til
+en linse gjør at plane bølger treffer gitteret.
+
+<Answer>a) 475 linjer i første orden, 238 i andre. b) 7000 linjer. c) $21{,}3^\circ$, linjene $8{,}2\cdot 10^{-4}$ rad fra hverandre. d) Andre orden, ikke tredje. e) Kollimer inn og fokuser ut med linser; uten linse trengs mer enn 180 m.</Answer>
+</Solution>
+</Example>
+
 <ExamFocus title="Typiske oppgaver">
 
 Gjengangerne: vinkelavstand mellom to
