@@ -184,14 +184,31 @@ $m\lambda = 1000$–1400 nm og overlapper ikke første orden, så den kan brukes
 og dobler oppløsningen. Med 5000 linjer får du også tredje orden opp til
 667 nm.
 
-e) Mønsteret må observeres i fjernfeltet. Kravet er
-$\text{areal}/(\lambda R) \ll 1$, og for en 1 cm bred åpning er
-$(1\ \text{cm})^2/\lambda = 180$ m, langt mer enn de 40 cm som finnes. Sett
-derfor en linse etter gitteret og observer i brennplanet, der fjernfeltet
-ligger, og kollimer sollyset først: en smal inngangsspalte i brennpunktet til
-en linse gjør at plane bølger treffer gitteret.
+e) Hvert punkt på sola treffer gitteret fra en litt annen vinkel og gir sitt
+eget spektrum, forskjøvet fra naboens, så linjene smøres ut. Lyset som
+treffer gitteret, må derfor være <Term name="Koherens">spatialt koherent</Term>
+over hele gitterbredden på 1 cm. Direkte sollys er spatialt koherent over
+bare rundt 75 µm, så spektrometeret trenger en smal inngangsspalt.
 
-<Answer>a) 475 linjer i første orden, 238 i andre. b) 7000 linjer. c) $21{,}3^\circ$, linjene $8{,}2\cdot 10^{-4}$ rad fra hverandre. d) Andre orden, ikke tredje. e) Kollimer inn og fokuser ut med linser; uten linse trengs mer enn 180 m.</Answer>
+Sett fra gitteret spenner en spalt med bredde $\Delta x$ i avstanden
+$L = 40$ cm vinkelen $\theta \approx \Delta x/L$ (små vinkler). Formelen
+<FormulaRef id="spatial-koherens" /> gjelder en sirkulær kilde; for en spalt
+faller faktoren 1,22 bort, slik den gjør i diffraksjonen fra en enkeltspalt:
+
+$$
+l_s < \frac{\lambda}{\theta} \approx \frac{\lambda L}{\Delta x}
+$$
+
+Hele gitteret skal ligge innenfor den spatiale koherenslengden, så $l_s$ må
+være minst 1 cm. Kravet er strengest for den korteste bølgelengden, 500 nm:
+
+$$
+\Delta x \lesssim \frac{\lambda L}{l_s} \allowbreak= \frac{500\ \text{nm}\cdot 0{,}4\ \text{m}}{0{,}01\ \text{m}} \allowbreak= 20\ \mu\text{m}
+$$
+
+Inngangsspalten må altså være smalere enn omtrent 20 µm.
+
+<Answer>a) 475 linjer i første orden, 238 i andre. b) 7000 linjer. c) $21{,}3^\circ$, linjene $8{,}2\cdot 10^{-4}$ rad fra hverandre. d) Andre orden, ikke tredje. e) En inngangsspalt smalere enn omtrent 20 µm, 40 cm foran gitteret.</Answer>
 </Solution>
 </Example>
 

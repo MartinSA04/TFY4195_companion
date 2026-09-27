@@ -32,7 +32,9 @@ beskrives ved høyden $y$ over den optiske aksen og vinkelen $\alpha$ den danner
 med aksen. Hvert optisk element transformerer $(y,\alpha)$ lineært og kan
 skrives som en $2\times2$-matrise:
 
-$$\begin{pmatrix} y_2 \\ \alpha_2 \end{pmatrix} = \begin{pmatrix} A & B \\ C & D \end{pmatrix}\begin{pmatrix} y_1 \\ \alpha_1 \end{pmatrix}$$
+$$
+\begin{pmatrix} y_2 \\ \alpha_2 \end{pmatrix} = \begin{pmatrix} A & B \\ C & D \end{pmatrix}\begin{pmatrix} y_1 \\ \alpha_1 \end{pmatrix}
+$$
 
 Et helt system er produktet av elementmatrisene, så et komplisert instrument
 blir én matrise, og alt du trenger står i de fire tallene $A,B,C,D$.
@@ -236,7 +238,9 @@ systemmatrisen fra objekt- til bildeplan, og finn bildeavstand og forstørrelse.
 
 Fra objekt til bilde er $M=T(s_i)\,L(f)\,T(s_o)$. Utmultiplisert:
 
-$$M=\begin{pmatrix}1-\frac{s_i}{f} & s_o+s_i-\frac{s_i s_o}{f}\\[2pt] -\frac1f & 1-\frac{s_o}{f}\end{pmatrix}$$
+$$
+M=\begin{pmatrix}1-\frac{s_i}{f} & s_o+s_i-\frac{s_i s_o}{f}\\[2pt] -\frac1f & 1-\frac{s_o}{f}\end{pmatrix}
+$$
 
 Bildeplanet krever $B=0$: $s_o+s_i-s_is_o/f=0$. Med $s_o=30$ og $f=20$ gir det
 $30+s_i-1{,}5\,s_i=0$, altså $s_i=60$ cm. Forstørrelsen leses av $A$:
@@ -259,7 +263,9 @@ forstørrelsen?
 $B=0$ for $T(s_i)\,R_S\,T(s_o)$ gir enkeltflate-likningen
 $\dfrac{n_1}{s_o}+\dfrac{n_2}{s_i}=\dfrac{n_2-n_1}{R}$. Innsatt:
 
-$$\dfrac{1}{80}+\dfrac{1{,}5}{s_i}=\dfrac{0{,}5}{20}=0{,}025\quad\Rightarrow\quad s_i=120\ \text{mm},$$
+$$
+\dfrac{1}{80}+\dfrac{1{,}5}{s_i}=\dfrac{0{,}5}{20}=0{,}025\quad\allowbreak\Rightarrow\quad s_i=120\ \text{mm},
+$$
 
 reelt og inne i glasset. Forstørrelsen er
 $m=-\dfrac{n_1s_i}{n_2s_o}=-\dfrac{1\cdot120}{1{,}5\cdot80}=-1$.
@@ -303,7 +309,9 @@ luft. Finn systemmatrisen og effektiv brennvidde.
 
 $A=1-D/f_1=1/3$, $B=D=10$, nedre høyre element $1-D/f_2=5/3$, og
 
-$$C=-\dfrac1{15}+\dfrac1{15}+\dfrac{10}{15\cdot(-15)}=-\dfrac{10}{225}=-0{,}0444\ \text{cm}^{-1}.$$
+$$
+C=-\dfrac1{15}+\dfrac1{15}+\dfrac{10}{15\cdot(-15)}\allowbreak=-\dfrac{10}{225}\allowbreak=-0{,}0444\ \text{cm}^{-1}.
+$$
 
 Kontroll: $\det M=\tfrac13\cdot\tfrac53-10\cdot(-0{,}0444)=1$. Effektiv
 brennvidde $f=-1/C=+22{,}5$ cm.
@@ -339,7 +347,9 @@ fisken rett ovenfra?
 Plan flate, $R\to\infty$, gir $\dfrac{n_1}{s_o}+\dfrac{n_2}{s_i}=0$ med
 $n_1=1{,}33$ (vann) og $n_2=1$ (luft):
 
-$$s_i=-\dfrac{n_2}{n_1}s_o=-\dfrac{12}{1{,}33}=-9{,}0\ \text{cm},$$
+$$
+s_i=-\dfrac{n_2}{n_1}s_o\allowbreak=-\dfrac{12}{1{,}33}\allowbreak=-9{,}0\ \text{cm},
+$$
 
 virtuelt og grunnere enn fisken faktisk står.
 

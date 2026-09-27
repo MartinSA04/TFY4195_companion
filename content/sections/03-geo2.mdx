@@ -30,7 +30,9 @@ $y$ over aksen og vinkelen $\alpha$ mot den. Alt et optisk element gjør i
 paraksial tilnærming, er lineært i $y$ og $\alpha$, så virkningen er en
 matrise:
 
-$$\begin{pmatrix} y_2 \\ \alpha_2 \end{pmatrix} = \begin{pmatrix} A & B \\ C & D \end{pmatrix}\begin{pmatrix} y_1 \\ \alpha_1 \end{pmatrix}$$
+$$
+\begin{pmatrix} y_2 \\ \alpha_2 \end{pmatrix} = \begin{pmatrix} A & B \\ C & D \end{pmatrix}\begin{pmatrix} y_1 \\ \alpha_1 \end{pmatrix}
+$$
 
 Noen kilder skriver elementene $A_{11},A_{12},A_{21},A_{22}$ i stedet for
 $A,B,C,D$; det er samme matrise. To operasjoner bygger alt: fri translasjon endrer
@@ -137,7 +139,9 @@ Fra objektplan til bildeplan er systemet translasjon, linse, translasjon:
 $M=T(d)\,L(f)\,T(s_o)$. Multiplikasjonen gir $B=s_o+d-ds_o/f$. Bildeplanet
 krever $B=0$:
 
-$$30+d-3d=0 \quad\Rightarrow\quad d=15\ \text{cm}.$$
+$$
+30+d-3d=0 \quad\allowbreak\Rightarrow\quad d=15\ \text{cm}.
+$$
 
 Tynnlinselikningen gir det samme, $1/s_i=1/10-1/30=1/15$. Determinanten er 1,
 som den skal.
@@ -169,7 +173,9 @@ systemmatrisen, effektiv brennvidde og hovedplanene.
 Med lyset gjennom $L_1$, translasjon, $L_2$ er
 $M=L(10)\,T(5)\,L(-20)$:
 
-$$M=\begin{pmatrix}1&0\\-\tfrac{1}{10}&1\end{pmatrix}\begin{pmatrix}1&5\\0&1\end{pmatrix}\begin{pmatrix}1&0\\\tfrac{1}{20}&1\end{pmatrix}=\begin{pmatrix}1{,}25&5\\-0{,}075&0{,}5\end{pmatrix}.$$
+$$
+M=\begin{pmatrix}1&0\\-\tfrac{1}{10}&1\end{pmatrix}\begin{pmatrix}1&5\\0&1\end{pmatrix}\begin{pmatrix}1&0\\\tfrac{1}{20}&1\end{pmatrix}\allowbreak=\begin{pmatrix}1{,}25&5\\-0{,}075&0{,}5\end{pmatrix}.
+$$
 
 Kontroll: $\det M=1{,}25\cdot0{,}5-5\cdot(-0{,}075)=1$. Brennvidden er
 $f=-1/C=40/3\approx13{,}3$ cm. Hovedplanene ligger i
