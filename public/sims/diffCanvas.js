@@ -11,7 +11,14 @@ export default function init({ ctx, controls, getSize, onResize }) {
     const { w: W, h: H } = getSize();
     ctx.clearRect(0, 0, W, H);
     const NN = +N.input.value, B = +b.input.value / 1000, A = +a.input.value / 1000;
-    const gy = H - 26, gh = H - 60;
+    // Formula and legend share one line when it fits; on a phone the legend drops to a
+    // second line and the graph gives up that row, so nothing is clipped at the edge.
+    ctx.font = "11px ui-monospace, monospace";
+    const formula = "I = I₀(sinβ/β)²·(sinNα/sinα)²", legend = "enkeltspalt-konvolutt";
+    const fw = ctx.measureText(formula).width, lw = 22 + ctx.measureText(legend).width;
+    const oneLine = 10 + fw + 18 + lw <= W - 10;
+    const lx = oneLine ? 10 + fw + 18 : 10, ly = oneLine ? 18 : 34;
+    const gy = H - 26, gh = H - 60 - (oneLine ? 0 : 16);
     // single-slit envelope
     ctx.strokeStyle = C.orange; ctx.globalAlpha = 0.55; ctx.lineWidth = 1.5;
     ctx.setLineDash([5, 4]); ctx.beginPath();
@@ -33,7 +40,11 @@ export default function init({ ctx, controls, getSize, onResize }) {
     }
     ctx.stroke();
     ctx.fillStyle = C.inkDim; ctx.font = "11px ui-monospace, monospace";
-    ctx.fillText("I = I₀(sinβ/β)²·(sinNα/sinα)²   — stiplet: enkeltspalt-konvolutt", 10, 18);
+    ctx.fillText(formula, 10, 18);
+    ctx.strokeStyle = C.orange; ctx.globalAlpha = 0.55; ctx.lineWidth = 1.5; ctx.setLineDash([5, 4]);
+    ctx.beginPath(); ctx.moveTo(lx, ly - 4); ctx.lineTo(lx + 16, ly - 4); ctx.stroke();
+    ctx.setLineDash([]); ctx.globalAlpha = 1;
+    ctx.fillText(legend, lx + 22, ly);
     N.out.textContent = NN;
     b.out.textContent = +b.input.value;
     a.out.textContent = +a.input.value;

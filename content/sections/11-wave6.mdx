@@ -5,7 +5,7 @@ summary: "Fiberoptikk fra strålemodellen: numerisk apertur og akseptansekjegle,
 importance: useful
 tag: "Bølgeoptikk VI"
 part: "Bølgeoptikk"
-updated: 2026-08-25
+updated: 2026-09-27
 ---
 
 En optisk fiber er en kjerne ($n_1$) omgitt av en kappe med
@@ -26,9 +26,10 @@ krever det.
 
 ## Akseptansekjegle, NA og skip-avstand
 
-Bare lys som treffer kjerne–kappe-grensen slakere enn kritisk vinkel føres
-videre, og sett fra endeflaten betyr det en akseptansekjegle med halvvinkel
-$\theta_\text{max}$. Snells lov ved endeflaten oversetter mellom de to:
+Bare lys som treffer kjerne–kappe-grensen med innfallsvinkel over kritisk
+vinkel, føres videre, og sett fra endeflaten betyr det en akseptansekjegle
+med halvvinkel $\theta_\text{max}$. Snells lov ved endeflaten oversetter
+mellom de to:
 
 <Formula tex={"\\sin\\phi_c=\\dfrac{n_2}{n_1}"} caption={"Kritisk vinkel ved kjerne–kappe-grensen, målt fra normalen på grenseflaten."} />
 
@@ -129,8 +130,8 @@ intrinsiske sitter i silikaen selv: absorpsjon i UV og IR, og
 <Term name="Rayleigh-spredning">Rayleigh-spredning</Term> på
 tetthetsvariasjoner, med tverrsnitt som $1/\lambda^4$. Summen har et
 minimum nær 1,55 µm, det tredje telekomvinduet, der moderne singelmodusfiber
-taper rundt 0,15 dB/km; ved 1,3 µm ligger et annet vindu der
-materialdispersjonen er null. Området rundt 1550 nm deles i bånd, og
+taper rundt 0,15 dB/km; ved 1,3 µm ligger et annet vindu der den totale
+kromatiske dispersjonen er null. Området rundt 1550 nm deles i bånd, og
 C-båndet (1530–1565 nm) bærer mest langdistansetrafikk.
 
 <Formula tex={"I_L=I_0e^{-\\alpha L},\\quad \\alpha=\\dfrac{1}{L}\\ln\\dfrac{I_0}{I_L}"} caption={"Beers lov med dempningskoeffisienten $\\alpha$ (per km, naturlig logaritme)."} />
@@ -274,7 +275,7 @@ begrepsmessig.
   question={"Lys føres i en fiber takket være …"}
   options={["diffraksjon","total intern refleksjon ved kjerne–kappe-grensen","brytning ved Brewster","absorpsjon"]}
   answer={1}
-  explanation={"Kjernen har høyere indeks enn kappen, så alt lys brattere enn kritisk vinkel holdes inne."}
+  explanation={"Kjernen har høyere indeks enn kappen, så alt lys som treffer grensen med innfallsvinkel over kritisk vinkel, holdes inne."}
 />
 
 <Quiz

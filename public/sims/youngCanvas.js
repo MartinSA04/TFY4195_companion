@@ -21,7 +21,9 @@ export default function init({ ctx, controls, getSize, onResize }) {
     const { w: W, h: H } = getSize();
     ctx.clearRect(0, 0, W, H);
     const A = +a.input.value, L = +lam.input.value, col = wl2rgb(L);
-    const cy = H * 0.42, sh = 70;
+    // Fringe band on top, then the formula label, then the intensity curve: the label
+    // sits in its own gap and never crosses the fringes.
+    const gy = H - 22, gh = 70, sh = 70, cy = gy - gh - 24 - sh / 2;
     for (let x = 0; x < W; x++) {
       const theta = ((x - W / 2) / W) * 0.5;
       const I = Math.cos((Math.PI * A * theta) / (L / 550)) ** 2;
@@ -29,7 +31,6 @@ export default function init({ ctx, controls, getSize, onResize }) {
     }
     ctx.globalAlpha = 1;
     ctx.strokeStyle = col; ctx.lineWidth = 2; ctx.beginPath();
-    const gy = H - 22, gh = 70;
     for (let x = 0; x < W; x++) {
       const theta = ((x - W / 2) / W) * 0.5;
       const I = Math.cos((Math.PI * A * theta) / (L / 550)) ** 2;

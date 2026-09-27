@@ -11,7 +11,7 @@ const RG_STEPS = {
     "Bildet ligger der strålene krysser — reelt, invertert og forminsket.",
   ],
   div: [
-    "Oppsett: en negativ (sprende) linse med brennpunktene F og F′, og et objekt foran.",
+    "Oppsett: en negativ (spredende) linse med brennpunktene F og F′, og et objekt foran.",
     "Stråle 1 — parallellstrålen: brytes utover som om den kom fra fremre brennpunkt (stiplet bakover).",
     "Stråle 2 — sentralstrålen: rett gjennom linsesentrum.",
     "Bildet ligger der de stiplede bakover-forlengelsene møtes — virtuelt, opprett og forminsket.",
@@ -19,17 +19,17 @@ const RG_STEPS = {
   concave: [
     "Oppsett: et konkavt (samlende) speil med brennpunkt F og krumningssenter C. Lyset reflekteres tilbake mot venstre.",
     "Stråle 1 — parallellstrålen: reflekteres gjennom brennpunktet F.",
-    "Stråle 2 — vertexstrålen: treffer speilets midtpunkt og reflekteres symmetrisk om aksen.",
+    "Stråle 2 — verteksstrålen: treffer speilets midtpunkt og reflekteres symmetrisk om aksen.",
     "Bildet ligger der de reflekterte strålene krysser — reelt, invertert og forminsket.",
   ],
   convex: [
-    "Oppsett: et konvekst (sprende) speil. Brennpunkt F og senter C ligger bak speilet.",
+    "Oppsett: et konvekst (spredende) speil. Brennpunkt F og senter C ligger bak speilet.",
     "Stråle 1 — parallellstrålen: reflekteres som om den kom fra F bak speilet (stiplet).",
-    "Stråle 2 — vertexstrålen: reflekteres symmetrisk om aksen.",
+    "Stråle 2 — verteksstrålen: reflekteres symmetrisk om aksen.",
     "Bildet ligger bak speilet der de stiplede forlengelsene møtes — virtuelt, opprett og forminsket.",
   ],
   double: [
-    "Oppsett: to positive linser L₁ og L₂ med hver sine brennpunkt, og et objekt til venstre for L₁.",
+    "Oppsett: to positive linser L₁ og L₂ med hvert sitt brennpunkt, og et objekt til venstre for L₁.",
     "Tegn to stråler gjennom L₁ — parallellstrålen og sentralstrålen.",
     "Der de krysser mellom linsene ligger mellombildet I₁ (det L₁ ville laget alene).",
     "Strålene fortsetter og brytes på nytt i L₂ — sikt mot det endelige bildet.",
@@ -68,13 +68,15 @@ export default function init({ ctx, controls, getSize, onResize }) {
   controls.append(stepText);
 
   const navRow = document.createElement("div");
-  navRow.style.cssText = "flex-basis:100%;display:flex;align-items:center;gap:.6rem";
+  // Wraps on a phone: no button may shrink below its label or cross the panel edge.
+  navRow.style.cssText = "flex-basis:100%;display:flex;flex-wrap:wrap;align-items:center;gap:.6rem";
   const prevBtn = button(navRow, "‹ Forrige");
   const countEl = document.createElement("span");
-  countEl.style.cssText = "font-size:.85rem;color:var(--muted);font-variant-numeric:tabular-nums";
+  countEl.style.cssText = "font-size:.85rem;color:var(--muted);font-variant-numeric:tabular-nums;white-space:nowrap";
   navRow.append(countEl);
   const nextBtn = button(navRow, "Neste steg ›");
   const resetBtn = button(navRow, "Tilbakestill");
+  [prevBtn, nextBtn, resetBtn].forEach((b) => { b.style.whiteSpace = "nowrap"; });
   controls.append(navRow);
 
   // --- drawing helpers ---
