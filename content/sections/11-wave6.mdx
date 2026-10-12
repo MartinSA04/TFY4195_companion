@@ -1,7 +1,7 @@
 ---
 order: 11
 title: "Optiske fibre & kommunikasjon"
-summary: "Fiberoptikk fra strålemodellen: numerisk apertur og akseptansekjegle, moder og singelmodusbetingelsen, dempning i dB/km, de fire dispersjonstypene med båndbredde-avstand-produktet, og komponentene bak WDM-nett."
+summary: "Fiberoptikk fra strålemodellen: numerisk apertur og akseptansekjegle, moder og singelmodusbetingelsen, dempning i dB/km, dispersjon med båndbredde–avstand-produktet og komponentene bak WDM-nett."
 importance: useful
 tag: "Bølgeoptikk VI"
 part: "Bølgeoptikk"
@@ -19,7 +19,7 @@ krever det.
 - Forklare lysføring via akseptansekjeglen, og regne <Term name="Numerisk apertur">numerisk apertur</Term>, kritisk vinkel og skip-avstand.
 - Regne modetall og singelmodusbetingelsen, og skille step-index fra GRIN.
 - Regne dempning i dB/km og gjøre rede for tapsmekanismene og telekomvinduene.
-- Skille de fire dispersjonstypene og koble pulsutsmøring til <Term name="Båndbredde–avstand-produkt">båndbredde–avstand-produktet</Term>.
+- Skille modal dispersjon, materialdispersjon, bølgelederdispersjon og polarisasjonsmodedispersjon, og koble pulsutsmøring til <Term name="Båndbredde–avstand-produkt">båndbredde–avstand-produktet</Term>.
 - Kjenne komponentene: koblere, isolatorer, sirkulatorer, <Term name="Fiber-Bragg-gitter">fiber-Bragg-gitter</Term>, <Term name="WDM">WDM</Term> og <Term name="Mach–Zehnder-interferometer">Mach–Zehnder</Term>-mux/demux.
 
 </LearningGoals>
@@ -28,15 +28,23 @@ krever det.
 
 Bare lys som treffer kjerne–kappe-grensen med innfallsvinkel over kritisk
 vinkel, føres videre, og sett fra endeflaten betyr det en akseptansekjegle
-med halvvinkel $\theta_\text{max}$. Snells lov ved endeflaten oversetter
-mellom de to:
+med halvvinkel $\theta_\text{max}$. Kritisk vinkel er gitt ved
 
 <Formula tex={"\\sin\\phi_c=\\dfrac{n_2}{n_1}"} caption={"Kritisk vinkel ved kjerne–kappe-grensen, målt fra normalen på grenseflaten."} />
+
+Inne i kjernen går en stråle som treffer kappen i kritisk vinkel $\phi_c$, i
+vinkelen $90^\circ-\phi_c$ mot aksen. Snells lov ved endeflaten gir da
+$n_0\sin\theta_\text{max}=n_1\sin(90^\circ-\phi_c)=n_1\cos\phi_c$, og med
+$\sin\phi_c=n_2/n_1$ er $n_1\cos\phi_c=\sqrt{n_1^2-n_2^2}$:
 
 <Formula tex={"NA=n_0\\sin\\theta_\\text{max}=n_1\\cos\\phi_c=\\sqrt{n_1^2-n_2^2}"} caption={"Numerisk apertur: sinus til største akseptansevinkel fra mediet $n_0$."} />
 
 Stor NA gir lett innkobling, men også flere moder. Avstanden mellom to
-refleksjoner langs fiberen er skip-avstanden
+refleksjoner langs fiberen er skip-avstanden $L_s$. Strålen krysser kjernen,
+med diameter $d$, i vinkelen $\theta'$ mot aksen, så den går
+$L_s=d/\tan\theta'$ langs fiberen mellom to refleksjoner. Snells lov ved
+endeflaten, $n_0\sin\theta=n_1\sin\theta'$, gir
+$1/\tan\theta'=\sqrt{1/\sin^2\theta'-1}=\sqrt{(n_1/(n_0\sin\theta))^2-1}$:
 
 <Formula tex={"L_s=\\dfrac{d}{\\tan\\theta'}=d\\sqrt{\\left(\\dfrac{n_1}{n_0\\sin\\theta}\\right)^2-1}"} caption={"Skip-avstand; $d$ = kjernediameter, $\\theta$ = inngangsvinkel, $\\theta'$ = strålens vinkel mot aksen inne i kjernen."} />
 
@@ -69,12 +77,17 @@ strålene må gå nesten langs fiberen.
 
 ## Moder: multimodus, singelmodus og GRIN
 
-Som i filmlederen overlever bare strålevinkler der fasen går opp etter to
-refleksjoner, og hver løsning er en mode. Antall moder vokser som
-$(d\,NA/\lambda)^2$: store kjerner bærer mange (multimodus), og en liten
-nok kjerne bærer bare den aksiale grunnmoden (singelmodus).
+En fiber fører bare strålevinkler der faseendringen over kjernen og tilbake,
+de to refleksjonene medregnet, er et helt antall $2\pi$, og hver slik vinkel
+er en mode. Ser du bort fra fasen ved refleksjonene, blir kravet
+$2d\,(2\pi/\lambda)\,n_1\sin\theta'=2\pi m$, med $\lambda$ som bølgelengden
+i vakuum. Den største vinkelen som føres, har $n_1\sin\theta'=NA$, så
 
 <Formula tex={"m_{x,\\text{max}}\\cong\\dfrac{2d}{\\lambda}\\,NA"} caption={"Høyeste modetall i slab-tilnærmingen."} />
+
+Antall moder vokser som $(d\,NA/\lambda)^2$: store kjerner bærer mange
+(multimodus), og en liten nok kjerne bærer bare den aksiale grunnmoden
+(singelmodus).
 
 <Formula tex={"N_\\text{moder}\\approx 4\\left(\\dfrac{d\\,NA}{\\lambda}\\right)^2"} caption={"Totalt antall moder i en sylindrisk fiber."} />
 
@@ -94,7 +107,7 @@ nok kjerne bærer bare den aksiale grunnmoden (singelmodus).
 
 - Indeksen avtar gradvis utover.
 - Strålene bøyes kontinuerlig og får nesten lik gangtid.
-- Modal dispersjon redusert med en faktor rundt $\Delta_n/2$.
+- Modal dispersjon mye mindre enn i step-index.
 
 </CompareCol>
 
@@ -124,11 +137,11 @@ $N\approx4\left(\dfrac{50\cdot0{,}121}{1{,}25}\right)^2\approx94$ moder.
 
 ## Dempning, telekomvinduer og EDFA
 
-Lyset i en fiber dempes av to familier av tap. De ekstrinsiske kan bygges
-bort: skarpe bøyer, mikrobøyer, dårlig innkobling og skjøter. De
-intrinsiske sitter i silikaen selv: absorpsjon i UV og IR, og
+Lyset i en fiber dempes. Noen tap kan bygges bort: skarpe bøyer, mikrobøyer,
+dårlig innkobling og skjøter. Slike tap kalles ekstrinsiske. Andre sitter i silikaen selv: absorpsjon i
+UV og IR, og
 <Term name="Rayleigh-spredning">Rayleigh-spredning</Term> på
-tetthetsvariasjoner, med tverrsnitt som $1/\lambda^4$. Summen har et
+tetthetsvariasjoner, med tverrsnitt som $1/\lambda^4$. Slike tap kalles intrinsiske. Summen har et
 minimum nær 1,55 µm, det tredje telekomvinduet, der moderne singelmodusfiber
 taper rundt 0,15 dB/km; ved 1,3 µm ligger et annet vindu der den totale
 kromatiske dispersjonen er null. Området rundt 1550 nm deles i bånd, og
@@ -136,7 +149,7 @@ C-båndet (1530–1565 nm) bærer mest langdistansetrafikk.
 
 <Formula tex={"I_L=I_0e^{-\\alpha L},\\quad \\alpha=\\dfrac{1}{L}\\ln\\dfrac{I_0}{I_L}"} caption={"Beers lov med dempningskoeffisienten $\\alpha$ (per km, naturlig logaritme)."} />
 
-<Formula tex={"\\alpha_\\text{dB}=10\\log_{10}\\dfrac{P_\\text{inn}}{P_\\text{ut}}=\\dfrac{10}{\\ln 10}\\,\\alpha"} caption={"Dempning i dB/km. Merk at $\\alpha$ og $\\alpha_\\text{dB}$ er ulike tall for samme fysikk."} />
+<Formula tex={"\\alpha_\\text{dB}=\\dfrac{10}{L}\\log_{10}\\dfrac{P_\\text{inn}}{P_\\text{ut}}=\\dfrac{10}{\\ln 10}\\,\\alpha"} caption={"Dempning i dB/km, med $L$ i km. Merk at $\\alpha$ og $\\alpha_\\text{dB}$ er ulike tall for samme fysikk."} />
 
 Desibelformen er praktisk fordi tap adderes: tre kilometer à 5 dB/km pluss
 to skjøter à 1 dB er 17 dB, ferdig regnet. Tapene rettes opp optisk med
@@ -162,7 +175,7 @@ dB/km. Til sammenligning ligger singelmodus glassfiber ved 1,55 µm på rundt
 
 </Example>
 
-## Pulsutsmøring: de fire dispersjonstypene
+## Pulsutsmøring og dispersjon
 
 Dempning gjør pulsene svakere; dispersjon gjør dem bredere, til nabopulser
 flyter sammen og bitraten må ned. I synkende alvorlighetsgrad:
@@ -172,11 +185,24 @@ flyter sammen og bitraten må ned. I synkende alvorlighetsgrad:
 - Bølgelederdispersjon: samme mode fordeler seg litt ulikt mellom kjerne og kappe for ulike $\lambda$. Liten, men flytter nulldispersjonen til 1,31 µm.
 - Polarisasjonsmodedispersjon: svak dobbeltbrytning gir de to polarisasjonene ulik fart. Minst, men merkbar over 10 Gbit/s.
 
+I en step-index-fiber med lengde $L$ er den raskeste strålen den som går langs
+aksen, og den bruker tiden $Ln_1/c$. Den langsomste treffer kappen akkurat i
+kritisk vinkel, går veien $L/\sin\phi_c=Ln_1/n_2$ og bruker $Ln_1^2/(cn_2)$.
+Forskjellen per lengde er
+
 <Formula tex={"\\left(\\dfrac{\\delta\\tau}{L}\\right)_\\text{step}=\\dfrac{n_1}{c}\\dfrac{n_1-n_2}{n_2}"} caption={"Modal pulsutsmøring per lengde, step-index."} />
 
 <Formula tex={"\\left(\\dfrac{\\delta\\tau}{L}\\right)_\\text{GRIN}\\approx\\dfrac{n_1}{2c}\\Delta_n^{2}"} caption={"Modal pulsutsmøring, parabolsk GRIN; $\\Delta_n\\approx(n_1-n_2)/n_1$."} />
 
+Med $n_2\approx n_1$ er uttrykket for step-index omtrent $(n_1/c)\,\Delta_n$.
+Deler du de to uttrykkene på hverandre, er utsmøringen i den parabolske
+GRIN-fiberen en faktor $\Delta_n/2$ av den i step-index-fiberen.
+
 <Formula tex={"\\dfrac{\\delta\\tau}{L}=-M\\,\\Delta\\lambda"} caption={"Materialdispersjon; $M$ oppgis i ps/(nm·km)."} />
+
+To pulser skilles så lenge tiden mellom dem er minst dobbelt så lang som
+utsmøringen $\delta\tau$. Den største pulsraten $\nu_\text{max}$ har derfor
+$1/\nu_\text{max}=2\,\delta\tau$, så
 
 <Formula tex={"\\nu_\\text{max}L=\\dfrac{0{,}5}{(\\delta\\tau/L)}"} caption={"Båndbredde–avstand-produktet: fiberens nøkkeltall."} />
 
@@ -258,18 +284,6 @@ nm $=0{,}80$ mm.
 </Solution>
 
 </Example>
-
-<ExamFocus title="Typiske oppgaver">
-
-Gjengangerne: gitt $n_1$ og $n_2$, finn NA,
-akseptansevinkel, kritisk vinkel og skip-avstand; finn største diameter for
-singelmodus eller antall moder; regn dempning i dB/km fra inn- og uteffekt,
-og sett opp et additivt dB-budsjett med skjøtetap; estimer modal
-dispersjon og båndbredde–avstand-produktet; og finn veiforskjellen i en
-Mach–Zehnder-demux. Dispersjonstypene og komponentene testes helst
-begrepsmessig.
-
-</ExamFocus>
 
 <Quiz
   question={"Lys føres i en fiber takket være …"}

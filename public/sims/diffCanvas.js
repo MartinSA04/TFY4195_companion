@@ -2,7 +2,7 @@ import { palette, slider, readout } from "./shared.js";
 
 export default function init({ ctx, controls, getSize, onResize }) {
   const N = slider(controls, { label: "Antall spalter N", min: 1, max: 8, value: 1 });
-  const b = slider(controls, { label: "Spaltebredde b", min: 20, max: 120, value: 40 });
+  const b = slider(controls, { label: "Spaltbredde b", min: 20, max: 120, value: 40 });
   const a = slider(controls, { label: "Spalteavstand a", min: 60, max: 240, value: 120 });
   const ro = readout(controls);
 
@@ -52,7 +52,7 @@ export default function init({ ctx, controls, getSize, onResize }) {
       `N = <b>${NN}</b> spalt${NN > 1 ? "er" : ""}. ` +
       (NN === 1
         ? "Ren enkeltspalt: bred sentraltopp, minima ved b·sinθ=mλ."
-        : `${NN - 1} minima og ${NN - 2 < 0 ? 0 : NN - 2} sekundærmaksima mellom hovedmaksima. Smalere spalt b ⇒ bredere konvolutt; større a ⇒ tettere hovedtopper.`);
+        : `${NN - 1} ${NN === 2 ? "minimum" : "minima"} mellom hovedmaksimaene.`);
   }
 
   [N.input, b.input, a.input].forEach((s) => s.addEventListener("input", draw));

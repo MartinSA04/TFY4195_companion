@@ -46,7 +46,7 @@ blir én matrise, og alt du trenger står i de fire tallene $A,B,C,D$.
 Pedrotti-konvensjonen, med lys fra venstre mot høyre:
 
 <Table
-  caption={"Fortegnskonvensjonen for paraksial optikk."}
+  caption={"Fortegnskonvensjonen for paraksial optikk. For speil brukes $R>0$ for konkavt speil og $s_i>0$ for et reelt bilde foran speilet."}
   columns={["Størrelse", "Positiv når …", "Tolkning"]}
   rows={[
     ["$y$", "over aksen", "strålehøyde"],
@@ -109,8 +109,8 @@ bakover-forlengelser.
 <Simulation src={"/sims/rayGuideCanvas.js"} title={"Interaktivt: steg-for-steg strålegang"} height={300} />
 
 Objektavstand $s_o$ og bildeavstand $s_i$ måles fra linsen, brennvidden $f$ til
-brennpunktene $F$ og $F'$. To hjelpestråler konstruerer bildet: parallell inn
-går gjennom $F'$, og sentralstrålen går ubrutt. Objektet står utenfor $2f$, så
+brennpunktene $F$ og $F'$. Du finner bildet med to hjelpestråler: strålen som
+kommer inn parallelt, går gjennom $F'$, og sentralstrålen går ubrutt. Objektet står utenfor $2f$, så
 bildet blir reelt, invertert og forminsket.
 
 <Simulation src={"/sims/signConvCanvas.js"} title={"Visuelt: fortegn & avbildning"} height={280} />
@@ -133,22 +133,22 @@ $\alpha_2=(n_1/n_2)\,\alpha_1$.
 
 ### 3 · Brytning i sfærisk flate, radius $R$
 
-Grunnsteinen; tynne og tykke linser bygges av to slike.
+Tynne og tykke linser er bygd av to slike flater.
 
 <Formula tex={"R_S=\\begin{pmatrix}1 & 0 \\\\ \\frac{n_1-n_2}{n_2 R} & n_1/n_2\\end{pmatrix}"} caption={"Brytning, sfærisk flate."} />
 
 ### 4 · Tynn linse, brennvidde $f$
 
-To sfæriske flater med neglisjerbar tykkelse kollapser til ett knekk i
-vinkelen: $\alpha_2=\alpha_1-y/f$.
+En stråle som kommer inn parallelt med aksen i høyden $y$, skal krysse aksen $f$
+bak linsen, så den går ut med vinkelen $-y/f$. Linsen er tynn og endrer ikke
+høyden, og sentralstrålen ($y=0$) går ubrutt. Da er $\alpha_2=\alpha_1-y/f$.
 
 <Formula tex={"L(f)=\\begin{pmatrix}1 & 0 \\\\ -1/f & 1\\end{pmatrix}"} caption={"Tynn linse; $1/f$ fra linsemakerformelen."} />
 
 ### 5 · Sfærisk speil, radius $R$
 
 Virker som en linse, men folder strålegangen; matrisen under er den utbrettede
-formen. Her brukes konvensjonen $R>0$ for konkavt speil, så $f=R/2>0$; ankeret
-fra fortegnsfellen står seg, konkavt speil samler og har $f>0$.
+formen. Her er $R>0$ for et konkavt speil, som samler lys, så $f=R/2>0$.
 
 <Formula tex={"M_\\text{speil}=\\begin{pmatrix}1 & 0 \\\\ -2/R & 1\\end{pmatrix}=\\begin{pmatrix}1 & 0 \\\\ -1/f & 1\\end{pmatrix}"} caption={"Sfærisk speil, utbrettet."} />
 
@@ -185,16 +185,9 @@ og slutter i samme medium.
   ]}
 />
 
-Kardinalpunkt-formlene er nettopp disse matriseelementene: kjenner du
-$A,B,C,D$, setter du rett inn.
-
-Avbildningskravet har også en bølgetolkning. Mellom et objektpunkt og
-bildepunktet har alle stråler samme <Term name="Optisk veilengde">optiske
-veilengde</Term>, så de ankommer i fase; for én brytende flate skrives kravet
-$n_od_o+n_id_i=n_os_o+n_is_i$, der $d_o,d_i$ måles langs selve strålen og
-$s_o,s_i$ langs aksen. $B=0$ er stråleoptikkens versjon av det samme
-utsagnet: utgangshøyden uavhengig av inngangsvinkelen betyr at alle strålene
-fra ett objektpunkt samles igjen i ett punkt.
+Betingelsen $B=0$ er stråleoptikkens versjon av kravet om lik
+<Term name="Optisk veilengde">optisk veilengde</Term>: utgangshøyden er uavhengig av inngangsvinkelen, så alle strålene fra
+ett objektpunkt samles igjen i ett punkt.
 
 <Example label="Eksamensoppgave" title="To linser og ett bilde">
 <ExamRef id="2021-mai" task="2" />
@@ -208,15 +201,15 @@ from lens 1 as shown in the cartoon below.
   question={"Where do you expect to to [sic] find the image ($s'$) and what will the magnification ($M_T$) be? (recall the sign conventions that apply, and all length units are in cm.) Specifically, $s = 6$; $d = 6$; $f_1 = 4$; $f_2 = 3$."}
   options={["$M_T = -5/3$", "$M_T = -2/3$", "$M_T = -3/2$", "$M_T = -3/5$", "$s' = 2$", "$s' = 20$", "$s' = 6$"]}
   answer={[1, 4]}
-  explanation={"Bygg systemmatrisen fra objekt til bilde, høyre mot venstre: $M = T(s')\\,L(3)\\,T(6)\\,L(4)\\,T(6)$. De fire første faktorene gir $B = 3$ og $D = -3/2$, og den siste translasjonen gjør $B = 3 - 3s'/2$. Bildeplanet ligger der $B = 0$, altså $s' = 2$ cm, og der er $A = -1/2 - s'/12 = -2/3 = M_T$. Kontroll linse for linse: linse 1 lager et reelt bilde 12 cm bak seg, 6 cm forbi linse 2, som dermed får et virtuelt objekt i $s_{o2} = -6$; $1/s' = 1/3 + 1/6$ gir $s' = 2$, og $m_1 m_2 = (-2)(1/3) = -2/3$."}
+  explanation={"Bygg systemmatrisen fra objekt til bilde, høyre mot venstre: $M = T(s')\\,L(3)\\,T(6)\\,L(4)\\,T(6)$. Produktet $L(3)\\,T(6)\\,L(4)\\,T(6)$, de fire faktorene til høyre for $T(s')$, har $B = 3$ og $D = -3/2$, og $T(s')$ gjør $B = 3 - 3s'/2$. Bildeplanet ligger der $B = 0$, altså $s' = 2$ cm, og der er $A = -1/2 - s'/12 = -2/3 = M_T$. Kontroll linse for linse: linse 1 lager et reelt bilde 12 cm bak seg, 6 cm forbi linse 2, som dermed får et virtuelt objekt i $s_{o2} = -6$; $1/s' = 1/3 + 1/6$ gir $s' = 2$, og $m_1 m_2 = (-2)(1/3) = -2/3$."}
 />
 </Example>
 
 <ExamFocus title="Typiske oppgaver">
 
 Gjengangerne fra tidligere sett: matche optiske systemer med
-stråle-transfer-matriser (kjenn igjen strukturen: $C=0$ er afokalt, øvre høyre
-element er en translasjon, $A=D=1$ med $C\neq0$ er én tynn linse), regne
+stråle-transfer-matriser (kjenn igjen strukturen: $C=0$ er afokalt, $A=D=1$ og
+$C=0$ er en translasjon over avstanden $B$, $A=D=1$ og $B=0$ er én tynn linse), regne
 gjennom et system på 2–4 matriser med determinanten som mellomkontroll, og
 lese forstørrelse ($A$ når $B=0$), effektiv brennvidde ($-1/C$) eller
 skjermposisjon for et fjernt objekt ($-A/C$) ut av en oppgitt matrise.
@@ -225,7 +218,7 @@ skjermposisjon for et fjernt objekt ($-A/C$) ut av en oppgitt matrise.
 
 En punktkilde sender et stråleknippe gjennom to tynne linser. Dra brennviddene
 og avstanden og se strålene bøye i hvert linseplan og hvor det endelige bildet
-dannes. Systemmatrisen $M=L_2\,T(D)\,L_1$ regnes ut live under figuren.
+dannes.
 
 <Simulation src={"/sims/rayCanvas.js"} title={"Interaktivt: to-linse ray tracer"} height={320} />
 
@@ -316,7 +309,7 @@ $$
 Kontroll: $\det M=\tfrac13\cdot\tfrac53-10\cdot(-0{,}0444)=1$. Effektiv
 brennvidde $f=-1/C=+22{,}5$ cm.
 
-<Answer>$f_\text{eff}=22{,}5$ cm, lengre enn begge linsene hver for seg (telefoto-prinsippet)</Answer>
+<Answer>$f_\text{eff}=22{,}5$ cm. Bakre brennavstand er $-A/C=7{,}5$ cm, så fokus ligger 17,5 cm fra første linse, kortere enn brennvidden: et teleobjektiv.</Answer>
 
 </Solution>
 
@@ -417,11 +410,15 @@ BFD er $-A/C=3/0{,}05=60$ cm bak linse 2, og $\det M=1$ stemmer.
 
 ## Effektiv brennvidde mot bakre brennavstand
 
-Effektiv brennvidde $f=-1/C$ måles fra hovedplanet, ikke fra glasset. Bakre
-brennavstand måles fra utgangsplanet, altså siste flate. For en tykk linse
-eller et sammensatt system faller de ikke sammen, og det er derfor hovedplan
-finnes. Spør en oppgave «hvor må skjermen stå for et fjernt objekt», er svaret
-BFD $=-A/C$.
+Effektiv brennvidde $f=-1/C$ måles fra det bakre hovedplanet, ikke fra glasset.
+Bakre brennavstand måles fra utgangsplanet, altså siste flate.
+
+For et fjernt objekt er $\alpha_1=0$, så $y_2=A\,y_1$ og $\alpha_2=C\,y_1$. Etter
+avstanden $x$ videre er høyden $(A+xC)\,y_1$, som er null for $x=-A/C$. Den
+avstanden er BFD. Bakre brennpunkt ligger også $f$ bak det bakre hovedplanet, så hovedplanet
+ligger $(1-A)/C$ bak utgangsplanet. Ligger det ikke i siste flate, som for en
+tykk linse eller et sammensatt system, er $f$ og BFD ulike. Spør en oppgave «hvor
+må skjermen stå for et fjernt objekt», er svaret BFD $=-A/C$.
 
 <Example title="tolk en gitt systemmatrise">
 
@@ -433,9 +430,8 @@ objekt bak utgangsplanet?
 <Solution>
 
 Determinanten er $0{,}5\cdot2{,}6-(-3)(-0{,}1)=1{,}3-0{,}3=1$, gyldig for
-luft til luft. Effektiv brennvidde $f=-1/C=10$ cm. For et fjernt objekt er
-$\alpha_1=0$, så $y_2=Ay_1$ og $\alpha_2=Cy_1$; høyden blir null i avstand
-$-A/C=5$ cm bak utgangsplanet.
+luft til luft. Effektiv brennvidde $f=-1/C=10$ cm. Lys fra et fjernt objekt
+samles $-A/C=5$ cm bak utgangsplanet.
 
 <Answer>$\det M=1$, $f=10$ cm, skjermen 5 cm bak utgangsplanet</Answer>
 

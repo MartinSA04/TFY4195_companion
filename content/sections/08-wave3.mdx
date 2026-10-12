@@ -8,12 +8,11 @@ part: "Bølgeoptikk"
 updated: 2026-08-25
 ---
 
-Total intern refleksjon ser ut som geometrisk optikk, men gjemmer ren
-bølgefysikk: refleksjonskoeffisientene blir komplekse, lyset får en
-polarisasjonsavhengig faseforskyvning, og feltet lever videre et lite stykke
-inn i det tynne mediet. Den evanescente halen er arbeidshesten bak
-overflatemikroskopi og bølgeledere, og på veien forklarer dråpeoptikken
-regnbuen.
+Total intern refleksjon ser ut som geometrisk optikk, men bare bølgeoptikken
+forklarer den: refleksjonskoeffisientene blir komplekse, lyset får en
+polarisasjonsavhengig faseforskyvning, og feltet trenger et lite stykke inn i
+det tynne mediet. Dette evanescente feltet brukes i overflatemikroskopi og
+bølgeledere. Regnbuen forklares av brytning og refleksjon i vanndråper.
 
 <LearningGoals>
 
@@ -35,20 +34,30 @@ og ingen netto effekt krysser flaten.
 
 </Statement>
 
-Matematisk skjer det i kvadratroten i Fresnels likninger: for
-$\theta>\theta_c$ blir $n^2-\sin^2\theta$ negativ, roten imaginær, og
-koeffisientene komplekse tall på formen $r=\dfrac{a-ib}{a+ib}$. Størrelsen er
-da nøyaktig 1, men lyset får en faseforskyvning, og den er forskjellig for de
-to polarisasjonene:
+Over kritisk vinkel er $\sin\theta>n_2/n_1$, så uttrykket
+$(n_2/n_1)^2-\sin^2\theta$ under kvadratroten i Fresnels likning for $r_{TE}$
+er negativt, og roten er $iq$ med $q=\sqrt{\sin^2\theta-(n_2/n_1)^2}$. Med
+$a=\cos\theta$ er
+
+$$
+r_{TE}=\frac{a-iq}{a+iq}=\frac{\sqrt{a^2+q^2}\,e^{-i\alpha}}{\sqrt{a^2+q^2}\,e^{i\alpha}}=e^{-2i\alpha},\qquad\tan\alpha=\frac qa
+$$
+
+Teller og nevner har samme absoluttverdi, så $|r_{TE}|=1$. Fasen er
+$\varphi_{TE}=-2\alpha$, altså $\tan(\varphi_{TE}/2)=-q/a$. I $r_{TM}$ står
+$a'=(n_2/n_1)^2\cos\theta$ der $r_{TE}$ har $a$, og et ekstra minustegn gir
+fasen $\pi$ i tillegg, så $\varphi_{TM}=\pi-2\arctan(q/a')$. Faseforskyvningen
+er altså forskjellig for de to polarisasjonene:
 
 $$
 \tan\frac{\varphi_{TE}}{2}=-\frac{\sqrt{\sin^2\theta-(n_2/n_1)^2}}{\cos\theta},\qquad\allowbreak \tan\!\left(\frac{\varphi_{TM}}{2}-\frac{\pi}{2}\right)=-\frac{\sqrt{\sin^2\theta-(n_2/n_1)^2}}{(n_2/n_1)^2\cos\theta}
 $$
 
-Velges vinkelen riktig, gir én eller to totalrefleksjoner en kvartperiodes
-forskyvning mellom komponentene, og lineært polarisert lys kommer ut
-sirkulært. Det er også derfor sirkulært lys som totalreflekteres, generelt
-kommer ut elliptisk.
+Velges vinkelen riktig, gir to totalrefleksjoner i glass til sammen en
+kvart periodes forskyvning mellom TE- og TM-komponenten. Lineært polarisert
+lys med like store komponenter, altså $45^\circ$ mot innfallsplanet, kommer da
+ut sirkulært. Den ulike fasen for TE og TM er også grunnen til at sirkulært
+lys som totalreflekteres, generelt kommer ut elliptisk.
 
 <Example title="45-gradersprismet">
 
@@ -113,19 +122,26 @@ outside). The angle of incidence is 58°.
 
 ## Den evanescente bølgen
 
-At ingen effekt krysser flaten, betyr ikke at feltet er null der. Over
-kritisk vinkel blir normalkomponenten av bølgevektoren i medium 2 imaginær,
-og den transmitterte løsningen går fra å svinge til å dø eksponentielt:
+At ingen effekt krysser flaten, betyr ikke at feltet er null der. Snells lov
+gir $\sin\theta_t=(n_1/n_2)\sin\theta$, og over kritisk vinkel er
+$\sin\theta_t$ større enn 1. Da er
+$\cos\theta_t=i\sqrt{(n_1/n_2)^2\sin^2\theta-1}$ imaginær. Den transmitterte
+bølgen har faktoren $e^{ik_tz\cos\theta_t}$ for avstanden $z$ inn i det tynne
+mediet, med $k_t=2\pi/\lambda$ i medium 2. Settes $\cos\theta_t$ inn, blir
+faktoren $e^{-z/z_d}$ med
+$z_d=1/\bigl(k_t\sqrt{(n_1/n_2)^2\sin^2\theta-1}\bigr)$. Feltet svinger ikke
+inn i mediet, det avtar eksponentielt, og intensiteten avtar som kvadratet av
+feltet:
 
-<Formula tex={"I(z)=I(0)\\,e^{-z/z_d},\\qquad z_d=\\dfrac{\\lambda}{2\\pi\\sqrt{(n_1/n_2)^2\\sin^2\\theta-1}}"} caption={"Evanescent intensitet og inntrengningsdybde; $z$ måles inn i det tynne mediet."} />
+<Formula tex={"E(z)=E(0)\\,e^{-z/z_d},\\qquad I(z)=I(0)\\,e^{-2z/z_d},\\qquad z_d=\\dfrac{\\lambda}{2\\pi\\sqrt{(n_1/n_2)^2\\sin^2\\theta-1}}"} caption={"Evanescent felt og intensitet. $z$ måles inn i det tynne mediet, og $\\lambda$ er bølgelengden der, $\\lambda_0/n_2$. Feltet har falt til $1/e$ ved $z=z_d$, intensiteten ved $z=z_d/2$."} />
 
-Dybden er av størrelsesorden en brøkdel av bølgelengden, og den divergerer
-når $\theta$ nærmer seg $\theta_c$ ovenfra.
+Inntrengningsdybden $z_d$ er av størrelsesorden en brøkdel av bølgelengden,
+og den divergerer når $\theta$ nærmer seg $\theta_c$ ovenfra.
 
 <Example title="inntrengningsdybde">
 
 Lys med $\lambda=500$ nm totalreflekteres inne i glass ($n_1=1{,}50$) mot
-luft ved $\theta=60^\circ$. Hvor dypt trenger intensiteten inn i luften?
+luft ved $\theta=60^\circ$. Hvor dypt trenger feltet inn i luften?
 
 <Solution>
 
@@ -136,34 +152,46 @@ $$
 z_d=\dfrac{500\ \text{nm}}{2\pi\cdot0{,}83}\approx96\ \text{nm}.
 $$
 
-Feltet er altså i praksis borte etter noen hundre nanometer.
+Feltet er altså i praksis borte etter noen hundre nanometer. Intensiteten
+faller som $e^{-2z/z_d}$ og har falt til $1/e$ allerede ved
+$z_d/2\approx48$ nm.
 
-<Answer>$z_d\approx96$ nm</Answer>
+<Answer>Feltet: $z_d\approx96$ nm; intensiteten: $z_d/2\approx48$ nm</Answer>
 
 </Solution>
 
 </Example>
 
-Den korte rekkevidden er et verktøy. I TIR-fluorescensmikroskopi (TIRFM)
-belyses prøven med det evanescente feltet fra et dekkglass i
-totalrefleksjon: bare fluoroforer innenfor de nærmeste hundre nanometerne
-fra glasset eksiteres, så bildet viser celleoverflaten skarpt uten lys fra
-resten av cellen. Kontrasten mot vanlig gjennombelysning er dramatisk, og
-det er den evanescente dybden som gjør jobben.
+I TIR-fluorescensmikroskopi (TIRFM) belyses prøven med det evanescente
+feltet fra et dekkglass i totalrefleksjon. Bare fluoroforer innenfor de
+nærmeste hundre nanometerne fra glasset eksiteres, så bildet viser
+celleoverflaten skarpt uten lys fra resten av cellen. I vanlig
+epifluorescens lyser hele cellen.
 
 <Quiz
   question={"Det evanescente feltet …"}
   options={["øker lineært inn i medium 2","avtar eksponentielt med dybden","er alltid null","finnes bare i vakuum"]}
   answer={1}
-  explanation={"Intensiteten faller som $e^{-z/z_d}$ med $z_d$ på titalls til hundretalls nanometer."}
+  explanation={"Feltet faller som $e^{-z/z_d}$ og intensiteten som $e^{-2z/z_d}$, med $z_d$ på titalls til hundretalls nanometer."}
 />
 
 ## Regnbuen
 
 En solstråle som treffer en vanndråpe, brytes inn, reflekteres én gang på
-innsiden og brytes ut igjen. Avbøyningsvinkelen avhenger av hvor på dråpen
-strålen treffer, men den har et minimum nær $138^\circ$, og nær et minimum
-hoper strålene seg opp. Derfor kommer det konsentrert lys tilbake i en kjegle
+innsiden og brytes ut igjen. La $i$ være innfallsvinkelen og $r$
+brytningsvinkelen, $\sin i=n\sin r$. Strålen bøyes $i-r$ inn i dråpen,
+$180^\circ-2r$ ved refleksjonen og $i-r$ ut igjen, til sammen
+
+$$
+D=180^\circ+2i-4r
+$$
+
+Ved minimum er $dD/di=0$, altså $dr/di=1/2$. Deriver Snells lov:
+$\cos i=n\cos r\,(dr/di)=\tfrac n2\cos r$. Kvadrer og bruk
+$n^2\cos^2r=n^2-\sin^2i$, så er $\cos^2 i=(n^2-1)/3$. Med $n=1{,}333$ er
+$i=59{,}4^\circ$, $r=40{,}2^\circ$ og $D=138^\circ$. Nær minimum endrer $D$
+seg lite når $i$ endrer seg, så stråler fra et bredt bånd av $i$ går ut i
+nesten samme vinkel. Derfor kommer det konsentrert lys tilbake i en kjegle
 omtrent $180^\circ-138^\circ=42^\circ$ fra antisolpunktet, og det er
 primærbuen. Dispersjonen i $n(\lambda)$ flytter minimet litt med fargen, så
 buen spaltes: rødt ytterst, fiolett innerst.
@@ -183,29 +211,40 @@ med fargene i motsatt rekkefølge. Mellom buene reflekteres lite lys mot
 
 Legg en tynn film med høy indeks $n_1$ mellom to lag med lavere indeks
 $n_2$, og lys kan fanges i filmen av total intern refleksjon mot begge
-flatene. Feltbeskrivelsen løser Maxwells likninger i alle tre lagene: en
-stående bølge på tvers av kjernen, evanescente haler ut i begge kappene.
-Kravet om at felt og deriverte skal henge sammen ved begge grenseflatene
-lar seg bare oppfylle for bestemte tverrvinkler, og løsningene er diskrete
-moder:
+flatene. I strålebildet går en mode i sikksakk mellom flatene med vinkelen
+$\theta$ mot normalen, over kritisk vinkel. Langs filmen har den bølgetallet
+$\beta=(2\pi/\lambda)N$ med $N=n_1\sin\theta$, og på tvers
+$K=(2\pi/\lambda)\sqrt{n_1^2-N^2}$, der $\lambda$ er vakuumbølgelengden. Hvis
+bølgen skal gjenta seg selv etter en tur over filmen og tilbake, må den totale
+faseendringen være et helt antall $2\pi$: to ganger $Kb$ for veien og to
+ganger $\varphi_{TE}$ for de to totalrefleksjonene,
+
+$$
+2Kb+2\varphi_{TE}=2\pi m
+$$
+
+Med $N=n_1\sin\theta$ er
+$\sqrt{\sin^2\theta-(n_2/n_1)^2}/\cos\theta=\sqrt{(N^2-n_2^2)/(n_1^2-N^2)}$, så
+fasen fra totalrefleksjonen er $-\varphi_{TE}=2\arctan\sqrt{(N^2-n_2^2)/(n_1^2-N^2)}$.
+Sett den inn i fasekravet:
 
 <Formula tex={"\\dfrac{2\\pi b}{\\lambda}\\sqrt{n_1^2-N^2}=2\\arctan\\!\\sqrt{\\dfrac{N^2-n_2^2}{n_1^2-N^2}}+m\\pi"} caption={"TE-moder i en plan filmleder med kjerneindeks $n_1$, tykkelse $b$ og kappeindeks $n_2$; $m=0,1,2,\\dots$"} />
 
-Hver mode $m$ har sin effektive indeks $N$ mellom $n_2$ og $n_1$
-(utbredelseskonstanten er $\beta=2\pi N/\lambda$) og sin egen
-feltfordeling: grunnmoden $m=0$ har én buk, høyere moder flere, og jo
-høyere mode, desto mer av feltet ligger i de evanescente halene. En tynn
-eller svakt ledende film bærer bare grunnmoden; tykkere filmer bærer flere.
-Likningen er transcendental og løses grafisk eller numerisk. Eksperimentelt
-kan en bestemt mode eksiteres ved å fasetilpasse med et prisme mot den
-evanescente halen (dempet totalrefleksjon, ATR). Strålebildet av det samme er
-lys som sikksakker i en fiberkjerne, grunnlaget for fiberoptikken.
+Hver mode $m$ har sin effektive indeks $N$ mellom $n_2$ og $n_1$ og sin egen
+feltfordeling: en stående bølge på tvers av kjernen og evanescente haler ut i
+begge kappene. Grunnmoden $m=0$ har én buk, høyere moder flere, og jo høyere
+mode, desto mer av feltet ligger i de evanescente halene. En tynn film, eller
+en film med liten indeksforskjell mot kappene, fører bare grunnmoden;
+tykkere filmer fører flere. Likningen er transcendental og løses grafisk
+eller numerisk. Eksperimentelt kan en bestemt mode eksiteres ved å
+fasetilpasse med et prisme mot den evanescente halen (dempet
+totalrefleksjon, ATR). En optisk fiber fører lys i sikksakk gjennom en
+sylindrisk kjerne.
 
 <ExamFocus title="Typiske oppgaver">
 
 Prismeoppgaver spør om en indre stråle totalreflekteres: regn kritisk vinkel
-og sammenlign. Faseforskyvningen testes både numerisk (beregn og plott
-$\varphi_{TE}-\varphi_{TM}$) og kvalitativt: hva skjer med
+og sammenlign. Faseforskyvningen spørres kvalitativt: hva skjer med
 polarisasjonstilstanden til lys som totalreflekteres? Evanescent-oppgaver
 ber om inntrengningsdybden ved gitt vinkel og bølgelengde, og
 bølgelederstoffet testes på forståelsen av diskrete moder og effektiv
@@ -223,8 +262,8 @@ indeks.
 <KeyTakeaways>
 
 - TIR krever $n_1>n_2$ og $\theta>\theta_c$ med $\sin\theta_c=n_2/n_1$; da er $|r|=1$ med polarisasjonsavhengig faseforskyvning.
-- Faseforskjellen $\varphi_{TM}-\varphi_{TE}$ kan gjøre lineært lys sirkulært; sirkulært lys kommer generelt ut elliptisk.
-- Den evanescente intensiteten faller som $e^{-z/z_d}$ med $z_d=\lambda/(2\pi\sqrt{(n_1/n_2)^2\sin^2\theta-1})$, typisk under 100 nm; TIRFM bruker dette til ren overflateavbildning.
+- Faseforskjellen $\varphi_{TM}-\varphi_{TE}$ kan gjøre lineært lys med like store TE- og TM-komponenter sirkulært; sirkulært lys kommer generelt ut elliptisk.
+- Det evanescente feltet faller som $e^{-z/z_d}$ med $z_d=\lambda/(2\pi\sqrt{(n_1/n_2)^2\sin^2\theta-1})$, og intensiteten dobbelt så fort, som $e^{-2z/z_d}$; $z_d$ er typisk under 100 nm, og TIRFM bruker dette til ren overflateavbildning.
 - Regnbuen: minimumsavbøyning nær $138^\circ$ gir primærbuen ved $42^\circ$ med rødt ytterst; to refleksjoner gir sekundærbuen ved $51^\circ$ med snudde farger.
 - En plan filmleder har diskrete moder $m=0,1,\dots$ med effektiv indeks $n_2<N<n_1$; tynn film gir én mode.
 

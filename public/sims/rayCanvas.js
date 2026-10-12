@@ -69,14 +69,13 @@ export default function init({ ctx, controls, getSize, onResize }) {
       }
     }
     const Amx = 1 - D / F1, Bmx = D, Cc = -1 / F1 - 1 / F2 + D / (F1 * F2), Del = 1 - D / F2;
-    const det = Amx * Del - Bmx * Cc, afoc = Math.abs(Cc) < 1.2e-4, feff = afoc ? Infinity : -1 / Cc;
+    const afoc = Math.abs(Cc) < 1.2e-4, feff = afoc ? Infinity : -1 / Cc;
     f1s.out.textContent = F1 + " enh";
     f2s.out.textContent = F2 + " enh";
     ds.out.textContent = D + " enh";
-    let msg = `M = L₂·T(D)·L₁ = [ [${Amx.toFixed(2)}, ${Bmx.toFixed(0)}], [${Cc.toFixed(4)}, ${Del.toFixed(2)}] ] · det = <b>${det.toFixed(2)}</b>. `;
-    msg += afoc
-      ? `<b>C ≈ 0 ⇒ afokalt</b> system — vinkelforstørrelse D = <b>${Del.toFixed(2)}</b>.`
-      : `effektiv f = −1/C = <b>${feff.toFixed(0)} enh</b>. Endebilde: <b>${virtual ? "virtuelt" : "reelt"}</b>, m = <b>${mtot.toFixed(2)}</b> ${imgVisible ? (virtual ? "(stiplet pil)" : "(oransje pil)") : "(utenfor figuren)"}.`;
+    const msg = afoc
+      ? `Afokalt (C ≈ 0), vinkelforstørrelse D = <b>${Del.toFixed(2)}</b>.`
+      : `Endebildet er <b>${virtual ? "virtuelt" : "reelt"}</b>, m = <b>${mtot.toFixed(2)}</b> ${imgVisible ? (virtual ? "(stiplet pil)" : "(oransje pil)") : "(utenfor figuren)"}.`;
     ro.innerHTML = msg;
   }
 

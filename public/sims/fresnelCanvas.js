@@ -44,14 +44,14 @@ export default function init({ ctx, controls, getSize, onResize }) {
     };
     plot(rTE, C.accent); plot(rTM, C.orange);
     ctx.font = "12px ui-monospace, monospace";
-    ctx.fillStyle = C.accent; ctx.fillText("— R (TE)", x0 + pw - 92, padT + 12);
-    ctx.fillStyle = C.orange; ctx.fillText("— R (TM)", x0 + pw - 92, padT + 28);
+    ctx.fillStyle = C.accent; ctx.fillText("R (TE)", x0 + pw - 92, padT + 12);
+    ctx.fillStyle = C.orange; ctx.fillText("R (TM)", x0 + pw - 92, padT + 28);
     n1s.out.textContent = n1.toFixed(2);
     n2s.out.textContent = n2.toFixed(2);
     let msg;
     if (n2 > n1) {
       const bp = (Math.atan(n2 / n1) * 180) / Math.PI;
-      msg = `Eksternt (n₂&gt;n₁): Brewster-vinkel θ_p = <b>${bp.toFixed(1)}°</b> der TM-kurven (oransje) berører null — reflektert lys er lineært polarisert.`;
+      msg = `Eksternt (n₂&gt;n₁): Brewster-vinkel θ_p = <b>${bp.toFixed(1)}°</b> der TM-kurven (oransje) berører null og reflektert lys er rent TE.`;
     } else if (n2 < n1) {
       const tc = (Math.asin(n2 / n1) * 180) / Math.PI;
       const bp = (Math.atan(n2 / n1) * 180) / Math.PI;

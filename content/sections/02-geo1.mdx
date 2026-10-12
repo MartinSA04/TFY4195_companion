@@ -11,8 +11,7 @@ updated: 2026-08-25
 Geometrisk optikk modellerer lys som rette stråler, og hele blokken hviler på to
 prinsipper: Fermats prinsipp om stasjonær optisk veilengde og Huygens'
 bølgefrontkonstruksjon. Fra dem følger Snells lov, brytning i krumme flater og
-til slutt tynnlinselikningen. Modulen bygger den kjeden, og legger
-fortegnskonvensjonen som resten av geometrisk optikk regner med.
+til slutt tynnlinselikningen.
 
 <LearningGoals>
 
@@ -35,9 +34,10 @@ avbilder bare det ene punktparet perfekt.
 
 Utveien er den <Term name="Paraksial tilnærming">paraksiale tilnærmingen</Term>:
 for stråler nær aksen settes $\sin\alpha\approx\tan\alpha\approx\alpha$ og
-$\cos\alpha\approx1$. Allerede ved $10^\circ$ er feilene bare på prosentnivå, og
-med den blir sfæriske flater gode nok. Tilnærmingen brukes uten videre i resten
-av faget.
+$\cos\alpha\approx1$. Allerede ved $10^\circ$ er feilene bare på prosentnivå.
+Med tilnærmingen samler en sfærisk flate alle stråler nær aksen i samme
+bildepunkt. Stråler langt fra aksen samles i et annet punkt, og bildet blir
+uskarpt (sfærisk aberrasjon).
 
 ## Fermat, Huygens og Snells lov
 
@@ -49,11 +49,30 @@ av dette ene prinsippet.
 
 </Statement>
 
-Huygens kommer til det samme fra bølgesiden: hvert punkt på en bølgefront er
-kilde til nye kulebølger, og den nye fronten er innhyllingen av dem. Når
-fronten passerer inn i et medium der farten er $c/n$, vrir den seg, og
-vridningen er nøyaktig Snells lov. De to bildene, korteste tid og
-bølgefront-vridning, er samme fysikk.
+La lyset gå fra $A$ i høyden $a$ over en grenseflate til $B$ i dybden $b$ under
+den, med vannrett avstand $L$ mellom dem, og la strålen treffe flaten i
+avstanden $x$ fra punktet rett under $A$. Brytningsindeksen er $n_i$ over
+flaten og $n_t$ under. Da er
+
+$$
+\text{OPL}(x)=n_i\sqrt{a^2+x^2}+n_t\sqrt{b^2+(L-x)^2}.
+$$
+
+Hvis OPL er stasjonær, er $\mathrm{d}\,\text{OPL}/\mathrm{d}x=0$:
+
+$$
+\frac{n_i\,x}{\sqrt{a^2+x^2}}=\frac{n_t\,(L-x)}{\sqrt{b^2+(L-x)^2}}
+\;\Rightarrow\;
+n_i\sin\theta_i=n_t\sin\theta_t,
+$$
+
+ettersom hver brøk uten $n$ er sinus til vinkelen mellom strålen og normalen.
+Reflekteres strålen til et punkt i høyden $b$ over flaten, er $n$ felles, og
+samme regning gir $\sin\theta_r=\sin\theta_i$, altså $\theta_r=\theta_i$.
+
+Huygens' konstruksjon gir også Snells lov, fra bølgesiden. Hvert punkt på en
+bølgefront er kilde til nye kulebølger, og den nye fronten er innhyllingen av
+dem. Når fronten går inn i et medium der farten er $c/n$, endrer den retning.
 
 <Statement kind="law" name="Snells lov">
 
@@ -68,11 +87,35 @@ innfallsvinkel der $\theta_t=90^\circ$, den kritiske vinkelen
 $\sin\theta_c=n_2/n_1$. Over den reflekteres alt lyset internt (total intern
 refleksjon).
 
+## Fortegn før tall
+
+I oppgaver med linser og flater er feil fortegn vanligere enn feil algebra.
+Konvensjonen (Pedrotti) er:
+
+- Lys går fra venstre mot høyre, og objektet står til venstre: $s_o>0$.
+- $s_i>0$ betyr bilde til høyre for linsen eller flaten (reelt); $s_i<0$ betyr bilde på objektsiden (virtuelt).
+- $R>0$ når krumningssenteret ligger til høyre for flaten.
+- $f>0$ for en samlelinse, $f<0$ for en spredelinse.
+
+Start hver oppgave med en skisse som viser hvor objektet står, om linsen
+samler og hvor bildet bør ligge. Gir regningen noe annet enn skissen, sjekk fortegnene
+først.
+
 ## Brytning i én sfærisk flate
 
-Kreves det at OPL fra objektpunkt til bildepunkt er stasjonær gjennom en
-sfærisk grenseflate med krumningsradius $R$, faller den paraksiale
-avbildningslikningen ut:
+En sfærisk grenseflate med krumningsradius $R$ skiller medium $n_1$ fra medium
+$n_2$. En stråle som treffer flaten i høyden $h$ over aksen, treffer den
+$h^2/2R$ til høyre for toppunktet. Paraksialt er veien fra objektpunktet dit
+$s_o+\tfrac{h^2}{2}\bigl(\tfrac{1}{s_o}+\tfrac{1}{R}\bigr)$, og veien videre til
+bildepunktet er $s_i+\tfrac{h^2}{2}\bigl(\tfrac{1}{s_i}-\tfrac{1}{R}\bigr)$.
+Dermed er
+
+$$
+\text{OPL}(h)=n_1s_o+n_2s_i+\frac{h^2}{2}\Bigl[n_1\Bigl(\frac{1}{s_o}+\frac{1}{R}\Bigr)+n_2\Bigl(\frac{1}{s_i}-\frac{1}{R}\Bigr)\Bigr].
+$$
+
+Alle strålene har samme OPL bare når hakeparentesen er null. Setter du den
+lik null, får du brytningslikningen:
 
 <Formula tex={"\\dfrac{n_1}{s_o}+\\dfrac{n_2}{s_i}=\\dfrac{n_2-n_1}{R}"} caption={"Brytning i én sfærisk flate. Forstørrelsen er $m=-\\dfrac{n_1 s_i}{n_2 s_o}$."} />
 
@@ -81,40 +124,37 @@ $s_i=-\dfrac{n_2}{n_1}s_o$: bildet er virtuelt og ligger på objektsiden. Det er
 derfor et basseng ser grunnere ut enn det er. Sett ovenfra med $n_1=1{,}33$ og
 $n_2=1$ ser bunnen ut til å ligge på $3/4$ av den virkelige dybden.
 
-Likningen for én flate er arbeidshesten: en linse er to slike flater rett etter
-hverandre, og hele avbildningskjeden i en linse følger av å bruke den to ganger.
-
 ## Tynnlinsen
 
-Brukes flatelikningen på begge sidene av en tynn linse (tykkelsen neglisjeres),
-kommer to ekvivalente former ut. Newtons form kommer faktisk først i
-utledningen med strålekonstruksjon: mål avstandene fra brennpunktene i stedet
-for fra linsen, $x_o=s_o-f$ og $x_i=s_i-f$, og likningen er
+En linse av materiale $n_2$ i et medium $n_1$ er to sfæriske flater rett etter
+hverandre. Bruk flatelikningen på framflaten:
+$n_1/s_o+n_2/s_i'=(n_2-n_1)/R_1$, der $s_i'$ er bildeavstanden fra framflaten
+alene. Dette bildet er objekt for bakflaten, og linsen er tynn, så begge flatene
+ligger i samme plan, og objektavstanden for bakflaten er $-s_i'$. Bakflaten
+gir $-n_2/s_i'+n_1/s_i=(n_1-n_2)/R_2$. Legg sammen likningene. Leddet
+$n_2/s_i'$ faller bort, og
 
-<Formula tex={"x_o\\,x_i=f^2"} caption={"Newtons form. $x_o$ og $x_i$ måles fra hvert sitt brennpunkt."} />
+$$
+\frac{n_1}{s_o}+\frac{n_1}{s_i}=(n_2-n_1)\Bigl(\frac{1}{R_1}-\frac{1}{R_2}\Bigr).
+$$
 
-Litt algebra oversetter til Gauss-formen, den du oftest bruker:
+Høyresiden avhenger bare av linsen. Kall den $n_1/f$, så får du Gauss-formen,
+den du oftest bruker, og linsemakerformelen på én gang:
 
 <Formula tex={"\\dfrac{1}{s_o}+\\dfrac{1}{s_i}=\\dfrac{1}{f}"} caption={"Tynnlinselikningen (Gauss-form). $s_o$ = objektavstand, $s_i$ = bildeavstand, $f$ = brennvidde."} />
+
+<Formula tex={"\\dfrac{1}{f}=\\dfrac{n_2-n_1}{n_1}\\!\\left(\\dfrac{1}{R_1}-\\dfrac{1}{R_2}\\right)"} caption={"Linsemakerformelen. $R_1$ og $R_2$ er krumningsradiene til fram- og bakflaten, med fortegn."} />
+
+Mål avstandene fra brennpunktene i stedet for fra linsen, $s_o=f+x_o$ og
+$s_i=f+x_i$. Gauss-formen er $s_os_i=f(s_o+s_i)$, og innsatt gir den
+$(f+x_o)(f+x_i)=f(2f+x_o+x_i)$, altså Newtons form:
+
+<Formula tex={"x_o\\,x_i=f^2"} caption={"Newtons form. $x_o$ og $x_i$ måles fra hvert sitt brennpunkt."} />
 
 <Formula tex={"m=-\\dfrac{s_i}{s_o}"} caption={"Lateral forstørrelse; negativ $m$ betyr invertert bilde. Skrives også $M_T$."} />
 
 Brytningsstyrken $P=1/f$ måles i dioptrier når $f$ er i meter; briller på
 +2 dioptrier er en samlelinse med $f=50$ cm.
-
-### Fortegn før tall
-
-I linseoppgaver er feil fortegn vanligere enn feil algebra. Konvensjonen
-(Pedrotti) er:
-
-- Lys går fra venstre mot høyre, og objektet står til venstre: $s_o>0$.
-- $s_i>0$ betyr bilde til høyre for linsen (reelt); $s_i<0$ betyr bilde på objektsiden (virtuelt).
-- $R>0$ når krumningssenteret ligger til høyre for flaten.
-- $f>0$ for en samlelinse, $f<0$ for en spredelinse.
-
-Start hver oppgave med en skisse som viser hvor objektet står, om linsen
-samler og hvor bildet bør ligge. Gir regningen noe annet enn skissen, sjekk fortegnene
-først.
 
 <Compare>
 
@@ -152,9 +192,10 @@ fra hverandre. Hva er brennvidden?
 <Solution>
 
 Med fast total avstand er $s_o+s_i=D$, og tynnlinselikningen gir
-$s_o(D-s_o)=fD$. Andregradslikningen har to løsninger for $s_o$, og de er
-hverandres speilbilder: bytt $s_o\leftrightarrow s_i$ og bildet er skarpt
-igjen. Avstanden mellom de to posisjonene er $d=\sqrt{D^2-4fD}$, så
+$s_o(D-s_o)=fD$. Røttene er
+$s_o=\bigl(D\pm\sqrt{D^2-4fD}\bigr)/2$, og de er hverandres $s_i$ fordi
+$s_i=D-s_o$: bytt $s_o\leftrightarrow s_i$, og bildet er skarpt igjen. Avstanden
+mellom de to posisjonene er differansen, $d=\sqrt{D^2-4fD}$, så
 
 $$
 f=\dfrac{D^2-d^2}{4D}=\dfrac{8100-900}{360}\ \text{cm}\allowbreak=20\ \text{cm}.
@@ -206,14 +247,12 @@ of the burning candle.
 
 ## Linsemakerformelen
 
-Formen på linsen bestemmer brennvidden. For en tynn linse av materiale $n_2$ i
-et medium $n_1$ er
+Linsemakerformelen gir brennvidden ut fra formen på linsen. En bikonveks linse
+i luft har $R_1>0$ og $R_2<0$, så parentesen er positiv og $f>0$.
 
-<Formula tex={"\\dfrac{1}{f}=\\dfrac{n_2-n_1}{n_1}\\!\\left(\\dfrac{1}{R_1}-\\dfrac{1}{R_2}\\right)"} caption={"Linsemakerformelen. $R_1$ og $R_2$ er krumningsradiene til fram- og bakflaten, med fortegn."} />
-
-En bikonveks linse i luft har $R_1>0$ og $R_2<0$, så parentesen er positiv og
-$f>0$. Legg merke til at formelen deler på $n_1$: den samme linsen blir
-svakere i vann enn i luft, fordi indekskontrasten $n_2-n_1$ krymper.
+Sett linsen i vann, $n_1=1{,}33$ i stedet for 1. Da blir telleren $n_2-n_1$
+mindre og nevneren $n_1$ større, så $1/f$ krymper. For $n_2=1{,}5$ er $1/f$
+omtrent en firedel av verdien i luft.
 
 <Example title="linsemaker">
 
@@ -238,21 +277,21 @@ så $f=12{,}0$ cm. Geometrien stemmer.
 </Example>
 
 <Quiz
-  question={"For en positiv linse i luft, hvilket fortegnsett gir en gyldig form?"}
-  options={["$R_1<0,\\ R_2>0$ (bikonkav)","$R_1>0,\\ R_2<0$ (bikonveks)","begge $R$ negative","$R$ uten betydning"]}
+  question={"Hvilken linseform i luft er positiv uansett hvor sterkt flatene krummer?"}
+  options={["bikonkav ($R_1<0,\\ R_2>0$)","bikonveks ($R_1>0,\\ R_2<0$)","menisk (begge $R$ negative)","ingen form"]}
   answer={1}
-  explanation={"Bikonveks: $R_1>0$ (senter til høyre), $R_2<0$ (senter til venstre). Da er $(1/R_1-1/R_2)>0$ og $f>0$."}
+  explanation={"Bikonveks har $1/R_1>0$ og $-1/R_2>0$, så parentesen er positiv for alle radier og $f>0$. En menisk med begge $R$ negative er positiv bare når bakflaten krummer sterkest, $|R_2|<|R_1|$."}
 />
 
 ## Sfærisk speil
 
 Et sfærisk speil følger samme avbildningslikning som tynnlinsen,
-$1/s_o+1/s_i=1/f$, med brennvidde $|f|=R/2$.
+$1/s_o+1/s_i=1/f$, med brennvidde $|f|=|R|/2$.
 
 <Callout type="warning" title="Fortegnsfelle">
 
 Fortegnet på $R$ for speil varierer mellom kilder, og til og med mellom ulike
-deler av kursmaterialet. Det trygge ankeret er fysikken: et konkavt speil
+deler av kursmaterialet. Fysikken avgjør: et konkavt speil
 samler lys og har $f>0$, et konvekst speil sprer og har $f<0$. Slå fast
 hvilken konvensjon oppgaven bruker før du setter inn tall.
 
@@ -264,22 +303,19 @@ Systemer bygges ved å kjede: bildet fra første linse er objekt for neste.
 Ligger bildet bak neste linse, blir objektavstanden negativ, og konvensjonen
 over håndterer det automatisk. Totalforstørrelsen er produktet
 $M=m_1m_2m_3\cdots$, med fortegnene i behold, så to inversjoner gir et opprett
-bilde. Mer systematikk for slike kjeder kommer med matrisemetoden.
+bilde.
 
 <ExamFocus title="Typiske oppgaver">
 
-Fire familier går igjen i settene: linsemaker-design (gitt $f$ og $n$, hvilken
-geometri av $R_1,R_2$ er gyldig), bildeplassering med type og forstørrelse,
-brennvidde fra et forsøksoppsett som to-posisjonsmetoden og speiloppgaver der
-fortegnene gjør jobben. Tilsynelatende dybde gjennom en planflate dukker også
-opp som kort delspørsmål.
+Oppgavesettene har linsemakeroppgaver (gitt $f$ og $n$, finn $R_1$ og $R_2$)
+og bildeplassering med type og forstørrelse.
 
 </ExamFocus>
 
 <KeyTakeaways>
 
-- Avbildning betyr lik optisk veilengde for alle strålene fra objektpunkt til bildepunkt; paraksial tilnærming gjør sfæriske flater gode nok.
-- Snells lov og refleksjonsloven følger av Fermats prinsipp; Huygens gir samme svar fra bølgesiden.
+- Avbildning betyr lik optisk veilengde for alle strålene fra objektpunkt til bildepunkt; paraksialt samler en sfærisk flate alle stråler nær aksen i ett punkt.
+- Snells lov og refleksjonsloven følger av Fermats prinsipp; Huygens' konstruksjon gir også Snells lov, fra bølgesiden.
 - Én sfærisk flate: $n_1/s_o+n_2/s_i=(n_2-n_1)/R$; planflaten gir tilsynelatende dybde $s_i=-(n_2/n_1)s_o$.
 - Tynnlinsen: $1/s_o+1/s_i=1/f$, Newtons form $x_ox_i=f^2$, forstørrelse $m=-s_i/s_o$; sett fortegn før tall.
 - Konkavt speil har $f>0$ uansett konvensjon for $R$; sjekk kildens fortegnsvalg.

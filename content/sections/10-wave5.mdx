@@ -1,18 +1,17 @@
 ---
 order: 10
 title: "Koherens, Michelson-interferometer & tynne filmer"
-summary: "Temporal og spatial koherens med estimater av koherenslengder, koherensgrad og synlighet, Michelson-interferometeret som måleinstrument, og tynnfilm-interferens med antirefleksbelegg."
+summary: "Temporal og spatial koherens med estimater av koherenslengder, koherensgrad og synlighet, Michelson-interferometeret som måleinstrument og tynnfilm-interferens med antirefleksbelegg."
 importance: core
 tag: "Bølgeoptikk V"
 part: "Bølgeoptikk"
 updated: 2026-08-25
 ---
 
-Interferensregningen antar at bølgene kan interferere; denne modulen spør når
-de faktisk kan. Svaret heter <Term name="Koherens">koherens</Term> og kommer i to
-retninger: langs strålen, der spektralbredden setter grensen, og på tvers,
-der kildens utstrekning gjør det. Målet er å kunne anslå koherenslengdene for
-idealiserte situasjoner, og det er den ferdigheten modulen bygger.
+To bølger gir et stabilt stripemønster bare når de er
+<Term name="Koherens">koherente</Term>, altså når faseforskjellen mellom dem
+holder seg fast mens du måler. Langs strålen settes grensen av kildens
+spektralbredde, og på tvers av strålen av kildens utstrekning.
 
 <LearningGoals>
 
@@ -26,8 +25,12 @@ idealiserte situasjoner, og det er den ferdigheten modulen bygger.
 ## Temporal koherens
 
 En kilde med spektralbredde $\Delta\lambda$ sender ikke én uendelig
-sinusbølge, men bølgetog med begrenset lengde: komponentene kommer ut av
-takt etter en tid, og lengden på toget er koherenslengden
+sinusbølge, men bølgetog med begrenset lengde. Komponentene i båndet starter
+i takt. Etter tiden $\tau_c=1/\Delta f$ har den raskeste svingt én gang mer
+enn den langsomste, så fasene i båndet er spredt over en hel periode og
+komponentene slokker hverandre. Toget er da $l_c=c\tau_c=c/\Delta f$ langt.
+Med $f=c/\lambda$ er $\Delta f=c\,\Delta\lambda/\lambda_0^2$, så
+koherenslengden er
 
 <Formula tex={"l_c=\\dfrac{\\lambda_0^2}{\\Delta\\lambda}=\\dfrac{c}{\\Delta f}"} caption={"Temporal koherenslengde fra kildens spektralbredde."} />
 
@@ -37,37 +40,36 @@ synlige spekteret (400–700 nm) gir rundt 1 µm, og det er derfor hvitt lys
 bare interfererer for bitte små veiforskjeller. En HeNe-laser med
 $\Delta f\sim1$ GHz har $l_c=c/\Delta f\approx30$ cm.
 
-Det stringente språket for dette er koherensfunksjonen: for en kilde med
-spektraltetthet $W(\omega)$ er $\Gamma(\tau)$ Fourier-transformen av
-spekteret, og koherensgraden $\gamma(\tau)=\Gamma(\tau)/\Gamma(0)$ er den
-normerte versjonen. Synligheten i et tostråleoppsett med tidsforsinkelse
-$\tau$ mellom armene er nettopp $V=|\gamma(\tau)|$: et smalt spektrum gir en
-bred $\gamma$ og striper langt utover, et bredt spektrum gir en smal
-$\gamma$. For et rektangulært spektrum blir omhyllingen en sinc-funksjon.
-Regningen forbi dette hører til fordypning; estimatene over er det som
-brukes.
+For en kilde med spektraltetthet $W(\omega)$ er $\Gamma(\tau)$ Fourier-transformen
+av spekteret, og koherensgraden $\gamma(\tau)=\Gamma(\tau)/\Gamma(0)$ er den
+normerte versjonen. I et tostråleoppsett med tidsforsinkelse $\tau$ mellom
+armene er synligheten for like sterke stråler $V=|\gamma(\tau)|$, og for
+ulike intensiteter
 
-<Compare>
+$$
+V=\frac{2\sqrt{I_1I_2}}{I_1+I_2}\,|\gamma(\tau)|.
+$$
 
-<CompareCol title="Temporal koherens">
+Et smalt spektrum gir en bred $\gamma$ og striper langt utover, et bredt
+spektrum gir en smal $\gamma$. For et rektangulært spektrum er $|\gamma|$ en
+sinc-funksjon.
 
-- Interferensevne langs strålen, i tid.
-- Settes av spektralbredden: $l_c=\lambda_0^2/\Delta\lambda=c/\Delta f$.
-- Laser: centimeter til meter. LED: mikrometer.
-- Begrenser veiforskjellen i en Michelson før stripene vaskes ut.
+<Derivation title="Koherensfunksjonen og synligheten">
+Hvert frekvensbånd $d\omega$ i spekteret gir sitt eget tostrålemønster,
+$dI=2W(\omega)\,d\omega\,[1+\cos\omega\tau]$, der $\tau$ er tidsforsinkelsen
+mellom armene og begge armene bærer like mye lys. Ulike frekvenser gir ikke et
+stabilt kryssledd med hverandre, så intensitetene legges sammen:
 
-</CompareCol>
+$$
+I(\tau)=2\bigl[\Gamma(0)+\mathrm{Re}\,\Gamma(\tau)\bigr],\qquad \Gamma(\tau)=\int W(\omega)\,e^{-i\omega\tau}\,d\omega.
+$$
 
-<CompareCol title="Spatial koherens">
-
-- Interferensevne på tvers av strålen.
-- Settes av kildens vinkelutstrekning $\theta$: $l_s=1{,}22\lambda/\theta$.
-- Liten eller fjern kilde: stor $l_s$. Utstrakt kilde: liten.
-- Avgjør om to spalter i et Young-oppsett ser samme bølgefront.
-
-</CompareCol>
-
-</Compare>
+Med $\gamma=\Gamma(\tau)/\Gamma(0)$ svinger $I$ mellom $2\Gamma(0)(1\pm|\gamma|)$
+når $\tau$ endres litt, så synligheten er $V=|\gamma(\tau)|$. For et
+rektangulært spektrum med bredde $\Delta f$ er $|\gamma|=|\sin x/x|$ med
+$x=\pi\Delta f\,\tau$, og stripene forsvinner første gang ved $\tau=1/\Delta f$,
+altså ved veiforskjellen $l_c=c/\Delta f$.
+</Derivation>
 
 ## Michelson-interferometeret
 
@@ -76,15 +78,14 @@ sammen igjen. Veiforskjellen mellom armene er $\Delta p=2d\cos\theta$, der
 $d$ er armlengdeforskjellen, og på aksen er intensiteten
 $I=4I_0\cos^2(\delta/2)$ med $\delta=2\pi\Delta p/\lambda$. Flyttes ett
 speil $\Delta d$, endres veien med det dobbelte, og $\Delta m=2\Delta
-d/\lambda$ striper passerer. Det gjør instrumentet til en linjal med
-nanometeroppløsning: tell striper, og du har målt en forskyvning eller en
-bølgelengde.
+d/\lambda$ striper passerer. Hver stripe som passerer, betyr at speilet har
+flyttet seg $\lambda/2$. Teller du striper, måler du en forskyvning når
+$\lambda$ er kjent, og en bølgelengde når forskyvningen er kjent.
 
 Instrumentet måler også koherens. Øk armforskjellen til stripene vaskes ut,
 og veiforskjellen der $V$ går mot null er koherenslengden, som igjen gir
 spektralbredden. Michelson og Morley lette etter eteren med et slikt
-interferometer, og fant den ikke. Fabry–Perot, flerstråleinterferometeret med
-to høyreflekterende speil, er ikke pensum her.
+interferometer, og fant den ikke.
 
 <Example title="telle striper i Michelson">
 
@@ -121,21 +122,64 @@ $\Delta m=2\Delta d/\lambda=(1{,}00\times10^{-3})/(633\times10^{-9})\approx1{,}6
 
 Se på et Young-oppsett belyst av en utstrakt kilde. Hvert punkt på kilden
 lager sitt eget stripemønster, litt forskjøvet fra naboens, og når
-forskyvningene spenner en halv stripeavstand, er summen grå. Det skjer når
-kilden spenner en for stor vinkel $\theta$ sett fra spaltene, og estimatet
-er $l_s\approx\lambda/(2\theta)$ for avstanden mellom to punkter som ennå
-kan interferere. Den formelle regningen integrerer over kilden og gir
-koherensfunksjonen som Fourier-transformen av kildens intensitetsfordeling
-(van Cittert–Zernike-teoremet); for en sirkulær kilde blir resultatet
+forskyvningene spenner en halv stripeavstand, er summen grå. Kildens to kanter
+har vinkelen $\theta$ mellom seg sett fra spaltene. For spalter med avstand $l$
+gir den vinkelen to mønstre som er forskjøvet i forhold til hverandre med
+veiforskjellen $l\theta$, mens en hel stripeavstand tilsvarer veiforskjellen
+$\lambda$. Er $l\theta=\lambda/2$, ligger maksimaene i det ene mønsteret på
+minimaene i det andre. Avstanden mellom to punkter som ennå kan interferere,
+er altså omtrent
+
+$$
+l_s\approx\frac{\lambda}{2\theta}.
+$$
+
+Den nøyaktige verdien avhenger av kildens form. For en sirkulær kilde er
 
 <Formula tex={"l_s<\\dfrac{1{,}22\\,\\lambda}{\\theta}=\\dfrac{1{,}22\\,\\lambda\\,r}{s}"} caption={"Spatial koherensbredde for en sirkulær kilde med diameter $s$ i avstand $r$; $\\theta=s/r$."} />
 
-Faktoren 1,22 kommer igjen i diffraksjonen fra en sirkulær apertur; det er
-samme matematikk. Som estimat: Sola spenner $\theta\approx9$ mrad, så
+Som estimat: Sola spenner $\theta\approx9$ mrad, så
 sollys er spatialt koherent over bare $1{,}22\cdot550\ \text{nm}/0{,}009\approx75$
 µm. Snus formelen, blir den et måleinstrument: Michelson og Pease fant i
 1920 vinkeldiameteren til Betelgeuse ved å øke spalteavstanden på et
 teleskop til stripene forsvant.
+
+<Derivation title="Jevnt lysende stripe og sirkulær kilde">
+Legg sammen mønstrene fra alle punktene på en jevnt lysende stripe med bredde
+$s$ i avstanden $r$, så $\theta=s/r$. Synligheten blir $|\sin x/x|$ med
+$x=\pi l\theta/\lambda=\pi ls/(\lambda r)$, og stripene forsvinner første gang
+ved $x=\pi$, altså ved $l_s=\lambda/\theta=\lambda r/s$.
+
+For en sirkulær kilde er summen Fourier-transformen av en jevnt lysende
+sirkelskive (van Cittert–Zernike-teoremet). Den gir synligheten
+$|2J_1(x)/x|$ med samme $x$, der $J_1$ er Bessel-funksjonen av første slag og
+første orden. Det første nullpunktet ligger ved $x\approx3{,}83$, altså
+$l_s=3{,}83\,\lambda/(\pi\theta)=1{,}22\,\lambda/\theta$. Diffraksjon fra en
+sirkulær apertur er også Fourier-transformen av en jevnt opplyst sirkelskive,
+og derfor står den samme faktoren 1,22 i Airy-mønsteret.
+</Derivation>
+
+<Compare>
+
+<CompareCol title="Temporal koherens">
+
+- Interferensevne langs strålen, i tid.
+- Settes av spektralbredden: $l_c=\lambda_0^2/\Delta\lambda=c/\Delta f$.
+- Laser: centimeter til meter. LED: mikrometer.
+- Begrenser veiforskjellen i en Michelson før stripene vaskes ut.
+
+</CompareCol>
+
+<CompareCol title="Spatial koherens">
+
+- Interferensevne på tvers av strålen.
+- Settes av kildens vinkelutstrekning $\theta$: $l_s=1{,}22\lambda/\theta$ for en sirkulær kilde.
+- Liten eller fjern kilde: stor $l_s$. Utstrakt kilde: liten.
+- Avgjør om to spalter i et Young-oppsett ser samme bølgefront.
+
+</CompareCol>
+
+</Compare>
 
 <Quiz
   question={"Gjøres kilden i et Young-oppsett større (bredere), vil stripene …"}
@@ -164,7 +208,7 @@ eventually fades away at approx. 24 cm from the double slit.
   question={"What was the diameter of the laser aperture?"}
   options={["1.0 mm", "0.88 mm", "0.73 mm", "0.59 mm"]}
   answer={3}
-  explanation={"Aperturen er en utstrakt, sirkulær kilde med diameter $s$ i avstanden $r$. Spaltene får korrelert lys så lenge avstanden mellom dem er mindre enn den spatiale koherenslengden $l_s = 1{,}22\\lambda r/s$. Stripene forsvinner der $l_s$ blir lik spalteavstanden $a = 0{,}20$ mm, ved $r = 24$ cm. Snu formelen: $s = 1{,}22\\lambda r/a$, med $\\lambda = 400$ nm, $r = 0{,}24$ m og $a = 0{,}20$ mm, gir $s = 0{,}59$ mm. Spaltebredden på 10 µm trengs ikke."}
+  explanation={"Aperturen er en utstrakt, sirkulær kilde med diameter $s$ i avstanden $r$. Spaltene får korrelert lys så lenge avstanden mellom dem er mindre enn den spatiale koherenslengden $l_s = 1{,}22\\lambda r/s$. Stripene forsvinner der $l_s$ blir lik spalteavstanden $a = 0{,}20$ mm, ved $r = 24$ cm. Snu formelen: $s = 1{,}22\\lambda r/a$, med $\\lambda = 400$ nm, $r = 0{,}24$ m og $a = 0{,}20$ mm, gir $s = 0{,}59$ mm. Spaltbredden på 10 µm trengs ikke."}
 />
 </Example>
 
@@ -180,10 +224,23 @@ ekstra halvbølgeskift. På et <Term name="Antirefleksbelegg">antirefleksbelegg<
 (film på glass med $n_0<n_f<n_s$) skifter begge refleksene likt, så
 betingelsen for destruktiv refleksjon ved normalt innfall er ren
 kvartbølge: $2n_ft=\lambda/2$. Perfekt utslukking krever i tillegg like
-sterke reflekser, og det gir den ideelle beleggindeksen
-$n_f=\sqrt{n_0n_s}$; MgF₂ med $n=1{,}38$ er det praktiske kompromisset på
+sterke reflekser. Ved normalt innfall er refleksjonskoeffisienten
+$r=(n_a-n_b)/(n_a+n_b)$ på hver flate, og like store $|r|$ på luft–film og
+film–glass,
+$\dfrac{n_f-n_0}{n_f+n_0}=\dfrac{n_s-n_f}{n_s+n_f}$, gir $n_f^2=n_0n_s$, altså
+$n_f=\sqrt{n_0n_s}$. MgF₂ med $n=1{,}38$ er det praktiske kompromisset på
 glass. Samme veiforskjellsregning forklarer Newtons ringer rundt
 kontaktpunktet mellom en linse og en plate, og fargespillet i såpebobler.
+
+<Derivation title="Veiforskjellen i en tynn film">
+Strålen som går inn i filmen, går veien $2t/\cos\theta_t$ ned og opp igjen,
+altså den optiske veien $2n_ft/\cos\theta_t$. Mens den gjør det, flytter den
+seg $2t\tan\theta_t$ langs flaten. Strålen som reflekteres rett fra oversiden,
+får den ekstra optiske veien $n_0\cdot2t\tan\theta_t\sin\theta_0$ fram til
+samme bølgefront. Med Snells lov, $n_0\sin\theta_0=n_f\sin\theta_t$, er den
+ekstra veien $2n_ft\sin^2\theta_t/\cos\theta_t$. Forskjellen er
+$2n_ft(1-\sin^2\theta_t)/\cos\theta_t=2n_ft\cos\theta_t$.
+</Derivation>
 
 <Example title="antirefleksbelegg ved skrått innfall">
 
@@ -235,7 +292,7 @@ polycarbonate glasses (n=1,59).
   question={"What refractive index and what thickness does the layer need to have to achieve zero reflections for light coming in at normal incidence? Assume the wavelength of the incoming light to be 550 nm (middle of the visible spectrum). Hint: Finding/using the expression for the reflectance at normal incidence can be helpful."}
   options={["film refractive index = 1,33", "Film thickness =109 nm", "Film thickness =219 nm", "film refractive index = 1,26", "Film thickness =103 nm", "film refractive index = 2,53", "film refractive index =1,50", "Film thickness = 92 nm"]}
   answer={[1, 3]}
-  explanation={"Null refleksjon krever to ting. De to reflekterte bølgene, fra luft–film og fra film–glass, må være like sterke, og ved normalt innfall er $r = (n_1 - n_2)/(n_1 + n_2)$ for hver flate; like store $|r|$ gir $n_f = \\sqrt{n_0 n_s} = \\sqrt{1\\cdot 1{,}59} = 1{,}26$. Og de må være i motfase, altså en kvartbølgefilm: $t = \\lambda/4n_f = 550\\ \\text{nm}/(4\\cdot 1{,}26) = 109$ nm."}
+  explanation={"Null refleksjon krever at de to reflekterte bølgene, fra luft–film og fra film–glass, er like sterke og i motfase. Like sterke: ved normalt innfall er $r = (n_1 - n_2)/(n_1 + n_2)$ for hver flate, og like store $|r|$ gir $n_f = \\sqrt{n_0 n_s} = \\sqrt{1\\cdot 1{,}59} = 1{,}26$. I motfase: en kvartbølgefilm, $t = \\lambda/4n_f = 550\\ \\text{nm}/(4\\cdot 1{,}26) = 109$ nm."}
 />
 </Example>
 
@@ -254,14 +311,14 @@ antirefleks-regning, gjerne med vinkelvrien fra eksempelet over, igjen.
   question={"Lav synlighet $V$ betyr …"}
   options={["stor kontrast","liten forskjell mellom maksima og minima","ingen bølgelengde","bare TE-polarisasjon"]}
   answer={1}
-  explanation={"$V=(I_\\text{max}-I_\\text{min})/(I_\\text{max}+I_\\text{min})$ måler stripekontrasten, og $V=|\\gamma|$ knytter den til koherensgraden."}
+  explanation={"$V=(I_\\text{max}-I_\\text{min})/(I_\\text{max}+I_\\text{min})$ måler stripekontrasten, og for like sterke stråler er $V=|\\gamma|$, koherensgraden."}
 />
 
 <KeyTakeaways>
 
 - Temporal koherens settes av spektralbredden: $l_c=\lambda_0^2/\Delta\lambda=c/\Delta f$; LED gir mikrometer, laser centimeter og mer.
 - Spatial koherens settes av kildens vinkelutstrekning: $l_s=1{,}22\lambda/\theta$, med $\lambda/(2\theta)$ som raskt estimat.
-- Synligheten er koherensgraden: $V=|\gamma|$, og den faller mot null når veiforskjellen når $l_c$.
+- For like sterke stråler er synligheten koherensgraden, $V=|\gamma|$, og den faller mot null når veiforskjellen når $l_c$.
 - Michelson: $\Delta m=2\Delta d/\lambda$ striper per speilforskyvning; instrumentet måler lengder, bølgelengder og koherens.
 - Tynnfilm: $\Delta=2n_ft\cos\theta_t$ pluss eventuelle halvbølgeskift; antirefleks er et kvartbølgelag med ideell indeks $\sqrt{n_0n_s}$.
 

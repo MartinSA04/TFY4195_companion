@@ -8,11 +8,10 @@ part: "Bølgeoptikk"
 updated: 2026-09-27
 ---
 
-Geometrisk optikk sier hvor strålene går, men ikke hvor mye lys som følger
-dem. Det svarer bølgeoptikken på: kravet om at felt skal henge sammen over en
-grenseflate gir både Snells lov på nytt og, som ny gevinst, Fresnels
-likninger for hvor mye som reflekteres og transmitteres, for hver
-polarisasjonskomponent.
+Med stråler vet du hvor lyset går, men ikke hvor mye som følger hver stråle.
+Kravet om at feltene henger sammen over en grenseflate gir både Snells lov og
+Fresnels likninger, som sier hvor mye av hver polarisasjonskomponent som
+reflekteres og transmitteres.
 
 <LearningGoals>
 
@@ -29,13 +28,22 @@ Send en planbølge mot en flate. Feltene på hver side må passe sammen i
 hvert punkt av flaten til enhver tid, og det er bare mulig hvis de tre
 bølgene, innfallende, reflektert og transmittert, svinger i takt langs
 flaten: $\vec k\cdot\vec r=\vec k_r\cdot\vec r=\vec k_t\cdot\vec r$ der.
-Av det følger tre ting uten videre regning: de tre strålene ligger i samme
-plan (innfallsplanet), refleksjonsvinkelen er lik innfallsvinkelen, og
-$n_1\sin\theta_1=n_2\sin\theta_2$. Snells lov er altså ikke en egen
-antakelse i bølgebildet; den er fasetilpasning.
+Likheten skal gjelde for alle $\vec r$ i flaten, så de tre bølgevektorene har
+samme komponent langs flaten og ligger i samme plan, innfallsplanet.
+Komponenten langs flaten er $k\sin\theta$, målt med vinkelen mot normalen, og
+$k=n\omega/c$ med samme $\omega$ i alle tre bølgene. Med vinklene $\theta$,
+$\theta_r$ og $\theta_t$ for innfallende, reflektert og transmittert stråle er
+da
 
-Hvor mye av feltet som går hver vei, krever grensebetingelsene i detalj:
-tangentialkomponentene av $\vec E$ og $\vec B$ er kontinuerlige. Svaret
+$$
+n_1\sin\theta=n_1\sin\theta_r=n_2\sin\theta_t
+$$
+
+Den første likheten gir $\theta_r=\theta$, ettersom innfallende og reflektert
+bølge går i samme medium. Den andre er Snells lov.
+
+Hvor mye av feltet som går hver vei, følger av at tangentialkomponentene av
+$\vec E$ og $\vec B$ er kontinuerlige. Svaret
 avhenger av polarisasjonen, og kurset deler den i TE, der $\vec E$ står
 vinkelrett på innfallsplanet, og TM, der $\vec E$ ligger i det. Andre
 kilder kaller de samme komponentene s og p.
@@ -46,13 +54,51 @@ kilder kaller de samme komponentene s og p.
 
 <Formula tex={"r_{TM}=\\dfrac{-n^2\\cos\\theta+\\sqrt{n^2-\\sin^2\\theta}}{n^2\\cos\\theta+\\sqrt{n^2-\\sin^2\\theta}}"} caption={"TM-refleksjonskoeffisient, med kursets fortegnskonvensjon."} />
 
-Koeffisientene er felt-forhold. Energien bruker kvadratene:
+Koeffisientene er forhold mellom felt, og effekten er proporsjonal med kvadratet av feltet:
 
-<Formula tex={"R=r^2,\\quad T=n\\dfrac{\\cos\\theta_t}{\\cos\\theta}\\,t^2"} caption={"Reflektans og transmittans; energibevaring gir $R+T=1$."} />
+<Formula tex={"R=r^2,\\quad T=n\\dfrac{\\cos\\theta_t}{\\cos\\theta}\\,t^2"} caption={"Reflektans og transmittans; $t$ er forholdet mellom transmittert og innfallende felt. Energibevaring gir $R+T=1$."} />
 
-Ved normal innfall kollapser begge til samme tall,
-$R=\left(\dfrac{n_1-n_2}{n_1+n_2}\right)^2$, som for luft mot glass er
-omtrent 4 prosent. Det er refleksen du ser i et vindu.
+<Derivation title="Fresnels likninger fra grensebetingelsene">
+
+For TE ligger $\vec E$ langs flaten. Kontinuerlig $E$ gir $1+r=t$. Kontinuerlig
+tangentiell $B$, med $B=nE/c$, gir $n_1\cos\theta\,(1-r)=n_2\cos\theta_t\,t$.
+Sett inn $t=1+r$ og løs for $r$:
+
+$$
+r_{TE}=\frac{\cos\theta-n\cos\theta_t}{\cos\theta+n\cos\theta_t},\qquad n\cos\theta_t=\sqrt{n^2-\sin^2\theta}
+$$
+
+Den siste likheten følger av Snells lov, $\sin\theta=n\sin\theta_t$. TM går på
+samme måte med $\vec B$ langs flaten, opp til fortegnskonvensjonen.
+
+</Derivation>
+
+Sett $\theta=0$. Da er $\sqrt{n^2-0}=n$, og begge koeffisientene blir
+$r=(1-n)/(1+n)$, så
+$R=\left(\dfrac{n_1-n_2}{n_1+n_2}\right)^2$. For luft mot glass er $R$
+omtrent 4 prosent, og det er refleksen du ser i et vindu.
+
+## Brewster, ekstern og intern refleksjon
+
+$r_{TM}$ er null når telleren er null, altså når
+$n^2\cos\theta=\sqrt{n^2-\sin^2\theta}$. Kvadrer og bytt $\sin^2\theta$ med
+$1-\cos^2\theta$:
+
+$$
+n^4\cos^2\theta=n^2-1+\cos^2\theta\;\Rightarrow\;(n^2-1)(n^2+1)\cos^2\theta=n^2-1\;\Rightarrow\;\cos^2\theta=\frac{1}{n^2+1}\;\Rightarrow\;\tan\theta=n
+$$
+
+Da er $\sin\theta=n\cos\theta$, og Snells lov $\sin\theta=n\sin\theta_t$ gir
+$\sin\theta_t=\cos\theta$. Den transmitterte strålen står altså vinkelrett på
+den reflekterte.
+
+<Statement kind="law" name="Brewsters lov">
+
+Reflektert lys blir fullstendig lineært polarisert (kun TE) når
+innfallsvinkelen er $\theta_p=\arctan(n_2/n_1)$. Da står den reflekterte og
+den transmitterte strålen vinkelrett på hverandre.
+
+</Statement>
 
 <Compare>
 
@@ -74,25 +120,16 @@ omtrent 4 prosent. Det er refleksen du ser i et vindu.
 
 </Compare>
 
-## Brewster, ekstern og intern refleksjon
-
-<Statement kind="law" name="Brewsters lov">
-
-Reflektert lys blir fullstendig lineært polarisert (kun TE) når
-innfallsvinkelen er $\theta_p=\arctan(n_2/n_1)$. Da står den reflekterte og
-den transmitterte strålen vinkelrett på hverandre.
-
-</Statement>
-
 For lys fra luft mot glass ($n_2/n_1=1{,}5$) er $\theta_p=56{,}3^\circ$.
-Det er prinsippet bak polariserende solbriller: gjenskinn fra vann og asfalt
-kommer inn nær Brewster og er derfor nesten rent TE, som brillene sperrer.
+Skrått reflektert lys er mest TE, ettersom $R_{TE}>R_{TM}$ for alle
+innfallsvinkler mellom 0 og $90^\circ$, og rent TE ved $\theta_p$. Polariserende solbriller sperrer TE og demper derfor
+gjenskinn fra vann og asfalt.
 
 Innenfra glasset mot luft finnes to spesielle vinkler. Brewster-vinkelen
 ligger nå på $\arctan(1/1{,}5)=33{,}7^\circ$, og ved den kritiske vinkelen
 $\theta_c=\arcsin(1/1{,}5)=41{,}8^\circ$ når transmisjonsvinkelen
 $90^\circ$. Over $\theta_c$ er $|r|=1$ for begge komponentene: total intern
-refleksjon, som er tema i neste del av bølgeoptikken.
+refleksjon.
 
 Endre forholdet $n_2/n_1$ i figuren og se Brewster-vinkelen der TM-kurven
 krysser null, og, for internt forhold under 1, den kritiske vinkelen der
@@ -188,31 +225,48 @@ refractive index 1.60 with the incident angle 58°.
   question={"What can you say about the reflected light?"}
   options={["No light is reflected", "All reflected light is linearly polarized.", "All light is reflected.", "The reflected light is left circularly polarized.", "The reflected light is right circularly polarized."]}
   answer={1}
-  explanation={"Utenfra er Brewstervinkelen $\\tan\\theta_p = 1{,}60$, altså $\\theta_p = 58{,}0^\\circ$. Innfallsvinkelen er nøyaktig den. Brewsters lov bryr seg ikke om hvordan det innfallende lyset er polarisert: sirkulært lys har både en TE- og en TM-komponent, og i $\\theta_p$ reflekteres bare TE. Det reflekterte lyset er derfor lineært polarisert. Totalrefleksjon finnes ikke fra luft inn mot glass, og noe lys reflekteres alltid."}
+  explanation={"Utenfra er Brewstervinkelen $\\tan\\theta_p = 1{,}60$, altså $\\theta_p = 58{,}0^\\circ$. Innfallsvinkelen er nøyaktig den. Brewster-vinkelen avhenger ikke av hvordan det innfallende lyset er polarisert: sirkulært lys har både en TE- og en TM-komponent, og i $\\theta_p$ reflekteres bare TE. Det reflekterte lyset er derfor lineært polarisert. Totalrefleksjon finnes ikke fra luft inn mot glass, og noe lys reflekteres alltid."}
 />
 </Example>
 
 ## Materialets respons: dispersjon
 
-Brytningsindeksen avhenger av bølgelengden, og Lorentz-modellen forklarer
-hvorfor med klassisk mekanikk: et bundet elektron er en dempet, drevet harmonisk oscillator med
-egenfrekvens $\omega_0$, drevet av lysets felt. Løses bevegelseslikningen og
-summeres dipolbidragene, kommer en kompleks brytningsindeks ut:
+Brytningsindeksen avhenger av bølgelengden. I Lorentz-modellen er et bundet
+elektron en dempet, drevet harmonisk oscillator med egenfrekvens $\omega_0$,
+drevet av lysets felt, og da er brytningsindeksen kompleks:
 
 <Formula tex={"\\tilde n^2(\\omega)=1+\\dfrac{e^2N}{\\varepsilon_0 m_e}\\cdot\\dfrac{1}{\\omega_0^2-\\omega^2-i\\omega\\gamma}"} caption={"Lorentz-modellen. $N$ = oscillatortetthet, $\\gamma$ = dempning, $\\omega_0$ = resonansfrekvens."} />
 
+<Derivation title="Lorentz-modellen fra bevegelseslikningen">
+
+Et elektron med ladning $-e$ i feltet $E=E_0e^{-i\omega t}$ har
+$m_e\ddot x+m_e\gamma\dot x+m_e\omega_0^2x=-eE$. Med $x\propto e^{-i\omega t}$
+er
+
+$$
+x=-\frac{eE/m_e}{\omega_0^2-\omega^2-i\omega\gamma}
+$$
+
+Med $N$ elektroner per volum er polarisasjonen $P=-Nex$, og
+$\tilde n^2=1+P/(\varepsilon_0E)$ gir formelen.
+
+</Derivation>
+
 Realdelen $n_R$ er den vanlige indeksen som styrer fasefarten. Imaginærdelen
 $n_I$ gir dempning: feltet faller som $e^{-2\pi n_I z/\lambda}$ innover i
-mediet, så $n_I$ er stor bare nær resonansene, der mediet absorberer.
+mediet, der $\lambda$ er bølgelengden i vakuum. Leddet $-i\omega\gamma$ i
+nevneren er bare merkbart når $\omega_0^2-\omega^2$ er liten, altså når $\omega$
+ligger nær $\omega_0$. Derfor er $n_I$ stor bare nær resonansene, og der
+absorberer mediet.
 Mellom resonansene vokser $n_R$ med frekvensen. Det er normal
 <Term name="Dispersjon">dispersjon</Term>: blått bryter mer enn rødt, og derfor
 sorterer prismer og regndråper farger.
 
-Et ekte glass har flere resonanser med ulik styrke, og summen av dem gir de
-praktiske glassformlene av Sellmeier-typen,
-$n(\lambda)=A+B/\lambda^2+C/\lambda^4+\cdots$, som produsentene oppgir
-koeffisienter til. En stringent utledning hører hjemme i andre emner;
-her er det resultatet og tolkningen av $n_R$ og $n_I$ som teller.
+Et ekte glass har flere resonanser med ulik styrke. Summen av dem gir
+Sellmeier-formelen
+$n^2=1+\sum_j B_j\lambda^2/(\lambda^2-\lambda_j^2)$, og produsentene oppgir
+koeffisientene $B_j$ og $\lambda_j$. Langt fra resonansene tilnærmes den med
+Cauchys formel $n(\lambda)=A+B/\lambda^2+C/\lambda^4+\cdots$.
 
 <ExamFocus title="Typiske oppgaver">
 

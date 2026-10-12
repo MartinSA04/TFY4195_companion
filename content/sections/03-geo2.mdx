@@ -1,7 +1,7 @@
 ---
 order: 3
 title: "Stråle-transfer-matriser (ray tracing)"
-summary: "Matrisemetoden for paraksial optikk: elementmatrisene, systemmatrisen og hva hvert element forteller, med determinantkontroll, de fire spesialtilfellene og kardinalpunktene til et sammensatt system."
+summary: "Matrisemetoden for paraksial optikk: elementmatrisene, systemmatrisen og hva hvert element forteller, med determinantkontroll, nullene i systemmatrisen og kardinalpunktene til et sammensatt system."
 importance: core
 tag: "Geometrisk optikk II"
 part: "Geometrisk optikk"
@@ -36,20 +36,37 @@ $$
 
 Noen kilder skriver elementene $A_{11},A_{12},A_{21},A_{22}$ i stedet for
 $A,B,C,D$; det er samme matrise. To operasjoner bygger alt: fri translasjon endrer
-høyden ($y_2=y_1+d\,\alpha_1$), brytning i en flate endrer vinkelen via Snells
-lov i linearisert form.
+høyden ($y_2=y_1+d\,\alpha_1$), og brytning i en flate endrer vinkelen. Høyden er
+den samme på begge sider av flaten.
 
 <Formula tex={"\\begin{pmatrix}1 & d \\\\ 0 & 1\\end{pmatrix}"} caption={"Translasjon avstand $d$ i samme medium."} />
 
 <Formula tex={"\\begin{pmatrix}1 & 0 \\\\ 0 & n_1/n_2\\end{pmatrix}"} caption={"Brytning i plan flate."} />
 
+Normalen til en plan flate ligger langs aksen, og Snells lov for små vinkler,
+$n_1\alpha_1=n_2\alpha_2$, gir matrisen over. I en sfærisk flate er normalen i
+høyden $y$ vridd vinkelen $y/R$ mot aksen, så vinklene mot normalen er
+$\alpha_1+y/R$ inn og $\alpha_2+y/R$ ut. Snells lov gir da
+
+$$
+n_1\Bigl(\alpha_1+\frac{y}{R}\Bigr)=n_2\Bigl(\alpha_2+\frac{y}{R}\Bigr)\;\Rightarrow\;\alpha_2=\frac{n_1-n_2}{n_2R}\,y+\frac{n_1}{n_2}\,\alpha_1
+$$
+
+og koeffisientene er nederste rad i matrisen:
+
 <Formula tex={"\\begin{pmatrix}1 & 0 \\\\ \\frac{n_1-n_2}{n_2 R} & n_1/n_2\\end{pmatrix}"} caption={"Brytning i sfærisk flate med radius $R$ ($R>0$ når flaten buler mot lyset)."} />
 
 <Formula tex={"\\begin{pmatrix}1 & 0 \\\\ -1/f & 1\\end{pmatrix}"} caption={"Tynn linse med brennvidde $f$."} />
 
-Tynnlinsematrisen faller ut av å kjede flate–translasjon–flate og la tykkelsen
-gå mot null; på veien detter linsemakerformelen ut som biprodukt, en fin
-kontroll på at metoden stemmer med tynnlinseteorien.
+<Derivation title="Tynnlinsematrisen fra to flater">
+Linsen har brytningsindeks $n_2$ og står i et medium med $n_1$. Med tykkelsen null er matrisen produktet av flatematrisene: fra $n_2$ til $n_1$ ved $R_2$, ganger fra $n_1$ til $n_2$ ved $R_1$. Øverste rad blir $(1,\ 0)$, og nederste rad er
+
+$$
+C=\frac{n_2-n_1}{n_1R_2}+\frac{n_2}{n_1}\cdot\frac{n_1-n_2}{n_2R_1}=-\frac{n_2-n_1}{n_1}\Bigl(\frac{1}{R_1}-\frac{1}{R_2}\Bigr),\qquad D=\frac{n_2}{n_1}\cdot\frac{n_1}{n_2}=1
+$$
+
+Linsemakerformelen er $1/f=\frac{n_2-n_1}{n_1}\bigl(\frac{1}{R_1}-\frac{1}{R_2}\bigr)$, så $C=-1/f$.
+</Derivation>
 
 <Callout type="warning" title="Trykkfeil i læreboka">
 
@@ -61,13 +78,13 @@ med minustegnet i nedre venstre hjørne.
 ## Systemmatrisen
 
 Lyset møter elementene i rekkefølgen 1, 2, 3, men matrisene skrives i motsatt
-rekkefølge: $M=M_n\cdots M_2M_1$, siste element lengst til venstre. Det er den
-vanligste feilen i hele metoden. Etter multiplikasjonen har du to raske
-kontroller. Determinanten skal være $n_1/n_2$, altså 1 når systemet starter og
-slutter i samme medium; gjør sjekken i hvert regneeksempel før
-tolkningen begynner. Og består systemet bare av tynne linser
-i luft, kan du kontrollere svaret mot tynnlinselikningen brukt linse for
-linse.
+rekkefølge: $M=M_n\cdots M_2M_1$, siste element lengst til venstre. Å gange matrisene i lysets rekkefølge er en
+vanlig feil. Etter multiplikasjonen kan du kontrollere svaret på to måter.
+Determinanten til et produkt er produktet av determinantene. En translasjon har
+determinant 1 og en brytende flate $n_\text{før}/n_\text{etter}$, så
+$\det M=n_\text{start}/n_\text{slutt}$, altså 1 når systemet starter og slutter
+i samme medium. Og består systemet bare av tynne linser i luft, kan du
+kontrollere svaret mot tynnlinselikningen brukt linse for linse.
 
 <Steps>
 
@@ -84,7 +101,7 @@ $M=M_n\cdots M_2M_1$: det siste elementet lyset møter står lengst til venstre.
 </Step>
 
 <Step title="Kontroller determinanten">
-$\det M=1$ i samme medium, ellers $n_1/n_2$. Feil determinant betyr regnefeil.
+$\det M=1$ i samme medium, ellers $n_\text{start}/n_\text{slutt}$. Feil determinant betyr regnefeil.
 </Step>
 
 <Step title="Les av fysikken">
@@ -93,10 +110,9 @@ Bruk tabellen under: nuller i matrisen er optiske utsagn.
 
 </Steps>
 
-## De fire spesialtilfellene
+## Nuller i systemmatrisen
 
-Et null i systemmatrisen er et optisk utsagn, og alle fire tilfellene er
-meningsfulle:
+Hvert null i systemmatrisen er et optisk utsagn:
 
 <Table
   caption={"Tolkning av systemmatrisen $\\begin{pmatrix}A&B\\\\C&D\\end{pmatrix}$ mellom et innplan og et utplan."}
@@ -158,8 +174,19 @@ Et sammensatt system i luft oppfører seg som én tynn linse, bare ikke målt fr
 noen fysisk flate. Det finnes to plan, hovedplanene $H_1$ og $H_2$, slik at
 tynnlinselikningen gjelder eksakt når $s_o$ måles til $H_1$ og $s_i$ fra
 $H_2$. Sammen med brennpunktene $F_1$ og $F_2$ (og nodalpunktene, som i luft
-faller sammen med hovedpunktene) er de systemets kardinalpunkter. Alt
-leses ut av systemmatrisen mellom første og siste flate:
+faller sammen med hovedpunktene) er de systemets kardinalpunkter.
+
+La $M$ være systemmatrisen fra første til siste flate, og la $H_1$ ligge $p$ til
+høyre for innplanet og $H_2$ ligge $q$ til høyre for utplanet. Matrisen fra
+$H_1$ til $H_2$ er $T(q)\,M\,T(-p)$, og den skal være tynnlinsematrisen:
+
+$$
+\begin{pmatrix}A+qC & B-pA+q(D-pC)\\ C & D-pC\end{pmatrix}=\begin{pmatrix}1&0\\-1/f&1\end{pmatrix}
+$$
+
+Nederste venstre element gir $f=-1/C$. Øverste venstre element, $A+qC=1$, gir
+$q=(1-A)/C$, og nederste høyre element, $D-pC=1$, gir $p=(D-1)/C$. Øverste høyre
+element blir da null, ettersom $\det M=1$ i luft. Resultatet:
 
 <Formula tex={"f=-\\dfrac{1}{C},\\qquad H_1:\\ \\dfrac{D-1}{C},\\qquad H_2:\\ \\dfrac{1-A}{C}"} caption={"Effektiv brennvidde og hovedplan i luft, målt fra inn- og utplanet (positiv retning mot høyre). $F_1=H_1-f$ og $F_2=H_2+f$."} />
 
@@ -218,8 +245,7 @@ $1/s_{i1} = -1/6 - 1/12 = -1/4$, altså et virtuelt mellombilde 4 cm foran
 linse 1, med $m_1 = -s_{i1}/s_{o1} = 1/3$. For den positive linsen er
 objektavstanden $d + 4$, og $1/(d+4) = 1/6 - 1/15 = 1/10$ gir $d = 6$ cm.
 
-a) Settet oppgir ingen objekthøyde, og løsningsforslaget svarer med
-forstørrelsen: $m_2 = -15/10 = -3/2$, så $M_T = m_1 m_2 = -1/2$. Bildet er
+a) Oppgaven oppgir ingen objekthøyde, så svaret er forstørrelsen: $m_2 = -15/10 = -3/2$, så $M_T = m_1 m_2 = -1/2$. Bildet er
 halvparten så høyt som objektet og invertert, altså er objektet dobbelt så
 høyt som bildet på skjermen.
 
@@ -245,9 +271,8 @@ de krysser 9 cm bak $H_2$ med $M_T = -9/18 = -1/2$.
 
 <ExamFocus title="Typiske oppgaver">
 
-En systemmatrise bygges gjerne én gang og gjenbrukes for flere
-objektavstander, med determinanten som obligatorisk mellomkontroll, og
-kardinalpunktene brukes til å behandle et sammensatt system som én linse.
+Oppgavene bygger systemmatrisen for to linser og leser av bildeplan,
+forstørrelse og kardinalpunkter.
 
 </ExamFocus>
 
@@ -268,7 +293,7 @@ kardinalpunktene brukes til å behandle et sammensatt system som én linse.
 <KeyTakeaways>
 
 - En paraksial stråle er $(y,\alpha)$; hvert element er en $2\times2$-matrise, og systemet er produktet i motsatt rekkefølge av lysets gang.
-- $\det M=n_1/n_2$ (1 i samme medium) er den obligatoriske feilsjekken etter hver multiplikasjon.
+- $\det M=n_\text{start}/n_\text{slutt}$ (1 i samme medium) er feilsjekken etter hver multiplikasjon.
 - Nuller er utsagn: $B=0$ bilde med $A=m$, $C=0$ afokalt med $D$ som vinkelforstørrelse, $A=0$ og $D=0$ peker ut brennplanene.
 - Et sammensatt system i luft er én linse med $f=-1/C$, målt fra hovedplanene $H_1$ og $H_2$.
 - Pedrotti 3. utgave, tabell 18-1: tynnlinsematrisen har en trykkfeil; bruk $\begin{pmatrix}1&0\\-1/f&1\end{pmatrix}$.

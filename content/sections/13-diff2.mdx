@@ -23,46 +23,67 @@ måleinstrument som sorterer lys etter bølgelengde.
 
 ## Linsen som Fourier-transformator
 
-Fraunhofer-integralet er matematisk en Fourier-transform:
-hvert punkt i fjernfeltet svarer til én romlig frekvens i aperturen. Grove
-strukturer sender lys i små vinkler, fine strukturer i store. Kravet for å
-bruke det direkte er strengt: fjernfeltet begynner først når skjermavstanden er
-$L\gg\text{areal}/\lambda$, og for en åpning på 1 cm² i synlig lys
-betyr det avstander på hundrevis av meter.
+Veien fra punktet $(x,y)$ i aperturen til punktet $(X,Y)$ på en skjerm i
+avstand $L$ er, når aperturen og skjermpunktet ligger nær aksen,
 
-Linsen løser det. En tynn linse forsinker lyset mest på midten, og
-tykkelsesfunksjonen gir den fasetransmisjonen
+$$
+r\approx L+\frac{X^2+Y^2}{2L}-\frac{xX+yY}{L}+\frac{x^2+y^2}{2L}
+$$
 
-<Formula tex={"t_a(x,y)=e^{-ik(x^2+y^2)/2f}"} caption={"Tynn linse som faseelement; på veien dukker linsemakerformelen opp i $1/f$."} />
+De to første leddene er like for alle punktene i aperturen. Feltet på skjermen
+er summen av bidragene $e^{ikr}$ fra aperturfeltet $E_A(x,y)$:
 
-Settes dette inn i diffraksjonsintegralet med skjermen i brennplanet,
-kansellerer linsens kvadratiske fase nøyaktig integralets egen, og det som
-står igjen er en ren Fourier-transform av aperturfeltet. En linse henter
-altså fjernfeltet inn i brennplanet sitt, på en brennviddes avstand. Det er
-grunnlaget for all optisk bildebehandling i frekvensplanet.
+$$
+E(X,Y)\propto\iint E_A(x,y)\,e^{-ik(xX+yY)/L}\,e^{ik(x^2+y^2)/2L}\,dx\,dy
+$$
 
-Faser kan i det hele tatt manipuleres på tre måter: endre veilengden (en
-linse), endre brytningsindeksen, eller bruke diffraksjon. Moderne romlige
-lysmodulatorer styrer fasen piksel for piksel på akkurat dette grunnlaget.
+Uten den siste faktoren er dette en Fourier-transform av aperturfeltet, med
+romlig frekvens $X/\lambda L$: grove strukturer sender lys i små vinkler, fine
+strukturer i store. Faktoren kan bare sløyfes når fasen $k(x^2+y^2)/2L$ er
+liten over hele aperturen, altså når $L\gg\text{areal}/\lambda$, og for en
+åpning på 1 cm² i synlig lys må $L$ da være hundrevis av meter.
+
+En tynn linse med brennvidde $f$ forsinker lyset mest på midten, og gir
+fasetransmisjonen
+
+<Formula tex={"t_a(x,y)=e^{-ik(x^2+y^2)/2f}"} caption={"Tynn linse som faseelement."} />
+
+<Derivation title="Linsens fase">
+
+Med krumningsradiene $R_1$ og $R_2$ er tykkelsen
+$\Delta(x,y)\approx\Delta_0-\tfrac{x^2+y^2}{2}\bigl(\tfrac1{R_1}-\tfrac1{R_2}\bigr)$.
+Glasset gir fasen $k(n-1)\Delta$ utover fasen i luft, og med linsemakerformelen
+$1/f=(n-1)(1/R_1-1/R_2)$ er den delen som avhenger av $x$ og $y$, lik
+$-k(x^2+y^2)/2f$.
+
+</Derivation>
+
+Med skjermen i brennplanet er $L=f$, og linsens fase $-k(x^2+y^2)/2f$ opphever
+det siste leddet i integralet nøyaktig. Det som står igjen, er Fourier-transformen
+av aperturfeltet: linsen henter fjernfeltet inn i brennplanet sitt.
+
+Fasen kan styres på tre måter: ved å endre veilengden (en linse), endre
+brytningsindeksen eller bruke diffraksjon. Moderne romlige lysmodulatorer
+styrer fasen piksel for piksel ved å endre brytningsindeksen eller veilengden i
+hver piksel.
 
 <Quiz
   question={"Med skjermen i linsens brennplan viser mønsteret …"}
   options={["et skarpt bilde av aperturen","Fourier-transformen av aperturfeltet","alltid en Airy-skive","skyggen av aperturen"]}
   answer={1}
-  explanation={"Linsens kvadratiske fase kansellerer diffraksjonsintegralets, og brennplanet viser fjernfeltet, altså transformen."}
+  explanation={"Linsens kvadratiske fase opphever det kvadratiske leddet i fasen fra aperturen, og brennplanet viser fjernfeltet, altså transformen."}
 />
 
 ## Gitteret
 
-Flerspaltformelen er gitterets ligning i forkledning:
+Et gitter er $N$ spalter med stor $N$, så intensiteten er flerspaltformelen
+<FormulaRef id="flerspalt" />, med $\alpha=\pi a\sin\theta/\lambda$ og
+$\beta=\pi b\sin\theta/\lambda$ for spalteavstanden $a$ og spaltbredden $b$.
 
-<Formula tex={"I=I_0'\\left(\\dfrac{\\sin\\beta}{\\beta}\\right)^2\\left(\\dfrac{\\sin N\\alpha}{\\sin\\alpha}\\right)^2"} caption={"$N$ spalter med bredde $b$ og avstand $a$; $\\alpha=\\pi a\\sin\\theta/\\lambda$, $\\beta=\\pi b\\sin\\theta/\\lambda$."} />
-
-Ved $\alpha=m\pi$ er alle spaltene i fase, og grenseverdien (L'Hôpital)
-viser at hovedmaksima vokser som $N^2$ i høyde og krymper som $1/N$ i
-bredde. Mellom to hovedmaksima ligger $N-1$ minima (der $N\alpha=p\pi$ uten
+Hovedmaksima ligger ved $\alpha=m\pi$, med høyde $N^2$ og bredde som krymper
+som $1/N$. Mellom to hovedmaksima ligger $N-1$ minima (der $N\alpha=p\pi$ uten
 at $\alpha$ selv er et multiplum av $\pi$) og $N-2$ svake sekundærmaksima.
-Med titusenvis av riller blir toppene knivskarpe, og posisjonene gis av
+Med titusenvis av spalter blir toppene svært smale, og posisjonene gis av
 gitterlikningen:
 
 <Statement kind="law" name="Gitterlikningen">
@@ -77,6 +98,38 @@ $a\sin\theta_m=m\lambda$. Hver orden gir et eget spektrum.
 Skarpe topper hvis posisjon avhenger av $\lambda$ er nettopp et
 spektroskop: en inngangsspalt, gitteret og en detektorrekke er hele
 instrumentet.
+
+## Dispersjon, oppløsning og fritt spektralområde
+
+Et spektroskop må spre bølgelengdene ut i vinkel, skille to nære spektrallinjer
+og måle et bredt område uten at ordenene blander seg.
+
+Dispersjonen er hvor mye vinkelen endrer seg per bølgelengde. Ved fast
+innfallsvinkel gir derivasjon av gitterlikningen
+$a\cos\theta_m\,d\theta_m=m\,d\lambda$, så
+
+<Formula tex={"\\mathcal D=\\dfrac{d\\theta_m}{d\\lambda}=\\dfrac{m}{a\\cos\\theta_m}"} caption={"Vinkeldispersjon: høyere orden og tettere spalter sprer spekteret mer."} />
+
+To spektrallinjer med bølgelengde $\lambda$ og $\lambda+\Delta\lambda$ er akkurat
+skilt når toppen til den ene ligger på det første nullpunktet ved siden av
+toppen til den andre. Det nullpunktet ligger $\pi/N$ unna i
+$\alpha=\pi a\sin\theta/\lambda$, altså $\Delta\theta=\lambda/(Na\cos\theta_m)$
+unna i vinkel. Dividert med dispersjonen gir det
+$\Delta\lambda=\Delta\theta/\mathcal D=\lambda/(mN)$, så
+
+<Formula tex={"\\mathcal R=\\dfrac{\\lambda}{\\Delta\\lambda}=mN"} caption={"Oppløsning: orden ganger antall belyste spalter."} />
+
+Orden $m+1$ av bølgelengden $\lambda_1$ havner i samme vinkel som orden $m$ av
+$\lambda_2$ når $m\lambda_2=(m+1)\lambda_1$, altså når
+$\lambda_2-\lambda_1=\lambda_1/m$. Det frie spektralområdet er dette
+intervallet:
+
+<Formula tex={"\\lambda_\\text{fsr}=\\dfrac{\\lambda_1}{m}"} caption={"Fritt spektralområde: bølgelengdeintervallet før naboordenen overlapper."} />
+
+Høyere orden gir bedre oppløsning og dispersjon, men mindre fritt
+spektralområde, fordi gitterlikningen bare inneholder produktet $m\lambda$:
+600 nm i første orden lander i samme vinkel som 300 nm i andre. Et
+spektrometer må derfor filtrere bort ordener det ikke vil se.
 
 <Example title="natriumdubletten">
 
@@ -97,27 +150,9 @@ rundt 500, i andre. Et gitter på noen millimeter klarer det med god margin.
 
 </Example>
 
-## Dispersjon, oppløsning og fritt spektralområde
-
-Tre tall karakteriserer gitteret som spektroskop. Dispersjonen sier hvor
-mye vinkelen endrer seg per bølgelengde, oppløsningen hvilke linjer som kan
-skilles, og det frie spektralområdet hvor bredt spektrum som kan måles før
-ordenene blander seg:
-
-<Formula tex={"\\mathcal D=\\dfrac{d\\theta_m}{d\\lambda}=\\dfrac{m}{a\\cos\\theta_m}"} caption={"Vinkeldispersjon: høyere orden og tettere riller sprer spekteret mer."} />
-
-<Formula tex={"\\mathcal R=\\dfrac{\\lambda}{\\Delta\\lambda}=mN"} caption={"Oppløsning: orden ganger antall belyste spalter."} />
-
-<Formula tex={"\\lambda_\\text{fsr}=\\dfrac{\\lambda_1}{m}"} caption={"Fritt spektralområde: bølgelengdeintervallet før naboordenen overlapper."} />
-
-Høyere orden gir bedre oppløsning og dispersjon, men mindre fritt
-spektralområde, fordi gitterlikningen bare inneholder produktet $m\lambda$:
-600 nm i første orden lander i samme vinkel som 300 nm i andre. Et
-spektrometer må derfor filtrere bort ordener det ikke vil se.
-
 <Example title="gittervinkel og oppløsning">
 
-Et gitter har 600 linjer/mm og belyses normalt med $\lambda=500$ nm. Finn
+Et gitter har 600 spalter/mm og belyses normalt med $\lambda=500$ nm. Finn
 vinkelen for første orden, og oppløsningen når 3000 spalter er belyst.
 
 <Solution>
@@ -165,23 +200,23 @@ and the grating is 40 cm. [5 points]
 <Solution>
 a) Oppløsningsevnen er $\mathcal R = \lambda/\Delta\lambda = mN$. Med
 $\lambda = 517{,}8$ nm og $\Delta\lambda = 1{,}092$ nm trengs $\mathcal R = 474$, altså
-475 linjer i første orden og 238 i andre.
+475 spalter i første orden og 238 i andre.
 
 b) 1 Å er 0,1 nm, og kravet er strengest der $\lambda$ er størst:
-$\mathcal R = 700\ \text{nm}/0{,}1\ \text{nm} = 7000$, så 7000 linjer i første orden.
+$\mathcal R = 700\ \text{nm}/0{,}1\ \text{nm} = 7000$, så 7000 spalter i første orden.
 
-c) 7000 linjer på 1 cm gir $a = 1{,}43\ \mu$m, og gitterligningen
+c) 7000 spalter på 1 cm gir $a = 1{,}43\ \mu$m, og gitterlikningen
 $a\sin\theta = \lambda$ gir $\theta = 21{,}3^\circ$ for magnesiumlinjene.
 Vinkeldispersjonen $d\theta/d\lambda = m/(a\cos\theta)$ gir avstanden
 $\Delta\theta = \Delta\lambda/(a\cos\theta) = 8{,}2\cdot 10^{-4}$ rad, omtrent
-$0{,}047^\circ$. Med 5000 linjer: $a = 2{,}0\ \mu$m, $\theta = 15{,}0^\circ$ og
+$0{,}047^\circ$. Med 5000 spalter: $a = 2{,}0\ \mu$m, $\theta = 15{,}0^\circ$ og
 $\Delta\theta = 5{,}7\cdot 10^{-4}$ rad.
 
-d) Ja. Gitterligningen krever $m\lambda \le a$, og med $a = 1{,}43\ \mu$m går
+d) Ja. Gitterlikningen krever $m\lambda \le a$, og med $a = 1{,}43\ \mu$m går
 det opp til $m = 2$ for hele området (ved 700 nm er $\sin\theta = 0{,}98$);
 tredje orden finnes ikke. Andre orden av 500–700 nm ligger ved
 $m\lambda = 1000$–1400 nm og overlapper ikke første orden, så den kan brukes
-og dobler oppløsningen. Med 5000 linjer får du også tredje orden opp til
+og dobler oppløsningen. Med 5000 spalter får du også tredje orden opp til
 667 nm.
 
 e) Hvert punkt på sola treffer gitteret fra en litt annen vinkel og gir sitt
@@ -208,7 +243,7 @@ $$
 
 Inngangsspalten må altså være smalere enn omtrent 20 µm.
 
-<Answer>a) 475 linjer i første orden, 238 i andre. b) 7000 linjer. c) $21{,}3^\circ$, linjene $8{,}2\cdot 10^{-4}$ rad fra hverandre. d) Andre orden, ikke tredje. e) En inngangsspalt smalere enn omtrent 20 µm, 40 cm foran gitteret.</Answer>
+<Answer>a) 475 spalter i første orden, 238 i andre. b) 7000 spalter. c) $21{,}3^\circ$, linjene $8{,}2\cdot 10^{-4}$ rad fra hverandre. d) Andre orden, ikke tredje. e) En inngangsspalt smalere enn omtrent 20 µm, 40 cm foran gitteret.</Answer>
 </Solution>
 </Example>
 
@@ -217,11 +252,11 @@ Inngangsspalten må altså være smalere enn omtrent 20 µm.
 Gjengangerne: vinkelavstand mellom to
 bølgelengder i en gitt orden (inverter gitterlikningen), antall spalter for
 å skille en dublett ($\mathcal R=mN$), oppløsning fra gitterbredde ganger
-rilletetthet og ordensoverlapp via det frie spektralområdet. Pass på
+spalter per mm og ordensoverlapp via det frie spektralområdet. Pass på
 fellen mellom hovedmaksima ($\alpha=m\pi$) og minima ($N\alpha=p\pi$):
 nabominimumet til en topp ligger $1/N$ av en ordensavstand unna.
-Flerspaltmønstre leses også baklengs: bølgelengden fra konvoluttens minima,
-spalteavstanden fra toppene.
+Flerspaltmønstre leses også baklengs: bølgelengden fra konvoluttens minima når
+spaltbredden er kjent, og spalteavstanden fra toppene.
 
 </ExamFocus>
 
@@ -256,9 +291,9 @@ spalteavstanden fra toppene.
 <KeyTakeaways>
 
 - Fjernfeltet er Fourier-transformen av aperturen, og en linse henter det inn i brennplanet sitt; fasen kan styres via veilengde, indeks eller diffraksjon.
-- Flerspaltformelen med stor $N$ er gitterets ligning: hovedmaksima vokser som $N^2$ og smalner som $1/N$, med $N-1$ minima imellom.
+- Flerspaltformelen med stor $N$ gir gitterets topper: hovedmaksima vokser som $N^2$ og smalner som $1/N$, med $N-1$ minima imellom.
 - Gitterlikningen $m\lambda=a(\sin\theta_i+\sin\theta_m)$ plasserer ordenene; hver orden er et eget spektrum.
 - Dispersjon $\mathcal D=m/(a\cos\theta_m)$, oppløsning $\mathcal R=mN$, fritt spektralområde $\lambda_1/m$; høyere orden gir skarpere spektre men mer overlapp.
-- Flerspaltmønstre leses baklengs: konvolutten gir $\lambda$ og spaltbredden, toppene gir spalteavstanden.
+- Flerspaltmønstre leses baklengs: konvoluttens minima gir $\lambda$ når spaltbredden er kjent, og toppene gir da spalteavstanden.
 
 </KeyTakeaways>

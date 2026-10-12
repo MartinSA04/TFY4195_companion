@@ -8,11 +8,8 @@ part: "Bølgeoptikk"
 updated: 2026-08-25
 ---
 
-Her bytter faget språk: lys er ikke lenger stråler, men et elektromagnetisk
-felt som løser Maxwells likninger. Selve utledningene er ikke pensum;
-strukturen er det: hvordan de fire likningene gir en bølgelikning, hva
-planbølgeløsningen sier og hvordan de to feltkomponentene på tvers av
-strålen koder polarisasjonstilstanden.
+I bølgeoptikk er lys et elektromagnetisk felt som oppfyller Maxwells
+likninger.
 
 <LearningGoals>
 
@@ -33,8 +30,9 @@ bølgeløsninger med fart $1/\sqrt{\varepsilon_0\mu_0}$, som var lysfarten.
 Hertz påviste bølgene i laboratoriet tjue år senere.
 
 I et lineært, transparent medium svarer materialet med en polarisasjon som
-skalerer feltet, $\vec D=\varepsilon_0(1+\chi_e)\vec E=\varepsilon_0n^2\vec E$,
-og hele virkningen på bølgen er at brytningsindeksen $n$ dukker opp i
+skalerer feltet, $\vec D=\varepsilon_0(1+\chi_e)\vec E=\varepsilon_0n^2\vec E$.
+I Maxwells likninger blir $\varepsilon_0$ dermed til $\varepsilon_0n^2$, og
+hele virkningen på bølgen er at brytningsindeksen $n$ dukker opp i
 bølgelikningen:
 
 <Formula tex={"\\nabla^2\\vec E=\\dfrac{n^2}{c^2}\\dfrac{\\partial^2\\vec E}{\\partial t^2}"} caption={"Bølgelikningen for EM-felt i et transparent medium; farten er $v=c/n$."} />
@@ -46,11 +44,10 @@ er planbølgen
 
 <Formula tex={"\\vec E=\\vec E_0\\cos(\\vec k\\cdot\\vec r-\\omega t)"} caption={"Planbølge, med $k=2\\pi/\\lambda$, $\\omega=2\\pi f$ og $\\omega=kv$."} />
 
-Uttrykket gir alt på én linje: amplituden $E_0$, retningen fra $\vec k$,
-bølgelengden fra $k=2\pi/\lambda$, og bevegelsesretningen fra fortegnet, for
-$\cos(kz-\omega t)$ må $z$ øke når $t$ øker, så bølgen går mot $+z$. Punktkilder
-sender i stedet kulebølger med amplitude som faller som $1/r$; de trengs når
-diffraksjonen kommer.
+Fra uttrykket leser du amplituden $E_0$, bølgelengden fra $k=2\pi/\lambda$ og
+utbredelsesretningen fra $\vec k$: for $\cos(kz-\omega t)$ må $z$ øke når $t$
+øker for at fasen skal være konstant, så bølgen går mot $+z$. Punktkilder
+sender i stedet kulebølger, med amplitude som faller som $1/r$.
 
 <Statement kind="theorem" name="Transversalitet">
 
@@ -60,15 +57,48 @@ amplitudene er koblet ved $B_0=E_0/v$.
 
 </Statement>
 
-Transversaliteten følger rett av Gauss' lov for en planbølge, og koblingen
-mellom feltene av Faradays lov. Energistrømmen bærer Poyntings navn:
+<Derivation title="Fra Maxwells likninger til planbølgen">
+
+I et transparent medium uten frie ladninger og strømmer er Maxwells likninger
+
+$$
+\nabla\cdot\vec E=0,\quad \nabla\cdot\vec B=0,\quad
+\nabla\times\vec E=-\frac{\partial\vec B}{\partial t},\quad
+\nabla\times\vec B=\frac{n^2}{c^2}\frac{\partial\vec E}{\partial t}
+$$
+
+der $1/c^2=\varepsilon_0\mu_0$ og $n^2$ kommer fra $\varepsilon_0\to\varepsilon_0n^2$.
+
+Ta rotasjonen av Faradays lov og sett inn den siste likningen:
+
+$$
+\nabla\times(\nabla\times\vec E)=-\frac{\partial}{\partial t}\,\nabla\times\vec B
+=-\frac{n^2}{c^2}\frac{\partial^2\vec E}{\partial t^2}.
+$$
+
+Siden $\nabla\times(\nabla\times\vec E)=\nabla(\nabla\cdot\vec E)-\nabla^2\vec E$ og $\nabla\cdot\vec E=0$, er venstresiden $-\nabla^2\vec E$. Likningen blir dermed bølgelikningen.
+
+Sett inn planbølgen $\vec E=\vec E_0e^{i(\vec k\cdot\vec r-\omega t)}$ og $\vec B=\vec B_0e^{i(\vec k\cdot\vec r-\omega t)}$. Da blir $\nabla\to i\vec k$ og $\partial/\partial t\to-i\omega$. Gauss' lov gir $\vec k\cdot\vec E_0=0$, så $\vec E\perp\vec k$, og på samme måte $\vec B\perp\vec k$. Faradays lov gir
+
+$$
+\vec k\times\vec E_0=\omega\vec B_0,
+$$
+
+så $\vec B_0$ står vinkelrett på både $\vec k$ og $\vec E_0$, og ettersom $\vec E_0\perp\vec k$ er $B_0=kE_0/\omega=E_0/v$. Videre er $\vec E\times\vec B\propto\vec E\times(\vec k\times\vec E)=\vec kE^2$, som peker langs $\vec k$.
+
+</Derivation>
+
+Energistrømmen bærer Poyntings navn:
 
 <Formula tex={"\\vec S=c^2\\varepsilon_0(\\vec E\\times\\vec B)"} caption={"Poynting-vektor: energifluks, retning langs $\\vec k$."} />
+
+Med $B_0=E_0/v=nE_0/c$ er størrelsen $S=c\,n\,\varepsilon_0E_0^2\cos^2(kz-\omega t)$,
+og tidsmiddelet $\langle\cos^2\rangle=\tfrac12$ gir intensiteten:
 
 <Formula tex={"I=\\langle S\\rangle=\\tfrac12 c\\,n\\,\\varepsilon_0 E_0^2"} caption={"Intensitet (tidsmidlet irradians)."} />
 
 Intensiteten går som amplituden i andre potens: dobler du $E_0$, firedobles
-$I$. Den koblingen brukes hver gang et felt skal regnes om til noe målbart.
+$I$.
 
 <Example title="les bølgeuttrykket">
 
@@ -113,15 +143,15 @@ $\hat y$, med amplitude $B_0=E_0/c=30/(3{,}0\times10^8)=1{,}0\times10^{-7}$ T.
 
 ## Polarisasjonstilstander
 
-Transversaliteten etterlater to frie komponenter på tvers av $\vec k$, og
-forholdet mellom dem er polarisasjonstilstanden. Skriv
+Feltet står på tvers av $\vec k$ og har derfor to komponenter, $E_x$ og $E_y$.
+Forholdet mellom dem, i amplitude og fase, er polarisasjonstilstanden. Skriv
 
 $$
 E_x=E_{0x}\cos(kz-\omega t),\qquad\allowbreak E_y=E_{0y}\cos(kz-\omega t+\varepsilon)
 $$
 
 med relativ fase $\varepsilon$. I et fast plan tegner feltvektoren da en kurve,
-og kurven klassifiserer tilstanden:
+og formen på kurven gir navnet på tilstanden:
 
 <Table
   caption={"Klassifisering av polarisasjonstilstand fra amplituder og relativ fase $\\varepsilon$."}
@@ -172,8 +202,7 @@ Klassikeren gir et konkret bølgeuttrykk og ber om bølgelengden, retningen og
 magnetfeltets retning og styrke; alt leses rett ut av uttrykket og
 transversaliteten. Ellers regnes intensitet om til feltamplitude (og videre
 til fotontetthet), og en oppgitt kombinasjon av $E_x$ og $E_y$ skal
-klassifiseres som lineær, sirkulær eller elliptisk. Grunnleggerrekken bak
-Maxwells likninger kan også dukke opp som kunnskapsspørsmål.
+klassifiseres som lineær, sirkulær eller elliptisk.
 
 </ExamFocus>
 

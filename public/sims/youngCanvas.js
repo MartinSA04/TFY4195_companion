@@ -1,4 +1,4 @@
-import { palette, slider, readout } from "./shared.js";
+import { palette, slider, readout, arrow } from "./shared.js";
 
 export default function init({ ctx, controls, getSize, onResize }) {
   const a = slider(controls, { label: "Spalteavstand a", min: 20, max: 120, value: 50 });
@@ -40,10 +40,14 @@ export default function init({ ctx, controls, getSize, onResize }) {
     ctx.stroke();
     ctx.fillStyle = C.inkDim; ctx.font = "11px ui-monospace, monospace";
     ctx.fillText("intensitet I = 4I₀cos²(πa·sinθ/λ)", 10, gy - gh - 6);
-    a.out.textContent = (A / 40).toFixed(1) + "×";
+    a.out.textContent = (A / 40).toFixed(1).replace(".", ",") + "×";
     lam.out.textContent = L + " nm";
-    const farge = L < 490 ? "blått" : L < 560 ? "grønt" : L < 590 ? "gult" : "rødt";
-    ro.innerHTML = `Stripeavstand Δy = λL/a. Større spalteavstand <b>a</b> ⇒ tettere striper; lengre bølgelengde <b>λ</b> ⇒ bredere striper. (${L} nm ≈ ${farge} lys.)`;
+    // Δy: distance between the central maximum and the next one, drawn under the curve.
+    const x0 = W / 2, x1 = W / 2 + 2 * W * (L / 550) / A, ay = gy + 12;
+    ctx.strokeStyle = C.inkDim; ctx.lineWidth = 1.5;
+    arrow(ctx, (x0 + x1) / 2, ay, x0, ay); arrow(ctx, (x0 + x1) / 2, ay, x1, ay);
+    ctx.fillStyle = C.inkDim; ctx.fillText("Δy", (x0 + x1) / 2 - 7, ay - 5);
+    ro.innerHTML = "Stripeavstand Δy = λL/a.";
   }
 
   [a.input, lam.input].forEach((s) => s.addEventListener("input", draw));

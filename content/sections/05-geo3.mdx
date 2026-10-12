@@ -8,10 +8,9 @@ part: "Geometrisk optikk"
 updated: 2026-08-25
 ---
 
-Her brukes alt det geometriske: tynne linser og
-matrisemetoden settes sammen til lupe, mikroskop, teleskop, kamera og til slutt
-øyet selv. Det nye begrepet er vinkelforstørrelse, og det gamle nærpunktet på
-25 cm dukker opp i nesten hver formel.
+Lupe, mikroskop, teleskop, kamera og øyet er satt sammen av tynne linser, og
+du regner på dem med matrisemetoden. For instrumenter du ser gjennom, er målet
+vinkelforstørrelse.
 
 <LearningGoals>
 
@@ -28,9 +27,11 @@ matrisemetoden settes sammen til lupe, mikroskop, teleskop, kamera og til slutt
 Et instrument for øyet bedømmes ikke etter hvor stort mellombildet er i
 centimeter, men etter hvor stor synsvinkel objektet ender opp med å spenne på
 netthinnen. Vinkelforstørrelsen er $MP=\alpha_M/\alpha_0$: vinkelen med
-instrument delt på vinkelen uten. Referansen $\alpha_0$ er objektet sett på
+instrument delt på vinkelen uten. Referansen $\alpha_0$ er vinkelen objektet har
+for det blotte øyet. Et nært objekt, som under lupe og mikroskop, holder du på
 <Term name="Nærpunkt">nærpunktet</Term>, den korteste avstanden øyet kan
-fokusere på, standardisert til $d_0=25$ cm. Lateral forstørrelse $m$ hører til
+fokusere på, standardisert til $d_0=25$ cm. Et fjernt objekt, som for
+teleskopet, har allerede en vinkel på himmelen, og den er $\alpha_0$. Lateral forstørrelse $m$ hører til
 avbildning på en skjerm eller sensor; vinkelforstørrelse hører til
 instrumenter du ser gjennom.
 
@@ -38,9 +39,10 @@ instrumenter du ser gjennom.
 
 En samlelinse med objektet rett innenfor brennvidden gir et virtuelt, opprett
 og forstørret bilde. Hvor stor forstørrelsen blir, avhenger av hvor bildet
-legges. Holder du bildet på nærpunktet, er $MP=1+d_0/f$; slapper du av øyet og
-legger objektet i brennplanet, går bildet til uendelig og $MP=d_0/f$.
-Forskjellen er liten for korte brennvidder, og arbeidsformelen er
+legges. Uten lupe er $\alpha_0=h/d_0$ for et objekt med høyde $h$. Slapper du av
+øyet og legger objektet i brennplanet, går bildet til uendelig og
+$\alpha_M=h/f$, så $MP=d_0/f$. Legger du bildet på nærpunktet, er $s_i=-d_0$,
+så $1/s_o=1/f+1/d_0$ og $\alpha_M=h/s_o$, altså $MP=1+d_0/f$. Forskjellen er liten for korte brennvidder, og arbeidsformelen er
 
 <Formula tex={"MP_\\text{lupe}=\\dfrac{25\\ \\text{cm}}{f}"} caption={"Lupe med bildet i uendelig (avslappet øye). Med bildet på nærpunktet: $MP=1+25/f$."} />
 
@@ -51,30 +53,32 @@ linser, og det er mikroskopet.
 
 Mikroskopet er to forstørrelsestrinn. Objektivet, en kort linse, står like
 utenfor sin brennvidde fra objektet og lager et reelt, invertert og forstørret
-mellombilde i tubusen. Okularet brukes som lupe på mellombildet. Med
-tubuslengde $L$ (en vanlig standard er $L=16$ cm) er objektivforstørrelsen
-omtrent $-L/f_o$, og totalen er produktet av de to trinnene:
+mellombilde i tubusen. Tubuslengden $L$ er avstanden fra objektivets bakre
+brennpunkt til mellombildet (en vanlig standard er $L=16$ cm), altså $x_i=L$ i
+Newtons form $x_ox_i=f_o^2$. Da er objektivforstørrelsen $m=-x_i/f_o=-L/f_o$.
+Okularet brukes som lupe på mellombildet, med forstørrelse $25/f_e$, og totalen
+er produktet av de to trinnene:
 
 <Formula tex={"MP_\\text{mik}=-\\dfrac{L}{f_o}\\cdot\\dfrac{25}{f_e}"} caption={"Sammensatt mikroskop. $f_o$ = objektiv-, $f_e$ = okularbrennvidde, $L$ = tubuslengde."} />
 
-Minustegnet betyr invertert bilde; det spiller ingen rolle for en bakterie.
-Korte brennvidder i begge trinn gir stor forstørrelse, og det er derfor
+Minustegnet betyr at bildet er invertert. Korte brennvidder i begge trinn gir stor forstørrelse, og det er derfor
 objektiver merkes 40× og 100×.
 
 ## Teleskopet
 
 Teleskopet tar imot parallelt lys fra et fjernt objekt og skal levere
 parallelt lys til et avslappet øye, så det er per definisjon afokalt. Fra
-matrisemetoden er betingelsen $C=0$, som inntreffer nøyaktig når
-linseavstanden er $d=f_o+f_e$: objektivets bakre brennplan faller sammen med
-okularets fremre. Vinkelforstørrelsen leses av det gjenværende
-matriseelementet,
+matrisemetoden er betingelsen $C=0$. Med $M=L(f_e)\,T(d)\,L(f_o)$ er
+$C=-1/f_o-1/f_e+d/(f_of_e)$, som er null nøyaktig når linseavstanden er
+$d=f_o+f_e$: objektivets bakre brennplan faller sammen med okularets fremre.
+Da er $\alpha_2=D\,\alpha_1$, ettersom $C=0$ fjerner leddet med $y_1$, og
+$D=1-d/f_e=-f_o/f_e$. Vinkelen inn, $\alpha_1$, er vinkelen objektet har for det
+blotte øyet, altså $\alpha_0$, så forstørrelsen er
 
 <Formula tex={"MP_\\text{tel}=-\\dfrac{f_o}{f_e}"} caption={"Teleskop (refraktor) i afokal oppstilling, $d=f_o+f_e$."} />
 
-Langt objektiv og kort okular gir stor forstørrelse. Fortegnet er en
-orienteringsmarkør: negativt betyr invertert bilde, og størrelsen $|MP|$ er
-det oppgaven vanligvis spør om.
+Langt objektiv og kort okular gir stor forstørrelse. Negativ $MP$ betyr
+invertert bilde.
 
 <Compare>
 
@@ -107,19 +111,22 @@ Objektet står i brennplanet til linse 1. Bildetype og forstørrelse?
 
 Linse 1 lager parallelt lys av objektet i sitt brennplan. Linse 2 samler det
 parallelle lyset i sitt bakre brennplan, så bildet er reelt og ligger til
-høyre for linse 2. Systemet inverterer én gang, og størrelsesforholdet er
-$h_i/h_o=f_2/f_1=5/4=1{,}25$. Avstanden mellom linsene endrer ikke dette
+høyre for linse 2. Et punkt i høyden $h_o$ i brennplanet til linse 1 sender et
+parallelt knippe med vinkelen $-h_o/f_1$, for strålen gjennom sentrum av linse 1
+går rett fram. Linse 2 samler knippet i sitt bakre brennplan i høyden
+$f_2\cdot(-h_o/f_1)$. Da er $h_i/h_o=-f_2/f_1=-5/4=-1{,}25$: invertert og
+1,25 ganger så høyt. Avstanden mellom linsene endrer ikke dette
 forholdet, men bryter afokaliteten.
 
-<Answer>Reelt, invertert, $h_i/h_o=1{,}25$</Answer>
+<Answer>Reelt, invertert, $h_i/h_o=-1{,}25$</Answer>
 
 </Solution>
 
 </Example>
 
 <Quiz
-  question={"Du bygger «mikroskop» av to positive linser i avstand $f_1+f_2$ med objektet i brennplanet til linse 1. Bildet er …"}
-  options={["virtuelt og opprett","reelt og invertert, $h_i/h_o=f_2/f_1$","reelt og opprett","i uendelig"]}
+  question={"Du bygger et mikroskop av to positive linser i avstand $f_1+f_2$ med objektet i brennplanet til linse 1. Bildet er …"}
+  options={["virtuelt og opprett","reelt og invertert, $|h_i/h_o|=f_2/f_1$","reelt og opprett","i uendelig"]}
   answer={1}
   explanation={"Linse 1 kollimerer, linse 2 fokuserer i sitt brennplan: reelt, invertert bilde med størrelsesforhold $f_2/f_1$."}
 />
@@ -156,7 +163,7 @@ distance equal to the sum of their focal lengths.
     "None of the above."
   ]}
   answer={1}
-  explanation={"Med objektet i fremre brennpunkt til linse 1 blir strålene parallelle mellom linsene, og linse 2 samler dem i sitt bakre brennplan: bildet er reelt og invertert. Høydeforholdet er $h_i/h_o = f_2/f_1$, bestemt av de to brennviddene alene. Flytter du linsene, får du fortsatt et reelt, invertert bilde med samme forhold; det som ryker, er bare afokaliteten, at parallelle stråler inn gir parallelle stråler ut."}
+  explanation={"Med objektet i fremre brennpunkt til linse 1 blir strålene parallelle mellom linsene, og linse 2 samler dem i sitt bakre brennplan: bildet er reelt og invertert. Høydeforholdet er $|h_i/h_o| = f_2/f_1$, bestemt av de to brennviddene alene. Flytter du linsene, får du fortsatt et reelt, invertert bilde med samme forhold; det eneste som endres, er at systemet ikke lenger er afokalt: parallelle stråler inn gir ikke lenger parallelle stråler ut."}
 />
 </Example>
 
@@ -169,15 +176,14 @@ bildestørrelsen $y'\approx y\,f/s$, så lang brennvidde gir stort bilde.
 
 <Formula tex={"f\\#=\\dfrac{f}{D}"} caption={"f-tallet: brennvidde delt på blenderåpningens diameter."} />
 
-Irradiansen på sensoren skalerer som $D^2/f^2=1/(f\#)^2$: ett trinn opp i
-f-tall halverer lysmengden. Lite f-tall betyr stor blenderåpning, mye lys og liten
+Linsen samler effekt i forhold til arealet av åpningen, altså $\propto D^2$, og
+bildet av et fjernt motiv er $\propto f$ stort og dekker et areal $\propto f^2$.
+Irradiansen på sensoren skalerer derfor som $D^2/f^2=1/(f\#)^2$. Ganger du
+f-tallet med $\sqrt2$, fra f/2 til f/2,8, halveres irradiansen. Lite f-tall betyr stor blenderåpning, mye lys og liten
 dybdeskarphet; stort f-tall betyr det motsatte.
 
-Bak blenderen ligger et begrepsapparat for avanserte systemer:
-aperturblender, feltblender, inngangs- og utgangspupill, marginal- og
-hovedstråle. I dette kurset er det bakgrunnsstoff; det du trenger, er at
-aperturblenderen er flaten som faktisk begrenser lysbunten, og at f-tallet
-måler den.
+Blenderåpningen som begrenser lysbunten, heter aperturblenderen, og det er
+diameteren dens som står i f-tallet.
 
 <Quiz
   question={"Et større f-tall betyr vanligvis …"}
@@ -195,7 +201,7 @@ linsens krumning og dermed brytningsstyrken, det som kalles akkommodasjon. Et
 normalt øye fokuserer fra uendelig og inn til nærpunktet på 25 cm. Kammervannet
 og glasslegemet har begge $n=1{,}336$, nær vann.
 
-Feilene korrigeres med én linse foran øyet. En nærsynt (myop) ser skarpt bare
+Nærsynthet og langsynthet korrigeres med én linse foran øyet. En nærsynt (myop) ser skarpt bare
 ut til et fjernpunkt; brillen er en spredelinse som avbilder uendelig inn på
 fjernpunktet. En langsynt (hyperop) har nærpunktet for langt ute; brillen er en
 samlelinse som avbilder det ønskede nærpunktet ut på det faktiske.
@@ -219,9 +225,6 @@ Styrken er $P=1/f=-2{,}0$ dioptrier: en spredelinse.
 
 </Example>
 
-Netthinnens staver og tapper, fargesyn og synsbedrag hører med som
-bakgrunnsstoff; det regnbare stoffet er optikken over.
-
 <ExamFocus title="Typiske oppgaver">
 
 Gjengangeren er to positive linser i avstand $f_1+f_2$: bildetype,
@@ -236,7 +239,7 @@ med matrisemetoden.
 
 <KeyTakeaways>
 
-- Instrumenter for øyet måles i vinkelforstørrelse relativt til nærpunktet $d_0=25$ cm; lateral $m$ hører til skjermer og sensorer.
+- Instrumenter for øyet måles i vinkelforstørrelse. Lupe og mikroskop måles mot objektet sett på nærpunktet $d_0=25$ cm, teleskopet mot vinkelen objektet har uten teleskop; lateral $m$ hører til skjermer og sensorer.
 - Lupe: $MP=25/f$ (avslappet øye). Mikroskop: $MP=-(L/f_o)(25/f_e)$. Teleskop: $MP=-f_o/f_e$ med rørlengde $f_o+f_e$.
 - Afokal oppstilling ($C=0$): to positive linser med felles brennplan; parallelt inn gir parallelt ut.
 - Kamera: $f\#=f/D$, og eksponeringen skalerer som $1/(f\#)^2$.

@@ -8,12 +8,9 @@ part: "Grunnlag"
 updated: 2026-08-25
 ---
 
-Faget veksler mellom to beskrivelser av lys. I geometrisk optikk er lys stråler
-som følger regler for brytning og refleksjon; i bølgeoptikk er det et
-elektromagnetisk felt som interfererer og diffrakterer. Fotonet er den tredje
-beskrivelsen, kvantebildet, og det dukker opp der lys utveksler energi med
-materie. Modulen samler fotonets egenskaper og radiometriens størrelser, de to
-tingene resten av faget regner med uten å stoppe opp.
+I geometrisk optikk er lys stråler som brytes og reflekteres. I bølgeoptikk er
+lys et elektromagnetisk felt som interfererer og diffrakterer. Når lys
+utveksler energi med materie, skjer det i kvanter, fotoner.
 
 <LearningGoals>
 
@@ -30,8 +27,7 @@ Planck innførte i 1900 at energi utveksles mellom stråling og materie i kvante
 $hf$. Einstein la kvantiseringen i selve lyset: en stråle består av
 <Term name="Foton">fotoner</Term>, hver med energi $E=hf$. De Broglie knyttet
 etterpå bølgelengde til impuls for alle partikler, $\lambda=h/p$, og for en
-masseløs partikkel gir den relativistiske energiligningen $p=E/c$. Fotonet er
-grensetilfellet der begge relasjonene blir enkle.
+masseløs partikkel gir den relativistiske energiligningen $p=E/c$.
 
 <Formula tex={"E=hf=\\dfrac{hc}{\\lambda}"} caption={"Foton-energi fra frekvens eller bølgelengde. $h$ er Plancks konstant."} />
 
@@ -56,7 +52,7 @@ fermioner, kan ikke det.
 Spekteret spenner fra gammastråling til radiobølger, over mer enn femten
 tierpotenser i frekvens. Synlig lys er den smale stripen fra omtrent 400 nm
 (fiolett) til 700 nm (rødt). Foton-energiene følger med: røntgen ligger på
-keV-nivå, synlig lys på et par eV, radiobølger langt under µeV.
+keV-nivå, synlig lys på et par eV og radiobølger på µeV-nivå og lavere.
 
 For synlig lys og nabolaget er snarveien
 
@@ -100,26 +96,26 @@ $N/t=P/E=(2{,}0\times10^{-3})/(3{,}74\times10^{-19})=5{,}3\times10^{15}\ \text{s
 
 Dagligtalens «intensitet» og «belysning» er for upresise til å regne med;
 under slike ord blandes watt, joule og watt per kvadratmeter i hverandre.
-Radiometrien rydder opp ved å gi hver størrelse
-et eget navn, et eget symbol og en egen enhet.
+I radiometrien har hver størrelse sitt eget navn, sitt eget symbol og sin egen
+enhet.
 
-Først trengs et mål på vinkelutstrekning i rommet. Romvinkelen til en flate
+Strålingsstyrke og radians regnes per romvinkel, altså per del av rommet
+strålingen fyller. Romvinkelen til en flate
 $A$ sett fra et punkt i avstand $r$ er
 
 <Formula tex={"\\Omega = \\dfrac{A}{r^2}"} caption={"Romvinkel i steradianer. En hel kule spenner $4\\pi$ sr."} />
 
 For en smal stråle med full divergensvinkel $\alpha$ er tverrsnittet i avstand
 $R$ en sirkel med radius omtrent $R\alpha/2$, så romvinkelen blir
-$\Omega=\pi\alpha^2/4$, uavhengig av $R$. Romvinkelen beskriver
-spredningen uavhengig av avstanden.
+$\Omega=\pi\alpha^2/4$, uavhengig av $R$.
 
-Størrelsene deler seg i to grupper. Underveis i rommet: strålingsenergien
-$Q_e$ (J), energitettheten $w_e$ (J/m³) og strålingsfluksen $\Phi_e$ (W), som
-er effekten strålingen frakter. Ved en flate: strålingsstyrken
-$I_e=\Phi_e/\Omega$ (W/sr) for en kilde, radiansen $L_e$ (W/(sr·m²)) for en
-utstrakt kilde og irradiansen $E_e=\Phi_e/A$ (W/m²) inn på en mottakerflate.
-Fotometriens enheter candela og lumen er de samme størrelsene vektet med øyets
-følsomhet; lyskilder selges i lumen, men i dette faget regner vi radiometrisk.
+Strålingsenergien $Q_e$ (J), energitettheten $w_e$ (J/m³) og strålingsfluksen
+$\Phi_e$ (W), effekten strålingen frakter, gjelder selve strålingen.
+Strålingsstyrken $I_e=\Phi_e/\Omega$ (W/sr) er fluksen per romvinkel fra en
+kilde, og radiansen $L_e$ (W/(sr·m²)) er fluksen per romvinkel og per areal fra
+en utstrakt kilde. Irradiansen $E_e=\Phi_e/A$ (W/m²) er fluksen per areal inn på
+en mottakerflate. Fotometriens størrelser, med enheter som candela og lumen, er
+de samme størrelsene vektet med øyets følsomhet. Lyskilder selges i lumen.
 
 <Table
   caption={"Radiometriske størrelser. Indeksen $e$ skiller dem fra fotometriens øyevektede motstykker."}
@@ -146,21 +142,20 @@ Hvilken kilde gir størst irradians på en vegg 3,0 m unna?
 
 <Solution>
 
-Laseren fyller romvinkelen
-$\Omega=\pi\alpha^2/4=\pi(2{,}0\times10^{-3})^2/4=3{,}1\times10^{-6}$ sr.
-På veggen er flekken en sirkel med radius
-$r\approx R\alpha/2=3{,}0\cdot1{,}0\times10^{-3}$ m, altså areal
-$A=\pi r^2=2{,}8\times10^{-5}$ m². Irradiansen er
-$E_e=P/A=(1{,}0\times10^{-3})/(2{,}8\times10^{-5})\approx35$ W/m².
+Strålen starter med radius 0,50 mm og sprer seg til hver side med
+$R\alpha/2=3{,}0\cdot1{,}0\times10^{-3}$ m $=3{,}0$ mm. På veggen er flekken en
+sirkel med radius $\rho\approx0{,}5+3{,}0=3{,}5$ mm, altså areal
+$A=\pi\rho^2=3{,}8\times10^{-5}$ m². Irradiansen er
+$E_e=P/A=(1{,}0\times10^{-3})/(3{,}8\times10^{-5})\approx26$ W/m².
 
 Lyspæra sprer effekten over hele kula. I avstand $R=3{,}0$ m er
 $E_e=P/(4\pi R^2)=100/(4\pi\cdot9{,}0)\approx0{,}88$ W/m².
 
 Pæra leverer hundre tusen ganger mer effekt enn laseren, men laseren gir rundt
-40 ganger høyere irradians på veggen, fordi all effekten samles i én liten
+30 ganger høyere irradians på veggen, fordi all effekten samles i én liten
 flekk.
 
-<Answer>Laseren: $\approx35$ W/m² mot pærens $\approx0{,}9$ W/m²</Answer>
+<Answer>Laseren: $\approx26$ W/m² mot pærens $\approx0{,}9$ W/m²</Answer>
 
 </Solution>
 

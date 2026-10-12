@@ -8,11 +8,11 @@ part: "Diffraksjon"
 updated: 2026-08-25
 ---
 
-Interferens handlet om noen få kilder; diffraksjon er det samme regnestykket
-med uendelig mange. Hvert punkt i aperturen er en Huygens-kilde, integralet
-over dem gir mønsteret, og i fjernfeltet får svaret en enkel form. Den samme
-regningen setter også grensen for hva et instrument kan skille, fra øyet til
-romteleskop.
+Interferens er summen av feltene fra noen få kilder, hver med sin fase.
+Diffraksjon er den samme summen over uendelig mange kilder: hvert punkt i
+aperturen er en Huygens-kilde, og summen blir et integral. I fjernfeltet har
+integralet en enkel løsning, og fra den følger også grensen for hvor små
+detaljer et instrument kan skille, fra øyet til romteleskop.
 
 <LearningGoals>
 
@@ -25,9 +25,16 @@ romteleskop.
 
 ## Enkeltspalten
 
-Del en spalt med bredde $b$ i uendelig mange smale strimler og summer
-bidragene i retning $\theta$. Integralet over faseforskjellene gir
-amplituden $\sin\beta/\beta$, og dermed
+Del en spalt med bredde $b$ i smale strimler $dy$. Mot retningen $\theta$ har
+strimmelen i høyden $y$ over midten veien $y\sin\theta$ kortere enn
+strimmelen i midten, altså faseforskjellen $ky\sin\theta$ med
+$k=2\pi/\lambda$. Summen av bidragene er
+
+$$
+E(\theta)\propto\int_{-b/2}^{b/2}e^{iky\sin\theta}\,dy=b\,\dfrac{\sin\beta}{\beta},\qquad\beta=\dfrac{kb\sin\theta}{2}=\dfrac{\pi b\sin\theta}{\lambda}
+$$
+
+Intensiteten er feltet i andre, og dermed
 
 <Formula tex={"I=I_0\\left(\\dfrac{\\sin\\beta}{\\beta}\\right)^2,\\quad \\beta=\\dfrac{\\pi b\\sin\\theta}{\\lambda}"} caption={"Enkeltspaltmønsteret. Merk konvensjonen: $b$ er spaltbredden, $a$ er spalteavstanden."} />
 
@@ -36,29 +43,31 @@ $b\sin\theta=m\lambda$ for $m=\pm1,\pm2,\dots$ Sentraltoppen er dobbelt så
 bred som sidetoppene, med full bredde $W=2\lambda L/b$ på en skjerm i
 avstand $L$. Trangere spalt eller lengre bølgelengde gir bredere mønster.
 
-Fjernfeltformelen gjelder når skjermen står langt nok unna:
-$L\gg b^2/\lambda$. Kvotienten $L/(b^2/\lambda)$ er en rask kontroll på om
+Fjernfeltformelen bruker at veien fra strimmelen i høyden $y$ til skjermen er
+lineær i $y$. Det neste leddet i veien er $y^2/2L$, størst ved kanten, der det
+gir fasen $kb^2/8L$. Formelen holder når den fasen er liten mot $\pi$ over hele
+spalten, og det krever $L\gg b^2/\lambda$ opp til en tallfaktor. Kvotienten $L/(b^2/\lambda)$ er en rask kontroll på om
 du er trygt i Fraunhofer-regimet.
 
 <Example title="spaltbredde fra mønsteret">
 
-En laser med 632,8 nm belyser en spalt, og på en skjerm 2,0 m unna er
-avstanden mellom tredje minimum på hver side 5,625 cm. Finn spaltbredden, og
+En laser med 532 nm belyser en spalt, og på en skjerm 1,5 m unna er
+avstanden mellom tredje minimum på hver side 4,8 cm. Finn spaltbredden, og
 kontroller fjernfeltet.
 
 <Solution>
 
-Tredje minimum ligger $x=2{,}81$ cm fra sentrum, så
-$\sin\theta\approx x/L=0{,}0141$. Med $m=3$ er
+Tredje minimum ligger $x=2{,}4$ cm fra sentrum, så
+$\sin\theta\approx x/L=0{,}016$. Med $m=3$ er
 
 $$
-b=\dfrac{m\lambda}{\sin\theta}\allowbreak=\dfrac{3\cdot632{,}8\times10^{-9}}{0{,}0141}\allowbreak\approx0{,}13\ \text{mm}.
+b=\dfrac{m\lambda}{\sin\theta}\allowbreak=\dfrac{3\cdot532\times10^{-9}}{0{,}016}\allowbreak\approx0{,}10\ \text{mm}.
 $$
 
-Fjernfeltskravet: $b^2/\lambda=(1{,}35\times10^{-4})^2/(632{,}8\times10^{-9})\approx2{,}9$
-cm, og $L=2$ m er 70 ganger større. Trygt i fjernfeltet.
+Fjernfeltskravet: $b^2/\lambda=(1{,}0\times10^{-4})^2/(532\times10^{-9})\approx1{,}9$
+cm, og $L=1{,}5$ m er 80 ganger større. Trygt i fjernfeltet.
 
-<Answer>$b\approx0{,}13$ mm; fjernfeltet bekreftet</Answer>
+<Answer>$b\approx0{,}10$ mm; fjernfeltet bekreftet</Answer>
 
 </Solution>
 
@@ -80,8 +89,13 @@ distance of 10 m across the laboratory.
 
 ## Dobbeltspalt på nytt, og N spalter
 
-Youngs regning antok uendelig smale spalter. Med reell bredde $b$ og
-avstand $a$ ganges interferensleddet med diffraksjonskonvolutten:
+Youngs regning antok uendelig smale spalter. Med reell bredde $b$ gir hver
+spalt feltet $b\,\sin\beta/\beta$ fra enkeltspalten. Spalt nummer $j$ ligger
+$ja$ høyere opp ($a$ er avstanden mellom spaltene) og får i tillegg
+faseforskjellen $2j\alpha$ med $\alpha=\pi a\sin\theta/\lambda$. For to spalter
+er summen $b\,\dfrac{\sin\beta}{\beta}\left(1+e^{2i\alpha}\right)$, og
+$|1+e^{2i\alpha}|^2=2+2\cos2\alpha=4\cos^2\alpha$. Interferensleddet
+multipliseres altså med diffraksjonskonvolutten:
 
 <Formula tex={"I=I_0\\left(\\dfrac{\\sin\\beta}{\\beta}\\right)^2\\cos^2\\alpha,\\quad \\alpha=\\dfrac{\\pi a\\sin\\theta}{\\lambda}"} caption={"Dobbeltspalt med konvolutt: interferensstriper under enkeltspaltens omhylling."} />
 
@@ -90,13 +104,16 @@ toppen faller på et konvoluttnull, altså når $m\,b/a$ er et helt tall, og
 under sentralkonvolutten er det plass til $2(a/b)-1$ lyse striper. Måler du
 hvilken orden som mangler, har du målt forholdet $a/b$.
 
-Med $N$ spalter skjerpes toppene:
+Med $N$ spalter er summen en geometrisk rekke,
+$\sum_{j=0}^{N-1}e^{2ij\alpha}=e^{i(N-1)\alpha}\,\sin N\alpha/\sin\alpha$. Faktoren
+$e^{i(N-1)\alpha}$ har absoluttverdi 1, så
 
-<Formula tex={"I=I_0'\\left(\\dfrac{\\sin\\beta}{\\beta}\\right)^2\\left(\\dfrac{\\sin N\\alpha}{\\sin\\alpha}\\right)^2"} caption={"$N$ spalter: hovedmaksima ved $\\alpha=m\\pi$, med $N-2$ småtopper imellom."} />
+<Formula tex={"I=I_0'\\left(\\dfrac{\\sin\\beta}{\\beta}\\right)^2\\left(\\dfrac{\\sin N\\alpha}{\\sin\\alpha}\\right)^2"} caption={"$N$ spalter: hovedmaksima ved $\\alpha=m\\pi$, med $N-2$ sekundærmaksima imellom."} />
 
-Hovedmaksima ligger fortsatt ved $a\sin\theta=m\lambda$, men høyden vokser
-som $N^2$ og bredden krymper som $1/N$. Formelen er broen til
-diffraksjonsgitteret, som er tema for spektroskopidelen.
+Ved $\alpha=m\pi$ går $\sin N\alpha/\sin\alpha$ mot $\pm N$, så hovedmaksimaene
+ligger fortsatt ved $a\sin\theta=m\lambda$, nå med høyden $N^2$. Det første
+nullpunktet ved siden av ligger der $N\alpha=mN\pi\pm\pi$, altså $\pi/N$ unna i
+$\alpha$, så bredden krymper som $1/N$.
 
 Sett antall spalter $N$, spaltbredde $b$ og avstand $a$ i figuren, og se
 den brede konvolutten modulere de skarpe toppene.
@@ -127,8 +144,7 @@ sylindersymmetrien Bessel-funksjoner i stedet:
 
 Første nullpunkt ligger ved $\gamma=3{,}832$, og oversatt til vinkel er det
 den berømte Airy-radien $\Delta\theta=1{,}22\,\lambda/D$: en lys skive
-omgitt av svake ringer. Selve Bessel-regningen er for forståelsen; det er
-sluttresultatet du bruker.
+omgitt av svake ringer.
 
 <Statement kind="law" name="Rayleigh-kriteriet">
 
@@ -200,7 +216,7 @@ spaltbredden, og kontroller fjernfeltet med $L\gg b^2/\lambda$.
 Dobbeltspaltoppgaver bruker manglende ordener til å finne $a/b$ og spør om
 relativ intensitet i de første ordenene. Oppløsningsoppgavene er
 ordproblemer rundt $1{,}22\lambda/D$: to lykter, to stjerner, en ukjent
-aperturdiameter fra spotstørrelsen, eller divergensen til en stråle.
+aperturdiameter fra spotstørrelsen eller divergensen til en stråle.
 
 </ExamFocus>
 

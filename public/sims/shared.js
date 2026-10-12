@@ -22,8 +22,7 @@ export function arrow(ctx, x1, y1, x2, y2) {
 
 /**
  * Colour palette. Theme-aware names (ink/line/accent) read the framework's CSS
- * custom properties so the figures follow light/dark; the categorical hues are
- * fixed values chosen to read on both backgrounds.
+ * custom properties, hues included, so the figures follow light/dark.
  */
 export function palette() {
   const cs = getComputedStyle(document.documentElement);
@@ -35,12 +34,12 @@ export function palette() {
     inkFaint: v("--muted", "#8b94a6"),
     line: v("--border", "#e3e7ee"),
     line2: v("--border-strong", "#cfd6e2"),
-    cyan: "#0891b2",
-    green: "#16a34a",
-    red: "#e0445b",
-    orange: "#e08a1e",
-    violet: "#8b5cf6",
-    yellow: "#d4a017",
+    cyan: v("--cyan", "#24837b"),
+    green: v("--green", "#66800b"),
+    red: v("--red", "#af3029"),
+    orange: v("--orange", "#bc5215"),
+    violet: v("--violet", "#5e409d"),
+    yellow: v("--yellow", "#ad8301"),
   };
 }
 
