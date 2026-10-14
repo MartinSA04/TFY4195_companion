@@ -1,7 +1,7 @@
 ---
 order: 7
 title: "Fresnels likninger, Brewster & polarisasjon"
-summary: "Fasetilpasning ved grenseflaten gir Snells lov, Fresnels likninger gir hvor mye som reflekteres for TE og TM, med Brewster-vinkel, intern og ekstern refleksjon, og Lorentz-modellen for dispersjon."
+summary: "Fasetilpasning ved grenseflaten gir Snells lov, Fresnels likninger gir hvor mye som reflekteres for TE og TM, med Brewster-vinkel, intern og ekstern refleksjon og Lorentz-modellen for dispersjon."
 importance: core
 tag: "Bølgeoptikk II"
 part: "Bølgeoptikk"
@@ -29,7 +29,8 @@ hvert punkt av flaten til enhver tid, og det er bare mulig hvis de tre
 bølgene, innfallende, reflektert og transmittert, svinger i takt langs
 flaten: $\vec k\cdot\vec r=\vec k_r\cdot\vec r=\vec k_t\cdot\vec r$ der.
 Likheten skal gjelde for alle $\vec r$ i flaten, så de tre bølgevektorene har
-samme komponent langs flaten og ligger i samme plan, innfallsplanet.
+samme komponent langs flaten og ligger i samme plan, innfallsplanet, som
+inneholder den innfallende strålen og normalen til flaten.
 Komponenten langs flaten er $k\sin\theta$, målt med vinkelen mot normalen, og
 $k=n\omega/c$ med samme $\omega$ i alle tre bølgene. Med vinklene $\theta$,
 $\theta_r$ og $\theta_t$ for innfallende, reflektert og transmittert stråle er
@@ -42,6 +43,13 @@ $$
 Den første likheten gir $\theta_r=\theta$, ettersom innfallende og reflektert
 bølge går i samme medium. Den andre er Snells lov.
 
+<Callout title="Fasetilpasning">
+
+De tre bølgene har samme komponent av $\vec k$ langs flaten. Det gir
+refleksjonsloven $\theta_r=\theta$ og Snells lov $n_1\sin\theta=n_2\sin\theta_t$.
+
+</Callout>
+
 Hvor mye av feltet som går hver vei, følger av at tangentialkomponentene av
 $\vec E$ og $\vec B$ er kontinuerlige. Svaret
 avhenger av polarisasjonen, og kurset deler den i TE, der $\vec E$ står
@@ -50,13 +58,21 @@ kilder kaller de samme komponentene s og p.
 
 ## Fresnels likninger
 
+Med $n=n_2/n_1$ og innfallsvinkelen $\theta$ er refleksjonskoeffisientene
+
 <Formula tex={"r_{TE}=\\dfrac{\\cos\\theta-\\sqrt{n^2-\\sin^2\\theta}}{\\cos\\theta+\\sqrt{n^2-\\sin^2\\theta}}"} caption={"TE-refleksjonskoeffisient; $n=n_2/n_1$, $\\theta$ er innfallsvinkelen."} />
 
 <Formula tex={"r_{TM}=\\dfrac{-n^2\\cos\\theta+\\sqrt{n^2-\\sin^2\\theta}}{n^2\\cos\\theta+\\sqrt{n^2-\\sin^2\\theta}}"} caption={"TM-refleksjonskoeffisient, med kursets fortegnskonvensjon."} />
 
-Koeffisientene er forhold mellom felt, og effekten er proporsjonal med kvadratet av feltet:
+Koeffisientene er forhold mellom felt: $r$ er forholdet mellom reflektert og
+innfallende felt, og $t$ forholdet mellom transmittert og innfallende felt.
+Effekten er proporsjonal med kvadratet av feltet, så $R=r^2$. I $T$ kommer to
+faktorer i tillegg, fordi den transmitterte strålen går i et annet medium og i
+en annen vinkel: intensiteten er proporsjonal med $nE^2$, og effekten som
+krysser et flatestykke, er intensiteten ganger cosinus til vinkelen mellom
+strålen og normalen. Energibevaring gir $R+T=1$.
 
-<Formula tex={"R=r^2,\\quad T=n\\dfrac{\\cos\\theta_t}{\\cos\\theta}\\,t^2"} caption={"Reflektans og transmittans; $t$ er forholdet mellom transmittert og innfallende felt. Energibevaring gir $R+T=1$."} />
+<Formula tex={"R=r^2,\\quad T=n\\dfrac{\\cos\\theta_t}{\\cos\\theta}\\,t^2"} caption={"Reflektans og transmittans."} />
 
 <Derivation title="Fresnels likninger fra grensebetingelsene">
 
@@ -73,14 +89,33 @@ samme måte med $\vec B$ langs flaten, opp til fortegnskonvensjonen.
 
 </Derivation>
 
-Sett $\theta=0$. Da er $\sqrt{n^2-0}=n$, og begge koeffisientene blir
+Sett $\theta=0$. Da er $\sqrt{n^2-0}=n$, og både $r_{TE}$ og $r_{TM}$ blir
 $r=(1-n)/(1+n)$, så
 $R=\left(\dfrac{n_1-n_2}{n_1+n_2}\right)^2$. For luft mot glass er $R$
-omtrent 4 prosent, og det er refleksen du ser i et vindu.
+omtrent 4 prosent, og det er refleksen du ser i et vindu. Uttrykket endres
+ikke når $n_1$ og $n_2$ bytter plass, så lys som går fra glass ut i luft,
+reflekteres like mye.
+
+<Callout title="Normalt innfall">
+
+Ved $\theta=0$ er $R=\left(\dfrac{n_1-n_2}{n_1+n_2}\right)^2$ for begge
+polarisasjonene, omtrent 4 prosent mellom luft og glass.
+
+</Callout>
 
 ## Brewster, ekstern og intern refleksjon
 
-$r_{TM}$ er null når telleren er null, altså når
+Når lys fra luft treffer glass, sendes det reflekterte lyset ut av
+elektronene i glasset, som svinger langs det transmitterte feltet. For TM
+ligger det transmitterte feltet i
+innfallsplanet, vinkelrett på den transmitterte strålen. Står den reflekterte
+strålen vinkelrett på den transmitterte, peker den langs svingeretningen, og
+en svingende ladning stråler ingenting langs sin egen akse. Da er $r_{TM}=0$.
+For TE svinger elektronene vinkelrett på innfallsplanet og stråler like godt
+i alle retninger i det, så $r_{TE}$ blir aldri null.
+
+Fresnels likning gir vinkelen, for lys begge veier gjennom flaten. $r_{TM}$
+er null når telleren er null, altså når
 $n^2\cos\theta=\sqrt{n^2-\sin^2\theta}$. Kvadrer og bytt $\sin^2\theta$ med
 $1-\cos^2\theta$:
 
@@ -89,8 +124,9 @@ n^4\cos^2\theta=n^2-1+\cos^2\theta\;\Rightarrow\;(n^2-1)(n^2+1)\cos^2\theta=n^2-
 $$
 
 Da er $\sin\theta=n\cos\theta$, og Snells lov $\sin\theta=n\sin\theta_t$ gir
-$\sin\theta_t=\cos\theta$. Den transmitterte strålen står altså vinkelrett på
-den reflekterte.
+$\sin\theta_t=\cos\theta$, altså $\theta+\theta_t=90^\circ$. Den transmitterte
+strålen står vinkelrett på den reflekterte, slik bildet med de svingende
+elektronene krever.
 
 <Statement kind="law" name="Brewsters lov">
 
@@ -129,13 +165,19 @@ Innenfra glasset mot luft finnes to spesielle vinkler. Brewster-vinkelen
 ligger nå på $\arctan(1/1{,}5)=33{,}7^\circ$, og ved den kritiske vinkelen
 $\theta_c=\arcsin(1/1{,}5)=41{,}8^\circ$ når transmisjonsvinkelen
 $90^\circ$. Over $\theta_c$ er $|r|=1$ for begge komponentene: total intern
-refleksjon.
+refleksjon. Brewster-vinkelen ligger alltid under den kritiske vinkelen,
+ettersom $\tan\theta_p=n_2/n_1=\sin\theta_c$ og $\tan$ er større enn $\sin$
+for samme vinkel.
 
-Endre forholdet $n_2/n_1$ i figuren og se Brewster-vinkelen der TM-kurven
-krysser null, og, for internt forhold under 1, den kritiske vinkelen der
-begge kurvene går til 1.
+<Callout title="Intern refleksjon">
 
-<Simulation src={"/sims/fresnelCanvas.js"} title={"Interaktivt: Fresnel-reflektans vs. vinkel"} height={300} />
+Innenfra kommer Brewster-vinkelen først og den kritiske vinkelen etter.
+Sammenlign innfallsvinkelen med begge: ved $\theta_p$ reflekteres bare TE,
+over $\theta_c$ reflekteres alt lyset.
+
+</Callout>
+
+<Simulation src={"/sims/fresnelCanvas.js"} title={"Interaktivt: Fresnel-reflektans vs. vinkel"} caption={"Reflektansen $R_{TE}$ og $R_{TM}$ mot innfallsvinkelen ved en flate mellom indeksene $n_1$ og $n_2$."} height={300} />
 
 <Example title="Brewster">
 
@@ -180,24 +222,24 @@ refleksjon, alt lyset blir i glasset.
 </Example>
 
 <Quiz
-  question={"Upolarisert lys treffer glass ved Brewster-vinkelen. Det reflekterte lyset er …"}
-  options={["upolarisert","fullstendig lineært polarisert","sirkulært polarisert","ikke-eksisterende"]}
-  answer={1}
-  explanation={"Ved Brewster er $r_{TM}=0$, så bare TE-komponenten reflekteres: lineært polarisert."}
+  question={"Upolarisert sollys treffer en vannflate ($n=1{,}33$) med innfallsvinkelen $53^\\circ$. Det reflekterte lyset er …"}
+  options={["rent TE","rent TM","upolarisert","delvis polarisert, mest TM"]}
+  answer={0}
+  explanation={"Brewster-vinkelen er $\\arctan(1{,}33)=53{,}1^\\circ$, så $r_{TM}=0$ og bare TE reflekteres. Rent TM bytter om hvilken komponent som forsvinner. Upolarisert glemmer at $R_{TE}$ og $R_{TM}$ er ulike, og «mest TM» snur ulikheten $R_{TE}>R_{TM}$."}
 />
 
 <Quiz
-  question={"Ved normal innfall luft mot glass ($n=1{,}5$) er reflektansen omtrent …"}
-  options={["0 %","4 %","25 %","50 %"]}
+  question={"Lys faller vinkelrett inn mot diamant ($n=2{,}42$) fra luft. Reflektansen er omtrent …"}
+  options={["4 %","17 %","42 %","83 %"]}
   answer={1}
-  explanation={"$R=((1-1{,}5)/(1+1{,}5))^2=0{,}04$."}
+  explanation={"$r=(1-2{,}42)/(1+2{,}42)=-0{,}415$, så $R=r^2\\approx0{,}17$. 42 % er $|r|$ uten kvadrat, men $R$ er et forhold mellom effekter og går som feltet i andre. 83 % er $T=1-R$, og 4 % gjelder glass med $n=1{,}5$."}
 />
 
 <Quiz
-  question={"Innfallsplanet bestemmes av …"}
-  options={["E-feltet alene","B-feltet alene","innkommende stråle og normalen","overflaten alene"]}
-  answer={2}
-  explanation={"Innfallsplanet spennes ut av stråleretningen og normalen til flaten; TE og TM defineres relativt til det."}
+  question={"Sollys faller skrått ned mot en vannrett vannflate. Hvilken komponent har et $\\vec E$ som svinger vannrett?"}
+  options={["TE","TM","like mye TE og TM","det avhenger av innfallsvinkelen"]}
+  answer={0}
+  explanation={"Innfallsplanet inneholder strålen og normalen, så det står loddrett. Et vannrett $\\vec E$ som står vinkelrett på strålen, står da vinkelrett på innfallsplanet: TE, uansett vinkel. TM er feltet som ligger i innfallsplanet, ikke i flaten. Derfor sperrer polariserende solbriller vannrett polarisert lys."}
 />
 
 <Example label="Eksamensoppgave" title="Laser mot glass–luft-flaten innenfra">
@@ -232,8 +274,9 @@ refractive index 1.60 with the incident angle 58°.
 ## Materialets respons: dispersjon
 
 Brytningsindeksen avhenger av bølgelengden. I Lorentz-modellen er et bundet
-elektron en dempet, drevet harmonisk oscillator med egenfrekvens $\omega_0$,
-drevet av lysets felt, og da er brytningsindeksen kompleks:
+elektron en dempet harmonisk oscillator med resonansfrekvens $\omega_0$ og
+dempning $\gamma$, drevet av lysets felt. Med $N$ slike elektroner per volum
+er brytningsindeksen kompleks:
 
 <Formula tex={"\\tilde n^2(\\omega)=1+\\dfrac{e^2N}{\\varepsilon_0 m_e}\\cdot\\dfrac{1}{\\omega_0^2-\\omega^2-i\\omega\\gamma}"} caption={"Lorentz-modellen. $N$ = oscillatortetthet, $\\gamma$ = dempning, $\\omega_0$ = resonansfrekvens."} />
 
@@ -253,20 +296,32 @@ $\tilde n^2=1+P/(\varepsilon_0E)$ gir formelen.
 </Derivation>
 
 Realdelen $n_R$ er den vanlige indeksen som styrer fasefarten. Imaginærdelen
-$n_I$ gir dempning: feltet faller som $e^{-2\pi n_I z/\lambda}$ innover i
-mediet, der $\lambda$ er bølgelengden i vakuum. Leddet $-i\omega\gamma$ i
-nevneren er bare merkbart når $\omega_0^2-\omega^2$ er liten, altså når $\omega$
-ligger nær $\omega_0$. Derfor er $n_I$ stor bare nær resonansene, og der
-absorberer mediet.
-Mellom resonansene vokser $n_R$ med frekvensen. Det er normal
-<Term name="Dispersjon">dispersjon</Term>: blått bryter mer enn rødt, og derfor
-sorterer prismer og regndråper farger.
+$n_I$ gir dempning: bølgen har faktoren $e^{i\tilde n\,2\pi z/\lambda}$, så
+feltet faller som $e^{-2\pi n_I z/\lambda}$ innover i mediet, der $\lambda$ er
+bølgelengden i vakuum. Leddet $-i\omega\gamma$ i nevneren er bare merkbart når
+$\omega_0^2-\omega^2$ er liten, altså når $\omega$ ligger nær $\omega_0$.
+Derfor er $n_I$ stor bare nær resonansene, og der absorberer mediet.
+Under en resonans er $\omega_0^2-\omega^2$ positiv og krymper når $\omega$
+øker, så brøken, og med den $n_R$, vokser med frekvensen. Det er normal
+<Term name="Dispersjon">dispersjon</Term>: glass har resonansene sine i
+ultrafiolett, så blått bryter mer enn rødt, og derfor sorterer prismer og
+regndråper farger.
 
-Et ekte glass har flere resonanser med ulik styrke. Summen av dem gir
-Sellmeier-formelen
-$n^2=1+\sum_j B_j\lambda^2/(\lambda^2-\lambda_j^2)$, og produsentene oppgir
-koeffisientene $B_j$ og $\lambda_j$. Langt fra resonansene tilnærmes den med
-Cauchys formel $n(\lambda)=A+B/\lambda^2+C/\lambda^4+\cdots$.
+<Callout title="Normal dispersjon">
+
+Mellom resonansene vokser $n_R$ med frekvensen, så blått bryter mer enn rødt.
+Nær en resonans er $n_I$ stor, og mediet absorberer.
+
+</Callout>
+
+Et ekte glass har flere resonanser med ulik styrke. Uten dempning og skrevet
+med bølgelengden gir hver resonans et ledd $B_j\lambda^2/(\lambda^2-\lambda_j^2)$,
+og summen er Sellmeier-formelen
+$n^2=1+\sum_j B_j\lambda^2/(\lambda^2-\lambda_j^2)$. Produsentene oppgir
+koeffisientene $B_j$ og $\lambda_j$. Når $\lambda$ er mye større enn
+resonansbølgelengdene $\lambda_j$, som for synlig lys og de ultrafiolette
+resonansene i glass, kan hvert ledd utvikles i potenser av $\lambda_j^2/\lambda^2$,
+og indeksen tilnærmes med Cauchys formel $n(\lambda)=A+B/\lambda^2+C/\lambda^4+\cdots$.
 
 <ExamFocus title="Typiske oppgaver">
 

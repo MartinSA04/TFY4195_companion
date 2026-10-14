@@ -26,26 +26,38 @@ utveksler energi med materie, skjer det i kvanter, fotoner.
 Planck innførte i 1900 at energi utveksles mellom stråling og materie i kvanter
 $hf$. Einstein la kvantiseringen i selve lyset: en stråle består av
 <Term name="Foton">fotoner</Term>, hver med energi $E=hf$. De Broglie knyttet
-etterpå bølgelengde til impuls for alle partikler, $\lambda=h/p$, og for en
-masseløs partikkel gir den relativistiske energiligningen $p=E/c$.
+etterpå bølgelengde til impuls for alle partikler, $\lambda=h/p$. Den
+relativistiske energiligningen $E^2=(pc)^2+(mc^2)^2$ gir $p=E/c$ når $m=0$.
 
 <Formula tex={"E=hf=\\dfrac{hc}{\\lambda}"} caption={"Foton-energi fra frekvens eller bølgelengde. $h$ er Plancks konstant."} />
 
 <Formula tex={"p=\\dfrac{E}{c}=\\dfrac{h}{\\lambda}"} caption={"Foton-impuls."} />
 
 Fotonet har null hvilemasse og beveger seg alltid med $c$ i vakuum, der
-$\lambda f=c$. Det bærer dreieimpuls, spinn $\pm\hbar$ langs bevegelsesretningen,
-og de to spinntilstandene svarer til venstre- og høyredreid sirkulær
-polarisasjon. Fotonet er dessuten et boson: mange fotoner kan dele samme
-tilstand, og det er derfor en laser i det hele tatt er mulig. Elektroner, som er
-fermioner, kan ikke det.
+$\lambda f=c$. Fotonet bærer dreieimpuls, spinn $\pm\hbar$ langs
+bevegelsesretningen, og de to spinntilstandene svarer til venstre- og
+høyredreid sirkulær polarisasjon. Fotonet er et boson og følger
+Bose–Einstein-statistikk, så mange fotoner kan dele samme tilstand, slik
+fotonene i en laserstråle gjør. Elektroner er fermioner, følger
+Fermi–Dirac-statistikk og kan ikke dele tilstand.
 
 <Quiz
-  question={"Hvilken egenskap hører <em>ikke</em> til fotonet?"}
-  options={["Null hvilemasse","Adlyder Fermi–Dirac-statistikk","Kvantisert energi $E=hf$","Bærer dreieimpuls"]}
-  answer={1}
-  explanation={"Fotoner er bosoner og adlyder Bose–Einstein-statistikk. Fermi–Dirac gjelder fermioner, for eksempel elektroner."}
+  question={"En laserpeker på 1,0 mW lyser vinkelrett mot en svart flate som absorberer alt lyset. Hvor stor kraft virker på flaten?"}
+  options={["$3{,}3\\times10^{-12}$ N","$6{,}7\\times10^{-12}$ N","$3{,}0\\times10^{5}$ N","null, fotonet er masseløst"]}
+  answer={0}
+  explanation={"Hvert foton leverer impulsen $p=E/c$, og fotonene kommer med energien $P$ per sekund. Kraften er impuls per tid, $F=P/c=(1{,}0\\times10^{-3})/(3{,}00\\times10^{8})=3{,}3\\times10^{-12}$ N. Null hvilemasse betyr ikke null impuls. Det dobbelte svaret gjelder et speil, som snur impulsen, og $Pc$ har feil enhet."}
 />
+
+<Example label="Eksamensoppgave" title="Hva er ikke en egenskap ved fotonet?">
+<ExamRef id="2023-mai" task="1" />
+
+<Quiz
+  question={"This is NOT a property of photons:"}
+  options={["Having zero rest mass.", "Obeying Fermi-Dirac statistics.", "The delivery of energy is quantized.", "Carrying angular momentum.", "Obeying Bose-Einstein statistics."]}
+  answer={1}
+  explanation={"Fotonet har null hvilemasse, leverer energien i kvanter $E = hf$ og bærer dreieimpuls, spinn $\\pm\\hbar$. Det er et boson og følger Bose–Einstein-statistikk, så mange fotoner kan dele samme tilstand. Fermi–Dirac-statistikk gjelder fermioner som elektronet, ikke fotonet."}
+/>
+</Example>
 
 ## Det elektromagnetiske spekteret
 
@@ -61,9 +73,16 @@ E\,[\text{eV}]=\dfrac{1240\ \text{eV·nm}}{\lambda\,[\text{nm}]}
 $$
 
 raskere enn å slå opp konstanter: grønt lys på 532 nm har $E\approx2{,}3$ eV.
-Legg merke til hva som avhenger av hva. Energien per foton er bestemt av
-bølgelengden alene. Effekten til en kilde sier hvor mange fotoner den sender per
-sekund, og de to må aldri blandes.
+Energien per foton er bestemt av bølgelengden alene. Effekten $P$ til en kilde
+er energi per tid, så den sier hvor mange fotoner kilden sender per sekund,
+$N/t=P/E$.
+
+<Callout title="Energi og effekt">
+
+Bølgelengden bestemmer energien til hvert foton. Effekten bestemmer hvor mange
+fotoner som kommer per sekund.
+
+</Callout>
 
 <Example title="fotonfluks fra laser">
 
@@ -86,39 +105,45 @@ $N/t=P/E=(2{,}0\times10^{-3})/(3{,}74\times10^{-19})=5{,}3\times10^{15}\ \text{s
 </Example>
 
 <Quiz
-  question={"En kilde dobler bølgelengden. Foton-energien …"}
-  options={["dobles","halveres","er uendret","firedobles"]}
+  question={"Et materiale absorberer et foton bare når fotonet har minst 1,1 eV. Hvilket lys kan materialet absorbere?"}
+  options={["$\\lambda$ over omtrent 1,1 µm, ved enhver effekt","$\\lambda$ under omtrent 1,1 µm, ved enhver effekt","$\\lambda$ under omtrent 1,1 µm, bare ved høy effekt","alle $\\lambda$, når effekten er høy nok"]}
   answer={1}
-  explanation={"$E=hc/\\lambda$: energien er omvendt proporsjonal med bølgelengden, så dobbel $\\lambda$ gir halv energi."}
+  explanation={"Grensen er $\\lambda=1240/1{,}1\\approx1130$ nm. Kortere bølgelengde gir mer energi per foton, så lys under 1,1 µm har nok. Høyere effekt gir flere fotoner, men ikke mer energi i hvert, så effekten flytter ikke grensen."}
 />
 
 ## Romvinkel og radiometriens størrelser
 
-Dagligtalens «intensitet» og «belysning» er for upresise til å regne med;
-under slike ord blandes watt, joule og watt per kvadratmeter i hverandre.
-I radiometrien har hver størrelse sitt eget navn, sitt eget symbol og sin egen
-enhet.
+En lyspære på 100 W sender ut hundre tusen ganger mer effekt enn en
+laserpeker på 1 mW. Likevel får en vegg 3 m unna mest effekt per kvadratmeter
+fra laseren. Begge utsagnene er riktige, fordi de handler om ulike størrelser.
+Dagligtalens «intensitet» og «belysning» skiller ikke mellom dem, så
+radiometrien gir hver størrelse sitt eget navn, symbol og enhet.
 
-Strålingsstyrke og radians regnes per romvinkel, altså per del av rommet
-strålingen fyller. Romvinkelen til en flate
-$A$ sett fra et punkt i avstand $r$ er
+Noen av størrelsene regnes per romvinkel, altså per del av rommet strålingen
+fyller. Romvinkelen til en flate $A$ sett fra et punkt i avstand $r$ er
 
-<Formula tex={"\\Omega = \\dfrac{A}{r^2}"} caption={"Romvinkel i steradianer. En hel kule spenner $4\\pi$ sr."} />
+<Formula tex={"\\Omega = \\dfrac{A}{r^2}"} caption={"Romvinkel i steradianer."} />
 
+En hel kule rundt punktet har areal $4\pi r^2$ og spenner derfor $4\pi$ sr.
 For en smal stråle med full divergensvinkel $\alpha$ er tverrsnittet i avstand
 $R$ en sirkel med radius omtrent $R\alpha/2$, så romvinkelen blir
-$\Omega=\pi\alpha^2/4$, uavhengig av $R$.
+$\Omega=\pi(R\alpha/2)^2/R^2=\pi\alpha^2/4$, uavhengig av $R$.
 
-Strålingsenergien $Q_e$ (J), energitettheten $w_e$ (J/m³) og strålingsfluksen
-$\Phi_e$ (W), effekten strålingen frakter, gjelder selve strålingen.
-Strålingsstyrken $I_e=\Phi_e/\Omega$ (W/sr) er fluksen per romvinkel fra en
-kilde, og radiansen $L_e$ (W/(sr·m²)) er fluksen per romvinkel og per areal fra
-en utstrakt kilde. Irradiansen $E_e=\Phi_e/A$ (W/m²) er fluksen per areal inn på
-en mottakerflate. Fotometriens størrelser, med enheter som candela og lumen, er
-de samme størrelsene vektet med øyets følsomhet. Lyskilder selges i lumen.
+Strålingsenergien $Q_e$ (J) og strålingsfluksen $\Phi_e=dQ_e/dt$ (W), effekten
+strålingen frakter, gjelder selve strålingen. De andre størrelsene er fluksen
+delt på en romvinkel, et areal eller begge. Strålingsstyrken $I_e=\Phi_e/\Omega$ (W/sr) er fluksen per
+romvinkel fra en kilde. Irradiansen $E_e=\Phi_e/A$ (W/m²) er fluksen per areal
+inn på en flate, og eksitansen $M_e$ er den samme brøken ut av en flate.
+Radiansen $L_e=\Phi_e/(A\,\Omega)$ (W/(sr·m²)) deler både på arealet til en
+utstrakt kilde, sett fra mottakeren, og på romvinkelen kilden stråler inn i. Samme
+fluks fra en mindre flate inn i en smalere kjegle gir derfor høyere radians.
+Fotometriens størrelser, med enheter som candela og lumen, er de samme
+størrelsene vektet med øyets følsomhet; indeksen $e$ skiller de radiometriske
+fra dem. Lyskilder selges i lumen. Bølgeoptikken kaller irradiansen intensiteten
+$I$, så ikke bland den med strålingsstyrken $I_e$.
 
 <Table
-  caption={"Radiometriske størrelser. Indeksen $e$ skiller dem fra fotometriens øyevektede motstykker."}
+  caption={"Radiometriske størrelser."}
   columns={["Symbol", "Navn", "Definisjon", "Enhet"]}
   rows={[
     ["$Q_e$", "strålingsenergi", "energi i strålingsfeltet", "J"],
@@ -130,15 +155,26 @@ de samme størrelsene vektet med øyets følsomhet. Lyskilder selges i lumen.
   ]}
 />
 
-Kontroller alltid at enheten stemmer med spørsmålet. Spør oppgaven etter
-irradians, skal svaret i W/m²; etter energi, i joule. Den kontrollen fanger de
-fleste feilene i slike oppgaver.
+En isotrop kilde fordeler fluksen over en kule, så irradiansen i avstand $R$ er
+$E_e=\Phi_e/(4\pi R^2)$ og faller som $1/R^2$. En laser samler fluksen i en
+flekk på noen millimeter og kan derfor gi høyere irradians med en
+hundretusendel av effekten. Kontroller alltid at enheten stemmer med
+spørsmålet. Spør oppgaven etter irradians, skal svaret i W/m²; etter energi, i
+joule.
+
+<Callout title="Irradians">
+
+Irradiansen er fluksen delt på arealet den treffer. Samlet i en liten flekk kan
+en milliwatt gi flere W/m² enn hundre watt spredt over en kule.
+
+</Callout>
 
 <Example title="laser mot lyspære">
 
 En laserpeker på $P=1{,}0$ mW har utgangsdiameter 1,0 mm og full divergens
 $\alpha=2{,}0$ mrad. En lyspære på 100 W (antatt isotrop) har diameter 5,0 cm.
-Hvilken kilde gir størst irradians på en vegg 3,0 m unna?
+Hvilken kilde gir størst irradians på en vegg 3,0 m unna, og hvilken har størst
+radians?
 
 <Solution>
 
@@ -155,21 +191,17 @@ Pæra leverer hundre tusen ganger mer effekt enn laseren, men laseren gir rundt
 30 ganger høyere irradians på veggen, fordi all effekten samles i én liten
 flekk.
 
-<Answer>Laseren: $\approx26$ W/m² mot pærens $\approx0{,}9$ W/m²</Answer>
+Laseren sender fluksen fra $A=\pi(0{,}50\ \text{mm})^2=7{,}9\times10^{-7}$ m²
+inn i $\Omega=\pi\alpha^2/4=3{,}1\times10^{-6}$ sr, så
+$L_e=P/(A\,\Omega)\approx4\times10^{8}$ W/(sr·m²). Sett fra veggen er pæra en
+skive med areal $\pi(2{,}5\ \text{cm})^2=2{,}0\times10^{-3}$ m², og den stråler
+inn i $4\pi$ sr, så $L_e\approx100/(2{,}0\times10^{-3}\cdot4\pi)\approx4\times10^{3}$
+W/(sr·m²).
+
+<Answer>Laseren på begge: irradians $\approx26$ mot $\approx0{,}9$ W/m², radians $\approx4\times10^{8}$ mot $\approx4\times10^{3}$ W/(sr·m²)</Answer>
 
 </Solution>
 
-</Example>
-
-<Example label="Eksamensoppgave" title="Hva er ikke en egenskap ved fotonet?">
-<ExamRef id="2023-mai" task="1" />
-
-<Quiz
-  question={"This is NOT a property of photons:"}
-  options={["Having zero rest mass.", "Obeying Fermi-Dirac statistics.", "The delivery of energy is quantized.", "Carrying angular momentum.", "Obeying Bose-Einstein statistics."]}
-  answer={1}
-  explanation={"Fotonet har null hvilemasse, leverer energien i kvanter $E = hf$ og bærer dreieimpuls, spinn $\\pm\\hbar$. Det er et boson og følger Bose–Einstein-statistikk, så mange fotoner kan dele samme tilstand. Fermi–Dirac-statistikk gjelder fermioner som elektronet, ikke fotonet."}
-/>
 </Example>
 
 <ExamFocus title="Typiske oppgaver">
@@ -184,16 +216,16 @@ irradians, fluks og energi skal holdes fra hverandre.
 
 <Quiz
   question={"En lyskilde har samme effekt ved 400 nm og 800 nm. Hvilken stråle har flest fotoner per sekund?"}
-  options={["400 nm","800 nm","like mange","det avhenger bare av arealet"]}
+  options={["400 nm, dobbelt så mange","800 nm, dobbelt så mange","like mange, effekten er lik","800 nm, fire ganger så mange"]}
   answer={1}
-  explanation={"Ved 800 nm er hvert foton halvparten så energirikt, så samme effekt krever dobbelt så mange fotoner per sekund."}
+  explanation={"$N/t=P/E$, og ved 800 nm er hvert foton halvparten så energirikt, $E=hc/\\lambda$. Samme effekt krever da dobbelt så mange fotoner per sekund. Lik effekt betyr lik energi per sekund, ikke likt antall fotoner."}
 />
 
 <Quiz
-  question={"Radians og irradians skilles ved at radiansen i tillegg regnes per …"}
-  options={["tid","romvinkel","bølgelengde","volum"]}
+  question={"Du flytter en skjerm fra 3 m til 6 m fra en isotrop lyspære. Hva skjer med irradiansen på skjermen og med strålingsstyrken fra pæra?"}
+  options={["irradiansen halveres, strålingsstyrken er uendret","irradiansen blir en firedel, strålingsstyrken er uendret","begge blir en firedel","irradiansen er uendret, strålingsstyrken blir en firedel"]}
   answer={1}
-  explanation={"Irradians er effekt per areal, W/m². Radians er effekt per areal per romvinkel, W/(sr·m²), og brukes om utstrakte kilder."}
+  explanation={"Strålingsstyrken $I_e=\\Phi_e/\\Omega$ er fluksen per steradian fra pæra og avhenger ikke av hvor skjermen står. Irradiansen $E_e=\\Phi_e/(4\\pi R^2)$ faller som $1/R^2$, så dobbel avstand gir en firedel. Halvering får du hvis du deler på $R$ i stedet for $R^2$."}
 />
 
 <KeyTakeaways>

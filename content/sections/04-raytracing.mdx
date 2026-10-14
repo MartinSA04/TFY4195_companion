@@ -9,11 +9,11 @@ part: "Geometrisk optikk"
 updated: 2026-08-25
 ---
 
-Dette er praksismodulen for matrisemetoden: konvensjonene, byggematrisene,
-den grafiske metoden og avlesningen samlet i én guide, med gjennomregnede
-eksempler og oppgaver du kan drille på. Tidligere
-eksamenssett har gjerne en «match systemet med matrisen»-oppgave eller et
-linsesystem som skal regnes gjennom, så håndlaget her er verdt å øve inn.
+Tidligere eksamenssett har gjerne en oppgave der du skal matche optiske systemer
+med matriser, eller et linsesystem der du skal finne bildeplan, forstørrelse
+eller brennvidde. Med matrisemetoden skriver du ned elementmatrisene, ganger dem
+sammen i riktig rekkefølge, kontrollerer determinanten og leser svaret ut av de
+fire tallene. Hovedstrålene tegnet med linjal er kontrollen.
 
 <LearningGoals>
 
@@ -27,8 +27,7 @@ linsesystem som skal regnes gjennom, så håndlaget her er verdt å øve inn.
 
 ## Strålen som vektor
 
-Paraksial optikk er lineær, og det er hele grunnlaget for metoden. En stråle
-beskrives ved høyden $y$ over den optiske aksen og vinkelen $\alpha$ den danner
+Matrisemetoden bygger på at paraksial optikk er lineær. En stråle beskrives ved høyden $y$ over den optiske aksen og vinkelen $\alpha$ den danner
 med aksen. Hvert optisk element transformerer $(y,\alpha)$ lineært og kan
 skrives som en $2\times2$-matrise:
 
@@ -43,10 +42,12 @@ blir én matrise, og alt du trenger står i de fire tallene $A,B,C,D$.
 
 ## Fortegnskonvensjonen
 
-Pedrotti-konvensjonen, med lys fra venstre mot høyre:
+Pedrotti-konvensjonen har lys fra venstre mot høyre, og alle avstander måles
+fra linsen, flaten eller speilet: $s_o$ til objektet, $s_i$ til bildet og $f$
+til brennpunktene.
 
 <Table
-  caption={"Fortegnskonvensjonen for paraksial optikk. For speil brukes $R>0$ for konkavt speil og $s_i>0$ for et reelt bilde foran speilet."}
+  caption={"Fortegnskonvensjonen for linser og brytende flater."}
   columns={["Størrelse", "Positiv når …", "Tolkning"]}
   rows={[
     ["$y$", "over aksen", "strålehøyde"],
@@ -57,6 +58,22 @@ Pedrotti-konvensjonen, med lys fra venstre mot høyre:
     ["$f$", "elementet samler lys", "positiv linse, konkavt speil"],
   ]}
 />
+
+<Simulation src={"/sims/signConvCanvas.js"} title={"Visuelt: fortegn & avbildning"} caption={"Tynn samlelinse med objekt og bilde. $s_o$ og $s_i$ måles fra linsen, $f$ fra linsen til brennpunktene $F$ og $F'$."} height={280} />
+
+Felles for $s_i$ og $R$ er at de er positive på siden lyset går ut på. For en
+linse eller en brytende flate er det høyre side. Et speil sender lyset tilbake
+mot venstre, så der er $s_i>0$ for et reelt bilde foran speilet, og $R>0$ for
+et konkavt speil, som har krumningssenteret foran seg. Et konkavt speil samler
+lys og får $f=R/2>0$, og med disse fortegnene gjelder $1/s_o+1/s_i=1/f$ for
+speil som for linser.
+
+<Callout title="Fortegn for speil">
+
+For et speil er $s_i$ og $R$ positive foran speilet, på siden lyset går ut på.
+Et reelt bilde har $s_i>0$, og et konkavt speil har $R>0$ og $f=R/2$.
+
+</Callout>
 
 ## Grafisk strålegang med linjal
 
@@ -81,7 +98,7 @@ krysser. Den tredje er en gratis kontroll.
 1. En stråle rettet mot bakre $F'$ kommer ut parallelt med aksen.
 
 Strålene spriker etter linsen, så bildet ligger der de stiplede forlengelsene
-møtes: alltid virtuelt, opprett og forminsket.
+møtes. For et reelt objekt er bildet alltid virtuelt, opprett og forminsket.
 
 ### Speil
 
@@ -102,18 +119,7 @@ bildetoppen under aksen, er bildet invertert. Kontroller til slutt med
 $m=-s_i/s_o$. Marker $F$ og $F'$ nøyaktig i målestokk før du tegner;
 unøyaktige brennpunkter er den vanligste feilen.
 
-Velg oppsett og klikk «Neste steg» for å tegne hver hovedstråle slik du ville
-gjort for hånd. Heltrukne linjer er virkelige stråler, stiplede er
-bakover-forlengelser.
-
-<Simulation src={"/sims/rayGuideCanvas.js"} title={"Interaktivt: steg-for-steg strålegang"} height={300} />
-
-Objektavstand $s_o$ og bildeavstand $s_i$ måles fra linsen, brennvidden $f$ til
-brennpunktene $F$ og $F'$. Du finner bildet med to hjelpestråler: strålen som
-kommer inn parallelt, går gjennom $F'$, og sentralstrålen går ubrutt. Objektet står utenfor $2f$, så
-bildet blir reelt, invertert og forminsket.
-
-<Simulation src={"/sims/signConvCanvas.js"} title={"Visuelt: fortegn & avbildning"} height={280} />
+<Simulation src={"/sims/rayGuideCanvas.js"} title={"Interaktivt: steg-for-steg strålegang"} caption={"Hovedstrålene for linser og speil, én om gangen. Heltrukne linjer er virkelige stråler, stiplede er bakover-forlengelser."} height={300} />
 
 ## De fem byggematrisene
 
@@ -133,7 +139,8 @@ $\alpha_2=(n_1/n_2)\,\alpha_1$.
 
 ### 3 · Brytning i sfærisk flate, radius $R$
 
-Tynne og tykke linser er bygd av to slike flater.
+Tynne og tykke linser er bygd av to slike flater. $R>0$ når krumningssenteret
+ligger til høyre for flaten.
 
 <Formula tex={"R_S=\\begin{pmatrix}1 & 0 \\\\ \\frac{n_1-n_2}{n_2 R} & n_1/n_2\\end{pmatrix}"} caption={"Brytning, sfærisk flate."} />
 
@@ -147,17 +154,27 @@ høyden, og sentralstrålen ($y=0$) går ubrutt. Da er $\alpha_2=\alpha_1-y/f$.
 
 ### 5 · Sfærisk speil, radius $R$
 
-Virker som en linse, men folder strålegangen; matrisen under er den utbrettede
-formen. Her er $R>0$ for et konkavt speil, som samler lys, så $f=R/2>0$.
+Speilet virker som en linse, men sender lyset tilbake. Matrisen under er den
+utbrettede formen: du speiler resten av systemet om speilplanet, slik at lyset
+fortsetter mot høyre. Krumningssenteret til et konkavt speil ligger foran
+speilet, på siden lyset går ut på, så $R>0$ og $f=R/2>0$, selv om en brytende
+flate med senteret på den siden ville hatt $R<0$.
 
 <Formula tex={"M_\\text{speil}=\\begin{pmatrix}1 & 0 \\\\ -2/R & 1\\end{pmatrix}=\\begin{pmatrix}1 & 0 \\\\ -1/f & 1\\end{pmatrix}"} caption={"Sfærisk speil, utbrettet."} />
+
+<Quiz
+  question={"Et konvekst speil har $|R|=40$ cm, og et objekt står 60 cm foran det. Hvor ligger bildet?"}
+  options={["15 cm bak speilet, virtuelt","30 cm foran speilet, reelt","24 cm bak speilet, virtuelt","15 cm foran speilet, reelt"]}
+  answer={0}
+  explanation={"Krumningssenteret til et konvekst speil ligger bak speilet, så $R=-40$ cm og $f=R/2=-20$ cm. Da er $1/s_i=-1/20-1/60=-1/15$, og $s_i=-15$ cm: bildet ligger bak speilet og er virtuelt, med $m=-s_i/s_o=1/4$. Med $f=+20$ cm får du 30 cm foran speilet, svaret for et konkavt speil. 24 cm kommer av å bruke $f=R$ i stedet for $R/2$."}
+/>
 
 En tykk linse settes sammen som $M=R_S^{(2)}\,T(t)\,R_S^{(1)}$: to flater med
 glasstykkelse $t$ imellom.
 
-Translasjon flytter strålen uten å endre vinkelen; en tynn linse knekker
-vinkelen mot brennpunktet; en brytende flate endrer vinkelen etter Snell mens
-høyden er kontinuerlig. Det er disse virkningene matrisene koder.
+Translasjon flytter strålen uten å endre vinkelen. En tynn linse knekker
+vinkelen mot brennpunktet, og en brytende flate endrer vinkelen etter Snell
+mens høyden er den samme på begge sider.
 
 <Simulation src={"/sims/elemActCanvas.js"} title={"Visuelt: hva hvert element gjør med en stråle"} height={200} />
 
@@ -166,9 +183,18 @@ høyden er kontinuerlig. Det er disse virkningene matrisene koder.
 Matrisene virker fra høyre på strålevektoren, så produktet skrives i motsatt
 rekkefølge: $M_\text{sys}=M_n\cdots M_2\,M_1$, med det siste elementet lengst
 til venstre. Tegn systemet i fysisk rekkefølge på papir først, og les baklengs
-når du setter opp produktet. Kontroller determinanten før du tolker:
-$\det M_\text{sys}=n_\text{start}/n_\text{slutt}$, altså 1 når systemet starter
-og slutter i samme medium.
+når du setter opp produktet. Kontroller determinanten før du tolker. Hver
+translasjon har determinant 1 og hver brytende flate $n_\text{før}/n_\text{etter}$,
+så $\det M_\text{sys}=n_\text{start}/n_\text{slutt}$, altså 1 når systemet
+starter og slutter i samme medium.
+
+<Callout title="Rekkefølge og determinant">
+
+Bygg $M_\text{sys}=M_n\cdots M_2\,M_1$ med det siste elementet lengst til
+venstre, og sjekk at $\det M_\text{sys}=n_\text{start}/n_\text{slutt}$ før du
+leser av noe.
+
+</Callout>
 
 ## Les av de fire tallene
 
@@ -177,7 +203,7 @@ og slutter i samme medium.
   columns={["Betingelse", "Betyr", "Bruk"]}
   rows={[
     ["$B=0$", "inn- og utplan er konjugerte", "finn bildeplanet"],
-    ["$A$ når $B=0$", "lateral forstørrelse $m$", "fortegn avgjør reelt/virtuelt"],
+    ["$A$ når $B=0$", "lateral forstørrelse $m$", "$m>0$ opprett, $m<0$ invertert"],
     ["$C=0$", "afokalt (teleskopisk) system", "parallelt inn gir parallelt ut"],
     ["$D$ når $C=0$", "vinkelforstørrelse", "$\\alpha_2=D\\,\\alpha_1$"],
     ["$-1/C$", "effektiv brennvidde $f$", "målt fra hovedplanet"],
@@ -187,7 +213,10 @@ og slutter i samme medium.
 
 Betingelsen $B=0$ er stråleoptikkens versjon av kravet om lik
 <Term name="Optisk veilengde">optisk veilengde</Term>: utgangshøyden er uavhengig av inngangsvinkelen, så alle strålene fra
-ett objektpunkt samles igjen i ett punkt.
+ett objektpunkt samles igjen i ett punkt. Da er $y_2=A\,y_1$, og $A$ er
+forstørrelsen. Fortegnet på $A$ sier om bildet er opprett eller invertert. Om
+bildet er reelt eller virtuelt, sier fortegnet på bildeavstanden: et bildeplan
+bak siste element ($s_i>0$) er reelt.
 
 <Example label="Eksamensoppgave" title="To linser og ett bilde">
 <ExamRef id="2021-mai" task="2" />
@@ -216,11 +245,7 @@ skjermposisjon for et fjernt objekt ($-A/C$) ut av en oppgitt matrise.
 
 </ExamFocus>
 
-En punktkilde sender et stråleknippe gjennom to tynne linser. Dra brennviddene
-og avstanden og se strålene bøye i hvert linseplan og hvor det endelige bildet
-dannes.
-
-<Simulation src={"/sims/rayCanvas.js"} title={"Interaktivt: to-linse ray tracer"} height={320} />
+<Simulation src={"/sims/rayCanvas.js"} title={"Interaktivt: to-linse ray tracer"} caption={"Stråler fra toppen av et objekt (grønn pil) gjennom to tynne linser $L_1$ og $L_2$, med brennpunktene som prikker. Den oransje pilen er det endelige bildet, med stiplede forlengelser når bildet er virtuelt."} height={320} />
 
 <Example label="Regneeksempel 1" title="tynn linse via matrise">
 
@@ -402,23 +427,31 @@ BFD er $-A/C=3/0{,}05=60$ cm bak linse 2, og $\det M=1$ stemmer.
 </Example>
 
 <Quiz
-  question={"Den effektive brennvidden til et system leses av som …"}
-  options={["$f=B$","$f=-1/C$","$f=A/D$","$f=\\det M$"]}
-  answer={1}
-  explanation={"$f=-1/C$, målt fra hovedplanet. Bakre brennavstand er $-A/C$, målt fra utgangsplanet."}
+  question={"To tynne samlelinser med $f_1=f_2=10$ cm står 5 cm fra hverandre i luft. Hva er den effektive brennvidden?"}
+  options={["6,7 cm","5,0 cm","4,0 cm","20 cm"]}
+  answer={0}
+  explanation={"$M=L(10)\\,T(5)\\,L(10)$ har $C=-\\tfrac{1}{10}-\\tfrac{1}{10}+\\tfrac{5}{10\\cdot10}=-0{,}15\\ \\text{cm}^{-1}$, så $f=-1/C\\approx6{,}7$ cm. 5 cm er svaret for linsene i kontakt; avstanden mellom dem gjør systemet svakere. 4 cm får du med feil fortegn på leddet med avstanden."}
 />
 
 ## Effektiv brennvidde mot bakre brennavstand
 
-Effektiv brennvidde $f=-1/C$ måles fra det bakre hovedplanet, ikke fra glasset.
-Bakre brennavstand måles fra utgangsplanet, altså siste flate.
-
 For et fjernt objekt er $\alpha_1=0$, så $y_2=A\,y_1$ og $\alpha_2=C\,y_1$. Etter
-avstanden $x$ videre er høyden $(A+xC)\,y_1$, som er null for $x=-A/C$. Den
-avstanden er BFD. Bakre brennpunkt ligger også $f$ bak det bakre hovedplanet, så hovedplanet
-ligger $(1-A)/C$ bak utgangsplanet. Ligger det ikke i siste flate, som for en
-tykk linse eller et sammensatt system, er $f$ og BFD ulike. Spør en oppgave «hvor
-må skjermen stå for et fjernt objekt», er svaret BFD $=-A/C$.
+avstanden $x$ videre er høyden $(A+xC)\,y_1$, som er null for $x=-A/C$ uansett
+$y_1$. Den avstanden er bakre brennavstand (BFD), målt fra utgangsplanet, altså
+siste flate. Effektiv brennvidde $f=-1/C$ måles derimot fra det bakre
+hovedplanet. Bakre brennpunkt ligger $f$ bak det bakre hovedplanet, så
+hovedplanet ligger $-A/C-(-1/C)=(1-A)/C$ bak utgangsplanet. Ligger det ikke i
+siste flate, som for en tykk linse eller et sammensatt system, er $f$ og BFD
+ulike. For én tynn linse er $A=1$, og da er BFD $=f$. Spør en oppgave «hvor må
+skjermen stå for et fjernt objekt», er svaret BFD $=-A/C$.
+
+<Callout title="Brennvidde og BFD">
+
+Effektiv brennvidde $f=-1/C$ måles fra det bakre hovedplanet, bakre
+brennavstand $-A/C$ fra utgangsplanet. Skjermen for et fjernt objekt står i
+bakre brennavstand.
+
+</Callout>
 
 <Example title="tolk en gitt systemmatrise">
 
@@ -440,22 +473,15 @@ samles $-A/C=5$ cm bak utgangsplanet.
 </Example>
 
 <Quiz
-  question={"Hvorfor er bakre brennavstand mindre enn effektiv brennvidde i eksempelet over?"}
-  options={["hovedplanet ligger foran utgangsplanet","lyset taper energi","$\\det M\\neq1$","rent tilfeldig"]}
+  question={"Et system i luft har $A=1{,}5$ og $C=-0{,}25\\ \\text{cm}^{-1}$. Hvor må skjermen stå for et fjernt objekt?"}
+  options={["6 cm bak utgangsplanet","4 cm bak utgangsplanet","6 cm foran utgangsplanet","2 cm bak utgangsplanet"]}
   answer={0}
-  explanation={"$f$ måles fra hovedplanet, som her ligger foran utgangsplanet, så avstanden fra siste flate (BFD) blir kortere."}
-/>
-
-<Quiz
-  question={"Et fjernt objekt avbildes alltid i …"}
-  options={["hovedplanet","brennplanet","utgangsplanet","uendelig"]}
-  answer={1}
-  explanation={"Parallelle stråler fra uendelig samles i det bakre brennplanet."}
+  explanation={"Skjermen står i bakre brennavstand, $-A/C=1{,}5/0{,}25=6$ cm bak utgangsplanet. $f=-1/C=4$ cm måles fra det bakre hovedplanet, som her ligger $(1-A)/C=2$ cm bak utgangsplanet, og $2+4=6$ stemmer. 4 cm er $f$ målt fra feil plan, og 2 cm er hovedplanet selv."}
 />
 
 <KeyTakeaways>
 
-- En stråle er $(y,\alpha)$; de fem byggematrisene er alt du trenger, og speilets er $\begin{pmatrix}1&0\\-2/R&1\end{pmatrix}$.
+- En stråle er $(y,\alpha)$; de fem byggematrisene er alt du trenger, og speilets er $\begin{pmatrix}1&0\\-2/R&1\end{pmatrix}$ med $R>0$ for konkavt speil.
 - Bygg $M_\text{sys}=M_n\cdots M_2M_1$ i motsatt rekkefølge av lysets gang, og sjekk $\det M=n_\text{start}/n_\text{slutt}$ før du tolker.
 - Les av tallene: $B=0$ gir bilde med $m=A$, $C=0$ gir afokalt med $D$ som vinkelforstørrelse, $f=-1/C$, BFD $=-A/C$.
 - Effektiv $f$ måles fra hovedplanet, BFD fra utgangsplanet; «hvor står skjermen» betyr BFD.

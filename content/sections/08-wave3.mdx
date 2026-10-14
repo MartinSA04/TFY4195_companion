@@ -8,11 +8,11 @@ part: "Bølgeoptikk"
 updated: 2026-08-25
 ---
 
-Total intern refleksjon ser ut som geometrisk optikk, men bare bølgeoptikken
-forklarer den: refleksjonskoeffisientene blir komplekse, lyset får en
-polarisasjonsavhengig faseforskyvning, og feltet trenger et lite stykke inn i
-det tynne mediet. Dette evanescente feltet brukes i overflatemikroskopi og
-bølgeledere. Regnbuen forklares av brytning og refleksjon i vanndråper.
+Geometrisk optikk sier når total intern refleksjon inntreffer, men bare
+bølgeoptikken sier hva som skjer med fasen og feltet: refleksjonskoeffisientene
+blir komplekse, lyset får en polarisasjonsavhengig faseforskyvning, og feltet
+trenger et lite stykke inn i det tynne mediet. Dette evanescente feltet
+brukes i overflatemikroskopi og bølgeledere. Regnbuen forklares av brytning og refleksjon i vanndråper.
 
 <LearningGoals>
 
@@ -59,6 +59,14 @@ lys med like store komponenter, altså $45^\circ$ mot innfallsplanet, kommer da
 ut sirkulært. Den ulike fasen for TE og TM er også grunnen til at sirkulært
 lys som totalreflekteres, generelt kommer ut elliptisk.
 
+<Callout title="Fase ved totalrefleksjon">
+
+Over $\theta_c$ er $|r|=1$ for både TE og TM, men de to komponentene får ulik
+fase. Lys med både TE- og TM-komponent endrer derfor polarisasjonstilstand,
+og sirkulært lys kommer generelt ut elliptisk.
+
+</Callout>
+
 <Example title="45-gradersprismet">
 
 Glass med $n=1{,}50$ i luft. Hva er kritisk vinkel, og vil en stråle som
@@ -77,17 +85,17 @@ prismer brukes som tapsfrie speil i kikkerter, uten metallbelegg.
 </Example>
 
 <Quiz
-  question={"For total intern refleksjon må lyset gå …"}
-  options={["fra tynt til tett medium","fra tett til tynt medium, over kritisk vinkel","ved normal innfall","aldri, det finnes ikke"]}
+  question={"Lys i vann ($n=1{,}33$) treffer en glassflate ($n=1{,}50$) med innfallsvinkelen $70^\\circ$. Ved flaten …"}
+  options={["reflekteres alt, siden $70^\\circ$ er over $\\arcsin(1{,}33/1{,}50)=62^\\circ$","brytes lyset inn i glasset, og en liten del reflekteres","reflekteres bare TE, siden $70^\\circ$ er over Brewster-vinkelen"]}
   answer={1}
-  explanation={"TIR krever $n_1>n_2$ og $\\theta>\\theta_c$ der $\\sin\\theta_c=n_2/n_1$."}
+  explanation={"$\\sin\\theta_c=n_2/n_1$ har bare løsning når lyset går mot lavere indeks, og her går det mot høyere. Snells lov gir $\\sin\\theta_t=(1{,}33/1{,}50)\\sin70^\\circ=0{,}83$, altså $\\theta_t=56^\\circ$. $62^\\circ$ får du ved å bytte om $n_1$ og $n_2$. Rent TE reflekteres bare ved Brewster-vinkelen $\\arctan(1{,}50/1{,}33)=48{,}4^\\circ$; over den reflekteres litt av begge komponentene."}
 />
 
 <Quiz
-  question={"Hva skjer med reflektansen over kritisk vinkel?"}
-  options={["den blir 0","den blir 1","den blir 4 %","den blir lik Brewster-verdien"]}
+  question={"Lineært polarisert lys med like store TE- og TM-komponenter totalreflekteres én gang inne i glass, ved en vinkel over $\\theta_c$. Det reflekterte lyset er generelt …"}
+  options={["lineært polarisert som før","elliptisk polarisert","rent TE","svakere enn det innfallende"]}
   answer={1}
-  explanation={"$|r|=1$ for begge polarisasjoner: all effekt reflekteres, men med polarisasjonsavhengig faseforskyvning."}
+  explanation={"$|r|=1$ for begge komponentene, så amplitudene er de samme, men $\\varphi_{TE}\\ne\\varphi_{TM}$ gir en faseforskjell mellom dem: elliptisk. Sirkulært blir det bare når forskjellen er en kvart periode. Rent TE gjelder ved Brewster-vinkelen, og svakere glemmer at $|r|=1$."}
 />
 
 <Example label="Eksamensoppgave" title="Over kritisk vinkel i glass">
@@ -122,21 +130,33 @@ outside). The angle of incidence is 58°.
 
 ## Den evanescente bølgen
 
-At ingen effekt krysser flaten, betyr ikke at feltet er null der. Snells lov
+At ingen effekt krysser flaten ved total intern refleksjon, betyr ikke at
+feltet er null der. Snells lov
 gir $\sin\theta_t=(n_1/n_2)\sin\theta$, og over kritisk vinkel er
 $\sin\theta_t$ større enn 1. Da er
 $\cos\theta_t=i\sqrt{(n_1/n_2)^2\sin^2\theta-1}$ imaginær. Den transmitterte
 bølgen har faktoren $e^{ik_tz\cos\theta_t}$ for avstanden $z$ inn i det tynne
-mediet, med $k_t=2\pi/\lambda$ i medium 2. Settes $\cos\theta_t$ inn, blir
-faktoren $e^{-z/z_d}$ med
-$z_d=1/\bigl(k_t\sqrt{(n_1/n_2)^2\sin^2\theta-1}\bigr)$. Feltet svinger ikke
-inn i mediet, det avtar eksponentielt, og intensiteten avtar som kvadratet av
-feltet:
+mediet, med $k_t=2\pi/\lambda$, der $\lambda=\lambda_0/n_2$ er bølgelengden i
+det tynne mediet. Settes $\cos\theta_t$ inn, blir faktoren $e^{-z/z_d}$ med
+$z_d=1/\bigl(k_t\sqrt{(n_1/n_2)^2\sin^2\theta-1}\bigr)$. Faktoren er reell:
+feltet har ingen fase som vandrer innover, bare en amplitude som avtar
+eksponentielt, og derfor fører det ingen effekt bort fra flaten i tidsmiddel.
+Intensiteten avtar som kvadratet av feltet:
 
-<Formula tex={"E(z)=E(0)\\,e^{-z/z_d},\\qquad I(z)=I(0)\\,e^{-2z/z_d},\\qquad z_d=\\dfrac{\\lambda}{2\\pi\\sqrt{(n_1/n_2)^2\\sin^2\\theta-1}}"} caption={"Evanescent felt og intensitet. $z$ måles inn i det tynne mediet, og $\\lambda$ er bølgelengden der, $\\lambda_0/n_2$. Feltet har falt til $1/e$ ved $z=z_d$, intensiteten ved $z=z_d/2$."} />
+<Formula tex={"E(z)=E(0)\\,e^{-z/z_d},\\qquad I(z)=I(0)\\,e^{-2z/z_d},\\qquad z_d=\\dfrac{\\lambda}{2\\pi\\sqrt{(n_1/n_2)^2\\sin^2\\theta-1}}"} caption={"Evanescent felt og intensitet i det tynne mediet, med $\\lambda=\\lambda_0/n_2$."} />
 
-Inntrengningsdybden $z_d$ er av størrelsesorden en brøkdel av bølgelengden,
-og den divergerer når $\theta$ nærmer seg $\theta_c$ ovenfra.
+Feltet har falt til $1/e$ ved $z=z_d$, intensiteten allerede ved $z=z_d/2$.
+Langt over $\theta_c$ er roten av størrelsesorden 1, så $z_d$ er omtrent
+$\lambda/2\pi$, rundt 100 nm for synlig lys. Når $\theta$ nærmer seg $\theta_c$
+ovenfra, går roten mot null, og $z_d$ vokser uten grense.
+
+<Callout title="Inntrengningsdybde">
+
+Det evanescente feltet faller som $e^{-z/z_d}$, intensiteten dobbelt så fort.
+$z_d$ er rundt 100 nm for synlig lys langt over $\theta_c$ og vokser uten
+grense mot $\theta_c$.
+
+</Callout>
 
 <Example title="inntrengningsdybde">
 
@@ -145,6 +165,7 @@ luft ved $\theta=60^\circ$. Hvor dypt trenger feltet inn i luften?
 
 <Solution>
 
+I luft er $n_2=1$, så bølgelengden der er 500 nm.
 $(n_1/n_2)\sin\theta=1{,}50\cdot0{,}866=1{,}30$, så
 $(1{,}30)^2-1=0{,}687$ og $\sqrt{0{,}687}=0{,}83$. Dermed
 
@@ -169,10 +190,10 @@ celleoverflaten skarpt uten lys fra resten av cellen. I vanlig
 epifluorescens lyser hele cellen.
 
 <Quiz
-  question={"Det evanescente feltet …"}
-  options={["øker lineært inn i medium 2","avtar eksponentielt med dybden","er alltid null","finnes bare i vakuum"]}
+  question={"Lys totalreflekteres inne i glass ($n_1=1{,}50$) mot luft. Du øker innfallsvinkelen fra $45^\\circ$ til $70^\\circ$. Inntrengningsdybden $z_d$ …"}
+  options={["øker","avtar","er uendret","blir null"]}
   answer={1}
-  explanation={"Feltet faller som $e^{-z/z_d}$ og intensiteten som $e^{-2z/z_d}$, med $z_d$ på titalls til hundretalls nanometer."}
+  explanation={"Roten $\\sqrt{(n_1/n_2)^2\\sin^2\\theta-1}$ i nevneren vokser med $\\theta$, fra $0{,}35$ ved $45^\\circ$ til $0{,}99$ ved $70^\\circ$, så $z_d$ avtar fra omtrent $0{,}45\\lambda$ til $0{,}16\\lambda$. Den er størst nær $\\theta_c=41{,}8^\\circ$, der roten går mot null; «øker» snur den retningen. $z_d$ avhenger av vinkelen, ikke bare av $\\lambda$, og blir aldri null for en endelig rot."}
 />
 
 ## Regnbuen
@@ -191,20 +212,38 @@ $\cos i=n\cos r\,(dr/di)=\tfrac n2\cos r$. Kvadrer og bruk
 $n^2\cos^2r=n^2-\sin^2i$, så er $\cos^2 i=(n^2-1)/3$. Med $n=1{,}333$ er
 $i=59{,}4^\circ$, $r=40{,}2^\circ$ og $D=138^\circ$. Nær minimum endrer $D$
 seg lite når $i$ endrer seg, så stråler fra et bredt bånd av $i$ går ut i
-nesten samme vinkel. Derfor kommer det konsentrert lys tilbake i en kjegle
-omtrent $180^\circ-138^\circ=42^\circ$ fra antisolpunktet, og det er
-primærbuen. Dispersjonen i $n(\lambda)$ flytter minimet litt med fargen, så
-buen spaltes: rødt ytterst, fiolett innerst.
+nesten samme vinkel. Antisolpunktet er punktet rett motsatt sola sett fra
+deg, der skyggen av hodet ditt faller. Lys som er bøyd $D$, kommer tilbake
+$180^\circ-D$ fra antisolpunktet, så det konsentrerte lyset danner en kjegle
+omtrent $180^\circ-138^\circ=42^\circ$ rundt det, og det er primærbuen.
 
-To indre refleksjoner gir sekundærbuen ved omtrent $51^\circ$, svakere og
-med fargene i motsatt rekkefølge. Mellom buene reflekteres lite lys mot
-øyet, og det mørke båndet der bærer Alexanders navn.
+Fargene kommer fra dispersjonen. Fiolett har større $n$ enn rødt, så for
+hver $i$ er $r$ mindre og $D$ større, og da er også minimet større. Fiolett
+går derfor ut i en mindre vinkel $180^\circ-D$, og buen spaltes med rødt
+ytterst og fiolett innerst.
+
+To indre refleksjoner bøyer strålen $D=2(i-r)+2(180^\circ-2r)$, med minimum
+rundt $231^\circ$. Strålen er da snudd mer enn en halv runde og kommer
+tilbake $D-180^\circ\approx51^\circ$ fra antisolpunktet. Det er
+sekundærbuen, svakere fordi lyset har mistet mer ved den ekstra
+refleksjonen. Større $n$ gir fortsatt større $D$, men nå større vinkel, så
+fargene ligger i motsatt rekkefølge, med fiolett ytterst. Primærbuen sender
+lys bare innenfor $42^\circ$, ettersom $D$ er minst $138^\circ$, og
+sekundærbuen bare utenfor $51^\circ$. Båndet mellom buene er derfor mørkt,
+og det heter Alexanders mørke bånd.
+
+<Callout title="Regnbuens vinkler">
+
+Primærbuen står $42^\circ$ fra antisolpunktet med rødt ytterst, og
+sekundærbuen står $51^\circ$ fra antisolpunktet med fiolett ytterst.
+
+</Callout>
 
 <Quiz
-  question={"Primærregnbuen ses i en vinkel på omtrent …"}
-  options={["10°","42°","90°","180°"]}
-  answer={1}
-  explanation={"Minimumsavbøyningen for én indre refleksjon er nær $138^\\circ$, så lyset konsentreres $42^\\circ$ fra antisolpunktet."}
+  question={"Sola står $30^\\circ$ over horisonten. Hvor høyt over horisonten står toppen av primærbuen?"}
+  options={["$12^\\circ$","$42^\\circ$","$48^\\circ$","$72^\\circ$"]}
+  answer={0}
+  explanation={"Antisolpunktet ligger like langt under horisonten som sola står over, altså $30^\\circ$ under. Primærbuen er en kjegle $42^\\circ$ rundt antisolpunktet, så toppen står $42^\\circ-30^\\circ=12^\\circ$ over horisonten. $72^\\circ$ legger solhøyden til i stedet for å trekke den fra, $42^\\circ$ glemmer at antisolpunktet ligger under horisonten, og $48^\\circ$ måler $42^\\circ$ fra senit."}
 />
 
 ## Moder i en plan bølgeleder
@@ -214,7 +253,10 @@ $n_2$, og lys kan fanges i filmen av total intern refleksjon mot begge
 flatene. I strålebildet går en mode i sikksakk mellom flatene med vinkelen
 $\theta$ mot normalen, over kritisk vinkel. Langs filmen har den bølgetallet
 $\beta=(2\pi/\lambda)N$ med $N=n_1\sin\theta$, og på tvers
-$K=(2\pi/\lambda)\sqrt{n_1^2-N^2}$, der $\lambda$ er vakuumbølgelengden. Hvis
+$K=(2\pi/\lambda)\sqrt{n_1^2-N^2}$, der $\lambda$ er vakuumbølgelengden.
+Siden $\theta$ ligger mellom $\theta_c$ og $90^\circ$, er
+$n_1\sin\theta_c=n_2$ den nedre grensen og $n_1$ den øvre, så den effektive
+indeksen ligger mellom dem, $n_2<N<n_1$. Hvis
 bølgen skal gjenta seg selv etter en tur over filmen og tilbake, må den totale
 faseendringen være et helt antall $2\pi$: to ganger $Kb$ for veien og to
 ganger $\varphi_{TE}$ for de to totalrefleksjonene,
@@ -223,23 +265,55 @@ $$
 2Kb+2\varphi_{TE}=2\pi m
 $$
 
-Med $N=n_1\sin\theta$ er
+Ved totalrefleksjon er
+$\tan(\varphi_{TE}/2)=-\sqrt{\sin^2\theta-(n_2/n_1)^2}/\cos\theta$. Med $N=n_1\sin\theta$ er
 $\sqrt{\sin^2\theta-(n_2/n_1)^2}/\cos\theta=\sqrt{(N^2-n_2^2)/(n_1^2-N^2)}$, så
 fasen fra totalrefleksjonen er $-\varphi_{TE}=2\arctan\sqrt{(N^2-n_2^2)/(n_1^2-N^2)}$.
 Sett den inn i fasekravet:
 
 <Formula tex={"\\dfrac{2\\pi b}{\\lambda}\\sqrt{n_1^2-N^2}=2\\arctan\\!\\sqrt{\\dfrac{N^2-n_2^2}{n_1^2-N^2}}+m\\pi"} caption={"TE-moder i en plan filmleder med kjerneindeks $n_1$, tykkelse $b$ og kappeindeks $n_2$; $m=0,1,2,\\dots$"} />
 
-Hver mode $m$ har sin effektive indeks $N$ mellom $n_2$ og $n_1$ og sin egen
-feltfordeling: en stående bølge på tvers av kjernen og evanescente haler ut i
-begge kappene. Grunnmoden $m=0$ har én buk, høyere moder flere, og jo høyere
-mode, desto mer av feltet ligger i de evanescente halene. En tynn film, eller
-en film med liten indeksforskjell mot kappene, fører bare grunnmoden;
-tykkere filmer fører flere. Likningen er transcendental og løses grafisk
-eller numerisk. Eksperimentelt kan en bestemt mode eksiteres ved å
-fasetilpasse med et prisme mot den evanescente halen (dempet
-totalrefleksjon, ATR). En optisk fiber fører lys i sikksakk gjennom en
-sylindrisk kjerne.
+Likningen er transcendental og løses grafisk eller numerisk. Hver mode $m$
+har sin effektive indeks $N$ og sin egen feltfordeling: en stående bølge på
+tvers av kjernen og evanescente haler ut i begge kappene. Med
+vakuumbølgelengden $\lambda$ er inntrengningsdybden i kappen
+$z_d=\lambda/\bigl(2\pi\sqrt{N^2-n_2^2}\bigr)$, samme $z_d$ som for den
+evanescente bølgen, skrevet med $N$. Grunnmoden $m=0$ har én buk, og moden
+$m$ har $m+1$. Høyere $m$ krever mer fase på tvers, altså større $K$ og mindre $N$. Da kommer $N$ nærmere
+$n_2$, $z_d$ blir større, og mer av feltet ligger i de evanescente halene.
+
+Hvor mange moder filmen fører, leser du av ytterpunktene. Ved $N=n_2$ er
+venstresiden størst, $(2\pi b/\lambda)\sqrt{n_1^2-n_2^2}$, og arctan-leddet
+null. Når $N$ øker mot $n_1$, avtar venstresiden mot null, mens arctan-leddet
+vokser mot $\pi$. Moden $m$ har derfor en løsning bare hvis den største
+venstresiden er større enn $m\pi$, altså hvis
+
+$$
+\frac{2b}{\lambda}\sqrt{n_1^2-n_2^2}>m
+$$
+
+Grunnmoden $m=0$ føres alltid. Er $(2b/\lambda)\sqrt{n_1^2-n_2^2}$ under 1,
+er grunnmoden den eneste, og både en tynn film og en liten indeksforskjell
+mot kappene gjør dette tallet lite. Tykkere filmer fører flere moder.
+
+<Callout title="Førte moder">
+
+En ført mode har $n_2<N<n_1$. Moden $m$ føres bare når
+$(2b/\lambda)\sqrt{n_1^2-n_2^2}>m$, så en tynn film eller en liten
+indeksforskjell gir bare grunnmoden.
+
+</Callout>
+
+Eksperimentelt kan en bestemt mode eksiteres ved å fasetilpasse med et prisme
+mot den evanescente halen (dempet totalrefleksjon, ATR). En optisk fiber
+fører lys i sikksakk gjennom en sylindrisk kjerne.
+
+<Quiz
+  question={"En film med tykkelse $b=2$ µm og $n_1=1{,}50$ ligger mellom kapper med $n_2=1{,}45$. Hvor mange TE-moder føres ved $\\lambda=1{,}0$ µm?"}
+  options={["1","2","3","5"]}
+  answer={1}
+  explanation={"$\\sqrt{n_1^2-n_2^2}=\\sqrt{0{,}1475}=0{,}384$, så $(2b/\\lambda)\\sqrt{n_1^2-n_2^2}=4\\cdot0{,}384=1{,}54$. Moden $m$ føres når tallet er større enn $m$, altså $m=0$ og $m=1$: to moder. Svaret 1 glemmer at grunnmoden $m=0$ teller med. Svaret 5 får du ved å sammenligne $(2\\pi b/\\lambda)\\sqrt{n_1^2-n_2^2}=4{,}8$ med $m$ i stedet for med $m\\pi$."}
+/>
 
 <ExamFocus title="Typiske oppgaver">
 
@@ -252,19 +326,12 @@ indeks.
 
 </ExamFocus>
 
-<Quiz
-  question={"Den effektive indeksen $N$ til en ført mode i en filmleder ligger …"}
-  options={["under $n_2$","mellom $n_2$ og $n_1$","over $n_1$","nøyaktig på $n_1$"]}
-  answer={1}
-  explanation={"$N>n_2$ kreves for evanescente haler i kappen, $N<n_1$ for en svingende løsning i kjernen."}
-/>
-
 <KeyTakeaways>
 
 - TIR krever $n_1>n_2$ og $\theta>\theta_c$ med $\sin\theta_c=n_2/n_1$; da er $|r|=1$ med polarisasjonsavhengig faseforskyvning.
 - Faseforskjellen $\varphi_{TM}-\varphi_{TE}$ kan gjøre lineært lys med like store TE- og TM-komponenter sirkulært; sirkulært lys kommer generelt ut elliptisk.
-- Det evanescente feltet faller som $e^{-z/z_d}$ med $z_d=\lambda/(2\pi\sqrt{(n_1/n_2)^2\sin^2\theta-1})$, og intensiteten dobbelt så fort, som $e^{-2z/z_d}$; $z_d$ er typisk under 100 nm, og TIRFM bruker dette til ren overflateavbildning.
+- Det evanescente feltet faller som $e^{-z/z_d}$ med $z_d=\lambda/(2\pi\sqrt{(n_1/n_2)^2\sin^2\theta-1})$, og intensiteten dobbelt så fort, som $e^{-2z/z_d}$; $z_d$ er rundt 100 nm for synlig lys langt over $\theta_c$ og vokser uten grense mot $\theta_c$, og TIRFM bruker det korte feltet til ren overflateavbildning.
 - Regnbuen: minimumsavbøyning nær $138^\circ$ gir primærbuen ved $42^\circ$ med rødt ytterst; to refleksjoner gir sekundærbuen ved $51^\circ$ med snudde farger.
-- En plan filmleder har diskrete moder $m=0,1,\dots$ med effektiv indeks $n_2<N<n_1$; tynn film gir én mode.
+- En plan filmleder har diskrete moder $m=0,1,\dots$ med effektiv indeks $n_2<N<n_1$; moden $m$ føres når $(2b/\lambda)\sqrt{n_1^2-n_2^2}>m$, så tynn film eller liten indeksforskjell gir én mode.
 
 </KeyTakeaways>

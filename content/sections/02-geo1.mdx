@@ -8,7 +8,7 @@ part: "Geometrisk optikk"
 updated: 2026-08-25
 ---
 
-Geometrisk optikk modellerer lys som rette stråler, og hele blokken hviler på to
+Geometrisk optikk modellerer lys som rette stråler og hviler på to
 prinsipper: Fermats prinsipp om stasjonær optisk veilengde og Huygens'
 bølgefrontkonstruksjon. Fra dem følger Snells lov, brytning i krumme flater og
 til slutt tynnlinselikningen.
@@ -34,10 +34,17 @@ avbilder bare det ene punktparet perfekt.
 
 Utveien er den <Term name="Paraksial tilnærming">paraksiale tilnærmingen</Term>:
 for stråler nær aksen settes $\sin\alpha\approx\tan\alpha\approx\alpha$ og
-$\cos\alpha\approx1$. Allerede ved $10^\circ$ er feilene bare på prosentnivå.
+$\cos\alpha\approx1$. Ved $10^\circ$ er feilene ennå bare rundt én prosent.
 Med tilnærmingen samler en sfærisk flate alle stråler nær aksen i samme
 bildepunkt. Stråler langt fra aksen samles i et annet punkt, og bildet blir
 uskarpt (sfærisk aberrasjon).
+
+<Callout title="Skarp avbildning">
+
+Et punkt avbildes i et punkt når alle strålene mellom dem har samme optiske
+veilengde. En sfærisk flate oppfyller kravet bare for stråler nær aksen.
+
+</Callout>
 
 ## Fermat, Huygens og Snells lov
 
@@ -72,7 +79,21 @@ samme regning gir $\sin\theta_r=\sin\theta_i$, altså $\theta_r=\theta_i$.
 
 Huygens' konstruksjon gir også Snells lov, fra bølgesiden. Hvert punkt på en
 bølgefront er kilde til nye kulebølger, og den nye fronten er innhyllingen av
-dem. Når fronten går inn i et medium der farten er $c/n$, endrer den retning.
+dem. La en plan front treffe flaten skrått. Mens den ene kanten av fronten går
+strekningen $v_it$ fram til flaten, vokser kulebølgen fra kanten som traff
+først, til radius $v_tt$ i det nye mediet. Den nye fronten er tangenten fra det
+siste treffpunktet til denne kulebølgen. Er $\ell$ avstanden mellom de to
+treffpunktene, er $\sin\theta_i=v_it/\ell$ og $\sin\theta_t=v_tt/\ell$, og med
+$v=c/n$ er
+
+$$
+\frac{\sin\theta_i}{\sin\theta_t}=\frac{v_i}{v_t}=\frac{n_t}{n_i}
+\;\Rightarrow\;
+n_i\sin\theta_i=n_t\sin\theta_t.
+$$
+
+I et tettere medium er farten lavere, så kulebølgen når kortere på samme tid,
+$\theta_t<\theta_i$, og strålen bøyes mot normalen.
 
 <Statement kind="law" name="Snells lov">
 
@@ -84,7 +105,8 @@ normalen, mot et tynnere medium fra normalen.
 
 Går lyset fra et tett medium $n_1$ mot et tynnere $n_2$, finnes en
 innfallsvinkel der $\theta_t=90^\circ$, den kritiske vinkelen
-$\sin\theta_c=n_2/n_1$. Over den reflekteres alt lyset internt (total intern
+$\sin\theta_c=n_2/n_1$. Over den skulle Snells lov gi $\sin\theta_t>1$, så
+ingen stråle går ut, og alt lyset reflekteres internt (total intern
 refleksjon).
 
 ## Fortegn før tall
@@ -117,17 +139,26 @@ $$
 Alle strålene har samme OPL bare når hakeparentesen er null. Setter du den
 lik null, får du brytningslikningen:
 
-<Formula tex={"\\dfrac{n_1}{s_o}+\\dfrac{n_2}{s_i}=\\dfrac{n_2-n_1}{R}"} caption={"Brytning i én sfærisk flate. Forstørrelsen er $m=-\\dfrac{n_1 s_i}{n_2 s_o}$."} />
+<Formula tex={"\\dfrac{n_1}{s_o}+\\dfrac{n_2}{s_i}=\\dfrac{n_2-n_1}{R}"} caption={"Brytning i én sfærisk flate."} />
+
+En stråle fra toppen av objektet, i høyden $y_o$, mot toppunktet møter flaten
+der normalen ligger langs aksen. Snells lov for små vinkler gir
+$n_1y_o/s_o=-n_2y_i/s_i$, så den laterale forstørrelsen er
+
+$$
+m=\frac{y_i}{y_o}=-\frac{n_1s_i}{n_2s_o}.
+$$
 
 Grensetilfellet $R\to\infty$ er en planflate, og da blir
-$s_i=-\dfrac{n_2}{n_1}s_o$: bildet er virtuelt og ligger på objektsiden. Det er
-derfor et basseng ser grunnere ut enn det er. Sett ovenfra med $n_1=1{,}33$ og
+$s_i=-\dfrac{n_2}{n_1}s_o$: bildet er virtuelt og ligger på objektsiden, og
+$m=1$. Derfor ser et basseng grunnere ut enn det er, mens bunnen ikke ser
+mindre ut. Sett rett ovenfra, der strålene er paraksiale, med $n_1=1{,}33$ og
 $n_2=1$ ser bunnen ut til å ligge på $3/4$ av den virkelige dybden.
 
 ## Tynnlinsen
 
 En linse av materiale $n_2$ i et medium $n_1$ er to sfæriske flater rett etter
-hverandre. Bruk flatelikningen på framflaten:
+hverandre. Bruk brytningslikningen på framflaten:
 $n_1/s_o+n_2/s_i'=(n_2-n_1)/R_1$, der $s_i'$ er bildeavstanden fra framflaten
 alene. Dette bildet er objekt for bakflaten, og linsen er tynn, så begge flatene
 ligger i samme plan, og objektavstanden for bakflaten er $-s_i'$. Bakflaten
@@ -138,8 +169,12 @@ $$
 \frac{n_1}{s_o}+\frac{n_1}{s_i}=(n_2-n_1)\Bigl(\frac{1}{R_1}-\frac{1}{R_2}\Bigr).
 $$
 
-Høyresiden avhenger bare av linsen. Kall den $n_1/f$, så får du Gauss-formen,
-den du oftest bruker, og linsemakerformelen på én gang:
+Høyresiden avhenger bare av linsen; kall den $n_1/f$. Lar du objektet gå mot
+uendelig, er $1/s_o\to0$ og $s_i=f$. Parallelt lys samles altså i et punkt i
+avstanden $f$ bak linsen, brennpunktet, og $f$ er brennvidden. For en
+spredelinse er $f<0$, og parallelt lys spres som om det kom fra et punkt i
+avstanden $|f|$ foran linsen. Delt på $n_1$ gir likningen Gauss-formen, den du
+oftest bruker, og linsemakerformelen på én gang:
 
 <Formula tex={"\\dfrac{1}{s_o}+\\dfrac{1}{s_i}=\\dfrac{1}{f}"} caption={"Tynnlinselikningen (Gauss-form). $s_o$ = objektavstand, $s_i$ = bildeavstand, $f$ = brennvidde."} />
 
@@ -147,11 +182,30 @@ den du oftest bruker, og linsemakerformelen på én gang:
 
 Mål avstandene fra brennpunktene i stedet for fra linsen, $s_o=f+x_o$ og
 $s_i=f+x_i$. Gauss-formen er $s_os_i=f(s_o+s_i)$, og innsatt gir den
-$(f+x_o)(f+x_i)=f(2f+x_o+x_i)$, altså Newtons form:
+$(f+x_o)(f+x_i)=f(2f+x_o+x_i)$. Ganger du ut, står $fx_o+fx_i$ på begge sider,
+og det som blir igjen, er Newtons form:
 
 <Formula tex={"x_o\\,x_i=f^2"} caption={"Newtons form. $x_o$ og $x_i$ måles fra hvert sitt brennpunkt."} />
 
-<Formula tex={"m=-\\dfrac{s_i}{s_o}"} caption={"Lateral forstørrelse; negativ $m$ betyr invertert bilde. Skrives også $M_T$."} />
+En stråle fra toppen av objektet gjennom midten av linsen går rett fram, så
+bildehøyden og objekthøyden forholder seg som avstandene til linsen. Strålen
+krysser aksen i linsen, så et bilde bak linsen står opp ned, og forstørrelsen
+får et minustegn:
+
+<Formula tex={"m=-\\dfrac{s_i}{s_o}"} caption={"Lateral forstørrelse. Skrives også $M_T$."} />
+
+Fortegnet på $s_i$ avgjør om bildet er reelt eller virtuelt, og fortegnet på
+$m$ om det er invertert ($m<0$) eller opprett ($m>0$). For én linse med objektet
+foran ($s_o>0$) følger det ene av det andre, ettersom $m=-s_i/s_o$: et reelt
+bilde er invertert, et virtuelt er opprett.
+
+<Callout title="Bildets type">
+
+Fortegnet på $s_i$ sier om bildet er reelt eller virtuelt, fortegnet på $m$ om
+det er invertert eller opprett. Bare for én linse med objektet foran følger det
+ene av det andre.
+
+</Callout>
 
 Brytningsstyrken $P=1/f$ måles i dioptrier når $f$ er i meter; briller på
 +2 dioptrier er en samlelinse med $f=50$ cm.
@@ -162,7 +216,7 @@ Brytningsstyrken $P=1/f$ måles i dioptrier når $f$ er i meter; briller på
 
 - Strålene møtes fysisk og kan fanges på en skjerm.
 - $s_i>0$, på utgangssiden av linsen.
-- Invertert: $m<0$.
+- Én linse, objekt foran: invertert, $m<0$.
 - Projektor, kamerasensor, netthinnen.
 
 </CompareCol>
@@ -171,15 +225,17 @@ Brytningsstyrken $P=1/f$ måles i dioptrier når $f$ er i meter; briller på
 
 - Bare strålenes forlengelser møtes; ingen skjerm kan fange det.
 - $s_i<0$, på objektsiden.
-- Opprett: $m>0$.
-- Forstørrelsesglass, spredelinse, planspeil.
+- Én linse, objekt foran: opprett, $m>0$.
+- Forstørrelsesglass, spredelinse.
 
 </CompareCol>
 
 </Compare>
 
-Dra i objektavstanden og brennvidden, og se når bildet skifter fra reelt og
-invertert til virtuelt og opprett.
+For en samlelinse er $1/s_i=1/f-1/s_o$ positiv når $s_o>f$ og negativ når
+$s_o<f$. Bildet skifter altså fra reelt og invertert til virtuelt og opprett
+når objektet passerer brennpunktet. En spredelinse har $f<0$ og gir et virtuelt,
+opprett bilde for alle $s_o>0$.
 
 <Simulation src={"/sims/lensCanvas.js"} title={"Interaktivt: tynnlinse-avbildning"} height={300} />
 
@@ -211,17 +267,17 @@ objekt–bilde en samlelinse kan gi, er fire brennvidder.
 </Example>
 
 <Quiz
-  question={"Et objekt står $2f$ foran en positiv linse. Bildet er …"}
-  options={["virtuelt, opprett, forstørret","reelt, invertert, like stort ($m=-1$) ved $2f$","reelt, opprett ved $f$","i uendelig"]}
-  answer={1}
-  explanation={"Ved $s_o=2f$ gir likningen $s_i=2f$ og $m=-1$: reelt, invertert og i samme størrelse."}
+  question={"Et objekt står 15 cm foran en samlelinse med $f=10$ cm. Bildet er …"}
+  options={["virtuelt, opprett, dobbelt så stort, 30 cm foran linsen","reelt, opprett, dobbelt så stort, 30 cm bak linsen","reelt, invertert, dobbelt så stort, 30 cm bak linsen","reelt, invertert, halvparten så stort, 30 cm bak linsen"]}
+  answer={2}
+  explanation={"$1/s_i=1/10-1/15=1/30$, så $s_i=+30$ cm: bildet er reelt og ligger bak linsen. $m=-s_i/s_o=-2$: invertert og dobbelt så stort. Med én linse er et reelt bilde aldri opprett, halvparten så stort får du ved å dele $s_o$ på $s_i$, og et virtuelt bilde krever $s_o<f$."}
 />
 
 <Quiz
-  question={"Hvis $s_o=f$ for en positiv linse, blir bildet …"}
-  options={["ved $f$ på bildesiden","ved $2f$","i uendelig","virtuelt ved $f/2$"]}
-  answer={2}
-  explanation={"Da blir $1/s_i=1/f-1/f=0$, altså $s_i\\to\\infty$: strålene forlater linsen parallelt."}
+  question={"Du flytter et objekt fra $2f$ inn mot $f$ foran en samlelinse. Hva skjer med bildet?"}
+  options={["det flytter seg mot linsen og krymper","det flytter seg bort fra linsen og vokser","det blir stående ved $2f$ og vokser","det flytter seg bort fra linsen og krymper"]}
+  answer={1}
+  explanation={"$s_i=s_of/(s_o-f)$ vokser fra $2f$ mot uendelig når $s_o$ synker mot $f$, og $|m|=s_i/s_o$ vokser fra 1. Ved $s_o=f$ er $1/s_i=0$: strålene går ut parallelt, og bildet ligger i uendelig. Et bilde som flytter seg mot linsen, får du når objektet flyttes bort fra den."}
 />
 
 <Example label="Eksamensoppgave" title="Et stearinlys foran en positiv linse">
@@ -248,11 +304,11 @@ of the burning candle.
 ## Linsemakerformelen
 
 Linsemakerformelen gir brennvidden ut fra formen på linsen. En bikonveks linse
-i luft har $R_1>0$ og $R_2<0$, så parentesen er positiv og $f>0$.
+i luft har $R_1>0$ og $R_2<0$, så $1/R_1-1/R_2$ er positiv og $f>0$.
 
 Sett linsen i vann, $n_1=1{,}33$ i stedet for 1. Da blir telleren $n_2-n_1$
 mindre og nevneren $n_1$ større, så $1/f$ krymper. For $n_2=1{,}5$ er $1/f$
-omtrent en firedel av verdien i luft.
+omtrent en firedel av verdien i luft, og brennvidden blir fire ganger så lang.
 
 <Example title="linsemaker">
 
@@ -277,33 +333,43 @@ så $f=12{,}0$ cm. Geometrien stemmer.
 </Example>
 
 <Quiz
-  question={"Hvilken linseform i luft er positiv uansett hvor sterkt flatene krummer?"}
-  options={["bikonkav ($R_1<0,\\ R_2>0$)","bikonveks ($R_1>0,\\ R_2<0$)","menisk (begge $R$ negative)","ingen form"]}
+  question={"En bikonveks glasslinse ($n_2=1{,}50$) senkes i en olje med $n_1=1{,}60$. Linsen …"}
+  options={["samler fortsatt, men svakere","blir en spredelinse","samler sterkere enn i luft","får uendelig brennvidde"]}
   answer={1}
-  explanation={"Bikonveks har $1/R_1>0$ og $-1/R_2>0$, så parentesen er positiv for alle radier og $f>0$. En menisk med begge $R$ negative er positiv bare når bakflaten krummer sterkest, $|R_2|<|R_1|$."}
+  explanation={"Parentesen $1/R_1-1/R_2$ er positiv for en bikonveks linse, men $n_2-n_1=-0{,}10$ er negativ, så $1/f<0$ og linsen sprer lys. Svakere samling ville gjelde for en væske med $n_1$ mellom 1 og 1,50, som vann; uendelig brennvidde krever $n_1=n_2$."}
 />
 
 ## Sfærisk speil
 
-Et sfærisk speil følger samme avbildningslikning som tynnlinsen,
-$1/s_o+1/s_i=1/f$, med brennvidde $|f|=|R|/2$.
+En stråle parallelt med aksen i høyden $h$ treffer et sfærisk speil med
+innfallsvinkel $h/R$ mot normalen, som går gjennom krumningssenteret. Den
+reflekterte strålen danner da vinkelen $2h/R$ med aksen og krysser den i
+avstanden $R/2$ fra speilet. Speilet følger derfor samme avbildningslikning som
+tynnlinsen, $1/s_o+1/s_i=1/f$, med brennvidde $|f|=|R|/2$.
+
+Speilet sender lyset tilbake mot venstre. Et reelt bilde ligger derfor foran
+speilet, på samme side som objektet, og der er $s_i>0$; et virtuelt bilde bak
+speilet har $s_i<0$. Regelen om at $s_i>0$ betyr til høyre, gjelder altså bare
+lys som går gjennom en linse eller en brytende flate.
 
 <Callout type="warning" title="Fortegnsfelle">
 
 Fortegnet på $R$ for speil varierer mellom kilder, og til og med mellom ulike
-deler av kursmaterialet. Fysikken avgjør: et konkavt speil
+deler av kursmaterialet. Fortegnet på $f$ er det samme overalt. Et konkavt speil
 samler lys og har $f>0$, et konvekst speil sprer og har $f<0$. Slå fast
-hvilken konvensjon oppgaven bruker før du setter inn tall.
+hvilken konvensjon oppgaven bruker for $R$ før du setter inn tall.
 
 </Callout>
 
 ## Flere linser
 
-Systemer bygges ved å kjede: bildet fra første linse er objekt for neste.
-Ligger bildet bak neste linse, blir objektavstanden negativ, og konvensjonen
-over håndterer det automatisk. Totalforstørrelsen er produktet
-$M=m_1m_2m_3\cdots$, med fortegnene i behold, så to inversjoner gir et opprett
-bilde.
+Systemer bygges ved å kjede: bildet fra første linse er objekt for neste. Står
+linsene i avstanden $d$, er objektavstanden for den andre linsen
+$s_{o2}=d-s_{i1}$. Ligger det første bildet bak den andre linsen
+($s_{i1}>d$), blir $s_{o2}$ negativ (et virtuelt objekt), og tynnlinselikningen
+gjelder uendret. Totalforstørrelsen er produktet $M=m_1m_2m_3\cdots$, med fortegnene i
+behold, så to inversjoner gir et opprett bilde. Et reelt bilde fra to
+samlelinser kan altså stå opprett.
 
 <ExamFocus title="Typiske oppgaver">
 
@@ -318,7 +384,8 @@ og bildeplassering med type og forstørrelse.
 - Snells lov og refleksjonsloven følger av Fermats prinsipp; Huygens' konstruksjon gir også Snells lov, fra bølgesiden.
 - Én sfærisk flate: $n_1/s_o+n_2/s_i=(n_2-n_1)/R$; planflaten gir tilsynelatende dybde $s_i=-(n_2/n_1)s_o$.
 - Tynnlinsen: $1/s_o+1/s_i=1/f$, Newtons form $x_ox_i=f^2$, forstørrelse $m=-s_i/s_o$; sett fortegn før tall.
-- Konkavt speil har $f>0$ uansett konvensjon for $R$; sjekk kildens fortegnsvalg.
+- Fortegnet på $s_i$ sier reelt eller virtuelt, fortegnet på $m$ invertert eller opprett; bare for én linse følger det ene av det andre.
+- Sfærisk speil: $|f|=|R|/2$, og et konkavt speil har $f>0$ uansett konvensjon for $R$; et reelt speilbilde ligger foran speilet.
 - Fler-linsesystemer kjedes bilde-til-objekt, og forstørrelsene multipliseres.
 
 </KeyTakeaways>

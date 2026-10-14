@@ -8,9 +8,11 @@ part: "Diffraksjon"
 updated: 2026-09-27
 ---
 
-Fjernfeltmønsteret er Fourier-transformen av aperturen. Den setningen har to
-praktiske konsekvenser: en linse henter Fourier-transformen inn i sitt
-brennplan, så du slipper å vente på fjernfeltet, og et gitter med tusenvis av spalter gjør transformen til et
+Enkeltspaltintegralet $\int e^{iky\sin\theta}\,dy$ summerer åpningen med en
+fase som vokser lineært med $y$, og en slik sum er en Fourier-transform av
+åpningen. Fjernfeltet fra enhver apertur er en slik transform. En linse henter
+dette mønsteret inn i brennplanet sitt, så du slipper å vente på
+fjernfeltet, og et gitter med tusenvis av spalter gjør mønsteret til et
 måleinstrument som sorterer lys etter bølgelengde.
 
 <LearningGoals>
@@ -40,8 +42,9 @@ $$
 Uten den siste faktoren er dette en Fourier-transform av aperturfeltet, med
 romlig frekvens $X/\lambda L$: grove strukturer sender lys i små vinkler, fine
 strukturer i store. Faktoren kan bare sløyfes når fasen $k(x^2+y^2)/2L$ er
-liten over hele aperturen, altså når $L\gg\text{areal}/\lambda$, og for en
-åpning på 1 cm² i synlig lys må $L$ da være hundrevis av meter.
+liten over hele aperturen, altså når $L\gg\text{areal}/\lambda$, samme krav
+som $L\gg b^2/\lambda$ for en spalt. For en åpning på 1 cm² i synlig lys må
+$L$ da være hundrevis av meter.
 
 En tynn linse med brennvidde $f$ forsinker lyset mest på midten, og gir
 fasetransmisjonen
@@ -59,8 +62,17 @@ $-k(x^2+y^2)/2f$.
 </Derivation>
 
 Med skjermen i brennplanet er $L=f$, og linsens fase $-k(x^2+y^2)/2f$ opphever
-det siste leddet i integralet nøyaktig. Det som står igjen, er Fourier-transformen
-av aperturfeltet: linsen henter fjernfeltet inn i brennplanet sitt.
+faktoren $e^{ik(x^2+y^2)/2f}$ i integralet for $E(X,Y)$ nøyaktig. Det som står igjen, er Fourier-transformen
+av aperturfeltet, nå med romlig frekvens $X/\lambda f$. Mønsteret i brennplanet
+er altså fjernfeltmønsteret, skalert med $f$: en lengre brennvidde gir et
+større mønster.
+
+<Callout title="Linsen og fjernfeltet">
+
+I brennplanet til en linse ligger fjernfeltmønsteret, Fourier-transformen av
+aperturfeltet, skalert med brennvidden $f$.
+
+</Callout>
 
 Fasen kan styres på tre måter: ved å endre veilengden (en linse), endre
 brytningsindeksen eller bruke diffraksjon. Moderne romlige lysmodulatorer
@@ -68,10 +80,10 @@ styrer fasen piksel for piksel ved å endre brytningsindeksen eller veilengden i
 hver piksel.
 
 <Quiz
-  question={"Med skjermen i linsens brennplan viser mønsteret …"}
-  options={["et skarpt bilde av aperturen","Fourier-transformen av aperturfeltet","alltid en Airy-skive","skyggen av aperturen"]}
-  answer={1}
-  explanation={"Linsens kvadratiske fase opphever det kvadratiske leddet i fasen fra aperturen, og brennplanet viser fjernfeltet, altså transformen."}
+  question={"En dobbeltspalt med spalteavstand $a=0{,}20$ mm står rett foran en linse med $f=50$ cm og belyses med 600 nm. Hvor langt fra hverandre ligger stripene i brennplanet?"}
+  options={["1,5 mm","3,0 mm","0,75 mm","ingen striper, brennplanet viser et bilde av spaltene"]}
+  answer={0}
+  explanation={"Brennplanet viser fjernfeltet med $L=f$. Maksima ligger ved $\\sin\\theta=m\\lambda/a$, altså $X=m\\lambda f/a$, så avstanden er $\\lambda f/a=600\\times10^{-9}\\cdot0{,}50/0{,}20\\times10^{-3}=1{,}5$ mm. 3,0 mm og 0,75 mm får med en faktor 2 for mye eller for lite. Et bilde av spaltene ligger ikke i brennplanet: en apertur rett foran linsen har ikke noe reelt bilde der."}
 />
 
 ## Gitteret
@@ -81,9 +93,11 @@ Et gitter er $N$ spalter med stor $N$, så intensiteten er flerspaltformelen
 $\beta=\pi b\sin\theta/\lambda$ for spalteavstanden $a$ og spaltbredden $b$.
 
 Hovedmaksima ligger ved $\alpha=m\pi$, med høyde $N^2$ og bredde som krymper
-som $1/N$. Mellom to hovedmaksima ligger $N-1$ minima (der $N\alpha=p\pi$ uten
-at $\alpha$ selv er et multiplum av $\pi$) og $N-2$ svake sekundærmaksima.
-Med titusenvis av spalter blir toppene svært smale, og posisjonene gis av
+som $1/N$. Minima ligger der $N\alpha=p\pi$ uten at $\alpha$ selv er et
+multiplum av $\pi$. Når $\alpha$ går fra $m\pi$ til $(m+1)\pi$, går
+$N\alpha$ fra $mN\pi$ til $(m+1)N\pi$, og de $N-1$ multiplene av $\pi$ som
+ligger imellom, er minima. Mellom to nabominima ligger ett svakt
+sekundærmaksimum, altså $N-2$ i alt. Med titusenvis av spalter blir toppene svært smale, og posisjonene gis av
 gitterlikningen:
 
 <Statement kind="law" name="Gitterlikningen">
@@ -108,7 +122,10 @@ Dispersjonen er hvor mye vinkelen endrer seg per bølgelengde. Ved fast
 innfallsvinkel gir derivasjon av gitterlikningen
 $a\cos\theta_m\,d\theta_m=m\,d\lambda$, så
 
-<Formula tex={"\\mathcal D=\\dfrac{d\\theta_m}{d\\lambda}=\\dfrac{m}{a\\cos\\theta_m}"} caption={"Vinkeldispersjon: høyere orden og tettere spalter sprer spekteret mer."} />
+<Formula tex={"\\mathcal D=\\dfrac{d\\theta_m}{d\\lambda}=\\dfrac{m}{a\\cos\\theta_m}"} caption={"Vinkeldispersjon."} />
+
+Høyere orden og tettere spalter sprer altså spekteret mer. I nullte orden er
+$\mathcal D=0$: alle bølgelengdene går rett fram.
 
 To spektrallinjer med bølgelengde $\lambda$ og $\lambda+\Delta\lambda$ er akkurat
 skilt når toppen til den ene ligger på det første nullpunktet ved siden av
@@ -126,10 +143,18 @@ intervallet:
 
 <Formula tex={"\\lambda_\\text{fsr}=\\dfrac{\\lambda_1}{m}"} caption={"Fritt spektralområde: bølgelengdeintervallet før naboordenen overlapper."} />
 
-Høyere orden gir bedre oppløsning og dispersjon, men mindre fritt
-spektralområde, fordi gitterlikningen bare inneholder produktet $m\lambda$:
-600 nm i første orden lander i samme vinkel som 300 nm i andre. Et
+Gitterlikningen inneholder bare produktet $m\lambda$, så 600 nm i første
+orden lander i samme vinkel som 300 nm i andre. Høyere orden gir bedre
+oppløsning og dispersjon, men mindre fritt spektralområde, og et
 spektrometer må derfor filtrere bort ordener det ikke vil se.
+
+<Callout title="Orden og oppløsning">
+
+Oppløsningen er $\mathcal R=mN$, og det frie spektralområdet er
+$\lambda_1/m$. Høyere orden gir bedre oppløsning, men mindre fritt
+spektralområde.
+
+</Callout>
 
 <Example title="natriumdubletten">
 
@@ -227,11 +252,12 @@ bare rundt 75 µm, så spektrometeret trenger en smal inngangsspalt.
 
 Sett fra gitteret spenner en spalt med bredde $\Delta x$ i avstanden
 $L = 40$ cm vinkelen $\theta \approx \Delta x/L$ (små vinkler). Formelen
-<FormulaRef id="spatial-koherens" /> gjelder en sirkulær kilde; for en spalt
-faller faktoren 1,22 bort, slik den gjør i diffraksjonen fra en enkeltspalt:
+<FormulaRef id="spatial-koherens" /> gjelder en sirkulær kilde. Den opplyste
+inngangsspalten er en jevnt lysende kildespalt, og for den faller faktoren
+1,22 bort, slik den gjør i diffraksjonen fra en enkeltspalt:
 
 $$
-l_s < \frac{\lambda}{\theta} \approx \frac{\lambda L}{\Delta x}
+l_s \approx \frac{\lambda}{\theta} \approx \frac{\lambda L}{\Delta x}
 $$
 
 Hele gitteret skal ligge innenfor den spatiale koherenslengden, så $l_s$ må
@@ -268,24 +294,24 @@ spaltbredden er kjent, og spalteavstanden fra toppene.
 />
 
 <Quiz
-  question={"Mellom to nabo-hovedmaksima fra et $N$-spaltgitter ligger …"}
-  options={["$N$ minima","$N-1$ minima","1 minimum","ingen minima"]}
-  answer={1}
-  explanation={"$(\\sin N\\alpha/\\sin\\alpha)^2$ har $N-1$ nullpunkter og $N-2$ sekundærmaksima mellom hovedtoppene."}
-/>
-
-<Quiz
-  question={"Gitterordener kan overlappe fordi …"}
-  options={["samme vinkel kan tilfredsstille likningen for ulike $m$ og $\\lambda$","alle bølgelengder har samme energi","spaltene er for brede","Fourier-transformen mangler fase"]}
+  question={"Seks like spalter belyses normalt. Hvor mange minima og sekundærmaksima ligger mellom to nabo-hovedmaksima?"}
+  options={["5 minima og 4 sekundærmaksima","6 minima og 5 sekundærmaksima","4 minima og 3 sekundærmaksima","5 minima og 6 sekundærmaksima"]}
   answer={0}
-  explanation={"Likningen inneholder bare produktet $m\\lambda$: 600 nm i 1. orden og 300 nm i 2. treffer samme vinkel."}
+  explanation={"Mellom $\\alpha=m\\pi$ og $(m+1)\\pi$ går $6\\alpha$ fra $6m\\pi$ til $6(m+1)\\pi$, og de fem multiplene av $\\pi$ imellom er minima. Mellom fem minima ligger 4 sekundærmaksima. Seks minima teller med et hovedmaksimum som om det var et minimum."}
 />
 
 <Quiz
-  question={"Hva øker gitterets spektrale oppløsning?"}
-  options={["lavere orden og færre spalter","høyere orden eller flere belyste spalter","kortere skjermavstand","mindre intensitet"]}
-  answer={1}
-  explanation={"$\\mathcal R=mN$: begge faktorene hjelper, men høyere orden koster fritt spektralområde."}
+  question={"Et spektrometer skal vise 400–700 nm. Hvilke to gitterordener er de første som overlapper?"}
+  options={["2. og 3. orden","1. og 2. orden","3. og 4. orden","ingen ordener overlapper"]}
+  answer={0}
+  explanation={"Gitterlikningen inneholder bare $m\\lambda$. Første orden dekker $m\\lambda=400$–700 nm og andre 800–1400 nm, så de overlapper ikke. Tredje orden starter ved $m\\lambda=1200$ nm, under andre ordens 1400 nm, så 2. og 3. orden overlapper."}
+/>
+
+<Quiz
+  question={"Gitter A har 1200 spalter/mm og brukes i 1. orden. Gitter B har 600 spalter/mm og brukes i 2. orden. Begge er 1 cm brede og fullt belyst. Hvilket skiller to nære spektrallinjer best?"}
+  options={["de er like gode","A, fordi tettere spalter sprer spekteret mer","B, fordi det brukes i høyere orden"]}
+  answer={0}
+  explanation={"$\\mathcal R=mN$: A har $1\\cdot12\\,000$ og B $2\\cdot6000$, begge 12 000. Dispersjonen $m/(a\\cos\\theta_m)$ er også den samme, fordi B har dobbel orden og dobbel spalteavstand. Det er produktet av orden og spalter som teller."}
 />
 
 <KeyTakeaways>
